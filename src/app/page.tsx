@@ -1,4 +1,6 @@
 import Button from "@/components/Button";
+import Check from "@/components/Check";
+import Radio from "@/components/Radio";
 import TextArea from "@/components/TextArea";
 
 export default function Home() {
@@ -25,6 +27,17 @@ export default function Home() {
         <TextArea valid />
         <TextArea error />
         <TextArea disabled />
+      </section>
+      <section className="flex gap-5">
+        <Check id="1" />
+        <Check disabled id="2" />
+        <Check error id="3" />
+      </section>
+
+      <section className="flex gap-5">
+        <Radio id="4" />
+        <Radio disabled id="5" />
+        <Radio error id="6" />
       </section>
     </main>
   );

@@ -15,3 +15,11 @@
     @apply bofore:left-0 before:absolute before:top-0 before:h-full before:w-full;
   }
 }
+
+label:has(input:checked) {
+  background-color: #fe5722;
+}
+
+label:has(input:disabled) {
+  pointer-events: none;
+}
