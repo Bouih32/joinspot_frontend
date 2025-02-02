@@ -21,7 +21,7 @@ export default function Button({
   return (
     <div
       className={cn(
-        "flexCenter text-16xl bg-main w-fit cursor-pointer gap-2 rounded px-3 py-[3px] text-white md:px-4 md:py-[6px] xl:px-6 xl:py-2.5",
+        "flexCenter text-16xl bg-main w-fit cursor-pointer gap-2 rounded px-3 py-[3px] text-white disabled:pointer-events-none md:px-4 md:py-[6px] xl:px-6 xl:py-2.5",
         secondary && "border-main text-main border bg-transparent",
         variant && !disabled && "bg-second",
         variant &&
