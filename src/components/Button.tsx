@@ -19,24 +19,19 @@ export default function Button({
   classname,
 }: ButtonProps) {
   return (
-    <div
+    <button
+      disabled={disabled}
       className={cn(
-        "flexCenter text-16xl bg-main w-fit cursor-pointer gap-2 rounded px-3 py-[3px] text-white disabled:pointer-events-none md:px-4 md:py-[6px] xl:px-6 xl:py-2.5",
-        secondary && "border-main text-main border bg-transparent",
-        variant && !disabled && "bg-second",
-        variant &&
-          !disabled &&
-          secondary &&
-          "border-second text-second bg-transparent",
-        disabled && !secondary && "bg-secondLightActive",
-        disabled &&
-          secondary &&
-          "text-secondLightActive border-secondLightActive",
+        "flexCenter w-fit cursor-pointer gap-2 rounded bg-main px-3 py-[3px] text-16xl text-white disabled:pointer-events-none disabled:bg-secondLightActive md:px-4 md:py-[6px] xl:px-6 xl:py-2.5",
+        secondary &&
+          "border border-main bg-transparent text-main disabled:border-secondLightActive disabled:bg-transparent disabled:text-secondLightActive",
+        variant && "bg-second",
+        variant && secondary && "border-second bg-transparent text-second",
         classname,
       )}
     >
       {children}
       {icon && <MdKeyboardArrowRight className="text-[20px]" />}
-    </div>
+    </button>
   );
 }
