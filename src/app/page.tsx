@@ -1,21 +1,13 @@
 import Button from "@/components/Button";
+import TextArea from "@/components/TextArea";
 
 export default function Home() {
   return (
-    <div className="grid place-content-center space-y-3">
-      <Button icon>Button</Button>
-      <Button secondary>Button</Button>
-      <Button variant>Button</Button>
-      <Button disabled>Button</Button>
-      <Button disabled secondary>
-        Button
-      </Button>
-      <Button disabled variant>
-        Button
-      </Button>
-      <Button disabled variant secondary>
-        Button
-      </Button>
+    <div className="border-neutralHover text-neutralHover grid place-content-center space-y-3">
+      <TextArea />
+      <TextArea valid />
+      <TextArea disabled />
+      <TextArea error />
     </div>
   );
 }

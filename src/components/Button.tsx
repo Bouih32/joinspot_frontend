@@ -7,6 +7,7 @@ type ButtonProps = {
   icon?: boolean;
   children: ReactNode;
   disabled?: boolean;
+  classname?: string;
 };
 
 export default function Button({
@@ -15,18 +16,23 @@ export default function Button({
   secondary,
   disabled,
   variant,
+  classname,
 }: ButtonProps) {
   return (
     <div
       className={cn(
-        "flexCenter text-16xl bg-main w-fit gap-2 rounded px-3 py-[3px] text-white md:px-4 md:py-[6px] xl:px-6 xl:py-2.5",
+        "flexCenter text-16xl bg-main w-fit cursor-pointer gap-2 rounded px-3 py-[3px] text-white md:px-4 md:py-[6px] xl:px-6 xl:py-2.5",
         secondary && "border-main text-main border bg-transparent",
+        variant && !disabled && "bg-second",
+        variant &&
+          !disabled &&
+          secondary &&
+          "border-second text-second bg-transparent",
         disabled && !secondary && "bg-secondLightActive",
         disabled &&
           secondary &&
           "text-secondLightActive border-secondLightActive",
-        disabled && !secondary && variant && "bg-second",
-        disabled && secondary && variant && "text-second border-second",
+        classname,
       )}
     >
       {children}
