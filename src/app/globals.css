@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .flexBetween {
+    @apply flex items-center justify-between;
+  }
+
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+
+  .cover {
+    @apply bofore:left-0 before:absolute before:top-0 before:h-full before:w-full;
+  }
+}
