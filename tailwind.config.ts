@@ -100,7 +100,7 @@ export default {
         "16xl": [
           "16px",
           {
-            lineHeight: "21px",
+            lineHeight: "24px",
             fontWeight: "700",
           },
         ],
