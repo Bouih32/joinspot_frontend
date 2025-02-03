@@ -11,7 +11,7 @@ export default function TextArea({ valid, error, disabled }: TextAreaProps) {
     <textarea
       disabled={disabled}
       className={cn(
-        "resize-none rounded border border-neutralHover px-3 py-2 text-16sm text-darker outline-none placeholder:text-neutralHover disabled:pointer-events-none disabled:bg-neutralLight",
+        "resize-none rounded border border-neutralHover px-3 py-2 font-openSans text-16sm text-darker outline-none placeholder:text-neutralHover disabled:pointer-events-none disabled:bg-neutralLight",
         valid && "border-success text-darker",
         error && "border-error text-error placeholder:text-error",
       )}

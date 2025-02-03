@@ -9,7 +9,7 @@ type CheckProps = {
 
 export default function Check({ disabled, error, id }: CheckProps) {
   return (
-    <div className="flexCenter gap-2">
+    <div className="flexCenter gap-2 font-openSans">
       <label
         htmlFor={id}
         className={cn(

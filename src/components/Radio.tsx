@@ -9,7 +9,7 @@ type RadioProps = {
 
 export default function Radio({ disabled, error, id }: RadioProps) {
   return (
-    <div className="flexCenter gap-2">
+    <div className="flexCenter gap-2 font-openSans">
       <label
         htmlFor={id}
         className={cn(
