@@ -41,6 +41,13 @@ export default {
             fontWeight: "400",
           },
         ],
+        "26lg": [
+          "26px",
+          {
+            lineHeight: "32px",
+            fontWeight: "500",
+          },
+        ],
         "22sm": [
           "22px",
           {
@@ -48,11 +55,32 @@ export default {
             fontWeight: "400",
           },
         ],
+        "22lg": [
+          "22px",
+          {
+            lineHeight: "32px",
+            fontWeight: "500",
+          },
+        ],
         "20sm": [
           "20px",
           {
             lineHeight: "28px",
             fontWeight: "400",
+          },
+        ],
+        "20lg": [
+          "20px",
+          {
+            lineHeight: "28px",
+            fontWeight: "500",
+          },
+        ],
+        "20xl": [
+          "20px",
+          {
+            lineHeight: "28px",
+            fontWeight: "700",
           },
         ],
         "16sm": [
@@ -90,11 +118,11 @@ export default {
             fontWeight: "400",
           },
         ],
-        "12lg": [
+        "12xl": [
           "12px",
           {
             lineHeight: "16px",
-            fontWeight: "500",
+            fontWeight: "700",
           },
         ],
         "16xl": [
@@ -102,6 +130,19 @@ export default {
           {
             lineHeight: "24px",
             fontWeight: "700",
+          },
+        ],
+
+        "10xl": [
+          "10px",
+          {
+            fontWeight: "700",
+          },
+        ],
+        "10lg": [
+          "10px",
+          {
+            fontWeight: "500",
           },
         ],
       },
