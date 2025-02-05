@@ -1,8 +1,10 @@
 import Button from "@/components/Button";
 import Check from "@/components/Check";
 import Chip from "@/components/Chip";
+import Input from "@/components/Input";
 import Radio from "@/components/Radio";
 import TextArea from "@/components/TextArea";
+import { MdDateRange } from "react-icons/md";
 
 export default function Home() {
   return (
@@ -56,6 +58,13 @@ export default function Home() {
             Hello
           </Chip>
         </div>
+      </section>
+
+      <section className="space-x-3">
+        <Input />
+        <Input valid icon={<MdDateRange />} />
+        <Input error icon={<MdDateRange />} />
+        <Input disabled />
       </section>
     </main>
   );

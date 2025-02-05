@@ -1,7 +1,7 @@
 import { cn } from "@/libs/utils";
 import { ReactNode } from "react";
 import { RxCross2 } from "react-icons/rx";
-type ButtonProps = {
+type ChipProps = {
   variant?: boolean;
   secondary?: boolean;
   icon?: boolean;
@@ -15,7 +15,7 @@ export default function Chip({
   secondary,
   variant,
   classname,
-}: ButtonProps) {
+}: ChipProps) {
   return (
     <div
       className={cn(
