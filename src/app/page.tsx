@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import Check from "@/components/Check";
+import Chip from "@/components/Chip";
 import Radio from "@/components/Radio";
 import TextArea from "@/components/TextArea";
 
@@ -38,6 +39,23 @@ export default function Home() {
         <Radio id="4" />
         <Radio disabled id="5" />
         <Radio error id="6" />
+      </section>
+
+      <section className="flexCenter gap-5">
+        <div className="space-y-3">
+          <Chip icon>Hello</Chip>
+          <Chip variant icon>
+            Hello
+          </Chip>
+        </div>
+        <div className="space-y-3">
+          <Chip secondary icon>
+            Hello
+          </Chip>
+          <Chip variant secondary icon>
+            Hello
+          </Chip>
+        </div>
       </section>
     </main>
   );
