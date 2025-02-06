@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        laptop: "1200px",
+      },
       fontFamily: {
         poppins: ["(var(--font-poppins))"],
         openSans: ["(var(--font-opensans))"],
