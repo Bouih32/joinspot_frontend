@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       screens: {
-        laptop: "1200px",
+        laptop: "1224px",
+        tablet: "900px",
       },
       fontFamily: {
         poppins: ["(var(--font-poppins))"],

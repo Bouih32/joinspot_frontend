@@ -1,7 +1,7 @@
 export default function Nav() {
   return (
-    <nav>
-      <ul className="flexCenter laptop:gap-5 gap-[15px] text-16lg">
+    <nav className="tablet:block hidden">
+      <ul className="flexCenter gap-[15px] text-14lg laptop:gap-5 laptop:text-16lg">
         <li>HOME</li>
         <li>ABOUT US</li>
         <li>ACTIVITIES</li>
