@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MdOutlineNotificationsNone } from "react-icons/md";
+import { MdOutlineMail, MdOutlineNotificationsNone } from "react-icons/md";
 import EmptyMessage from "./EmptyMessage";
 
 export default function Notifications() {
@@ -17,10 +17,12 @@ export default function Notifications() {
 
   return (
     <div className="relative">
-      <MdOutlineNotificationsNone
-        className="cursor-pointer"
-        onClick={handleOpen}
-      />
+      <div className="relative">
+        <MdOutlineMail className="cursor-pointer" onClick={handleOpen} />
+        <span className="flexCenter absolute -top-[50%] right-[50%] h-[11px] w-[11px] translate-x-full translate-y-[50%] rounded-full bg-red-500 text-[7px] font-bold text-white tablet:h-[15px] tablet:w-[15px] tablet:text-[8px]">
+          1
+        </span>
+      </div>
 
       {open && (
         <>
@@ -38,7 +40,7 @@ export default function Notifications() {
               <p>View Inbox</p>
             </div>
             <section>
-              <EmptyMessage />
+              <EmptyMessage message />
             </section>
           </section>
         </>
