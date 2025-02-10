@@ -22,7 +22,7 @@ export default function Button({
     <button
       disabled={disabled}
       className={cn(
-        "flexCenter w-fit cursor-pointer gap-2 rounded bg-main px-2 py-[1px] font-openSans text-12xl text-white disabled:pointer-events-none disabled:bg-secondLightActive tablet:px-4 tablet:py-[6px] laptop:px-6 laptop:py-2.5 laptop:text-16xl",
+        "flexCenter w-fit cursor-pointer gap-2 rounded bg-main px-3 py-[3px] font-openSans text-16xl text-white disabled:pointer-events-none disabled:bg-secondLightActive tablet:px-4 tablet:py-[6px] laptop:px-6 laptop:py-2.5",
         secondary &&
           "border border-main bg-transparent text-main disabled:border-secondLightActive disabled:bg-transparent disabled:text-secondLightActive",
         variant && "bg-second",
