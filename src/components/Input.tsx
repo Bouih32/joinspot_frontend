@@ -1,40 +1,52 @@
 import { cn } from "@/libs/utils";
 import { ReactElement } from "react";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-type InputProps = {
+type InputProps<T extends FieldValues> = {
+  register: UseFormRegister<T>;
   valid?: boolean;
-  error?: boolean;
+  error: string | undefined;
   disabled?: boolean;
+  type: string;
   icon?: ReactElement;
   placeholder: string;
+  name: Path<T>;
 };
 
-export default function Input({
+export default function Input<T extends FieldValues>({
   valid,
   error,
   disabled,
   icon,
   placeholder,
-}: InputProps) {
+  name,
+  type,
+  register,
+}: InputProps<T>) {
   return (
-    <div
-      className={cn(
-        "flexBetween w-full rounded border border-neutralHover px-2 py-[3px] font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
-        valid && "border-success text-darker",
-        error && "border-error text-error",
-        disabled && "bg-neutralLight",
-      )}
-    >
-      <input
-        disabled={disabled}
-        placeholder={placeholder}
+    <div className="space-y-[3px]">
+      <div
         className={cn(
-          "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
-          error && "placeholder:text-error",
+          "flexBetween w-full rounded border border-neutralHover px-2 py-[3px] font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
+          valid && "border-success text-darker",
+          error && "border-error text-error",
+          disabled && "bg-neutralLight",
         )}
-      />
+      >
+        <input
+          {...register(name)}
+          disabled={disabled}
+          placeholder={placeholder}
+          type={type}
+          className={cn(
+            "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
+            error && "placeholder:text-error",
+          )}
+        />
 
-      {icon && icon}
+        {icon && icon}
+      </div>
+      {error && <p className="font-openSans text-[8px] text-error">{error}</p>}
     </div>
   );
 }
