@@ -29,7 +29,7 @@ export default function Input({
         disabled={disabled}
         placeholder={placeholder}
         className={cn(
-          "h-full w-full bg-transparent caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none",
+          "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
           error && "placeholder:text-error",
         )}
       />

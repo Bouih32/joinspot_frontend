@@ -178,6 +178,8 @@ export default {
         ],
       },
       backgroundImage: {
+        loginBg: "url(@/images/login.png)",
+        loginBgMobile: "url(@/images/loginMobile.png)",
         footerBg:
           "linear-gradient(90deg, #E9E2DC 0%, #F1D9CF 42.5%, #FFCBBA 100%)",
       },

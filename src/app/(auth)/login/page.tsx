@@ -6,7 +6,7 @@ import Container from "@/components/Container";
 
 export default function Login() {
   return (
-    <AuthWrapper>
+    <AuthWrapper classname="tablet:bg-loginBg bg-loginBgMobile bg-cover bg-bottom tablet:bg-center  bg-no-repeat">
       <div className="text-center font-poppins">
         <MainTitle>Login</MainTitle>
         <SubTitle>Login whit your account</SubTitle>
