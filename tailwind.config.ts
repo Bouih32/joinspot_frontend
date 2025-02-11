@@ -39,6 +39,13 @@ export default {
             fontWeight: "500",
           },
         ],
+        "28xl": [
+          "28px",
+          {
+            lineHeight: "40px",
+            fontWeight: "700",
+          },
+        ],
         "26sm": [
           "26px",
           {
@@ -65,6 +72,13 @@ export default {
           {
             lineHeight: "32px",
             fontWeight: "500",
+          },
+        ],
+        "22xl": [
+          "22px",
+          {
+            lineHeight: "32px",
+            fontWeight: "700",
           },
         ],
         "20sm": [
@@ -156,6 +170,16 @@ export default {
             fontWeight: "500",
           },
         ],
+        "10sm": [
+          "10px",
+          {
+            fontWeight: "400",
+          },
+        ],
+      },
+      backgroundImage: {
+        footerBg:
+          "linear-gradient(90deg, #E9E2DC 0%, #F1D9CF 42.5%, #FFCBBA 100%)",
       },
       colors: {
         main: "#FE5722",

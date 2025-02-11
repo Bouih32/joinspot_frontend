@@ -1,4 +1,6 @@
 import Header from "@/components/header/Header";
+import Footer from "@/components/sections/Footer";
+
 import React, { ReactNode } from "react";
 
 export default async function MainPageLayoute({
@@ -10,6 +12,7 @@ export default async function MainPageLayoute({
     <main>
       <Header user />
       {children}
+      <Footer />
     </main>
   );
 }

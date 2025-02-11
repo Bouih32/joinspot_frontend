@@ -6,13 +6,20 @@ type InputProps = {
   error?: boolean;
   disabled?: boolean;
   icon?: ReactElement;
+  placeholder: string;
 };
 
-export default function Input({ valid, error, disabled, icon }: InputProps) {
+export default function Input({
+  valid,
+  error,
+  disabled,
+  icon,
+  placeholder,
+}: InputProps) {
   return (
     <div
       className={cn(
-        "flexBetween rounded border border-neutralHover px-2 py-[3px] font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] laptop:py-3.5",
+        "flexBetween w-full rounded border border-neutralHover px-2 py-[3px] font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
         valid && "border-success text-darker",
         error && "border-error text-error",
         disabled && "bg-neutralLight",
@@ -20,9 +27,9 @@ export default function Input({ valid, error, disabled, icon }: InputProps) {
     >
       <input
         disabled={disabled}
-        placeholder="Placeholder"
+        placeholder={placeholder}
         className={cn(
-          "h-full w-full bg-transparent outline-none placeholder:text-neutralHover disabled:pointer-events-none",
+          "h-full w-full bg-transparent caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none",
           error && "placeholder:text-error",
         )}
       />

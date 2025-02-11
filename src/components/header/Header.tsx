@@ -6,6 +6,7 @@ import Container from "../Container";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
 import LogedUi from "./LogedUi";
+import { navLinks } from "@/libs/constantes";
 
 type HeaderProps = {
   user?: boolean;
@@ -21,7 +22,7 @@ export default function Header({ user }: HeaderProps) {
             alt="logo"
             className="h-[18px] w-[106px] object-contain tablet:h-[29.98px] tablet:w-[174.5px] laptop:h-[39px] laptop:w-[227px]"
           />
-          <Nav classname="hidden tablet:block" />
+          <Nav classname="hidden tablet:block" navInfo={navLinks} />
           {user ? (
             <LogedUi />
           ) : (

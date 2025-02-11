@@ -6,7 +6,7 @@ type EmptyProps = {
 };
 export default function EmptyMessage({ message }: EmptyProps) {
   return (
-    <div className="flexCenter flex-col pb-3 pt-[7px] text-center laptop:pb-[21px] laptop:pt-[14px]">
+    <div className="flexCenter flex-col pb-3 pt-[7px] text-center laptop:pb-[21px]">
       <Image
         src={empty}
         alt="logo"

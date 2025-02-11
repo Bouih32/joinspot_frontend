@@ -14,6 +14,10 @@
   .cover {
     @apply bofore:left-0 before:absolute before:top-0 before:h-full before:w-full;
   }
+
+  .grifCenter {
+    @apply grid place-content-center;
+  }
 }
 
 label:has(input:checked) {

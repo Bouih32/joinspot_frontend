@@ -19,7 +19,7 @@ export default function Notifications() {
     <div className="relative">
       <div className="relative">
         <MdOutlineMail className="cursor-pointer" onClick={handleOpen} />
-        <span className="flexCenter absolute -top-[50%] right-[50%] h-[11px] w-[11px] translate-x-full translate-y-[50%] rounded-full bg-red-500 text-[7px] font-bold text-white tablet:h-[15px] tablet:w-[15px] tablet:text-[8px]">
+        <span className="flexCenter absolute -top-[50%] right-[50%] h-[11px] w-[11px] translate-x-full translate-y-[50%] rounded-full bg-error text-[7px] font-bold text-white tablet:h-[15px] tablet:w-[15px] tablet:text-[8px]">
           1
         </span>
       </div>
