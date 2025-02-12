@@ -15,7 +15,7 @@
     @apply bofore:left-0 before:absolute before:top-0 before:h-full before:w-full;
   }
 
-  .grifCenter {
+  .gridCenter {
     @apply grid place-content-center;
   }
 }

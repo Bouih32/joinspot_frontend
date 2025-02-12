@@ -9,17 +9,17 @@ import Link from "next/link";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Role from "../Role";
 
 type FirstStepT = z.infer<typeof firstStepValidation>;
 
-export default function FirstStep() {
+export default function SecondStep() {
   const {
     register,
     trigger,
     formState: { errors },
     getValues,
   } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
+
   const context = useContext(SignupProvider);
   if (!context) return;
   const { setStep } = context;
@@ -28,7 +28,8 @@ export default function FirstStep() {
     // const resault = await trigger();
     // if (!resault) return;
     // const formData = getValues();
-    setStep(2);
+    // console.log(formData);
+    setStep(3);
   };
   return (
     <form
@@ -69,12 +70,8 @@ export default function FirstStep() {
         </p>
       </div>
       <p>Take the experience as : </p>
-      <section className="tablet:flexCenter flexBetween mt-5 tablet:flex-col tablet:gap-10 laptop:flex-row laptop:gap-5">
-        <Role />
-        <Role />
-      </section>
       <Button secondary icon>
-        1
+        2
       </Button>
     </form>
   );

@@ -180,6 +180,12 @@ export default {
       backgroundImage: {
         loginBg: "url(@/images/login.png)",
         loginBgMobile: "url(@/images/loginMobile.png)",
+        signupBg: "url(@/images/signup1.png)",
+        signupBgMobile: "url(@/images/signup1Mobile.png)",
+        signupBg2: "url(@/images/signup2.png)",
+        signupBgMobile2: "url(@/images/signup2Mobile.png)",
+        signupBg3: "url(@/images/signup3.png)",
+        signupBgMobile3: "url(@/images/signup3Mobile.png)",
         footerBg:
           "linear-gradient(90deg, #E9E2DC 0%, #F1D9CF 42.5%, #FFCBBA 100%)",
       },

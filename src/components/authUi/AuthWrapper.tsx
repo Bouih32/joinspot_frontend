@@ -22,13 +22,12 @@ export default function AuthWrapper({
     <main
       className={cn(
         "flex h-screen flex-col gap-[30px] tablet:flex-row",
-        reverse && "flex-col-reverse",
+        reverse && "tablet:flex-row-reverse",
       )}
     >
       <section
         className={cn(
           "relative flex min-h-[284px] flex-col justify-between px-4 py-[29px] pb-[64px] font-poppins text-white tablet:w-[504px] tablet:px-[50px] tablet:py-[78px] laptop:px-20 laptop:py-[61px] xl:w-[712px]",
-          reverse && "text-end",
           classname,
         )}
       >
@@ -43,15 +42,28 @@ export default function AuthWrapper({
         <Image
           src={logo}
           alt="logo"
-          className="h-[32px] w-[166px] object-contain tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]"
+          className={cn(
+            "h-[32px] w-[166px] object-contain tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
+            reverse && "self-end",
+          )}
         />
         {signup ? (
-          <p className="self-end text-22xl tablet:self-start tablet:text-40xl xl:text-56xl">
+          <p
+            className={cn(
+              "self-end text-22xl tablet:self-start tablet:text-40xl xl:text-56xl",
+              reverse && "text-end tablet:self-end",
+            )}
+          >
             Be a <br />
             Joinspot Host
           </p>
         ) : (
-          <p className="self-end text-22xl tablet:self-start tablet:text-40xl xl:text-56xl">
+          <p
+            className={cn(
+              "self-end text-22xl tablet:self-start tablet:text-40xl xl:text-56xl",
+              reverse && "tablet:self-end",
+            )}
+          >
             Build Connections <br /> Through Events
           </p>
         )}
