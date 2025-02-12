@@ -109,6 +109,13 @@ export default {
             fontWeight: "400",
           },
         ],
+        "16xxl": [
+          "16px",
+          {
+            lineHeight: "27px",
+            fontWeight: "600",
+          },
+        ],
         "16lg": [
           "16px",
           {

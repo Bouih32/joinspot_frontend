@@ -36,7 +36,7 @@ export default function FirstStep() {
         e.preventDefault();
         handleLogin();
       }}
-      className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
+      className="tablet:flexCenter flex flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
       <div className="w-full space-y-3 tablet:space-y-[18px]">
         <Input<FirstStepT>
@@ -67,11 +67,14 @@ export default function FirstStep() {
             Login
           </Link>
         </p>
+        <p className="text-start tablet:text-center">
+          Take the experience as :
+        </p>
       </div>
-      <p>Take the experience as : </p>
+
       <section className="tablet:flexCenter flexBetween mt-5 tablet:flex-col tablet:gap-10 laptop:flex-row laptop:gap-5">
-        <Role />
-        <Role />
+        <Role role="visitor" />
+        <Role role="organiser" />
       </section>
       <Button secondary icon>
         Next
