@@ -6,7 +6,7 @@ import { SignupProvider } from "@/contexts/SignupContext";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Role from "../Role";
@@ -14,21 +14,39 @@ import Role from "../Role";
 type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function FirstStep() {
+  const [selected, setSelected] = useState<string>("visitor");
+
+  const context = useContext(SignupProvider);
+  if (!context) return;
+  const { setStep, data } = context;
+
   const {
     register,
     trigger,
     formState: { errors },
     getValues,
-  } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
-  const context = useContext(SignupProvider);
-  if (!context) return;
-  const { setStep } = context;
+    setValue,
+  } = useForm<FirstStepT>({
+    resolver: zodResolver(firstStepValidation),
+    defaultValues: {
+      city: data?.city,
+      fullName: data?.fullName,
+      email: data?.email,
+      role: selected,
+    },
+  });
+
+  const handleRole = (r: "visitor" | "organiser") => {
+    setSelected(r);
+    setValue("role", r);
+  };
 
   const handleLogin = async () => {
-    // const resault = await trigger();
-    // if (!resault) return;
-    // const formData = getValues();
-    setStep(2);
+    const resault = await trigger();
+    if (!resault) return;
+    const formData = getValues();
+    console.log(formData);
+    formData.role === "visitor" ? setStep(5) : setStep(2);
   };
   return (
     <form
@@ -73,10 +91,10 @@ export default function FirstStep() {
       </div>
 
       <section className="tablet:flexCenter flexBetween mt-5 tablet:flex-col tablet:gap-10 laptop:flex-row laptop:gap-5">
-        <Role role="visitor" />
-        <Role role="organiser" />
+        <Role variant="visitor" handleRole={handleRole} selected={selected} />
+        <Role variant="organiser" handleRole={handleRole} selected={selected} />
       </section>
-      <Button secondary icon>
+      <Button secondary icon classname="self-center">
         Next
       </Button>
     </form>

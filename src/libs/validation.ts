@@ -26,4 +26,5 @@ export const firstStepValidation = z.object({
     .trim()
     .min(5, { message: "Please enter your city" })
     .max(50, { message: "Heey! that's too long" }),
+  role: z.string().trim().min(5, { message: "Please enter your city" }),
 });
