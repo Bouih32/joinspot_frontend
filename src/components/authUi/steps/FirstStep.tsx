@@ -74,7 +74,7 @@ export default function FirstStep() {
         <Role />
       </section>
       <Button secondary icon>
-        1
+        Next
       </Button>
     </form>
   );
