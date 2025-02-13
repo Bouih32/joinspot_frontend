@@ -1,14 +1,14 @@
 export const navLinks = [
-  { name: "HOME", href: "/" },
-  { name: "ABOUT US", href: "/about" },
-  { name: "ACTIVITIES", href: "/activities" },
-  { name: "COMMUNETY", href: "/community" },
-  { name: "SUPPORT", href: "/support" },
+  { name: "Home", href: "/" },
+  { name: "About us", href: "/about" },
+  { name: "Activities", href: "/activities" },
+  { name: "Community", href: "/community" },
+  { name: "Support", href: "/support" },
 ];
 
 export const footerLinks = [
-  { name: "SUPPORT", href: "/support" },
-  { name: "RIGHTS", href: "#" },
-  { name: "TEAM", href: "#" },
-  { name: "CONTACTS", href: "#" },
+  { name: "Support", href: "/support" },
+  { name: "Rights", href: "#" },
+  { name: "Team", href: "#" },
+  { name: "Contacts", href: "#" },
 ];

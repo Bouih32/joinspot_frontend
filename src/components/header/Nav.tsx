@@ -20,7 +20,7 @@ export default function Nav({ classname, footer, navInfo }: NavProps) {
     <nav className={cn(classname)}>
       <ul
         className={cn(
-          "tablet:flexCenter flex flex-col gap-3 text-14lg tablet:flex-row tablet:gap-[15px] laptop:gap-5 laptop:text-16lg",
+          "tablet:flexCenter flex flex-col gap-3 text-14sm tablet:flex-row tablet:gap-[15px] laptop:gap-5 laptop:text-16sm",
           footer && "text-start tablet:flex-col tablet:items-start",
         )}
       >
