@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MdOutlineNotificationsNone } from "react-icons/md";
 import EmptyMessage from "./EmptyMessage";
 import NotificationCard from "./NotificationCard";
+import NotificationNumber from "./NotificationNumber";
 
 export default function Notifications() {
   const [open, setOpen] = useState(false);
@@ -23,9 +24,7 @@ export default function Notifications() {
           className="cursor-pointer"
           onClick={handleOpen}
         />
-        <span className="flexCenter absolute -top-[50%] right-[50%] h-[11px] w-[11px] translate-x-full translate-y-[50%] rounded-full bg-error text-[7px] font-bold text-white tablet:h-[15px] tablet:w-[15px] tablet:text-[8px]">
-          1
-        </span>
+        <NotificationNumber notification>1</NotificationNumber>
       </div>
 
       {open && (
@@ -39,7 +38,7 @@ export default function Notifications() {
             className="absolute right-0 top-[150%] z-50 w-[242px] space-y-[6px] rounded bg-secondLight p-2 laptop:w-[385px] laptop:space-y-[14px] laptop:p-[18px]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flexBetween laptop:text-12lg border-b border-neutral pb-2 text-10lg text-neutral">
+            <div className="flexBetween border-b border-neutral pb-2 text-10lg text-neutral laptop:text-12lg">
               <h2>Notifications</h2>
               <p>Notification Settings</p>
             </div>

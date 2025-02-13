@@ -10,7 +10,7 @@ export default async function MainPageLayoute({
 }) {
   return (
     <main>
-      <Header />
+      <Header user />
       {children}
       <Footer />
     </main>
