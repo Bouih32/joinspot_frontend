@@ -1,7 +1,7 @@
 import { cn } from "@/libs/utils";
 import Image from "next/image";
 import { ReactNode } from "react";
-import logo from "@/images/logoWhite.png";
+import logo from "../../../public/images/logoWhite.png";
 import MainTitle from "./MainTitle";
 import SubTitle from "./SubTitle";
 
