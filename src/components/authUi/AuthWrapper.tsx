@@ -43,7 +43,7 @@ export default function AuthWrapper({
           src={logo}
           alt="logo"
           className={cn(
-            "h-[32px] w-[166px] object-contain tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
+            "h-[32px] w-[166px] object-cover tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
             reverse && "tablet:self-end",
           )}
         />
