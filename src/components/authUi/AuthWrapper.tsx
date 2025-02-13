@@ -10,12 +10,14 @@ type WrapperProps = {
   signup?: boolean;
   reverse?: boolean;
   classname: string;
+  title: string;
 };
 
 export default function AuthWrapper({
   children,
   reverse,
   signup,
+  title,
   classname,
 }: WrapperProps) {
   return (
@@ -32,7 +34,7 @@ export default function AuthWrapper({
         )}
       >
         <div className="absolute bottom-0 text-start font-poppins tablet:hidden">
-          <MainTitle>{signup ? "Signup" : "Login"}</MainTitle>
+          <MainTitle>{title}</MainTitle>
           <SubTitle>
             {signup
               ? "Sign up today and be part of something amazing!"
@@ -70,7 +72,7 @@ export default function AuthWrapper({
       </section>
       <section className="flexCenter flex-1 flex-col gap-[28px] pb-10 font-openSans tablet:pb-0">
         <div className="hidden text-center font-poppins tablet:block">
-          <MainTitle>{signup ? "Signup" : "Login"}</MainTitle>
+          <MainTitle>{title}</MainTitle>
           <SubTitle>
             {signup
               ? "Sign up today and be part of something amazing!"

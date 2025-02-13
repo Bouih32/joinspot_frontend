@@ -10,15 +10,13 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Role from "../Role";
+import { getContext } from "@/libs/utils";
 
 type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function FirstStep() {
   const [selected, setSelected] = useState<string>("visitor");
-
-  const context = useContext(SignupProvider);
-  if (!context) return;
-  const { setStep, data } = context;
+  const { setStep, data } = getContext(SignupProvider);
 
   const {
     register,

@@ -18,6 +18,7 @@ export default function Signup() {
   const { step } = context;
   return (
     <AuthWrapper
+      title={step > 1 && step < 5 ? "Verification" : "Signup"}
       signup
       reverse={step > 1 && step < 5}
       classname={cn(

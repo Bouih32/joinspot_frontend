@@ -28,3 +28,15 @@ export const firstStepValidation = z.object({
     .max(50, { message: "Heey! that's too long" }),
   role: z.string().trim().min(5, { message: "Please enter your city" }),
 });
+
+export const thirdStepValidation = z.object({
+  idFrontPic: z
+    .string()
+    .trim()
+    .min(5, { message: "Please enter your id front picture" }),
+
+  idBackPic: z
+    .string()
+    .trim()
+    .min(5, { message: "Please enter your id back picture" }),
+});

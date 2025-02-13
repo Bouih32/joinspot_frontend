@@ -4,7 +4,10 @@ import Container from "@/components/Container";
 
 export default function Login() {
   return (
-    <AuthWrapper classname="tablet:bg-loginBg bg-loginBgMobile bg-cover bg-bottom tablet:bg-center  bg-no-repeat">
+    <AuthWrapper
+      title="Login"
+      classname="tablet:bg-loginBg bg-loginBgMobile bg-cover bg-bottom tablet:bg-center  bg-no-repeat"
+    >
       <Container classname="laptop:w-fit tablet:w-fit">
         <LoginForm />
       </Container>
