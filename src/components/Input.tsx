@@ -47,9 +47,7 @@ export default function Input<T extends FieldValues>({
         {icon && icon}
       </div>
       {error && (
-        <p className="text-start font-openSans text-[8px] text-error">
-          {error}
-        </p>
+        <p className="text-start font-openSans text-10sm text-error">{error}</p>
       )}
     </div>
   );
