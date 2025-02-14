@@ -9,23 +9,55 @@ import { getContext } from "@/libs/utils";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiSolidDownArrow } from "react-icons/bi";
+import { BiImageAdd, BiSolidDownArrow } from "react-icons/bi";
 import { z } from "zod";
 
 type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function SecondStep() {
+  const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
+  const { setStep } = getContext(SignupProvider);
+
+  const validationSchema = useMemo(() => {
+    return z.object({
+      fullName: z.string().min(1, "Required"),
+      proveBy: z.enum(["degree", "business"]),
+
+      // Degree validation
+      certification:
+        proveBy === "degree"
+          ? z.string().min(1, "Required")
+          : z.string().optional(),
+      university:
+        proveBy === "degree"
+          ? z.string().min(1, "Required")
+          : z.string().optional(),
+      degreeImage:
+        proveBy === "degree"
+          ? z.string().min(1, "Required")
+          : z.string().optional(),
+
+      // Business validation
+      businessName:
+        proveBy === "business"
+          ? z.string().min(1, "Required")
+          : z.string().optional(),
+      businessImage:
+        proveBy === "business"
+          ? z.string().min(1, "Required")
+          : z.string().optional(),
+    });
+  }, [proveBy]);
+
+  type FormValues = z.infer<typeof validationSchema>;
   const {
     register,
     trigger,
     formState: { errors },
     getValues,
   } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
-
-  const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
-  const { setStep } = getContext(SignupProvider);
 
   const handleLogin = async () => {
     // const resault = await trigger();
@@ -73,12 +105,72 @@ export default function SecondStep() {
         </div>
 
         {proveBy === "degree" && (
-          <h1 className="text-56xl text-main">Business</h1>
+          <>
+            <div className="space-y-2 tablet:space-y-[6px]">
+              <p className="text-start text-12sm text-darker">
+                Certification or degree <span className="text-main">*</span>
+              </p>
+              <Input<FirstStepT>
+                placeholder="Your full name"
+                register={register}
+                name="fullName"
+                type="text"
+                error={errors.fullName?.message as string}
+              />
+            </div>
+            <div className="flex grid-cols-2 flex-col gap-2.5 tablet:grid tablet:gap-4">
+              <Input<FirstStepT>
+                placeholder="Your full name"
+                register={register}
+                name="fullName"
+                type="text"
+                error={errors.fullName?.message as string}
+              />
+              <Input<FirstStepT>
+                placeholder="Your full name"
+                register={register}
+                name="fullName"
+                type="text"
+                error={errors.fullName?.message as string}
+              />
+            </div>
+            <Input<FirstStepT>
+              placeholder="Add front picture"
+              register={register}
+              name="fullName"
+              type="text"
+              error={errors.fullName?.message as string}
+              icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
+            />
+          </>
         )}
         {proveBy === "business" && (
-          <h1 className="text-56xl text-main">Degree</h1>
+          <>
+            <div className="space-y-2 tablet:space-y-[6px]">
+              <p className="text-start text-12sm text-darker">
+                Business or company <span className="text-main">*</span>
+              </p>
+              <Input<FirstStepT>
+                placeholder="Your full name"
+                register={register}
+                name="fullName"
+                type="text"
+                error={errors.fullName?.message as string}
+              />
+            </div>
+            <Input<FirstStepT>
+              placeholder="Add front picture"
+              register={register}
+              name="fullName"
+              type="text"
+              error={errors.fullName?.message as string}
+              icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
+            />
+          </>
         )}
-
+        <p className="text-start text-12sm text-secondActive">
+          <span className="text-main">*</span> Necessary information
+        </p>
         <p className="">
           You already have an account !
           <Link href="/login" className="font-semibold text-main underline">
