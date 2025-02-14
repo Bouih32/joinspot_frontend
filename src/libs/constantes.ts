@@ -12,3 +12,11 @@ export const footerLinks = [
   { name: "Team", href: "#" },
   { name: "Contacts", href: "#" },
 ];
+
+export const categories = [
+  "Sport",
+  "Gaming",
+  "Programming",
+  "cooking",
+  "Education",
+];

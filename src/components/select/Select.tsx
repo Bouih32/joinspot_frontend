@@ -1,7 +1,10 @@
 import { cn } from "@/libs/utils";
-import { ReactElement, ReactNode } from "react";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { BiSolidDownArrow } from "react-icons/bi";
+import SelectItem from "./SelectItem";
+import { nanoid } from "nanoid";
+import { useState } from "react";
+import { categories } from "@/libs/constantes";
 
 type InputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
@@ -9,7 +12,6 @@ type InputProps<T extends FieldValues> = {
   error: string | undefined;
   disabled?: boolean;
   placeholder: string;
-  children: ReactNode;
   name: Path<T>;
 };
 
@@ -19,20 +21,30 @@ export default function Select<T extends FieldValues>({
   disabled,
   placeholder,
   name,
-  children,
 
   register,
 }: InputProps<T>) {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<string>("");
+  const handleClick = (ele: string) => {
+    setSelected(ele);
+  };
   return (
-    <div className="space-y-[3px] font-openSans">
-      <section className="">
+    <div className="relative space-y-[3px] font-openSans">
+      <section className="z-50">
         <div
           className={cn(
-            "flexBetween w-full gap-3 rounded-t border border-b-0 border-neutral px-2 py-[3px] text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
+            "flexBetween z-50 w-full cursor-pointer gap-3 border border-neutral px-2 py-[3px] text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
             valid && "border-success text-darker",
             error && "border-error text-error",
             disabled && "bg-neutralLight",
+            open && "rounded-t border-b-0",
+            !open && "rounded",
           )}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen((prev) => !prev);
+          }}
         >
           <input
             {...register(name)}
@@ -40,17 +52,43 @@ export default function Select<T extends FieldValues>({
             placeholder={placeholder}
             type="text"
             readOnly
+            value={selected}
             className={cn(
               "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
               error && "placeholder:text-error",
             )}
           />
 
-          <BiSolidDownArrow className="cursor-pointer text-[10px] hover:text-main" />
+          <BiSolidDownArrow
+            className={cn(
+              "cursor-pointer text-[10px] transition-all duration-75 hover:text-main",
+              open && "rotate-[180deg]",
+            )}
+          />
         </div>
-        <div className="w-full rounded-b border border-t-0 border-neutral px-2 py-[3px] text-start text-[12px] font-semibold text-neutralDark tablet:px-3 tablet:py-[6px] tablet:text-[14px] xl:py-3.5">
-          {children}
-        </div>
+        {open && (
+          <>
+            <div
+              className="fixed inset-0 z-40 bg-transparent"
+              onClick={() => setOpen(false)}
+            ></div>
+            <div className="absolute top-[100%] z-50 w-full rounded-b border border-t-0 border-neutral bg-white px-2 py-[3px] text-start text-[12px] font-semibold text-neutralDark tablet:px-3 tablet:py-[6px] tablet:text-[14px] xl:py-3.5">
+              {categories.map((ele, index) => (
+                <SelectItem
+                  classname={cn(
+                    ele === selected &&
+                      "border-main font-bold bg-mainLight text-main",
+                  )}
+                  index={index}
+                  key={nanoid()}
+                  handleClick={() => handleClick(ele)}
+                >
+                  {ele}
+                </SelectItem>
+              ))}
+            </div>
+          </>
+        )}
       </section>
 
       {error && (

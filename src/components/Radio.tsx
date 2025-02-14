@@ -1,13 +1,15 @@
 import { cn } from "@/libs/utils";
+import { ReactNode } from "react";
 import { FaCircle } from "react-icons/fa";
 
 type RadioProps = {
   disabled?: boolean;
   error?: boolean;
   id: string;
+  children: ReactNode;
 };
 
-export default function Radio({ disabled, error, id }: RadioProps) {
+export default function Radio({ disabled, error, id, children }: RadioProps) {
   return (
     <div className="flexCenter gap-2 font-openSans">
       <label
@@ -26,7 +28,7 @@ export default function Radio({ disabled, error, id }: RadioProps) {
         />
         <FaCircle className="text-[8px] peer-checked:text-white peer-disabled:text-neutralLightActive" />
       </label>
-      <p className="text-16sm text-darker">label here</p>
+      <p className="text-16sm text-darker">{children}</p>
     </div>
   );
 }

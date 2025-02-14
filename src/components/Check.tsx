@@ -1,15 +1,26 @@
 import { cn } from "@/libs/utils";
+import { ReactNode } from "react";
 import { FaCheck } from "react-icons/fa6";
 
 type CheckProps = {
   disabled?: boolean;
   error?: boolean;
   id: string;
+  children: ReactNode;
+  proveBy: string;
+  handleClick: () => void;
 };
 
-export default function Check({ disabled, error, id }: CheckProps) {
+export default function Check({
+  disabled,
+  error,
+  id,
+  children,
+  handleClick,
+  proveBy,
+}: CheckProps) {
   return (
-    <div className="flexCenter gap-2 font-openSans">
+    <div className="flexCenter gap-2 font-openSans" onClick={handleClick}>
       <label
         htmlFor={id}
         className={cn(
@@ -23,10 +34,14 @@ export default function Check({ disabled, error, id }: CheckProps) {
           id={id}
           className="peer sr-only"
           disabled={disabled}
+          readOnly
+          checked={id === proveBy}
         />
         <FaCheck className="text-[12px] peer-checked:text-white peer-disabled:text-neutralLightActive" />
       </label>
-      <p className="text-16sm text-darker">label here</p>
+      <label htmlFor={id} className="text-16sm text-darker">
+        {children}
+      </label>
     </div>
   );
 }
