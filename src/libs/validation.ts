@@ -100,3 +100,12 @@ export const fifthStepValidation = z
     message: "Passwords don't match",
     path: ["passwordValidate"],
   });
+
+export const resetValidation = z.object({
+  email: z
+    .string()
+    .email()
+    .trim()
+    .min(5, { message: "Please enter your email" })
+    .max(50, { message: "Heey! that's too long" }),
+});
