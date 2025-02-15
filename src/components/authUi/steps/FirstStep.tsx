@@ -6,7 +6,7 @@ import { SignupContext } from "@/contexts/SignupContext";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Role from "../Role";

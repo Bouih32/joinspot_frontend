@@ -20,7 +20,7 @@ export default function SignupProvider({ children }: { children: ReactNode }) {
     return storedData ? JSON.parse(storedData) : null;
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
   const [data, setData] = useState<DataType | null>(getLocalStorageData);
 
   useEffect(() => {

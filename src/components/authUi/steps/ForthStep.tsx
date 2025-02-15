@@ -1,67 +1,31 @@
 "use client";
 
 import Button from "@/components/Button";
-import Input from "@/components/Input";
 import { SignupContext } from "@/contexts/SignupContext";
-import { firstStepValidation } from "@/libs/validation";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-type FirstStepT = z.infer<typeof firstStepValidation>;
+import { BiCheckCircle } from "react-icons/bi";
 
 export default function ForthStep() {
-  const {
-    register,
-    trigger,
-    formState: { errors },
-    getValues,
-  } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
-
   const context = useContext(SignupContext);
   if (!context) return;
   const { setStep } = context;
 
-  const handleLogin = async () => {
-    // const resault = await trigger();
-    // if (!resault) return;
-    // const formData = getValues();
-    // console.log(formData);
-    setStep(5);
-  };
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleLogin();
+      onSubmit={() => {
+        setStep(5);
       }}
       className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
-      <div className="w-full space-y-3 tablet:space-y-[18px]">
-        <Input<FirstStepT>
-          placeholder="Your full name"
-          register={register}
-          name="fullName"
-          type="text"
-          error={errors.fullName?.message as string}
-        />
-        <Input<FirstStepT>
-          placeholder="Your Email"
-          register={register}
-          name="email"
-          type="email"
-          error={errors.email?.message as string}
-        />
-        <Input<FirstStepT>
-          placeholder="Your city"
-          register={register}
-          name="city"
-          type="text"
-          error={errors.city?.message as string}
-        />
-      </div>
-
+      <BiCheckCircle className="self-start text-[40px] text-main tablet:self-center" />
+      <h3 className="self-start text-[26px] font-semibold text-main tablet:self-center tablet:text-[40px]">
+        Operating
+      </h3>
+      <p>
+        Your request is now being processed by the JoinSpot team. You'll receive
+        a verification response within a few days. In the meantime, you can
+        explore the platform as a visitor until your account is fully verified.
+      </p>
       <Button secondary icon>
         Next
       </Button>
