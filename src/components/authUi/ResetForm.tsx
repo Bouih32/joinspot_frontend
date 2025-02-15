@@ -4,7 +4,6 @@ import { resetValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import MainTitle from "./MainTitle";
 import Input from "../Input";
 import Button from "../Button";
 

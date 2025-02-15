@@ -4,13 +4,16 @@ import Image from "next/image";
 import { BsArrowLeftShort } from "react-icons/bs";
 import MainTitle from "@/components/authUi/MainTitle";
 import ResetForm from "@/components/authUi/ResetForm";
+import Link from "next/link";
 
 export default function ResetPage() {
   return (
     <>
       <main className="bg-resetBg gridCenter relative h-screen bg-cover bg-center bg-no-repeat">
         <div className="absolute left-4 top-2 flex items-center gap-3 tablet:left-[30px] tablet:top-[30px] laptop:gap-[15px] xl:left-[100px]">
-          <BsArrowLeftShort className="text-[30px] text-secondHover tablet:text-[40px]" />
+          <Link href="/login">
+            <BsArrowLeftShort className="text-[30px] text-secondHover tablet:text-[40px]" />
+          </Link>
           <Image
             src={logo}
             alt="logo"
