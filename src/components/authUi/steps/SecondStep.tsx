@@ -18,7 +18,7 @@ import GoBack from "./GoBack";
 export default function SecondStep() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
   const [selected, setSelected] = useState<string>("");
-  const { setStep, goBack } = getContext(SignupContext);
+  const { setStep, goBack, data, handleData } = getContext(SignupContext);
 
   const validationSchema = useMemo(() => {
     return secondStepValidation(proveBy);
@@ -36,13 +36,24 @@ export default function SecondStep() {
     formState: { errors },
     getValues,
     setValue,
-  } = useForm<FormValues>({ resolver: zodResolver(validationSchema) });
+  } = useForm<FormValues>({
+    resolver: zodResolver(validationSchema),
+    defaultValues: {
+      degreeName: data?.degreeName,
+      schoolName: data?.schoolName,
+      year: data?.year,
+      frontPic: data?.frontPic,
+      category: data?.category,
+      justification: data?.justification,
+      justificationPic: data?.justificationPic,
+    },
+  });
 
   const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
+    handleData(formData);
     setStep(3);
   };
   return (

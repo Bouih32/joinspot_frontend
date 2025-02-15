@@ -14,19 +14,25 @@ import GoBack from "./GoBack";
 type ThirdStepT = z.infer<typeof thirdStepValidation>;
 
 export default function ThirdStep() {
-  const { setStep, data, goBack } = getContext(SignupContext);
+  const { setStep, data, goBack, handleData } = getContext(SignupContext);
   const {
     register,
     trigger,
     formState: { errors },
     getValues,
-  } = useForm<ThirdStepT>({ resolver: zodResolver(thirdStepValidation) });
+  } = useForm<ThirdStepT>({
+    resolver: zodResolver(thirdStepValidation),
+    defaultValues: {
+      idBackPic: data?.idBackPic,
+      idFrontPic: data?.idFrontPic,
+    },
+  });
 
   const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
+    handleData(formData);
     setStep(4);
   };
   return (

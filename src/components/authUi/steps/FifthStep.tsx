@@ -14,18 +14,26 @@ import { SignupContext } from "@/contexts/SignupContext";
 type fifthStepT = z.infer<typeof fifthStepValidation>;
 
 export default function FifthStep() {
-  const { data, goBack } = getContext(SignupContext);
+  const { data, goBack, handleData } = getContext(SignupContext);
   const {
     register,
     trigger,
     formState: { errors },
     getValues,
-  } = useForm<fifthStepT>({ resolver: zodResolver(fifthStepValidation) });
+  } = useForm<fifthStepT>({
+    resolver: zodResolver(fifthStepValidation),
+    defaultValues: {
+      username: data?.username,
+      password: data?.password,
+    },
+  });
 
   const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
+    handleData(formData);
+    console.log(data);
   };
   return (
     <form

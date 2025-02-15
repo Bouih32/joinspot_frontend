@@ -8,7 +8,7 @@ type FullSignupType = {
   category: string;
   degreeName: string;
   schoolName: string;
-  year: Number;
+  year: string;
   frontPic: string;
   justification: string;
   justificationPic: string;

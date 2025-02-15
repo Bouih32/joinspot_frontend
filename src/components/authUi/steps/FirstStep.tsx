@@ -6,7 +6,7 @@ import { SignupContext } from "@/contexts/SignupContext";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Role from "../Role";
@@ -44,7 +44,6 @@ export default function FirstStep() {
     if (!resault) return;
     const formData = getValues();
     handleData(formData);
-    console.log(formData);
     formData.role === "visitor" ? setStep(5) : setStep(2);
   };
   return (

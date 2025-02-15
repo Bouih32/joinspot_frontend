@@ -14,18 +14,26 @@ type SignupContextType = {
 export const SignupContext = createContext<SignupContextType | null>(null);
 
 export default function SignupProvider({ children }: { children: ReactNode }) {
-  const [step, setStep] = useState(2);
-  const [data, setData] = useState<DataType | null>(null);
-
-  // Load existing signup data on mount
-  useEffect(() => {
+  const getLocalStorageData = () => {
+    if (typeof window === "undefined") return null;
     const storedData = localStorage.getItem("signup");
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    }
+    return storedData ? JSON.parse(storedData) : null;
+  };
+
+  const [step, setStep] = useState(1);
+  const [data, setData] = useState<DataType | null>(getLocalStorageData);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setData(getLocalStorageData());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const goBack = () => setStep((prev) => Math.max(prev - 1, 1));
+  const goBack = () =>
+    setStep((prev) => Math.max(prev === 5 ? 1 : prev - 1, 1));
 
   const handleData = (newData: DataType) => {
     setData((prevData) => {
