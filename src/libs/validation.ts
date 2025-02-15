@@ -32,7 +32,7 @@ export const firstStepValidation = z.object({
 
 export const secondStepValidation = (proveBy: "degree" | "business" | "") => {
   return z.object({
-    category: z.string().min(1, { message: "Please select a category" }),
+    categoryName: z.string().min(1, { message: "Please select a category" }),
 
     // Degree validation
     degreeName:

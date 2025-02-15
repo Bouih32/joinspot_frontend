@@ -2,7 +2,6 @@ import Container from "@/components/Container";
 import logo from "../../../../public/images/logo.png";
 import Image from "next/image";
 import { BsArrowLeftShort } from "react-icons/bs";
-import MainTitle from "@/components/authUi/MainTitle";
 import ResetForm from "@/components/authUi/ResetForm";
 import Link from "next/link";
 

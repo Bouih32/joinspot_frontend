@@ -5,7 +5,7 @@ type FullSignupType = {
   city: string;
   role: string;
   password: string;
-  category: string;
+  categoryName: string;
   degreeName: string;
   schoolName: string;
   year: string;

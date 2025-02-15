@@ -25,7 +25,7 @@ export default function SecondStep() {
   }, [proveBy]);
 
   const handleClick = (ele: string) => {
-    setValue("category", ele);
+    setValue("categoryName", ele);
     setSelected(ele);
   };
 
@@ -43,7 +43,7 @@ export default function SecondStep() {
       schoolName: data?.schoolName,
       year: data?.year,
       frontPic: data?.frontPic,
-      category: data?.category,
+      categoryName: data?.categoryName,
       justification: data?.justification,
       justificationPic: data?.justificationPic,
     },
@@ -73,10 +73,10 @@ export default function SecondStep() {
           <Select<FormValues>
             placeholder="Chose your category"
             register={register}
-            name="category"
+            name="categoryName"
             selected={selected}
             handleClick={handleClick}
-            error={errors.category?.message as string}
+            error={errors.categoryName?.message as string}
           />
         </div>
 
