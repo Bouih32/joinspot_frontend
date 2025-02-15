@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { SignupProvider } from "@/contexts/SignupContext";
+import { SignupContext } from "@/contexts/SignupContext";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -16,7 +16,7 @@ type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function FirstStep() {
   const [selected, setSelected] = useState<string>("visitor");
-  const { setStep, data } = getContext(SignupProvider);
+  const { setStep, data, handleData } = getContext(SignupContext);
 
   const {
     register,
@@ -43,6 +43,7 @@ export default function FirstStep() {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
+    handleData(formData);
     console.log(formData);
     formData.role === "visitor" ? setStep(5) : setStep(2);
   };

@@ -4,28 +4,30 @@ import Button from "@/components/Button";
 import Check from "@/components/Check";
 import Input from "@/components/Input";
 import Select from "@/components/select/Select";
-import { SignupProvider } from "@/contexts/SignupContext";
+import { SignupContext } from "@/contexts/SignupContext";
 import { getContext } from "@/libs/utils";
-import { firstStepValidation, secondStepValidation } from "@/libs/validation";
+import { secondStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiImageAdd } from "react-icons/bi";
+import { BsArrowLeftShort } from "react-icons/bs";
 import { z } from "zod";
+import GoBack from "./GoBack";
 
 export default function SecondStep() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
   const [selected, setSelected] = useState<string>("");
-  const handleClick = (ele: string) => {
-    setValue("category", ele);
-    setSelected(ele);
-  };
-  const { setStep } = getContext(SignupProvider);
+  const { setStep, goBack } = getContext(SignupContext);
 
   const validationSchema = useMemo(() => {
     return secondStepValidation(proveBy);
   }, [proveBy]);
+
+  const handleClick = (ele: string) => {
+    setValue("category", ele);
+    setSelected(ele);
+  };
 
   type FormValues = z.infer<typeof validationSchema>;
   const {
@@ -51,6 +53,7 @@ export default function SecondStep() {
       }}
       className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
+      <GoBack goBack={goBack} />
       <div className="w-full space-y-3 tablet:space-y-[18px]">
         <div className="space-y-2 tablet:space-y-[6px]">
           <p className="text-start text-12sm text-darker">

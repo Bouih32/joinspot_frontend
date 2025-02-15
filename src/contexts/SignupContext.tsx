@@ -1,28 +1,43 @@
 "use client";
 
 import { DataType } from "@/libs/types";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 
-type ContextTypes = {
+type SignupContextType = {
   data: DataType | null;
   step: number;
   setStep: (n: number) => void;
-  handleData: <T>(data: T) => void;
+  handleData: (data: DataType) => void;
+  goBack: () => void;
 };
 
-export const SignupProvider = createContext<ContextTypes | null>(null);
+export const SignupContext = createContext<SignupContextType | null>(null);
 
-export default function SignupContext({ children }: { children: ReactNode }) {
-  const [step, setStep] = useState(1);
+export default function SignupProvider({ children }: { children: ReactNode }) {
+  const [step, setStep] = useState(2);
   const [data, setData] = useState<DataType | null>(null);
 
-  const handleData = <T,>(data: T) => {
-    setData((prev) => ({ ...prev, ...data }));
+  // Load existing signup data on mount
+  useEffect(() => {
+    const storedData = localStorage.getItem("signup");
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    }
+  }, []);
+
+  const goBack = () => setStep((prev) => Math.max(prev - 1, 1));
+
+  const handleData = (newData: DataType) => {
+    setData((prevData) => {
+      const updatedData = { ...prevData, ...newData };
+      localStorage.setItem("signup", JSON.stringify(updatedData));
+      return updatedData;
+    });
   };
 
   return (
-    <SignupProvider.Provider value={{ step, setStep, handleData, data }}>
+    <SignupContext.Provider value={{ step, setStep, handleData, data, goBack }}>
       {children}
-    </SignupProvider.Provider>
+    </SignupContext.Provider>
   );
 }

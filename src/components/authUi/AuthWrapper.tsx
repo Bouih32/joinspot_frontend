@@ -70,7 +70,7 @@ export default function AuthWrapper({
           </p>
         )}
       </section>
-      <section className="flexCenter flex-1 flex-col gap-[28px] pb-10 font-openSans tablet:pb-0">
+      <section className="flexCenter relative flex-1 flex-col gap-[28px] pb-10 font-openSans tablet:pb-0">
         <div className="hidden text-center font-poppins tablet:block">
           <MainTitle>{title}</MainTitle>
           <SubTitle>

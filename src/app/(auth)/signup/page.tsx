@@ -7,15 +7,12 @@ import ForthStep from "@/components/authUi/steps/ForthStep";
 import SecondStep from "@/components/authUi/steps/SecondStep";
 import ThirdStep from "@/components/authUi/steps/ThirdStep";
 import Container from "@/components/Container";
-import { SignupProvider } from "@/contexts/SignupContext";
+import { SignupContext } from "@/contexts/SignupContext";
 import { cn } from "@/lib/utils";
-import { useContext } from "react";
+import { getContext } from "@/libs/utils";
 
 export default function Signup() {
-  const context = useContext(SignupProvider);
-  if (!context) return;
-
-  const { step } = context;
+  const { step } = getContext(SignupContext);
   return (
     <AuthWrapper
       title={step > 1 && step < 5 ? "Verification" : "Signup"}

@@ -2,10 +2,9 @@
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { SignupProvider } from "@/contexts/SignupContext";
+import { SignupContext } from "@/contexts/SignupContext";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -20,7 +19,7 @@ export default function ForthStep() {
     getValues,
   } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
 
-  const context = useContext(SignupProvider);
+  const context = useContext(SignupContext);
   if (!context) return;
   const { setStep } = context;
 

@@ -7,10 +7,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import GoBack from "./GoBack";
+import { getContext } from "@/libs/utils";
+import { SignupContext } from "@/contexts/SignupContext";
 
 type fifthStepT = z.infer<typeof fifthStepValidation>;
 
 export default function FifthStep() {
+  const { data, goBack } = getContext(SignupContext);
   const {
     register,
     trigger,
@@ -31,6 +35,7 @@ export default function FifthStep() {
       }}
       className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
+      <GoBack goBack={goBack} />
       <div className="w-full space-y-3 tablet:space-y-[18px]">
         <Input<fifthStepT>
           placeholder="Your username"
