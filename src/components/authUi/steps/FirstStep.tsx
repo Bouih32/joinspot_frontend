@@ -39,7 +39,7 @@ export default function FirstStep() {
     setValue("role", r);
   };
 
-  const handleLogin = async () => {
+  const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
@@ -50,7 +50,7 @@ export default function FirstStep() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleLogin();
+        handleSubmit();
       }}
       className="tablet:flexCenter flex flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >

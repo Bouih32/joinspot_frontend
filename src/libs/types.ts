@@ -1,5 +1,5 @@
 type FullSignupType = {
-  userName: string;
+  username: string;
   fullName: string;
   email: string;
   city: string;

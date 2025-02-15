@@ -13,7 +13,7 @@ type ContextTypes = {
 export const SignupProvider = createContext<ContextTypes | null>(null);
 
 export default function SignupContext({ children }: { children: ReactNode }) {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [data, setData] = useState<DataType | null>(null);
 
   const handleData = <T,>(data: T) => {

@@ -61,17 +61,10 @@ export default function ForthStep() {
           type="text"
           error={errors.city?.message as string}
         />
-
-        <p className="">
-          You already have an account !
-          <Link href="/login" className="font-semibold text-main underline">
-            Login
-          </Link>
-        </p>
       </div>
-      <p>Take the experience as : </p>
+
       <Button secondary icon>
-        4
+        Next
       </Button>
     </form>
   );

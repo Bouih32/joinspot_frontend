@@ -2,15 +2,13 @@
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { SignupProvider } from "@/contexts/SignupContext";
-import { firstStepValidation } from "@/libs/validation";
+import { fifthStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-type FirstStepT = z.infer<typeof firstStepValidation>;
+type fifthStepT = z.infer<typeof fifthStepValidation>;
 
 export default function FifthStep() {
   const {
@@ -18,48 +16,47 @@ export default function FifthStep() {
     trigger,
     formState: { errors },
     getValues,
-  } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
+  } = useForm<fifthStepT>({ resolver: zodResolver(fifthStepValidation) });
 
-  const handleLogin = async () => {
+  const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
   };
   return (
-    <form className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+      className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
+    >
       <div className="w-full space-y-3 tablet:space-y-[18px]">
-        <Input<FirstStepT>
-          placeholder="Your full name"
+        <Input<fifthStepT>
+          placeholder="Your username"
           register={register}
-          name="fullName"
+          name="username"
           type="text"
-          error={errors.fullName?.message as string}
+          error={errors.username?.message as string}
         />
-        <Input<FirstStepT>
-          placeholder="Your Email"
+        <Input<fifthStepT>
+          placeholder="Choose a password"
           register={register}
-          name="email"
-          type="email"
-          error={errors.email?.message as string}
+          name="password"
+          type="password"
+          error={errors.password?.message as string}
         />
-        <Input<FirstStepT>
-          placeholder="Your city"
+        <Input<fifthStepT>
+          placeholder="Confirm password"
           register={register}
-          name="city"
-          type="text"
-          error={errors.city?.message as string}
+          name="passwordValidate"
+          type="password"
+          error={errors.passwordValidate?.message as string}
         />
-
-        <p className="">
-          You already have an account !
-          <Link href="/login" className="font-semibold text-main underline">
-            Login
-          </Link>
-        </p>
       </div>
-      <p>Take the experience as : </p>
+
       <Button secondary icon>
-        5
+        Done
       </Button>
     </form>
   );

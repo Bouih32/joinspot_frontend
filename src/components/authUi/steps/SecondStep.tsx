@@ -6,49 +6,25 @@ import Input from "@/components/Input";
 import Select from "@/components/select/Select";
 import { SignupProvider } from "@/contexts/SignupContext";
 import { getContext } from "@/libs/utils";
-import { firstStepValidation } from "@/libs/validation";
+import { firstStepValidation, secondStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiImageAdd, BiSolidDownArrow } from "react-icons/bi";
+import { BiImageAdd } from "react-icons/bi";
 import { z } from "zod";
-
-type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function SecondStep() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
+  const [selected, setSelected] = useState<string>("");
+  const handleClick = (ele: string) => {
+    setValue("category", ele);
+    setSelected(ele);
+  };
   const { setStep } = getContext(SignupProvider);
 
   const validationSchema = useMemo(() => {
-    return z.object({
-      fullName: z.string().min(1, "Required"),
-      proveBy: z.enum(["degree", "business"]),
-
-      // Degree validation
-      certification:
-        proveBy === "degree"
-          ? z.string().min(1, "Required")
-          : z.string().optional(),
-      university:
-        proveBy === "degree"
-          ? z.string().min(1, "Required")
-          : z.string().optional(),
-      degreeImage:
-        proveBy === "degree"
-          ? z.string().min(1, "Required")
-          : z.string().optional(),
-
-      // Business validation
-      businessName:
-        proveBy === "business"
-          ? z.string().min(1, "Required")
-          : z.string().optional(),
-      businessImage:
-        proveBy === "business"
-          ? z.string().min(1, "Required")
-          : z.string().optional(),
-    });
+    return secondStepValidation(proveBy);
   }, [proveBy]);
 
   type FormValues = z.infer<typeof validationSchema>;
@@ -57,20 +33,21 @@ export default function SecondStep() {
     trigger,
     formState: { errors },
     getValues,
-  } = useForm<FirstStepT>({ resolver: zodResolver(firstStepValidation) });
+    setValue,
+  } = useForm<FormValues>({ resolver: zodResolver(validationSchema) });
 
-  const handleLogin = async () => {
-    // const resault = await trigger();
-    // if (!resault) return;
-    // const formData = getValues();
-    // console.log(formData);
+  const handleSubmit = async () => {
+    const resault = await trigger();
+    if (!resault) return;
+    const formData = getValues();
+    console.log(formData);
     setStep(3);
   };
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleLogin();
+        handleSubmit();
       }}
       className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
@@ -79,11 +56,13 @@ export default function SecondStep() {
           <p className="text-start text-12sm text-darker">
             Your activities category <span className="text-main">*</span>
           </p>
-          <Select<FirstStepT>
+          <Select<FormValues>
             placeholder="Chose your category"
             register={register}
-            name="fullName"
-            error={errors.fullName?.message as string}
+            name="category"
+            selected={selected}
+            handleClick={handleClick}
+            error={errors.category?.message as string}
           />
         </div>
 
@@ -110,36 +89,37 @@ export default function SecondStep() {
               <p className="text-start text-12sm text-darker">
                 Certification or degree <span className="text-main">*</span>
               </p>
-              <Input<FirstStepT>
-                placeholder="Your full name"
+              <Input<FormValues>
+                placeholder="Degree name"
                 register={register}
-                name="fullName"
+                name="degreeName"
                 type="text"
-                error={errors.fullName?.message as string}
+                error={errors.degreeName?.message as string}
               />
             </div>
             <div className="flex grid-cols-2 flex-col gap-2.5 tablet:grid tablet:gap-4">
-              <Input<FirstStepT>
-                placeholder="Your full name"
+              <Input<FormValues>
+                placeholder="School name"
                 register={register}
-                name="fullName"
+                name="schoolName"
                 type="text"
-                error={errors.fullName?.message as string}
+                error={errors.schoolName?.message as string}
               />
-              <Input<FirstStepT>
-                placeholder="Your full name"
+              <Input<FormValues>
+                placeholder="Add front picture"
                 register={register}
-                name="fullName"
+                name="year"
                 type="text"
-                error={errors.fullName?.message as string}
+                error={errors.year?.message as string}
+                icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
               />
             </div>
-            <Input<FirstStepT>
-              placeholder="Add front picture"
+            <Input<FormValues>
+              placeholder="Add certificate image"
               register={register}
-              name="fullName"
+              name="frontPic"
               type="text"
-              error={errors.fullName?.message as string}
+              error={errors.frontPic?.message as string}
               icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
             />
           </>
@@ -150,20 +130,20 @@ export default function SecondStep() {
               <p className="text-start text-12sm text-darker">
                 Business or company <span className="text-main">*</span>
               </p>
-              <Input<FirstStepT>
-                placeholder="Your full name"
+              <Input<FormValues>
+                placeholder="About your business"
                 register={register}
-                name="fullName"
+                name="justification"
                 type="text"
-                error={errors.fullName?.message as string}
+                error={errors.justification?.message as string}
               />
             </div>
-            <Input<FirstStepT>
-              placeholder="Add front picture"
+            <Input<FormValues>
+              placeholder="Add a prove image"
               register={register}
-              name="fullName"
+              name="justificationPic"
               type="text"
-              error={errors.fullName?.message as string}
+              error={errors.justificationPic?.message as string}
               icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
             />
           </>
@@ -171,15 +151,9 @@ export default function SecondStep() {
         <p className="text-start text-12sm text-secondActive">
           <span className="text-main">*</span> Necessary information
         </p>
-        <p className="">
-          You already have an account !
-          <Link href="/login" className="font-semibold text-main underline">
-            Login
-          </Link>
-        </p>
       </div>
-      <p>Take the experience as : </p>
-      <Button secondary icon>
+
+      <Button secondary icon disabled={proveBy === ""}>
         Next
       </Button>
     </form>

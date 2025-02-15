@@ -20,7 +20,7 @@ export default function Header({ user }: HeaderProps) {
           <Image
             src={logo}
             alt="logo"
-            className="h-[18px] w-[106px] object-contain tablet:h-[29.98px] tablet:w-[174.5px] laptop:h-[39px] laptop:w-[227px]"
+            className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
           />
           <Nav classname="hidden tablet:block" navInfo={navLinks} />
           {user ? (

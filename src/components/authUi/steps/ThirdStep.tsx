@@ -21,20 +21,20 @@ export default function ThirdStep() {
     trigger,
     formState: { errors },
     getValues,
-  } = useForm<ThirdStepT>({ resolver: zodResolver(firstStepValidation) });
+  } = useForm<ThirdStepT>({ resolver: zodResolver(thirdStepValidation) });
 
-  const handleLogin = async () => {
-    // const resault = await trigger();
-    // if (!resault) return;
-    // const formData = getValues();
-    // console.log(formData);
+  const handleSubmit = async () => {
+    const resault = await trigger();
+    if (!resault) return;
+    const formData = getValues();
+    console.log(formData);
     setStep(4);
   };
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleLogin();
+        handleSubmit();
       }}
       className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
@@ -65,15 +65,8 @@ export default function ThirdStep() {
             <span className="text-main">*</span> Necessary information
           </p>
         </div>
-
-        <p className="">
-          You already have an account !
-          <Link href="/login" className="font-semibold text-main underline">
-            Login
-          </Link>
-        </p>
       </div>
-      <p>Take the experience as : </p>
+
       <Button secondary icon>
         Next
       </Button>

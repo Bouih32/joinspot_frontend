@@ -12,6 +12,8 @@ type InputProps<T extends FieldValues> = {
   error: string | undefined;
   disabled?: boolean;
   placeholder: string;
+  handleClick: (ele: string) => void;
+  selected: string;
   name: Path<T>;
 };
 
@@ -20,15 +22,14 @@ export default function Select<T extends FieldValues>({
   error,
   disabled,
   placeholder,
+  selected,
+  handleClick,
   name,
 
   register,
 }: InputProps<T>) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string>("");
-  const handleClick = (ele: string) => {
-    setSelected(ele);
-  };
+
   return (
     <div className="relative space-y-[3px] font-openSans">
       <section className="z-50">
@@ -92,7 +93,14 @@ export default function Select<T extends FieldValues>({
       </section>
 
       {error && (
-        <p className="text-start font-openSans text-10sm text-error">{error}</p>
+        <p
+          className={cn(
+            "text-start font-openSans text-10sm text-error",
+            open && "hidden",
+          )}
+        >
+          {error}
+        </p>
       )}
     </div>
   );
