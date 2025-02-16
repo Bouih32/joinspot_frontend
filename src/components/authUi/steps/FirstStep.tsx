@@ -6,7 +6,7 @@ import { SignupContext } from "@/contexts/SignupContext";
 import { firstStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Role from "../Role";
@@ -16,12 +16,13 @@ type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function FirstStep() {
   const [selected, setSelected] = useState<string>("visitor");
-  const { setStep, data, handleData } = getContext(SignupContext);
+  const { setStep, data, handleData, error } = getContext(SignupContext);
 
   const {
     register,
     trigger,
     formState: { errors },
+    setError,
     getValues,
     setValue,
   } = useForm<FirstStepT>({
@@ -33,6 +34,15 @@ export default function FirstStep() {
       role: selected,
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      setError("email", {
+        type: "manual",
+        message: "Email already in use",
+      });
+    }
+  }, []);
 
   const handleRole = (r: "visitor" | "organiser") => {
     setSelected(r);

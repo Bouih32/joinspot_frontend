@@ -4,17 +4,22 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { fifthStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 import GoBack from "./GoBack";
 import { getContext } from "@/libs/utils";
 import { SignupContext } from "@/contexts/SignupContext";
+import { signup } from "@/actions/signup";
+import { Router } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 type fifthStepT = z.infer<typeof fifthStepValidation>;
 
 export default function FifthStep() {
-  const { data, goBack, handleData } = getContext(SignupContext);
+  const { data, goBack, handleData, setStep, setEmailError } =
+    getContext(SignupContext);
+  const router = useRouter();
   const {
     register,
     trigger,
@@ -28,12 +33,22 @@ export default function FifthStep() {
     },
   });
 
+  const handleSignup = async () => {
+    if (!data) return;
+    const res = await signup(data);
+    console.log(res?.status);
+    if (res?.status === 400) {
+      setEmailError(res.data.message);
+    }
+    router.push("/login");
+  };
+
   const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
     handleData(formData);
-    console.log(data);
+    await handleSignup();
   };
   return (
     <form

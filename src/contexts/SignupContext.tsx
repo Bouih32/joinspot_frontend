@@ -2,6 +2,7 @@
 
 import { DataType } from "@/libs/types";
 import { createContext, ReactNode, useState, useEffect } from "react";
+import { FieldErrors, UseFormSetError } from "react-hook-form";
 
 type SignupContextType = {
   data: DataType | null;
@@ -9,6 +10,8 @@ type SignupContextType = {
   setStep: (n: number) => void;
   handleData: (data: DataType) => void;
   goBack: () => void;
+  setEmailError: (error: string) => void;
+  error: string | null;
 };
 
 export const SignupContext = createContext<SignupContextType | null>(null);
@@ -22,6 +25,7 @@ export default function SignupProvider({ children }: { children: ReactNode }) {
 
   const [step, setStep] = useState(1);
   const [data, setData] = useState<DataType | null>(getLocalStorageData);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -43,8 +47,15 @@ export default function SignupProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const setEmailError = (error: string) => {
+    setError(error);
+    setStep(1);
+  };
+
   return (
-    <SignupContext.Provider value={{ step, setStep, handleData, data, goBack }}>
+    <SignupContext.Provider
+      value={{ step, setStep, handleData, data, goBack, setEmailError, error }}
+    >
       {children}
     </SignupContext.Provider>
   );
