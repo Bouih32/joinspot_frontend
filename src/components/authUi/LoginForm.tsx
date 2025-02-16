@@ -18,23 +18,41 @@ export default function LoginForm() {
     register,
     trigger,
     formState: { errors },
+    setError,
     getValues,
   } = useForm<LoginType>({ resolver: zodResolver(loginValidation) });
 
-  const handleLogin = async () => {
+  const handleLogin = async (formData: LoginType) => {
+    const res = await login(formData);
+    console.log(res?.status);
+    if (res?.status === 404) {
+      setError("email", {
+        type: "manual",
+        message: "No user found with this email",
+      });
+    }
+
+    if (res?.status === 401) {
+      setError("password", {
+        type: "manual",
+        message: "Uncorrect password",
+      });
+    }
+    router.push("/");
+  };
+
+  const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
-    await login(formData);
-    router.push("/");
+    await handleLogin(formData);
   };
   return (
     <form
       className="flexCenter flex-col gap-[28px] tablet:w-[440px] laptop:w-[412px]"
       onSubmit={(event) => {
         event.preventDefault();
-        handleLogin();
+        handleSubmit();
       }}
     >
       <div className="w-full space-y-3 tablet:space-y-[18px]">
@@ -64,7 +82,7 @@ export default function LoginForm() {
           </Link>
         </div>
       </div>
-      <Button secondary>Login</Button>
+      <Button secondary>Submit</Button>
     </form>
   );
 }
