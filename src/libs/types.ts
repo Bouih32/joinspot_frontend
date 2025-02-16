@@ -16,3 +16,8 @@ type FullSignupType = {
   idBackPic: string;
 };
 export type DataType = Partial<FullSignupType>;
+
+export type LoginType = {
+  email: string;
+  password: string;
+};

@@ -2,8 +2,9 @@ import { useMemo } from "react";
 import z from "zod";
 
 export const loginValidation = z.object({
-  username: z
+  email: z
     .string()
+    .email()
     .trim()
     .min(5, { message: "Please enter a username" })
     .max(50, { message: "Heey! that's too long" }),

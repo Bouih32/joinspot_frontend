@@ -8,9 +8,12 @@ import { z } from "zod";
 import { loginValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { login } from "@/actions/login";
+import { useRouter } from "next/navigation";
 
 type LoginType = z.infer<typeof loginValidation>;
 export default function LoginForm() {
+  const router = useRouter();
   const {
     register,
     trigger,
@@ -23,6 +26,8 @@ export default function LoginForm() {
     if (!resault) return;
     const formData = getValues();
     console.log(formData);
+    await login(formData);
+    router.push("/");
   };
   return (
     <form
@@ -34,10 +39,10 @@ export default function LoginForm() {
     >
       <div className="w-full space-y-3 tablet:space-y-[18px]">
         <Input<LoginType>
-          placeholder="User name"
+          placeholder="User email"
           register={register}
-          name="username"
-          error={errors.username?.message as string}
+          name="email"
+          error={errors.email?.message as string}
           type="text"
         />
         <Input<LoginType>
