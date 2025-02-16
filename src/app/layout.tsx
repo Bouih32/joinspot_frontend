@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Open_Sans } from "next/font/google";
 import "./globals.css";
-import { getToken } from "@/actions/decodeToken";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -20,13 +19,11 @@ export const metadata: Metadata = {
   description: "Better Together",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const payload = await getToken();
-  console.log(payload);
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${openSans.variable} antialiased`}>

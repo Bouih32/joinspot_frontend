@@ -53,11 +53,10 @@ export default function FirstStep() {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
     handleData(formData);
-
     formData.role === "visitor" ? setStep(5) : setStep(2);
   };
+
   return (
     <form
       onSubmit={(e) => {

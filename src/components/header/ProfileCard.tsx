@@ -1,7 +1,6 @@
 import { cn } from "@/libs/utils";
 import Link from "next/link";
 import { ReactElement } from "react";
-import { RiVipCrown2Fill } from "react-icons/ri";
 
 type ProfileCardProps = {
   icon: ReactElement;
@@ -26,7 +25,7 @@ export default function ProfileCard({
       )}
     >
       {icon}
-      <h2 className="laptop:text-12lg text-10lg">{title}</h2>
+      <h2 className="text-10lg laptop:text-12lg">{title}</h2>
     </Link>
   );
 }

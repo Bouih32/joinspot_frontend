@@ -11,7 +11,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiImageAdd } from "react-icons/bi";
-import { BsArrowLeftShort } from "react-icons/bs";
 import { z } from "zod";
 import GoBack from "./GoBack";
 
@@ -49,6 +48,11 @@ export default function SecondStep() {
     },
   });
 
+  const handleProveBy = (prove: "" | "degree" | "business") => {
+    setProveBy(prove);
+    setValue("proveBy", prove);
+  };
+
   const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
@@ -83,14 +87,14 @@ export default function SecondStep() {
         <div className="tablet:flexBetween flex-col justify-items-start gap-3 tablet:flex-row">
           <Check
             id="degree"
-            handleClick={() => setProveBy("degree")}
+            handleClick={() => handleProveBy("degree")}
             proveBy={proveBy}
           >
             prove by degree
           </Check>
           <Check
             id="business"
-            handleClick={() => setProveBy("business")}
+            handleClick={() => handleProveBy("business")}
             proveBy={proveBy}
           >
             prove by business

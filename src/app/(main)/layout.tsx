@@ -1,3 +1,4 @@
+import { getToken } from "@/actions/decodeToken";
 import Header from "@/components/header/Header";
 import Footer from "@/components/sections/Footer";
 
@@ -8,9 +9,11 @@ export default async function MainPageLayoute({
 }: {
   children: ReactNode;
 }) {
+  const payload = await getToken();
+  console.log(payload);
   return (
     <main>
-      <Header />
+      <Header user={!!payload} />
       {children}
       <Footer />
     </main>

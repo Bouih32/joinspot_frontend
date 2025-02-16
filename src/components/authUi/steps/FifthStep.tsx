@@ -40,6 +40,7 @@ export default function FifthStep() {
     if (res?.status === 400) {
       setEmailError(res.data.message);
     }
+    localStorage.clear();
     router.push("/login");
   };
 
