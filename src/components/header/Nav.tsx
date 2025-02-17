@@ -26,7 +26,12 @@ export default function Nav({ classname, footer, navInfo }: NavProps) {
       >
         {navInfo.map((ele) => (
           <Link key={nanoid()} href={ele.href}>
-            <li className={cn(ele.href === pathname && "font-bold text-main")}>
+            <li
+              className={cn(
+                "hover:text-main",
+                ele.href === pathname && "font-medium text-main",
+              )}
+            >
               {ele.name}
             </li>
           </Link>

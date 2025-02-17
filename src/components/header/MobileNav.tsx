@@ -9,28 +9,32 @@ import Button from "../Button";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useState } from "react";
 import { navLinks } from "@/libs/constantes";
+import { DropProps } from "./Messages";
 
-type MobileNavProps = {
+type MobileNavProps = DropProps & {
   user?: boolean;
 };
 
-export default function MobileNav({ user }: MobileNavProps) {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen((prev) => !prev);
-  };
+export default function MobileNav({
+  user,
+  handleOpen,
+  open,
+  handleClose,
+}: MobileNavProps) {
   return (
     <>
       <HiMenuAlt3
         className="text-[22px] text-main tablet:hidden"
-        onClick={handleOpen}
+        onClick={() => {
+          handleOpen && handleOpen("nav");
+        }}
       />
 
-      {open && (
+      {open === "nav" && (
         <>
           <div
             className="fixed inset-0 z-40 bg-transparent"
-            onClick={() => setOpen(false)}
+            onClick={handleClose}
           ></div>
           <section
             onClick={(e) => e.stopPropagation()}
@@ -44,7 +48,7 @@ export default function MobileNav({ user }: MobileNavProps) {
               />
               <RxCross2
                 className="text-[24px] text-mainLightActive"
-                onClick={handleOpen}
+                onClick={handleClose}
               />
             </div>
             {!user && (

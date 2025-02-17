@@ -137,6 +137,13 @@ export default {
             fontWeight: "500",
           },
         ],
+        "14xl": [
+          "14px",
+          {
+            lineHeight: "20px",
+            fontWeight: "700",
+          },
+        ],
         "14xxl": [
           "14px",
           {

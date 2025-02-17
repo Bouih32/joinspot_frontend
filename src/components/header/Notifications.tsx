@@ -2,35 +2,35 @@
 
 import { useState } from "react";
 import { MdOutlineNotificationsNone } from "react-icons/md";
-import EmptyMessage from "./EmptyMessage";
 import NotificationCard from "./NotificationCard";
 import NotificationNumber from "./NotificationNumber";
+import { cn } from "@/libs/utils";
+import { DropProps } from "./Messages";
 
-export default function Notifications() {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function Notifications({
+  open,
+  handleOpen,
+  handleClose,
+}: DropProps) {
   return (
     <div className="relative">
       <div className="relative">
         <MdOutlineNotificationsNone
-          className="cursor-pointer"
-          onClick={handleOpen}
+          className={cn(
+            "cursor-pointer",
+            open === "notifications" && "text-main",
+          )}
+          onClick={() => {
+            handleOpen && handleOpen("notifications");
+          }}
         />
         <NotificationNumber notification>1</NotificationNumber>
       </div>
 
-      {open && (
+      {open === "notifications" && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-transparent"
+            className="fixed bottom-0 left-0 right-0 top-[40px] z-40 bg-transparent tablet:top-[60px]"
             onClick={handleClose}
           ></div>
 
@@ -40,7 +40,7 @@ export default function Notifications() {
           >
             <div className="flexBetween border-b border-neutral pb-2 text-10lg text-neutral laptop:text-12lg">
               <h2>Notifications</h2>
-              <p>Notification Settings</p>
+              <p className="text-main">Notification Settings</p>
             </div>
             <section className="space-y-1">
               {/* <EmptyMessage /> */}

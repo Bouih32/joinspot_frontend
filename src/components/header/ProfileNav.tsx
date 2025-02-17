@@ -5,24 +5,19 @@ import avatar from "../../../public/images/avatar.png";
 import Image from "next/image";
 import { RiVipCrown2Fill, RiSettings3Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
-
 import { LuLogOut } from "react-icons/lu";
 import ProfileCard from "./ProfileCard";
 import { nanoid } from "nanoid";
 import { logout } from "@/actions/logout";
 import { useRouter } from "next/navigation";
+import { DropProps } from "./Messages";
 
-export default function ProfileNav() {
-  const [open, setOpen] = useState(false);
+export default function ProfileNav({
+  open,
+  handleOpen,
+  handleClose,
+}: DropProps) {
   const router = useRouter();
-
-  const handleOpen = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleLogOut = async () => {
     await logout();
@@ -38,16 +33,18 @@ export default function ProfileNav() {
   return (
     <div className="relative">
       <Image
-        onClick={handleOpen}
+        onClick={() => {
+          handleOpen && handleOpen("profile");
+        }}
         src={avatar}
         alt="avatar"
-        className="h-[25px] w-[25px] cursor-pointer rounded-full object-contain tablet:h-[45px] tablet:w-[45px]"
+        className="h-[25px] w-[25px] cursor-pointer rounded-full object-contain tablet:h-[40px] tablet:w-[40px]"
       />
 
-      {open && (
+      {open === "profile" && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-transparent"
+            className="fixed bottom-0 left-0 right-0 top-[40px] z-40 bg-transparent tablet:top-[60px]"
             onClick={handleClose}
           ></div>
 
