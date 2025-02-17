@@ -17,7 +17,10 @@ export default function Messages({ open, handleOpen, handleClose }: DropProps) {
     <div className="relative">
       <div className="relative">
         <MdOutlineMail
-          className={cn("cursor-pointer", open === "messages" && "text-main")}
+          className={cn(
+            "cursor-pointer hover:text-main",
+            open === "messages" && "text-main",
+          )}
           onClick={() => {
             handleOpen && handleOpen("messages");
           }}

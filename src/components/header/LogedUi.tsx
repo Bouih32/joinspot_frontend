@@ -14,7 +14,7 @@ export default function LogedUi() {
     ele: "notifications" | "messages" | "profile" | "nav",
   ) => {
     setOpen(null);
-    setOpen(ele);
+    open === ele ? setOpen(null) : setOpen(ele);
   };
 
   const handleClose = () => {

@@ -17,7 +17,7 @@ export default function Notifications({
       <div className="relative">
         <MdOutlineNotificationsNone
           className={cn(
-            "cursor-pointer",
+            "cursor-pointer hover:text-main",
             open === "notifications" && "text-main",
           )}
           onClick={() => {
