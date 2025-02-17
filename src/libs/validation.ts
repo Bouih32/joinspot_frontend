@@ -111,3 +111,15 @@ export const resetValidation = z.object({
     .min(5, { message: "Please enter your email" })
     .max(50, { message: "Heey! that's too long" }),
 });
+
+export const newPswrd = z
+  .object({
+    password: passwordSchema,
+    passwordValidate: z
+      .string()
+      .min(1, { message: "Please confirm your password" }),
+  })
+  .refine((data) => data.password === data.passwordValidate, {
+    message: "Passwords don't match",
+    path: ["passwordValidate"],
+  });
