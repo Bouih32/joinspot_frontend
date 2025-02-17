@@ -16,7 +16,7 @@ export default function Header({ user }: HeaderProps) {
   return (
     <section className="bg-white">
       <Container>
-        <header className="flexBetween py-[8.5px] font-openSans text-darker tablet:py-[10px]">
+        <header className="flexBetween py-[8.5px] font-openSans text-darker tablet:py-3">
           <Image
             src={logo}
             alt="logo"

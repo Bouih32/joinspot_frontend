@@ -3,28 +3,42 @@ import logo from "../../../public/images/logo.png";
 import Image from "next/image";
 import Nav from "../header/Nav";
 import { footerLinks, navLinks } from "@/libs/constantes";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
+import Link from "next/link";
+import { nanoid } from "nanoid";
 
 export default function footer() {
+  const socials = [
+    { icon: <FaFacebookF />, link: "#" },
+    { icon: <FaTiktok />, link: "#" },
+    { icon: <FaInstagram />, link: "#" },
+  ];
   return (
-    <footer className="bg-footerBg pb-6 pt-10 tablet:pb-4 laptop:pt-[65px]">
-      <Container classname="space-y-10 tablet:space-y-[54px]">
+    <footer className="bg-footerBg bg-[length:50%_100%] bg-left bg-no-repeat py-[35px] pt-4 tablet:bg-[length:40%_100%] tablet:py-[35px]">
+      <Container classname="space-y-[30px]">
         <section className="tablet:flexBetween flex-col space-y-6 tablet:flex-row tablet:space-y-0">
           <div className="flexBetween self-start">
             <div className="space-y-[7px] tablet:space-y-3">
               <Image
                 src={logo}
                 alt="logo"
-                className="h-[18px] w-[114.983px] object-contain tablet:h-[39px] tablet:w-[227px]"
+                className="h-[18px] w-[106px] object-contain tablet:h-[31.685px] tablet:w-[185px]"
               />
-              <p className="text-10lg text-secondHover tablet:text-20lg laptop:text-26lg">
+              <p className="text-10lg text-secondHover tablet:text-20lg">
                 Bringing People & Passions Together.
               </p>
             </div>
 
             <div className="flexCenter gap-[2px] tablet:hidden">
-              <div className="h-6 w-6 rounded-full bg-main"></div>
-              <div className="h-6 w-6 rounded-full bg-main"></div>
-              <div className="h-6 w-6 rounded-full bg-main"></div>
+              {socials.map((ele) => (
+                <Link
+                  key={nanoid()}
+                  href={ele.link}
+                  className="gridCenter h-6 w-6 rounded-full bg-main text-white"
+                >
+                  {ele.icon}
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -34,12 +48,18 @@ export default function footer() {
           </div>
 
           <div className="hidden space-y-[17px] tablet:block">
-            <div className="h-[45px] w-[45px] rounded-full bg-main"></div>
-            <div className="h-[45px] w-[45px] rounded-full bg-main"></div>
-            <div className="h-[45px] w-[45px] rounded-full bg-main"></div>
+            {socials.map((ele) => (
+              <Link
+                key={nanoid()}
+                href={ele.link}
+                className="gridCenter h-[45px] w-[45px] rounded-full bg-main text-white"
+              >
+                {ele.icon}
+              </Link>
+            ))}
           </div>
         </section>
-        <p className="text-center text-10lg text-secondDark tablet:text-12lg">
+        <p className="text-center text-[8px] font-medium text-secondDark tablet:text-10lg">
           JOINSPOT, ALL RIGHTS RESERVED
         </p>
       </Container>

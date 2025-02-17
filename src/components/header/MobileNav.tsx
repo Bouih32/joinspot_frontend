@@ -7,7 +7,6 @@ import Nav from "./Nav";
 import Link from "next/link";
 import Button from "../Button";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { useState } from "react";
 import { navLinks } from "@/libs/constantes";
 import { DropProps } from "./Messages";
 
@@ -38,7 +37,7 @@ export default function MobileNav({
           ></div>
           <section
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover px-4 pt-[48px] tablet:hidden"
+            className="bg-mobileNavBg absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-[length:100%_60%] bg-bottom bg-no-repeat px-4 pt-[48px] tablet:hidden"
           >
             <div className="flexBetween">
               <Image
