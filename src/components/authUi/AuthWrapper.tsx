@@ -2,8 +2,7 @@ import { cn } from "@/libs/utils";
 import Image from "next/image";
 import { ReactNode } from "react";
 import logo from "../../../public/images/logoWhite.png";
-import MainTitle from "./MainTitle";
-import SubTitle from "./SubTitle";
+import AuthHeaders from "./AuthHeaders";
 
 type WrapperProps = {
   children: ReactNode;
@@ -33,14 +32,8 @@ export default function AuthWrapper({
           classname,
         )}
       >
-        <div className="absolute bottom-0 text-start font-poppins tablet:hidden">
-          <MainTitle>{title}</MainTitle>
-          <SubTitle>
-            {signup
-              ? "Sign up today and be part of something amazing!"
-              : "Login with your account"}
-          </SubTitle>
-        </div>
+        <AuthHeaders title={title} mobile signup={signup} />
+
         <Image
           src={logo}
           alt="logo"
@@ -71,14 +64,7 @@ export default function AuthWrapper({
         )}
       </section>
       <section className="flexCenter relative flex-1 flex-col gap-[28px] pb-10 font-openSans tablet:pb-0">
-        <div className="hidden text-center font-poppins tablet:block">
-          <MainTitle>{title}</MainTitle>
-          <SubTitle>
-            {signup
-              ? "Sign up today and be part of something amazing!"
-              : "Login with your account"}
-          </SubTitle>
-        </div>
+        <AuthHeaders title={title} signup={signup} />
         {children}
       </section>
     </main>
