@@ -1,5 +1,5 @@
-import MobileNav from "@/components/header/MobileNav";
+import ImageUpload from "@/components/UploadImage";
 
 export default function Home() {
-  return <h1>Landing</h1>;
+  return <ImageUpload />;
 }
