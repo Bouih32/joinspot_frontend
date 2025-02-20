@@ -37,11 +37,11 @@ export default function FifthStep() {
     if (!data) return;
     const res = await signup(data);
     console.log(res?.status);
-    if (res?.status === 400) {
+    if (res?.status === 400 || res.status === 500) {
       setEmailError(res.data.message);
     }
-    localStorage.clear();
     router.push("/login");
+    localStorage.clear();
   };
 
   const handleSubmit = async () => {

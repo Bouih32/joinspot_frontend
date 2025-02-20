@@ -211,7 +211,7 @@ export default {
         resetBgMobile: "url(/images/resetBgMobile.png)",
         footerBg: "url(/images/footerPattern.png)",
         mobileNavBg: "url(/images/mobileBg.png)",
-        resetGrad: "linear-gradient(90deg, #98F9FF, #FE5722)",
+        resetGrad: "linear-gradient(60deg, #98F9FF, #FE5722)",
       },
       colors: {
         main: "#FE5722",
