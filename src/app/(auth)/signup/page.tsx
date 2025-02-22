@@ -13,6 +13,7 @@ import { getContext } from "@/libs/utils";
 
 export default function Signup() {
   const { step } = getContext(SignupContext);
+
   return (
     <AuthWrapper
       title={step > 1 && step < 5 ? "Verification" : "Signup"}

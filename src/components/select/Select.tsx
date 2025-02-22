@@ -25,7 +25,6 @@ export default function Select<T extends FieldValues>({
   selected,
   handleClick,
   name,
-
   register,
 }: InputProps<T>) {
   const [open, setOpen] = useState(false);

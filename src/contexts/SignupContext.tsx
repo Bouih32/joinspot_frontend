@@ -2,7 +2,6 @@
 
 import { DataType } from "@/libs/types";
 import { createContext, ReactNode, useState, useEffect } from "react";
-import { FieldErrors, UseFormSetError } from "react-hook-form";
 
 type SignupContextType = {
   data: DataType | null;
@@ -23,7 +22,7 @@ export default function SignupProvider({ children }: { children: ReactNode }) {
     return storedData ? JSON.parse(storedData) : null;
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [data, setData] = useState<DataType | null>(getLocalStorageData);
   const [error, setError] = useState<string | null>(null);
 
