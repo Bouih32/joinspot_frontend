@@ -5,7 +5,7 @@ type FullSignupType = {
   city: string;
   role: string;
   password: string;
-  categoryName: string;
+  categoryId: string;
   degreeName: string;
   schoolName: string;
   year: string;
@@ -20,4 +20,17 @@ export type DataType = Partial<FullSignupType>;
 export type LoginType = {
   email: string;
   password: string;
+};
+
+export type Category = {
+  categoryId: string;
+  categoryName: string;
+  icon: string;
+  deletedAt: Date;
+};
+
+export type City = {
+  cityId: string;
+  cityName: string;
+  cover: string;
 };

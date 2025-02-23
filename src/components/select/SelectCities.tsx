@@ -1,10 +1,12 @@
-import { cn } from "@/libs/utils";
+import { cn, getContext } from "@/libs/utils";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { BiSolidDownArrow } from "react-icons/bi";
 import SelectItem from "./SelectItem";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { categories } from "@/libs/constantes";
+import { City } from "@/libs/types";
+import { SignupContext } from "@/contexts/SignupContext";
 
 type InputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
@@ -12,12 +14,12 @@ type InputProps<T extends FieldValues> = {
   error: string | undefined;
   disabled?: boolean;
   placeholder: string;
-  handleClick: (ele: string) => void;
-  selected: string;
+  handleClick: (ele: City) => void;
+  selected: string | undefined;
   name: Path<T>;
 };
 
-export default function Select<T extends FieldValues>({
+export default function SelectCities<T extends FieldValues>({
   valid,
   error,
   disabled,
@@ -28,6 +30,7 @@ export default function Select<T extends FieldValues>({
   register,
 }: InputProps<T>) {
   const [open, setOpen] = useState(false);
+  const { cities } = getContext(SignupContext);
 
   return (
     <div className="relative space-y-[3px] font-openSans">
@@ -52,7 +55,7 @@ export default function Select<T extends FieldValues>({
             placeholder={placeholder}
             type="text"
             readOnly
-            value={selected}
+            value={selected ? selected : "Please select a city"}
             className={cn(
               "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
               error && "placeholder:text-error",
@@ -73,17 +76,17 @@ export default function Select<T extends FieldValues>({
               onClick={() => setOpen(false)}
             ></div>
             <div className="absolute top-[100%] z-50 w-full rounded-b border border-t-0 border-neutral bg-white px-2 py-[3px] text-start text-[12px] font-semibold text-neutralDark tablet:px-3 tablet:py-[6px] tablet:text-[14px] xl:py-3.5">
-              {categories.map((ele, index) => (
+              {cities.map((ele, index) => (
                 <SelectItem
                   classname={cn(
-                    ele === selected &&
+                    ele.cityName === selected &&
                       "border-main font-bold bg-mainLight text-main",
                   )}
                   index={index}
                   key={nanoid()}
                   handleClick={() => handleClick(ele)}
                 >
-                  {ele}
+                  {ele.cityName}
                 </SelectItem>
               ))}
             </div>

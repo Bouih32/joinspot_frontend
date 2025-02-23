@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import Check from "@/components/Check";
 import Input from "@/components/Input";
-import Select from "@/components/select/Select";
+import Select from "@/components/select/SelectCategories";
 import { SignupContext } from "@/contexts/SignupContext";
 import { getContext } from "@/libs/utils";
 import { secondStepValidation } from "@/libs/validation";
@@ -13,18 +13,19 @@ import { useForm } from "react-hook-form";
 import { BiImageAdd } from "react-icons/bi";
 import { z } from "zod";
 import GoBack from "./GoBack";
+import { Category } from "@/libs/types";
 
 export default function SecondStep() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<Category | null>(null);
   const { setStep, goBack, data, handleData } = getContext(SignupContext);
 
   const validationSchema = useMemo(() => {
     return secondStepValidation(proveBy);
   }, [proveBy]);
 
-  const handleClick = (ele: string) => {
-    setValue("categoryName", ele);
+  const handleClick = (ele: Category) => {
+    setValue("categoryId", ele.categoryId);
     setSelected(ele);
   };
 
@@ -42,7 +43,7 @@ export default function SecondStep() {
       schoolName: data?.schoolName,
       year: data?.year,
       frontPic: data?.frontPic,
-      categoryName: data?.categoryName,
+      categoryId: data?.categoryId,
       justification: data?.justification,
       justificationPic: data?.justificationPic,
     },
@@ -77,10 +78,10 @@ export default function SecondStep() {
           <Select<FormValues>
             placeholder="Chose your category"
             register={register}
-            name="categoryName"
-            selected={selected}
+            name="categoryId"
+            selected={selected?.categoryName}
             handleClick={handleClick}
-            error={errors.categoryName?.message as string}
+            error={errors.categoryId?.message as string}
           />
         </div>
 

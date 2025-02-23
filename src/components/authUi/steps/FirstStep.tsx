@@ -11,11 +11,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Role from "../Role";
 import { getContext } from "@/libs/utils";
+import SelectCities from "@/components/select/SelectCities";
+import { City } from "@/libs/types";
 
 type FirstStepT = z.infer<typeof firstStepValidation>;
 
 export default function FirstStep() {
   const [selected, setSelected] = useState<string>("visitor");
+  const [city, setCity] = useState<City | null>(null);
   const { setStep, data, handleData, error } = getContext(SignupContext);
 
   const {
@@ -54,7 +57,13 @@ export default function FirstStep() {
     if (!resault) return;
     const formData = getValues();
     handleData(formData);
+    console.log(formData);
     formData.role === "visitor" ? setStep(5) : setStep(2);
+  };
+
+  const handleClick = (ele: City) => {
+    setValue("city", ele.cityId);
+    setCity(ele);
   };
 
   return (
@@ -80,11 +89,12 @@ export default function FirstStep() {
           type="email"
           error={errors.email?.message as string}
         />
-        <Input<FirstStepT>
-          placeholder="Your city"
+        <SelectCities<FirstStepT>
+          placeholder="Chose your category"
           register={register}
           name="city"
-          type="text"
+          selected={city?.cityName}
+          handleClick={handleClick}
           error={errors.city?.message as string}
         />
 
