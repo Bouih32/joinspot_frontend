@@ -43,7 +43,6 @@ export default function SecondStep() {
       schoolName: data?.schoolName,
       year: data?.year,
       frontPic: data?.frontPic,
-      categoryId: data?.categoryId,
       justification: data?.justification,
       justificationPic: data?.justificationPic,
     },

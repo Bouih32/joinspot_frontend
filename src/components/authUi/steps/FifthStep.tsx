@@ -17,8 +17,7 @@ import { useEffect } from "react";
 type fifthStepT = z.infer<typeof fifthStepValidation>;
 
 export default function FifthStep() {
-  const { data, goBack, handleData, setStep, setEmailError } =
-    getContext(SignupContext);
+  const { data, goBack, handleData, setEmailError } = getContext(SignupContext);
   const router = useRouter();
   const {
     register,
@@ -36,9 +35,9 @@ export default function FifthStep() {
   const handleSignup = async () => {
     if (!data) return;
     const res = await signup(data);
-    console.log(res?.status);
     if (res?.status === 400 || res.status === 500) {
       setEmailError(res.data.message);
+      return;
     }
     router.push("/login");
     localStorage.clear();

@@ -73,7 +73,7 @@ export default function LoginForm() {
         <div className="flexBetween text-10sm text-secondActive tablet:text-12sm">
           <p>
             You don’t have account ?
-            <Link href="/singup" className="font-semibold text-main">
+            <Link href="/signup" className="font-semibold text-main">
               Sign in
             </Link>
           </p>

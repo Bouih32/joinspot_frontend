@@ -31,7 +31,6 @@ export default function FirstStep() {
   } = useForm<FirstStepT>({
     resolver: zodResolver(firstStepValidation),
     defaultValues: {
-      city: data?.city,
       fullName: data?.fullName,
       email: data?.email,
       role: selected,
