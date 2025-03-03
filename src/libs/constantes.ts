@@ -20,3 +20,5 @@ export const categories = [
   "cooking",
   "Education",
 ];
+
+export const API_URL = "http://localhost:4000";

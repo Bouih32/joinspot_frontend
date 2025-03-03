@@ -1,3 +1,4 @@
+import { API_URL } from "@/libs/constantes";
 import axios, { isAxiosError } from "axios";
 
 export const forgotPswrd = async (data: { email: string }) => {
@@ -21,7 +22,7 @@ export const resetForgotenPswrd = async (data: {
   newPassword: string;
 }) => {
   try {
-    const res = await axios.post("http://localhost:4000/user/reset", data, {
+    const res = await axios.post(`${API_URL}/user/reset`, data, {
       withCredentials: true,
     });
     return res;

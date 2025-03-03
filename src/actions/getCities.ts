@@ -1,8 +1,9 @@
+import { API_URL } from "@/libs/constantes";
 import axios, { isAxiosError } from "axios";
 
 export const getCities = async () => {
   try {
-    const res = await axios.get("http://localhost:4000/user/cities", {
+    const res = await axios.get(`${API_URL}/user/cities`, {
       withCredentials: true,
     });
     return res.data;

@@ -1,8 +1,9 @@
+import { API_URL } from "@/libs/constantes";
 import axios from "axios";
 
 export const logout = async () => {
   await axios.post(
-    "http://localhost:4000/user/logout",
+    `${API_URL}/user/logout`,
     {},
     {
       withCredentials: true,

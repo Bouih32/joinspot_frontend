@@ -1,9 +1,10 @@
+import { API_URL } from "@/libs/constantes";
 import { DataType } from "@/libs/types";
 import axios from "axios";
 
 export const signup = async (data: DataType) => {
   try {
-    const res = await axios.post("http://localhost:4000/user/register", data, {
+    const res = await axios.post(`${API_URL}/user/register`, data, {
       withCredentials: true,
     });
 

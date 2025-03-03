@@ -1,8 +1,9 @@
+import { API_URL } from "@/libs/constantes";
 import axios, { isAxiosError } from "axios";
 
 export const getCategories = async () => {
   try {
-    const res = await axios.get("http://localhost:4000/category", {
+    const res = await axios.get(`${API_URL}/category`, {
       withCredentials: true,
     });
     return res.data;
