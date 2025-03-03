@@ -14,11 +14,14 @@ import { BiImageAdd } from "react-icons/bi";
 import { z } from "zod";
 import GoBack from "./GoBack";
 import { Category } from "@/libs/types";
+import SignupUpload from "../SignupUpload";
 
 export default function SecondStep() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
-  const [selected, setSelected] = useState<Category | null>(null);
   const { setStep, goBack, data, handleData } = getContext(SignupContext);
+  const [selected, setSelected] = useState<string | null>(
+    data?.categoryName ?? null,
+  );
 
   const validationSchema = useMemo(() => {
     return secondStepValidation(proveBy);
@@ -26,7 +29,8 @@ export default function SecondStep() {
 
   const handleClick = (ele: Category) => {
     setValue("categoryId", ele.categoryId);
-    setSelected(ele);
+    setValue("categoryName", ele.categoryName);
+    setSelected(ele.categoryName);
   };
 
   type FormValues = z.infer<typeof validationSchema>;
@@ -41,6 +45,7 @@ export default function SecondStep() {
     defaultValues: {
       degreeName: data?.degreeName,
       schoolName: data?.schoolName,
+      categoryId: data?.categoryName ? data?.categoryName : "",
       year: data?.year,
       frontPic: data?.frontPic,
       justification: data?.justification,
@@ -55,9 +60,13 @@ export default function SecondStep() {
 
   const handleSubmit = async () => {
     const resault = await trigger();
+
+    console.log(errors);
     if (!resault) return;
     const formData = getValues();
+    console.log(formData);
     handleData(formData);
+
     setStep(3);
   };
   return (
@@ -78,7 +87,7 @@ export default function SecondStep() {
             placeholder="Chose your category"
             register={register}
             name="categoryId"
-            selected={selected?.categoryName}
+            selected={selected}
             handleClick={handleClick}
             error={errors.categoryId?.message as string}
           />
@@ -124,21 +133,21 @@ export default function SecondStep() {
                 error={errors.schoolName?.message as string}
               />
               <Input<FormValues>
-                placeholder="Add front picture"
+                placeholder="Year"
                 register={register}
                 name="year"
                 type="text"
                 error={errors.year?.message as string}
-                icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
               />
             </div>
-            <Input<FormValues>
+
+            <SignupUpload<FormValues>
               placeholder="Add certificate image"
+              setValue={setValue}
               register={register}
               name="frontPic"
-              type="text"
+              targetName="frontPicName"
               error={errors.frontPic?.message as string}
-              icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
             />
           </>
         )}
@@ -156,13 +165,13 @@ export default function SecondStep() {
                 error={errors.justification?.message as string}
               />
             </div>
-            <Input<FormValues>
+            <SignupUpload<FormValues>
               placeholder="Add a prove image"
+              setValue={setValue}
               register={register}
               name="justificationPic"
-              type="text"
+              targetName="justnImgName"
               error={errors.justificationPic?.message as string}
-              icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
             />
           </>
         )}

@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import z from "zod";
 
 export const loginValidation = z.object({
@@ -23,18 +22,25 @@ export const firstStepValidation = z.object({
     .trim()
     .min(5, { message: "Please enter your email" })
     .max(50, { message: "Heey! that's too long" }),
-  city: z
+  city: z.string().trim().min(5, { message: "Please enter your city" }),
+  cityName: z
     .string()
     .trim()
     .min(5, { message: "Please enter your city" })
-    .max(50, { message: "Heey! that's too long" }),
+    .optional(),
   role: z.string().trim().min(5, { message: "Please enter your city" }),
 });
 
 export const secondStepValidation = (proveBy: "degree" | "business" | "") => {
   return z.object({
     categoryId: z.string().min(1, { message: "Please select a category" }),
+    categoryName: z
+      .string()
+      .min(1, { message: "Please select a category" })
+      .optional(),
     proveBy: z.string().trim().min(1, { message: "choose a proving way" }),
+    justnImgName: z.string().optional(),
+    frontPicName: z.string().optional(),
 
     // Degree validation
     degreeName:

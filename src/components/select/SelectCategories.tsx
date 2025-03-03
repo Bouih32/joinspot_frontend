@@ -14,7 +14,7 @@ type InputProps<T extends FieldValues> = {
   disabled?: boolean;
   placeholder: string;
   handleClick: (ele: Category) => void;
-  selected: string | undefined;
+  selected: string | null;
   name: Path<T>;
 };
 

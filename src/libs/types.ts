@@ -3,6 +3,10 @@ type FullSignupType = {
   fullName: string;
   email: string;
   city: string;
+  cityName?: string;
+  categoryName?: string;
+  justnImgName?: string;
+  frontPicName?: string;
   role: string;
   password: string;
   categoryId: string;

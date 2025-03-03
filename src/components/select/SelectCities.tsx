@@ -4,7 +4,6 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import SelectItem from "./SelectItem";
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import { categories } from "@/libs/constantes";
 import { City } from "@/libs/types";
 import { SignupContext } from "@/contexts/SignupContext";
 
@@ -15,7 +14,7 @@ type InputProps<T extends FieldValues> = {
   disabled?: boolean;
   placeholder: string;
   handleClick: (ele: City) => void;
-  selected: string | undefined;
+  selected: string | null;
   name: Path<T>;
 };
 
