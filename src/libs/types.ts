@@ -7,6 +7,8 @@ type FullSignupType = {
   categoryName?: string;
   justnImgName?: string;
   frontPicName?: string;
+  idFrontPicName?: string;
+  idBackPicName?: string;
   role: string;
   password: string;
   categoryId: string;

@@ -87,9 +87,7 @@ export default function SignupUpload<T extends FieldValues>({
           )}
         />
         <p className="text-12sm tablet:text-14sm">
-          {target ||
-            (data as Record<string, any>)[targetName] ||
-            "Add Verification Image"}
+          {target || (data as Record<string, any>)[targetName] || placeholder}
         </p>
 
         <BiImageAdd

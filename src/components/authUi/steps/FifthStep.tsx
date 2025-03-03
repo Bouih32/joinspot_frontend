@@ -47,6 +47,7 @@ export default function FifthStep() {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
+    console.log(formData);
     handleData(formData);
     await handleSignup();
   };

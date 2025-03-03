@@ -77,6 +77,8 @@ export const thirdStepValidation = z.object({
     .string()
     .trim()
     .min(5, { message: "Please enter your id front picture" }),
+  idFrontPicName: z.string().trim().optional(),
+  idBackPicName: z.string().trim().optional(),
 
   idBackPic: z
     .string()

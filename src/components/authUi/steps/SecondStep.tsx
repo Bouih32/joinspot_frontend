@@ -10,7 +10,6 @@ import { secondStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiImageAdd } from "react-icons/bi";
 import { z } from "zod";
 import GoBack from "./GoBack";
 import { Category } from "@/libs/types";

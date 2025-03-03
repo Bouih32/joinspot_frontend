@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { BiImageAdd } from "react-icons/bi";
 import { z } from "zod";
 import GoBack from "./GoBack";
+import SignupUpload from "../SignupUpload";
 
 type ThirdStepT = z.infer<typeof thirdStepValidation>;
 
@@ -18,6 +19,7 @@ export default function ThirdStep() {
   const {
     register,
     trigger,
+    setValue,
     formState: { errors },
     getValues,
   } = useForm<ThirdStepT>({
@@ -33,6 +35,7 @@ export default function ThirdStep() {
     if (!resault) return;
     const formData = getValues();
     handleData(formData);
+    console.log(formData);
     setStep(4);
   };
   return (
@@ -49,24 +52,25 @@ export default function ThirdStep() {
           <p className="text-start text-12sm text-darker">
             Your id card pictures <span className="text-main">*</span>
           </p>
-          <Input<ThirdStepT>
+          <SignupUpload<ThirdStepT>
             placeholder="Add front picture"
+            setValue={setValue}
             register={register}
             name="idFrontPic"
-            type="text"
+            targetName="idFrontPicName"
             error={errors.idFrontPic?.message as string}
-            icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
           />
         </div>
         <div className="space-y-2 tablet:space-y-[6px]">
-          <Input<ThirdStepT>
+          <SignupUpload<ThirdStepT>
             placeholder="Add back picture"
+            setValue={setValue}
             register={register}
             name="idBackPic"
-            type="text"
+            targetName="idBackPicName"
             error={errors.idBackPic?.message as string}
-            icon={<BiImageAdd className="cursor-pointer hover:text-main" />}
           />
+
           <p className="text-start text-12sm text-secondActive">
             <span className="text-main">*</span> Necessary information
           </p>
