@@ -22,7 +22,7 @@ export default function AuthWrapper({
   return (
     <main
       className={cn(
-        "flex h-screen flex-col gap-[30px] tablet:flex-row tablet:gap-0",
+        "flex h-screen flex-col gap-[30px] tablet:flex-row tablet:gap-0 tablet:overflow-y-hidden",
         reverse && "tablet:flex-row-reverse",
       )}
     >
