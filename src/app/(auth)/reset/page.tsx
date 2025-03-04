@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function ResetPage() {
   return (
     <>
-      <main className="bg-resetBg gridCenter relative h-screen bg-cover bg-center bg-no-repeat">
+      <main className="gridCenter relative h-screen bg-resetBg bg-cover bg-center bg-no-repeat">
         <div className="absolute left-4 top-2 flex items-center gap-3 tablet:left-[30px] tablet:top-[30px] laptop:gap-[15px] xl:left-[100px]">
           <Link href="/login">
             <BsArrowLeftShort className="text-[30px] text-secondHover tablet:text-[40px]" />
@@ -21,7 +21,7 @@ export default function ResetPage() {
         </div>
 
         <Container classname="flexCenter">
-          <div className="bg-resetGrad h-[386px] w-full rounded-[40px] p-[2px] tablet:h-[340px] tablet:w-[632px] tablet:rounded-[60px]">
+          <div className="h-[386px] w-full rounded-[40px] bg-resetGrad p-[2px] tablet:h-[340px] tablet:w-[632px] tablet:rounded-[60px]">
             <ResetForm />
           </div>
         </Container>

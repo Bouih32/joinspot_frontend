@@ -39,6 +39,13 @@ export default {
             fontWeight: "500",
           },
         ],
+        "28xxl": [
+          "28px",
+          {
+            lineHeight: "40px",
+            fontWeight: "600",
+          },
+        ],
         "28xl": [
           "28px",
           {
@@ -79,6 +86,13 @@ export default {
           {
             lineHeight: "32px",
             fontWeight: "500",
+          },
+        ],
+        "22xxl": [
+          "22px",
+          {
+            lineHeight: "32px",
+            fontWeight: "600",
           },
         ],
         "22xl": [
