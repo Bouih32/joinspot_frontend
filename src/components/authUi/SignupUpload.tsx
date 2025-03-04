@@ -1,8 +1,9 @@
 import { SignupContext } from "@/contexts/SignupContext";
 import { cn, getContext } from "@/libs/utils";
-import { ChangeEvent, ReactElement, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { BiImageAdd } from "react-icons/bi";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 type InputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
@@ -26,6 +27,7 @@ export default function SignupUpload<T extends FieldValues>({
   register,
 }: InputProps<T>) {
   const [target, setTarget] = useState<string | null>("");
+  const [loading, setLoading] = useState(false);
   const uploadRef = useRef<HTMLInputElement>(null);
   const { data } = getContext(SignupContext);
 
@@ -44,6 +46,7 @@ export default function SignupUpload<T extends FieldValues>({
     );
 
     try {
+      setLoading(true);
       const response = await fetch(
         `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
         {
@@ -57,6 +60,7 @@ export default function SignupUpload<T extends FieldValues>({
       if (result.secure_url) {
         setValue(name, result.secure_url);
         console.log("Image URL:", result.secure_url);
+        setLoading(false);
       } else {
         console.error("Upload failed:", result);
       }
@@ -89,13 +93,16 @@ export default function SignupUpload<T extends FieldValues>({
         <p className="text-12sm tablet:text-14sm">
           {target || (data as Record<string, any>)[targetName] || placeholder}
         </p>
-
-        <BiImageAdd
-          className="cursor-pointer hover:text-main"
-          onClick={() => {
-            uploadRef.current?.click();
-          }}
-        />
+        {loading ? (
+          <AiOutlineLoading3Quarters className="animate-spin" />
+        ) : (
+          <BiImageAdd
+            className="cursor-pointer hover:text-main"
+            onClick={() => {
+              uploadRef.current?.click();
+            }}
+          />
+        )}
       </div>
       {error && (
         <p className="text-start font-openSans text-10sm text-error">{error}</p>
