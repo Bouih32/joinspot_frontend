@@ -34,7 +34,7 @@ export default function SignupProvider({
     return storedData ? JSON.parse(storedData) : null;
   };
 
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(1);
   const [data, setData] = useState<DataType | null>(getLocalStorageData);
   const [error, setError] = useState<string | null>(null);
 

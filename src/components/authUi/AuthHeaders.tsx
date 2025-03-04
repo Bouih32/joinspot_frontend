@@ -14,7 +14,7 @@ type AuthHeaders = {
 
 export default function AuthHeaders({ title, signup, mobile }: AuthHeaders) {
   const { step, goBack } = getContext(SignupContext);
-  return (
+  return step !== 6 || !signup ? (
     <div
       className={cn(
         "hidden text-center font-poppins tablet:block",
@@ -40,5 +40,5 @@ export default function AuthHeaders({ title, signup, mobile }: AuthHeaders) {
         </SubTitle>
       </div>
     </div>
-  );
+  ) : null;
 }
