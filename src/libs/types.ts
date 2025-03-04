@@ -3,7 +3,6 @@ type FullSignupType = {
   fullName: string;
   email: string;
   city: string;
-  cityName?: string;
   categoryName?: string;
   justnImgName?: string;
   frontPicName?: string;
@@ -11,7 +10,6 @@ type FullSignupType = {
   idBackPicName?: string;
   role: string;
   password: string;
-  categoryId: string;
   degreeName: string;
   schoolName: string;
   year: string;

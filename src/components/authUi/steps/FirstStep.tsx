@@ -19,7 +19,7 @@ type FirstStepT = z.infer<typeof firstStepValidation>;
 export default function FirstStep() {
   const [selected, setSelected] = useState<string>("visitor");
   const { setStep, data, handleData, error } = getContext(SignupContext);
-  const [city, setCity] = useState<string | null>(data?.cityName ?? null);
+  const [city, setCity] = useState<string | null>(data?.city ?? null);
 
   const {
     register,
@@ -34,7 +34,8 @@ export default function FirstStep() {
       fullName: data?.fullName,
       email: data?.email,
       role: selected,
-      city: data?.cityName ? data?.cityName : "",
+
+      city: data?.city,
     },
   });
 
@@ -63,10 +64,9 @@ export default function FirstStep() {
     formData.role === "visitor" ? setStep(5) : setStep(2);
   };
 
-  const handleClick = (ele: City) => {
-    setValue("city", ele.cityId);
-    setValue("cityName", ele.cityName);
-    setCity(ele.cityName);
+  const handleClick = (ele: string) => {
+    setValue("city", ele);
+    setCity(ele);
   };
 
   return (

@@ -32,9 +32,13 @@ export default function FifthStep() {
     },
   });
 
-  const handleSignup = async () => {
+  const handleSignup = async (formData: {
+    username: string;
+    password: string;
+    passwordValidate: string;
+  }) => {
     if (!data) return;
-    const res = await signup(data);
+    const res = await signup({ ...data, ...formData });
     if (res?.status === 400 || res.status === 500) {
       setEmailError(res.data.message);
       return;
@@ -49,7 +53,7 @@ export default function FifthStep() {
     const formData = getValues();
     console.log(formData);
     handleData(formData);
-    await handleSignup();
+    await handleSignup(formData);
   };
   return (
     <form

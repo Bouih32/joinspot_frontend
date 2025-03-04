@@ -13,7 +13,7 @@ type InputProps<T extends FieldValues> = {
   error: string | undefined;
   disabled?: boolean;
   placeholder: string;
-  handleClick: (ele: Category) => void;
+  handleClick: (ele: string) => void;
   selected: string | null;
   name: Path<T>;
 };
@@ -84,7 +84,7 @@ export default function SelectCategories<T extends FieldValues>({
                   )}
                   index={index}
                   key={nanoid()}
-                  handleClick={() => handleClick(ele)}
+                  handleClick={() => handleClick(ele.categoryName)}
                 >
                   {ele.categoryName}
                 </SelectItem>

@@ -23,21 +23,14 @@ export const firstStepValidation = z.object({
     .min(5, { message: "Please enter your email" })
     .max(50, { message: "Heey! that's too long" }),
   city: z.string().trim().min(5, { message: "Please enter your city" }),
-  cityName: z
-    .string()
-    .trim()
-    .min(5, { message: "Please enter your city" })
-    .optional(),
+
   role: z.string().trim().min(5, { message: "Please enter your city" }),
 });
 
 export const secondStepValidation = (proveBy: "degree" | "business" | "") => {
   return z.object({
-    categoryId: z.string().min(1, { message: "Please select a category" }),
-    categoryName: z
-      .string()
-      .min(1, { message: "Please select a category" })
-      .optional(),
+    categoryName: z.string().min(1, { message: "Please select a category" }),
+
     proveBy: z.string().trim().min(1, { message: "choose a proving way" }),
     justnImgName: z.string().optional(),
     frontPicName: z.string().optional(),

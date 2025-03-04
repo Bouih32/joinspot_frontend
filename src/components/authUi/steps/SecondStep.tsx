@@ -26,10 +26,9 @@ export default function SecondStep() {
     return secondStepValidation(proveBy);
   }, [proveBy]);
 
-  const handleClick = (ele: Category) => {
-    setValue("categoryId", ele.categoryId);
-    setValue("categoryName", ele.categoryName);
-    setSelected(ele.categoryName);
+  const handleClick = (ele: string) => {
+    setValue("categoryName", ele);
+    setSelected(ele);
   };
 
   type FormValues = z.infer<typeof validationSchema>;
@@ -44,7 +43,7 @@ export default function SecondStep() {
     defaultValues: {
       degreeName: data?.degreeName,
       schoolName: data?.schoolName,
-      categoryId: data?.categoryName ? data?.categoryName : "",
+      categoryName: data?.categoryName ? data?.categoryName : "",
       year: data?.year,
       frontPic: data?.frontPic,
       justification: data?.justification,
@@ -85,10 +84,10 @@ export default function SecondStep() {
           <Select<FormValues>
             placeholder="Chose your category"
             register={register}
-            name="categoryId"
+            name="categoryName"
             selected={selected}
             handleClick={handleClick}
-            error={errors.categoryId?.message as string}
+            error={errors.categoryName?.message as string}
           />
         </div>
 
