@@ -7,6 +7,7 @@ export const login = async (data: LoginType) => {
     const res = await axios.post(`${API_URL}/user/login`, data, {
       withCredentials: true,
     });
+
     return res;
   } catch (error) {
     console.log("Login error", error);
