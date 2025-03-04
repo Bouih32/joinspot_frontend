@@ -7,6 +7,7 @@ import Link from "next/link";
 import MobileNav from "./MobileNav";
 import LogedUi from "./LogedUi";
 import { navLinks } from "@/libs/constantes";
+import NoUserNav from "./NoUserNav";
 
 type HeaderProps = {
   user?: boolean;
@@ -36,7 +37,7 @@ export default function Header({ user }: HeaderProps) {
             </div>
           )}
 
-          {!user && <MobileNav user />}
+          {!user && <NoUserNav />}
         </header>
       </Container>
     </section>
