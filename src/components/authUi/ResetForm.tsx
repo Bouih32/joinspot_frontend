@@ -10,11 +10,13 @@ import { forgotPswrd } from "@/actions/forgotPswrd";
 import { MdMarkEmailRead } from "react-icons/md";
 import { useState } from "react";
 import Link from "next/link";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 type resetValidationT = z.infer<typeof resetValidation>;
 
 export default function ResetForm() {
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     trigger,
@@ -29,10 +31,13 @@ export default function ResetForm() {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
+    setLoading(true);
     const res = await forgotPswrd(formData);
     if (res.status === 404) {
+      setLoading(false);
       setError("email", { type: "manual", message: res.data.message });
     } else {
+      setLoading(false);
       setDone(true);
     }
   };
@@ -62,8 +67,9 @@ export default function ResetForm() {
             type="email"
             error={errors.email?.message as string}
           />
-          <Button secondary icon classname="self-center">
+          <Button secondary icon={!loading} classname="self-center">
             Send
+            {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
           </Button>
         </>
       ) : (
@@ -77,7 +83,7 @@ export default function ResetForm() {
             password.
           </p>
           <Link href="/login">
-            <Button secondary icon classname="self-center">
+            <Button secondary classname="self-center">
               Done
             </Button>
           </Link>

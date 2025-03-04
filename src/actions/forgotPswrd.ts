@@ -3,7 +3,7 @@ import axios, { isAxiosError } from "axios";
 
 export const forgotPswrd = async (data: { email: string }) => {
   try {
-    const res = await axios.post("http://localhost:4000/user/forgot", data, {
+    const res = await axios.post(`${API_URL}/user/forgot`, data, {
       withCredentials: true,
     });
     return res;
