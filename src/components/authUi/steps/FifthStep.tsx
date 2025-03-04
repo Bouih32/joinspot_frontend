@@ -5,14 +5,12 @@ import Input from "@/components/Input";
 import { fifthStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
+import { z } from "zod";
 import GoBack from "./GoBack";
 import { getContext } from "@/libs/utils";
 import { SignupContext } from "@/contexts/SignupContext";
 import { signup } from "@/actions/signup";
-import { Router } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 type fifthStepT = z.infer<typeof fifthStepValidation>;
 
@@ -39,10 +37,16 @@ export default function FifthStep() {
   }) => {
     if (!data) return;
     const res = await signup({ ...data, ...formData });
-    if (res?.status === 400 || res.status === 500) {
+    if (res?.status === 400) {
       setEmailError(res.data.message);
       return;
     }
+
+    if (res?.status === 500) {
+      setEmailError("Something went wrong ");
+      return;
+    }
+
     router.push("/login");
     localStorage.clear();
   };
