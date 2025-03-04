@@ -6,13 +6,16 @@ export const getCities = async () => {
     const res = await axios.get(`${API_URL}/user/cities`, {
       withCredentials: true,
     });
+    console.log("API response:", res.status, res.data);
     return res.data;
   } catch (error) {
-    console.log("Login error", error);
-    if (isAxiosError(error) && error.response) {
-      return error.response;
-    } else {
-      throw error;
+    console.error("Error fetching cities:", error);
+
+    if (isAxiosError(error)) {
+      console.error("Response status:", error.response?.status);
+      console.error("Response data:", error.response?.data);
     }
+
+    return [];
   }
 };
