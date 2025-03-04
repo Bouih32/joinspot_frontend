@@ -2,6 +2,7 @@
 
 import AuthWrapper from "@/components/authUi/AuthWrapper";
 import FifthStep from "@/components/authUi/steps/FifthStep";
+import FinalStep from "@/components/authUi/steps/FinalStep";
 import FirstStep from "@/components/authUi/steps/FirstStep";
 import ForthStep from "@/components/authUi/steps/ForthStep";
 import SecondStep from "@/components/authUi/steps/SecondStep";
@@ -23,7 +24,7 @@ export default function Signup() {
         " bg-cover bg-bottom tablet:bg-center bg-no-repeat",
         step === 1 && "tablet:bg-signupBg bg-signupBgMobile",
         step > 1 && step < 5 && "tablet:bg-signupBg2 bg-signupBgMobile2",
-        step === 5 && "tablet:bg-signupBg3 bg-signupBgMobile3",
+        step >= 5 && "tablet:bg-signupBg3 bg-signupBgMobile3",
       )}
     >
       <Container classname="laptop:w-fit tablet:w-fit">
@@ -32,6 +33,7 @@ export default function Signup() {
         {step === 3 && <ThirdStep />}
         {step === 4 && <ForthStep />}
         {step === 5 && <FifthStep />}
+        {step === 6 && <FinalStep />}
       </Container>
     </AuthWrapper>
   );

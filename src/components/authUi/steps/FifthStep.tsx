@@ -11,12 +11,16 @@ import { getContext } from "@/libs/utils";
 import { SignupContext } from "@/contexts/SignupContext";
 import { signup } from "@/actions/signup";
 import { useRouter } from "next/navigation";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useState } from "react";
 
 type fifthStepT = z.infer<typeof fifthStepValidation>;
 
 export default function FifthStep() {
-  const { data, goBack, handleData, setEmailError } = getContext(SignupContext);
-  const router = useRouter();
+  const { data, goBack, handleData, setEmailError, setStep } =
+    getContext(SignupContext);
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     trigger,
@@ -36,6 +40,7 @@ export default function FifthStep() {
     passwordValidate: string;
   }) => {
     if (!data) return;
+    setLoading(true);
     const res = await signup({ ...data, ...formData });
     if (res?.status === 400) {
       setEmailError(res.data.message);
@@ -47,7 +52,7 @@ export default function FifthStep() {
       return;
     }
 
-    router.push("/login");
+    setStep(6);
     localStorage.clear();
   };
 
@@ -92,8 +97,9 @@ export default function FifthStep() {
         />
       </div>
 
-      <Button secondary icon>
-        Done
+      <Button secondary icon={!loading} disabled={loading}>
+        {loading ? "Loading" : "Done"}
+        {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
       </Button>
     </form>
   );

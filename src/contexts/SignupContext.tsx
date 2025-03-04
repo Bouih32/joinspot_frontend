@@ -34,7 +34,7 @@ export default function SignupProvider({
     return storedData ? JSON.parse(storedData) : null;
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(6);
   const [data, setData] = useState<DataType | null>(getLocalStorageData);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,7 +48,7 @@ export default function SignupProvider({
   }, []);
 
   const goBack = () =>
-    setStep((prev) => Math.max(prev === 5 ? 1 : prev - 1, 1));
+    setStep((prev) => Math.max(prev === 6 ? 1 : prev - 1, 1));
 
   const handleData = (newData: DataType) => {
     setData((prevData) => {

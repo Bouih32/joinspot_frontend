@@ -27,7 +27,7 @@ export default function AuthHeaders({ title, signup, mobile }: AuthHeaders) {
           onClick={goBack}
           className={cn(
             "mt-1 self-start text-[20px] text-secondActive hover:text-main",
-            step === 1 && "hidden",
+            (step === 1 || !signup) && "hidden",
           )}
         />
       )}
