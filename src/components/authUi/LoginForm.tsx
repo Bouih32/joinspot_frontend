@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Input from "../Input";
 import Link from "next/link";
 import Button from "../Button";
@@ -10,9 +10,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { login } from "@/actions/login";
 import { useRouter } from "next/navigation";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 type LoginType = z.infer<typeof loginValidation>;
 export default function LoginForm() {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -23,22 +25,25 @@ export default function LoginForm() {
   } = useForm<LoginType>({ resolver: zodResolver(loginValidation) });
 
   const handleLogin = async (formData: LoginType) => {
+    setLoading(true);
     const res = await login(formData);
-    console.log(res?.status);
+
     if (res?.status === 404) {
+      setLoading(false);
       setError("email", {
         type: "manual",
         message: "No user found with this email",
       });
-    }
-
-    if (res?.status === 401) {
+    } else if (res?.status === 401) {
+      setLoading(false);
       setError("password", {
         type: "manual",
         message: "Uncorrect password",
       });
+    } else {
+      setLoading(false);
+      router.push("/");
     }
-    router.push("/");
   };
 
   const handleSubmit = async () => {
@@ -82,7 +87,10 @@ export default function LoginForm() {
           </Link>
         </div>
       </div>
-      <Button secondary>Submit</Button>
+      <Button secondary>
+        Submit
+        {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+      </Button>
     </form>
   );
 }
