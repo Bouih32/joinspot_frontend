@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "rewrite": "https://joinspot-backend.onrender.com/$1"
+      "source": "/:path*",
+      "destination": "https://joinspot-backend.onrender.com/:path*"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         {
@@ -17,7 +17,7 @@
         },
         {
           "key": "Access-Control-Allow-Methods",
-          "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+          "value": "GET, OPTIONS, PATCH, DELETE, POST, PUT"
         },
         {
           "key": "Access-Control-Allow-Headers",
