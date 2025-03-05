@@ -5,10 +5,10 @@ import axios, { isAxiosError } from "axios";
 export const login = async (data: LoginType) => {
   try {
     const res = await axios.post(`${API_URL}/user/login`, data, {
-      withCredentials: true, // ✅ Ensures cookies are sent
+      withCredentials: true,
     });
 
-    console.log("Response headers:", res.headers); // ✅ Debug headers
+    console.log("Response headers:", res.headers);
 
     return res;
   } catch (error) {
