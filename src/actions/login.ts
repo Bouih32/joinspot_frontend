@@ -1,10 +1,11 @@
+import axiosInstance from "@/libs/axios";
 import { API_URL } from "@/libs/constantes";
 import { LoginType } from "@/libs/types";
-import axios, { isAxiosError } from "axios";
+import { isAxiosError } from "axios";
 
 export const login = async (data: LoginType) => {
   try {
-    const res = await axios.post(`${API_URL}/user/login`, data, {
+    const res = await axiosInstance.post(`${API_URL}/user/login`, data, {
       withCredentials: true,
     });
 
