@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "destination": "https://joinspot-backend.onrender.com/$1"
+      "rewrite": "https://joinspot-backend.onrender.com/$1"
     }
   ],
   "headers": [
