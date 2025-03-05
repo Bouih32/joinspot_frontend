@@ -7,8 +7,6 @@ export const login = async (data: LoginType) => {
   try {
     const res = await axiosInstance.post(`${API_URL}/user/login`, data);
 
-    console.log("Response headers:", res.headers);
-
     return res;
   } catch (error) {
     console.log("Login error", error);
