@@ -1,21 +1,28 @@
-import axiosInstance from "@/libs/axios";
 import { API_URL } from "@/libs/constantes";
 import { LoginType } from "@/libs/types";
-import axios, { isAxiosError } from "axios";
 
 export const login = async (data: LoginType) => {
   try {
-    const res = await axios.post(`${API_URL}/user/login`, data, {
-      withCredentials: true,
+    const response = await fetch(`${API_URL}/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      credentials: "include", // This is equivalent to withCredentials: true
     });
 
-    return res;
+    // Get the response data
+    const responseData = await response.json();
+
+    // Return in a format similar to axios response
+    return {
+      status: response.status,
+      data: responseData,
+      ok: response.ok,
+    };
   } catch (error) {
     console.log("Login error", error);
-    if (isAxiosError(error) && error.response) {
-      return error.response;
-    } else {
-      throw error;
-    }
+    throw error;
   }
 };
