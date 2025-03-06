@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-const SECRET = process.env.JWT_SECRET as string;
+const SECRET = process.env.AUTH_SECRET as string;
 
 export async function getToken() {
   const cookiesStore = await cookies();
