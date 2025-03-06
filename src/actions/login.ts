@@ -6,7 +6,7 @@ import axios, { isAxiosError } from "axios";
 export const login = async (data: LoginType) => {
   try {
     const res = await axios.post(`${API_URL}/user/login`, data, {
-      withCredentials: false,
+      withCredentials: true,
     });
 
     return res;
