@@ -21,5 +21,8 @@ export const categories = [
   "Education",
 ];
 
-export const API_URL = "https://backend.joinspots.com";
-//export const API_URL = "http://localhost:4000";
+const isProduction = process.env.NODE_ENV === "production";
+
+export const API_URL = isProduction
+  ? "https://backend.joinspots.com"
+  : "http://localhost:4000";
