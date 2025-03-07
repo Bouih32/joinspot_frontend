@@ -84,7 +84,10 @@ export default function SelectCategories<T extends FieldValues>({
                   )}
                   index={index}
                   key={nanoid()}
-                  handleClick={() => handleClick(ele.categoryName)}
+                  handleClick={() => {
+                    handleClick(ele.categoryName);
+                    setOpen(false);
+                  }}
                 >
                   {ele.categoryName}
                 </SelectItem>

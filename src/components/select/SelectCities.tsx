@@ -83,7 +83,10 @@ export default function SelectCities<T extends FieldValues>({
                   )}
                   index={index}
                   key={nanoid()}
-                  handleClick={() => handleClick(ele.cityName)}
+                  handleClick={() => {
+                    handleClick(ele.cityName);
+                    setOpen(false);
+                  }}
                 >
                   {ele.cityName}
                 </SelectItem>

@@ -48,7 +48,13 @@ export default function SignupProvider({
   }, []);
 
   const goBack = () =>
-    setStep((prev) => Math.max(prev === 6 ? 1 : prev - 1, 1));
+    setStep((prev) =>
+      prev > 1 && data?.role !== "visitor"
+        ? prev - 1
+        : prev === 5 && data?.role === "visitor"
+          ? 1
+          : prev,
+    );
 
   const handleData = (newData: DataType) => {
     setData((prevData) => {
