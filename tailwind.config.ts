@@ -225,6 +225,12 @@ export default {
             fontWeight: "400",
           },
         ],
+        "10xxl": [
+          "10px",
+          {
+            fontWeight: "600",
+          },
+        ],
       },
       backgroundImage: {
         loginBg: "url(/images/login.png)",
@@ -235,6 +241,8 @@ export default {
         signupBgMobile2: "url(/images/signup2Mobile.png)",
         signupBg3: "url(/images/signup3.png)",
         signupBgMobile3: "url(/images/signup3Mobile.png)",
+        activityImg: "url(/images/activityImg.png)",
+        heroBg: "url(/images/hero.png)",
         resetBg: "url(/images/resetBg.png)",
         resetBgMobile: "url(/images/resetBgMobile.png)",
         footerBg: "url(/images/footerPattern.png)",

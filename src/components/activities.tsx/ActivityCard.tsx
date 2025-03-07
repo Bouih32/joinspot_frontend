@@ -1,0 +1,37 @@
+import { MdLocationOn, MdOutlineTurnedInNot } from "react-icons/md";
+import UserCard from "./UserCard";
+import ActivityDetails from "./ActivityDetails";
+import Seats from "./Seats";
+import Button from "../Button";
+
+export default function ActivityCard() {
+  return (
+    <section className="flex w-full flex-col-reverse gap-5 self-center justify-self-center rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[644px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0">
+      <div className="bg-activityImg h-[177px] w-[304px] rounded-[8px] bg-cover bg-center p-2 tablet:h-[245px] tablet:w-[274px] tablet:rounded-none tablet:pr-[30px]">
+        <section className="flexBetween">
+          <div className="flexCenter text-10xxl w-fit gap-1 rounded bg-main px-3 py-[3px] font-openSans text-white tablet:px-4 tablet:py-[6px]">
+            <MdLocationOn />
+            <h3>Hello</h3>
+          </div>
+          <div className="w-fit rounded-md bg-white p-[5px] text-main">
+            <MdOutlineTurnedInNot />
+          </div>
+        </section>
+      </div>
+      <section className="flexCenter flex-1 tablet:pr-[29px]">
+        <div className="w-full space-y-[6px]">
+          <UserCard />
+          <ActivityDetails />
+          <Seats />
+          <div className="flexBetween">
+            <p className="text-10sm text-neutralDark">
+              <span className="text-14xxl text-main">From 150DH</span> per
+              person
+            </p>
+            <Button>Join</Button>
+          </div>
+        </div>
+      </section>
+    </section>
+  );
+}
