@@ -24,6 +24,13 @@ label:has(input:checked) {
   background-color: #fe5722;
 }
 
+input:-webkit-autofill {
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  color: inherit !important;
+}
+
 label:has(input:disabled) {
   pointer-events: none;
 }
