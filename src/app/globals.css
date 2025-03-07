@@ -12,7 +12,7 @@
   }
 
   .cover {
-    @apply bofore:left-0 before:absolute before:top-0 before:h-full before:w-full;
+    @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full;
   }
 
   .gridCenter {

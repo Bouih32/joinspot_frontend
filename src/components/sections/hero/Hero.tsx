@@ -11,7 +11,7 @@ export default function Hero() {
           <HeroFilter />
           <div className="flex flex-nowrap gap-2.5 overflow-hidden tablet:flex-col tablet:gap-5">
             <ActivityCard />
-            <ActivityCard />
+            <ActivityCard hide />
           </div>
           <div className="flexCenter mx-auto gap-[2px] tablet:hidden">
             <FaCircle className="text-[12px] text-main" />
