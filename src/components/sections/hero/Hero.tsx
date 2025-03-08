@@ -1,11 +1,11 @@
-import ActivityCard from "@/components/activities.tsx/ActivityCard";
+import ActivityCard from "@/components/activities/ActivityCard";
 import Container from "../../Container";
 import HeroFilter from "./HeroFilter";
 import { FaCircle } from "react-icons/fa6";
 
 export default function Hero() {
   return (
-    <section className="bg-heroBg bg-fit overflow-hidden bg-top bg-no-repeat py-[34px] tablet:h-[570px] tablet:bg-left">
+    <section className="bg-fit overflow-hidden bg-heroBg bg-top bg-no-repeat py-[34px] tablet:h-[570px] tablet:bg-left">
       <Container classname="tablet:pt-[70px] pt-[34px] pb-0">
         <section className="flex w-full flex-col items-start space-y-[25px] justify-self-end tablet:w-fit tablet:items-center">
           <HeroFilter />
