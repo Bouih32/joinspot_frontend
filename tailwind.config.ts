@@ -241,7 +241,7 @@ export default {
         signupBgMobile2: "url(/images/signup2Mobile.png)",
         signupBg3: "url(/images/signup3.png)",
         signupBgMobile3: "url(/images/signup3Mobile.png)",
-        activityImg: "url(/images/activityImg.png)",
+        activityImg: "url(/images/activityImg.jpg)",
         heroBg: "url(/images/hero.png)",
         resetBg: "url(/images/resetBg.png)",
         resetBgMobile: "url(/images/resetBgMobile.png)",

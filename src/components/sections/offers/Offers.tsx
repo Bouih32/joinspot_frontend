@@ -4,6 +4,8 @@ import Title from "../Title";
 import Link from "next/link";
 import Button from "@/components/Button";
 import ProgressBar from "./ProgressBar";
+import ActivityCard from "@/components/activities/ActivityCard";
+import { FaCircle } from "react-icons/fa";
 
 export default function Offers() {
   return (
@@ -22,9 +24,21 @@ export default function Offers() {
             <Button secondary>Show all offers</Button>
           </Link>
         </section>
-
         <ProgressBar />
       </Container>
+      <section className="space-y-[22px]">
+        <section className="ml-4 mt-[48px] flex items-start gap-5 overflow-hidden tablet:mt-6 laptop:mt-[57px] xl:ml-20">
+          <ActivityCard />
+          <ActivityCard />
+          <ActivityCard />
+        </section>
+        <div className="flexCenter mx-auto gap-[2px] tablet:hidden">
+          <FaCircle className="text-[12px] text-main" />
+          <FaCircle className="text-[10px] text-neutralLightActive" />
+          <FaCircle className="text-[10px] text-neutralLightActive" />
+          <FaCircle className="text-[10px] text-neutralLightActive" />
+        </div>
+      </section>
     </section>
   );
 }
