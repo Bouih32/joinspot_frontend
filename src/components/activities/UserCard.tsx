@@ -11,7 +11,7 @@ export default function UserCard() {
           alt="avatar"
           height={38}
           width={38}
-          className="object-contain"
+          className="rounded-full object-contain"
         />
         <div className="">
           <h1 className="text-14xl text-darker">Skylar Torff</h1>
