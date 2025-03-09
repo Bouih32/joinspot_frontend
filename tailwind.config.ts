@@ -246,6 +246,8 @@ export default {
         resetBg: "url(/images/resetBg.png)",
         resetBgMobile: "url(/images/resetBgMobile.png)",
         footerBg: "url(/images/footerPattern.png)",
+        story: "url(/images/story.png)",
+        lines: "url(/images/lines.png)",
         mobileNavBg: "url(/images/mobileBg.png)",
         resetGrad: "linear-gradient(60deg, #98F9FF, #FE5722)",
       },
