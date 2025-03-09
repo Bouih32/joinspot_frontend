@@ -18,6 +18,10 @@
   .gridCenter {
     @apply grid place-content-center;
   }
+
+  .title {
+    @apply text-16xl tablet:text-40xl;
+  }
 }
 
 label:has(input:checked) {

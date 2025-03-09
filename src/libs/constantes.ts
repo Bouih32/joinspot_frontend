@@ -47,3 +47,37 @@ export const reviewsData = [
     stars: 4,
   },
 ];
+
+export const unique = [
+  {
+    title: "For Organizers",
+    para: "Whether you're a pro offering paid workshops or a casual user hosting free events, JoinSpot gives you the tools to share your passion with others.",
+  },
+  {
+    title: "For Participants",
+    para: "From surfing in Agadir to cooking classes in Marrakech, JoinSpot helps you find activities that match your interests.",
+  },
+  {
+    title: "For Everyone",
+    para: "JoinSpot is more than just a booking platform—it's a community where users share their experiences and inspire others.",
+  },
+];
+
+export const values = [
+  {
+    title: "Community First",
+    para: "We’re all about bringing people together and fostering connections.",
+  },
+  {
+    title: "Authenticity",
+    para: "We celebrate local experiences and encourage users to share their unique perspectives.",
+  },
+  {
+    title: "Trust & Safety",
+    para: "We prioritize user safety with verified accounts, secure payments, and clear guidelines.",
+  },
+  {
+    title: "Inclusivity",
+    para: "Everyone is welcome on JoinSpot, whether you're a seasoned pro or a first-timer",
+  },
+];
