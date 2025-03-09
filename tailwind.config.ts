@@ -248,6 +248,7 @@ export default {
         footerBg: "url(/images/footerPattern.png)",
         story: "url(/images/story.png)",
         lines: "url(/images/lines.png)",
+        linesLight: "url(/images/linesLight.png)",
         mobileNavBg: "url(/images/mobileBg.png)",
         resetGrad: "linear-gradient(60deg, #98F9FF, #FE5722)",
       },
