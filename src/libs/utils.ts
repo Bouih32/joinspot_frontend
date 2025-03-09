@@ -11,3 +11,11 @@ export const getContext = <T>(provider: Context<T>) => {
   if (!context) throw new Error("No context");
   return context;
 };
+
+export const shuffleArray = <T>(arr: T[]) => {
+  const lastElement = arr.pop();
+  if (lastElement) {
+    arr.unshift(lastElement);
+  }
+  return arr;
+};

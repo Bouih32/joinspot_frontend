@@ -26,3 +26,24 @@ const isProduction = process.env.NODE_ENV === "production";
 export const API_URL = isProduction
   ? "https://backend.joinspots.com"
   : "http://localhost:4000";
+
+export const reviewsData = [
+  {
+    name: "Cheyenne Calzoni",
+    category: "Sport",
+    text: "Lorem ipsum dolor sit amet consectetur. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est.. In risus lacus aliquet suscipit dignissim ",
+    stars: 4,
+  },
+  {
+    name: "Justin Ekstrom Bothman",
+    category: "learning",
+    text: "Lorem ipsum dolor sit amet consectetur. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est.. In risus lacus aliquet suscipit dignissim ",
+    stars: 5,
+  },
+  {
+    name: "Lydia Botosh",
+    category: "cuisine",
+    text: "Lorem ipsum dolor sit amet consectetur. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est.. In risus lacus aliquet suscipit dignissim ",
+    stars: 4,
+  },
+];

@@ -35,8 +35,10 @@ export default function ActivityCard({ hide }: ActivityCardProps) {
           <Seats />
           <div className="flexBetween">
             <p className="text-10sm text-neutralDark">
-              <span className="text-14xxl text-main">From 150DH</span> per
-              person
+              <span className="select-none text-14xxl text-main">
+                From 150DH
+              </span>{" "}
+              per person
             </p>
             <Button>Join</Button>
           </div>

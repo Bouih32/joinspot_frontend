@@ -1,7 +1,12 @@
 import Image from "next/image";
 import avatar from "../../../../public/images/avatar.png";
 
-export default function UserCard() {
+type UserCardProps = {
+  title: string;
+  category: string;
+};
+
+export default function UserCard({ title, category }: UserCardProps) {
   return (
     <div className="flex items-center gap-2">
       <Image
@@ -12,8 +17,8 @@ export default function UserCard() {
         className="rounded-full object-contain"
       />
       <div className="">
-        <h1 className="text-16lg text-main">Skylar Torff</h1>
-        <span className="text-14sm text-neutralDark">Cuisine</span>
+        <h1 className="text-16lg text-main">{title}</h1>
+        <span className="text-14sm text-neutralDark">{category}</span>
       </div>
     </div>
   );
