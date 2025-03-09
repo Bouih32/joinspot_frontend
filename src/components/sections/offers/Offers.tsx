@@ -47,6 +47,7 @@ export default function Offers() {
     animate(motionValue, -newIndex * itemWidth, {
       type: "spring",
       stiffness: 100,
+      damping: 20, // Add damping for smoother animation
     });
   };
 
@@ -58,6 +59,24 @@ export default function Offers() {
     animate(motionValue, -newIndex * itemWidth, {
       type: "spring",
       stiffness: 100,
+      damping: 20, // Add damping for smoother animation
+    });
+  };
+
+  // Function to handle drag end
+  const handleDragEnd = () => {
+    const currentX = motionValue.get();
+    const newIndex = Math.round(-currentX / itemWidth);
+
+    // Ensure the index stays within bounds
+    const clampedIndex = Math.max(0, Math.min(newIndex, totalSlides - 1));
+    setCurrentIndex(clampedIndex);
+
+    // Animate to the new position
+    animate(motionValue, -clampedIndex * itemWidth, {
+      type: "spring",
+      stiffness: 100,
+      damping: 20, // Add damping for smoother animation
     });
   };
 
@@ -82,7 +101,7 @@ export default function Offers() {
           </Link>
         </section>
         {/* Progress Bar */}
-        <section className="tablet:flexBetween mt-5 hidden gap-10">
+        <section className="laptop:flexBetween mt-5 hidden gap-10">
           <div className="grid h-[2px] w-[676px] grid-cols-4 bg-secondLightHover laptop:w-[1086.316px]">
             {[...Array(totalSlides)].map((_, i) => (
               <div
@@ -110,13 +129,14 @@ export default function Offers() {
         </section>
       </Container>
 
-      <section className="space-y-[22px]">
-        {/* Framer Motion Horizontal Drag Carousel */}
+      <section className="flex flex-col space-y-[22px]">
         <div className="overflow-hidden">
           <motion.div className="ml-4 mt-[48px] flex cursor-grab items-start gap-5 tablet:mt-6 laptop:mt-[57px] xl:ml-20">
             <motion.div
               drag="x"
               dragConstraints={{ left: maxDrag, right: 0 }}
+              dragElastic={0.1} // Add slight elasticity for a natural feel
+              onDragEnd={handleDragEnd}
               className="flex gap-5"
               style={{ x: motionValue }}
             >
@@ -126,6 +146,17 @@ export default function Offers() {
             </motion.div>
           </motion.div>
         </div>
+
+        <section className="tablet:flexBetween mt-5 hidden gap-10 self-center tablet:block laptop:hidden">
+          <div className="grid h-[2px] w-[676px] grid-cols-4 bg-secondLightHover laptop:w-[1086.316px]">
+            {[...Array(totalSlides)].map((_, i) => (
+              <div
+                key={i}
+                className={i === currentIndex ? "bg-main" : ""}
+              ></div>
+            ))}
+          </div>
+        </section>
 
         {/* Pagination Dots */}
         <div className="flexCenter mx-auto gap-[2px] tablet:hidden">
@@ -140,6 +171,7 @@ export default function Offers() {
                 animate(motionValue, -i * itemWidth, {
                   type: "spring",
                   stiffness: 100,
+                  damping: 20, // Add damping for smoother animation
                 });
               }}
             />

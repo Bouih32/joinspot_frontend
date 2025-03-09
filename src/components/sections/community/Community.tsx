@@ -1,27 +1,41 @@
 "use client";
 
 import { useState } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
 import SubTitle from "../SubTitle";
 import Title from "../Title";
 import ReviewCard from "./ReviewCard";
 import { nanoid } from "nanoid";
-import { cn, shuffleArray } from "@/libs/utils";
+import { cn } from "@/libs/utils";
 import { reviewsData } from "@/libs/constantes";
+import { useMediaQuery } from "react-responsive";
 
 export default function Community() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [reviews, setReviews] = useState(reviewsData);
+  const motionValue = useMotionValue(0); // Track the carousel's position
+  const cardWidth = 328; // Width of each card (matches ReviewCard's min-width)
+  const gap = 20; // Gap between cards
+  const totalWidth = cardWidth + gap;
+  const isMobile = useMediaQuery({ maxWidth: 767 }); // Total width for each card including gap
 
-  // Function to handle pagination dot clicks
-  const handleDotClick = (index: number) => {
-    // Shuffle the array
-    const shuffledReviews = [...reviews];
-    const firstItem = shuffledReviews.shift(); // Remove the first item
-    firstItem && shuffledReviews.push(firstItem); // Add it to the end
+  // Function to handle drag end
+  const handleDragEnd = () => {
+    const currentX = motionValue.get();
+    const newIndex = Math.round(-currentX / totalWidth);
 
-    // Update the reviews array and currentIndex
-    setReviews(shuffledReviews);
-    setCurrentIndex(index);
+    // Ensure the index stays within bounds
+    const clampedIndex = Math.max(
+      0,
+      Math.min(newIndex, reviewsData.length - 1),
+    );
+    setCurrentIndex(clampedIndex);
+
+    // Animate to the new position
+    animate(motionValue, -clampedIndex * totalWidth, {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+    });
   };
 
   return (
@@ -35,19 +49,35 @@ export default function Community() {
           <span className="font-bold"> JoinSpot.</span>
         </SubTitle>
       </section>
-      <section className="flex flex-col">
-        {/* Review Cards */}
-        <div className="flex gap-5">
-          {reviews.map((ele, index) => (
-            <ReviewCard
-              key={nanoid()}
-              big={index === 0} // Make the first card bigger
-              category={ele.category}
-              name={ele.name}
-              text={ele.text}
-              stars={ele.stars}
-            />
-          ))}
+      <section className="flex flex-col gap-4">
+        {/* Draggable Carousel */}
+        <div className="overflow-hidden">
+          <motion.div
+            drag="x"
+            dragConstraints={{
+              left: -(reviewsData.length - (isMobile ? 1 : 2)) * totalWidth, // Prevent dragging beyond the last card
+              right: 0, // Prevent dragging beyond the first card
+            }}
+            dragElastic={0.1} // Add slight elasticity for a natural feel
+            onDragEnd={handleDragEnd}
+            style={{ x: motionValue }}
+            className="flex cursor-grab gap-5 tablet:gap-10"
+          >
+            {reviewsData.map((ele) => (
+              <motion.div
+                key={nanoid()}
+                className="flex-shrink-0"
+                style={{ width: cardWidth }}
+              >
+                <ReviewCard
+                  category={ele.category}
+                  name={ele.name}
+                  text={ele.text}
+                  stars={ele.stars}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
         {/* Pagination Dots */}
@@ -60,7 +90,14 @@ export default function Community() {
                 index === currentIndex &&
                   "h-3 w-3 bg-main tablet:h-[14px] tablet:w-[14px]",
               )}
-              onClick={() => handleDotClick(index)}
+              onClick={() => {
+                setCurrentIndex(index);
+                animate(motionValue, -index * totalWidth, {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                });
+              }}
             ></div>
           ))}
         </div>

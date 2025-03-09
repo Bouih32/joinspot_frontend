@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Container from "../../Container";
 import HeroFilter from "./HeroFilter";
@@ -17,7 +17,7 @@ export default function Hero() {
   const motionValue = useMotionValue(0);
 
   // Adjust these based on actual dimensions
-  const itemSize = isMobile ? 300 : 220; // Width for mobile, height for larger screens
+  const itemSize = isMobile ? 340 : 220; // Width for mobile, height for larger screens
   const totalSlides = 5;
   const maxDrag = -((totalSlides - 1) * itemSize);
 
@@ -38,6 +38,23 @@ export default function Hero() {
     });
   }, [progress]);
 
+  // Function to handle drag end
+  const handleDragEnd = () => {
+    const currentPosition = motionValue.get();
+    const newIndex = Math.round(-currentPosition / itemSize);
+
+    // Ensure the index stays within bounds
+    const clampedIndex = Math.max(0, Math.min(newIndex, totalSlides - 1));
+    setCurrentIndex(clampedIndex);
+
+    // Animate to the new position
+    animate(motionValue, -clampedIndex * itemSize, {
+      type: "spring",
+      stiffness: 100,
+      damping: 20, // Add damping for smoother animation
+    });
+  };
+
   if (!isClient) {
     return null; // Return null or a loading state during SSR
   }
@@ -57,6 +74,7 @@ export default function Hero() {
                 [motionAxis === "x" ? "right" : "bottom"]: 0,
               }}
               dragElastic={0.1} // Add slight elasticity for a natural feel
+              onDragEnd={handleDragEnd}
               className={`flex ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
               style={{ [motionAxis]: motionValue }}
             >
@@ -75,8 +93,12 @@ export default function Hero() {
                   i === currentIndex ? "text-main" : "text-white"
                 }`}
                 onClick={() => {
-                  const targetPosition = -i * itemSize;
-                  motionValue.set(targetPosition); // Instantly move to the target position
+                  setCurrentIndex(i);
+                  animate(motionValue, -i * itemSize, {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 20, // Add damping for smoother animation
+                  });
                 }}
               />
             ))}

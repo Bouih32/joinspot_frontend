@@ -8,11 +8,9 @@ type ReviewCardProps = {
   category: string;
   text: string;
   stars: number;
-  big?: boolean;
 };
 
 export default function ReviewCard({
-  big,
   name,
   category,
   text,
@@ -21,8 +19,7 @@ export default function ReviewCard({
   return (
     <section
       className={cn(
-        "flex min-w-[328px] flex-col items-center gap-[14px] rounded-[8px] bg-white px-6 pt-[65px] tablet:h-[355px] tablet:w-[346px]",
-        big && "min-h-[407px] tablet:w-[346px] xl:w-[384px]",
+        "flex h-[307px] min-w-[328px] flex-col items-center gap-[14px] rounded-[8px] bg-white px-6 pt-[65px] tablet:h-[355px] tablet:w-[346px] xl:w-[384px]",
       )}
     >
       <div className="flex gap-[6px] text-[20px]">
