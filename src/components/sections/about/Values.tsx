@@ -44,7 +44,7 @@ export default function Unique() {
   }, []);
 
   return (
-    <section className="py-[32px] tablet:py-[52px]">
+    <section className="bg-lines bg-cover bg-center bg-no-repeat py-[32px] tablet:py-[52px]">
       <Container classname="tablet:space-y-[35px] space-y-4 justify-between items-center flex flex-col tablet:flex-row laptop:flex-col">
         <h3 className="title self-start text-main tablet:self-center laptop:self-start">
           What Makes <br className="hidden tablet:block laptop:hidden" />

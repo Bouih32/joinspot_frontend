@@ -7,7 +7,7 @@ export default function Story() {
   return (
     <>
       <MobileStory />
-      <section className="hidden justify-between tablet:flex">
+      <section className="bg-lines hidden justify-between bg-cover bg-center bg-no-repeat tablet:flex">
         <section className="flexBetween flex-col py-[50px] pl-4 tablet:pl-20 laptop:pl-4 xl:pl-20">
           <div className="space-y-4 laptop:space-y-5">
             <h1 className="title text-main">Our Story</h1>

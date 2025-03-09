@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Join() {
   return (
-    <section className="bg-lines bg-main bg-cover bg-center py-[34px] text-secondLight">
+    <section className="bg-linesLight bg-main bg-cover bg-center py-[34px] text-secondLight">
       <Container classname="tablet:space-y-4 space-y-3 text-center">
         <h3 className="title">Join the Movement</h3>
         <p className="text-16xxl">
