@@ -1,14 +1,17 @@
 import Container from "@/components/Container";
 import SubTitle from "../SubTitle";
 
-export default function Welcome() {
+type WelcomeProps = {
+  title: string;
+  para: string;
+};
+
+export default function Welcome({ title, para }: WelcomeProps) {
   return (
-    <section className="bg-linesLight bg-main bg-cover bg-center py-[34px] text-secondLight">
+    <section className="bg-main bg-linesLight bg-cover bg-center py-[34px] text-secondLight">
       <Container classname="tablet:space-y-4 space-y-3">
-        <h1 className="title">Welcome to JoinSpot</h1>
-        <SubTitle classname="text-secondLight">
-          Where Experiences Come to Life!
-        </SubTitle>
+        <h1 className="title">{title}</h1>
+        <SubTitle classname="text-secondLight">{para}</SubTitle>
       </Container>
     </section>
   );

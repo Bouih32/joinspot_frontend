@@ -7,7 +7,10 @@ import Welcome from "@/components/sections/about/Welcome";
 export default function AboutPage() {
   return (
     <main className="bg-secondLight">
-      <Welcome />
+      <Welcome
+        title="Welcome to JoinSpot"
+        para="Where Experiences Come to Life!"
+      />
       <Story />
       <Unique />
       <Values />
