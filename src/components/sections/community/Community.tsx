@@ -61,7 +61,7 @@ export default function Community() {
             dragElastic={0.1} // Add slight elasticity for a natural feel
             onDragEnd={handleDragEnd}
             style={{ x: motionValue }}
-            className="flex cursor-grab gap-5 tablet:gap-10"
+            className="flex cursor-grab gap-5 tablet:gap-10 xl:gap-20"
           >
             {reviewsData.map((ele) => (
               <motion.div
