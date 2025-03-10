@@ -17,7 +17,7 @@ export default function ActivityCard({ hide }: ActivityCardProps) {
         hide && "cover relative before:bg-white/50",
       )}
     >
-      <div className="h-[177px] w-[304px] rounded-[8px] bg-activityImg bg-cover bg-center p-2 tablet:h-[245px] tablet:w-[274px] tablet:rounded-none tablet:pr-[30px]">
+      <div className="h-[177px] w-[304px] rounded-[8px] bg-activityImg bg-cover bg-center p-2 tablet:h-[245px] tablet:w-[274px] tablet:rounded-none">
         <section className="flexBetween">
           <div className="flexCenter w-fit gap-1 rounded bg-main px-3 py-[3px] font-openSans text-10xxl text-white tablet:px-4 tablet:py-[6px]">
             <MdLocationOn />
@@ -37,7 +37,7 @@ export default function ActivityCard({ hide }: ActivityCardProps) {
             <p className="text-10sm text-neutralDark">
               <span className="select-none text-14xxl text-main">
                 From 150DH
-              </span>{" "}
+              </span>
               per person
             </p>
             <Button>Join</Button>

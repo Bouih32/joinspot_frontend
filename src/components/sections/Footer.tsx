@@ -14,7 +14,7 @@ export default function footer() {
     { icon: <FaInstagram />, link: "#" },
   ];
   return (
-    <footer className="bg-footerBg bg-[length:50%_100%] bg-left bg-no-repeat py-[35px] pt-4 tablet:bg-[length:40%_100%] tablet:py-[35px]">
+    <footer className="bg-footerBg bg-[length:50%_50%] bg-left-bottom bg-no-repeat py-[35px] pt-4 tablet:bg-[length:40%_50%] tablet:py-[35px]">
       <Container classname="space-y-[30px]">
         <section className="tablet:flexBetween flex-col space-y-6 tablet:flex-row tablet:space-y-0">
           <div className="flexBetween self-start">
