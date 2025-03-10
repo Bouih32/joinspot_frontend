@@ -1,9 +1,13 @@
 import React from "react";
 import { BiSolidPhoneCall } from "react-icons/bi";
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp, IoLogoInstagram } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import InfoCard from "./InfoCard";
 import { nanoid } from "nanoid";
+import Link from "next/link";
+import { FaFacebookF, FaTwitter } from "react-icons/fa6";
+import Image from "next/image";
+import circle from "../../../../public/images/circle.png";
 
 export default function Socials() {
   const socials = [
@@ -15,8 +19,17 @@ export default function Socials() {
     },
   ];
 
+  const links = [
+    { icon: <FaTwitter />, src: "#" },
+    { icon: <IoLogoInstagram />, src: "#" },
+    {
+      icon: <FaFacebookF />,
+      src: "#",
+    },
+  ];
+
   return (
-    <section className="flex w-full flex-col items-center gap-10 rounded-[5px] bg-main py-[14px] text-center tablet:w-[338px] tablet:items-start tablet:gap-20 tablet:rounded-xl tablet:p-10 tablet:text-start laptop:w-[514px]">
+    <section className="relative flex w-full flex-col items-center gap-10 overflow-hidden rounded-[5px] bg-main bg-linesLight bg-bottom py-[14px] text-center tablet:w-[338px] tablet:items-start tablet:gap-20 tablet:rounded-xl tablet:p-10 tablet:text-start laptop:w-[514px]">
       <div className="tablet:space-y-[6px]">
         <h2 className="text-20xxl tablet:text-28xxl">Get in touch</h2>
         <p className="text-10lg tablet:text-16lg">
@@ -30,6 +43,23 @@ export default function Socials() {
           <InfoCard key={nanoid()} icon={ele.icon} info={ele.info} />
         ))}
       </section>
+
+      <div className="flexCenter gap-6">
+        {links.map((ele) => (
+          <Link
+            key={nanoid()}
+            href={ele.src}
+            className="grid h-[30px] w-[30px] place-content-center rounded-full bg-white text-main outline-none"
+          >
+            {ele.icon}
+          </Link>
+        ))}
+      </div>
+      <Image
+        src={circle}
+        alt="decore"
+        className="absolute -bottom-[20px] -right-[20px] w-[100px] object-contain tablet:-bottom-[70px] tablet:-right-[70px] tablet:w-[250px]"
+      />
     </section>
   );
 }
