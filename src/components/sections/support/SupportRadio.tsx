@@ -12,16 +12,17 @@ type RadioProps = {
 export default function SupportRadio({ id, children }: RadioProps) {
   return (
     <div className="flexCenter justify-start gap-2 font-openSans">
-      <label
-        htmlFor={id}
+      <div
         className={cn(
-          "flexCenter group h-[14px] w-[14px] cursor-pointer items-center rounded-full bg-main text-white",
+          "flexCenter h-[14px] w-[14px] cursor-pointer items-center rounded-full bg-second text-white has-[input[type='radio']:checked]:bg-main",
         )}
       >
         <input type="radio" name="contact" id={id} className="peer sr-only" />
         <FaCheck className="hidden text-[8px] peer-checked:block" />
+      </div>
+      <label htmlFor={id} className="text-12sm text-darker">
+        {children}
       </label>
-      <p className="text-12sm text-darker">{children}</p>
     </div>
   );
 }
