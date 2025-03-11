@@ -7,14 +7,16 @@ import { cn } from "@/libs/utils";
 
 type ActivityCardProps = {
   hide?: boolean;
+  classname?: string;
 };
 
-export default function ActivityCard({ hide }: ActivityCardProps) {
+export default function ActivityCard({ hide, classname }: ActivityCardProps) {
   return (
     <section
       className={cn(
         "flex min-w-[328px] flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:min-w-[644px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
+        classname,
       )}
     >
       <div className="tablet:cover before:bg-activityGrad relative h-[177px] w-[304px] rounded-[8px] bg-activityImg bg-cover bg-center p-2 before:z-40 tablet:h-[245px] tablet:w-[274px] tablet:rounded-none">
