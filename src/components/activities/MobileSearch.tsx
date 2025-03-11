@@ -3,16 +3,28 @@
 import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import Button from "../Button";
+import { cn } from "@/libs/utils";
 
-export default function MobileSearch() {
+type MobileFilterProps = {
+  handleSearch: () => void;
+  handleClose: () => void;
+};
+
+export default function MobileSearch({
+  handleSearch,
+  handleClose,
+}: MobileFilterProps) {
   const [show, setShow] = useState(false);
+  const handleOpen = () => {
+    handleSearch();
+    setShow(true);
+  };
   return (
-    <div className="w-full text-12sm text-main tablet:text-14sm">
+    <div
+      className={cn("text-12sm text-main tablet:text-14sm", show && "w-full")}
+    >
       {!show && (
-        <IoSearch
-          className="cursor-pointer text-[24px]"
-          onClick={() => setShow(true)}
-        />
+        <IoSearch className="cursor-pointer text-[24px]" onClick={handleOpen} />
       )}
       {show && (
         <div className="flexBetween">
@@ -24,7 +36,12 @@ export default function MobileSearch() {
               placeholder="Search"
             />
           </div>
-          <div onClick={() => setShow(false)}>
+          <div
+            onClick={() => {
+              handleClose();
+              setShow(false);
+            }}
+          >
             <Button>Cancel</Button>
           </div>
         </div>

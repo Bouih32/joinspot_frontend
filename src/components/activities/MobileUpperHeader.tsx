@@ -6,10 +6,17 @@ import MobileSearch from "./MobileSearch";
 
 export default function MobileUpperHeader() {
   const [search, setSearch] = useState(false);
+  const handleSearch = () => {
+    setSearch(true);
+  };
+
+  const handleClose = () => {
+    setSearch(false);
+  };
   return (
     <section className="flex w-full items-center justify-between tablet:hidden">
-      {/* <MobileFilter /> */}
-      <MobileSearch />
+      {!search && <MobileFilter />}
+      <MobileSearch handleSearch={handleSearch} handleClose={handleClose} />
     </section>
   );
 }
