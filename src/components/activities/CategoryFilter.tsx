@@ -2,9 +2,9 @@ import { MdOutlineSportsBaseball } from "react-icons/md";
 
 export default function CategoryFilter() {
   return (
-    <div className="flex items-center gap-3 rounded-[5px] bg-secondLight px-2 py-3 text-darker laptop:py-5">
+    <div className="flex cursor-pointer items-center gap-3 rounded-[5px] px-2 py-3 text-14lg text-darker hover:bg-secondLight hover:text-14xxl hover:text-main laptop:py-5">
       <MdOutlineSportsBaseball className="text-[20px]" />
-      <p className="text-14lg">Sport</p>
+      <p>Sport</p>
     </div>
   );
 }
