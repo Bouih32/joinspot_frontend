@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import logo from "../../../public/images/logoWhite.png";
 import AuthHeaders from "./AuthHeaders";
 import { SignupContext } from "@/contexts/SignupContext";
+import Link from "next/link";
 
 type WrapperProps = {
   children: ReactNode;
@@ -35,14 +36,16 @@ export default function AuthWrapper({
       >
         <AuthHeaders title={title} mobile signup={signup} />
 
-        <Image
-          src={logo}
-          alt="logo"
-          className={cn(
-            "h-[32px] w-[166px] object-cover tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
-            reverse && "tablet:self-end",
-          )}
-        />
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="logo"
+            className={cn(
+              "h-[32px] w-[166px] object-cover tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
+              reverse && "tablet:self-end",
+            )}
+          />
+        </Link>
         {signup ? (
           <p
             className={cn(

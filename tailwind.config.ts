@@ -251,6 +251,8 @@ export default {
         linesLight: "url(/images/linesLight.png)",
         mobileNavBg: "url(/images/mobileBg.png)",
         resetGrad: "linear-gradient(60deg, #98F9FF, #FE5722)",
+        activityGrad:
+          "linear-gradient(90deg, rgba(255, 238, 233, 0.00) 0%, #F8F6F4 100%)",
       },
       colors: {
         main: "#FE5722",

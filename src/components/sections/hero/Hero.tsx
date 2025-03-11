@@ -61,7 +61,7 @@ export default function Hero() {
 
   return (
     <section className="bg-fit overflow-hidden bg-heroBg bg-top bg-no-repeat py-[34px] tablet:h-[570px] tablet:bg-left">
-      <Container classname="tablet:pt-[70px] pt-[34px] pb-0">
+      <Container classname="tablet:pt-[70px] pt-[34px] ml-4 w-full tablet:mx-auto pb-0">
         <section className="flex w-full flex-col items-start space-y-[25px] justify-self-end tablet:w-fit tablet:items-center">
           <HeroFilter />
 
