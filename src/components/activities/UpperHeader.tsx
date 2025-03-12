@@ -26,9 +26,7 @@ export default function UpperHeader() {
           <FaPlus />
         </div>
 
-        <div className="grid h-[30px] w-[30px] cursor-pointer place-content-center rounded-full bg-secondHover text-white tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:bg-transparent tablet:text-main">
-          <IoFilter className="cursor-pointer text-[16px] tablet:text-[24px]" />
-        </div>
+        <MainFilters mobile />
       </Container>
     </section>
   );

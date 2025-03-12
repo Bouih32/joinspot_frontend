@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import DateFilter from "./DateFilter";
 import { IoFilter } from "react-icons/io5";
 
-export default function MainFilters() {
+export default function MainFilters({ mobile }: { mobile?: boolean }) {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false); // Start at 0
   const trackRef = useRef<HTMLDivElement>(null);
@@ -36,19 +36,29 @@ export default function MainFilters() {
   };
   return (
     <div className="relative flex flex-col">
-      <div
-        className="hidden h-[30px] w-[30px] cursor-pointer place-content-center self-end rounded-full bg-secondHover text-white tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:bg-transparent tablet:text-main"
-        onClick={() => setOpen((prev) => !prev)}
-      >
-        <IoFilter className="z-[500] cursor-pointer text-[16px] tablet:text-[24px]" />
-      </div>
+      {mobile ? (
+        <div
+          className="grid h-[30px] w-[30px] cursor-pointer place-content-center rounded-full bg-secondHover text-white tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:bg-transparent tablet:text-main"
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          <IoFilter className="cursor-pointer text-[16px] tablet:text-[24px]" />
+        </div>
+      ) : (
+        <div
+          className="hidden h-[30px] w-[30px] cursor-pointer place-content-center self-end rounded-full bg-secondHover text-white tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:bg-transparent tablet:text-main"
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          <IoFilter className="z-[500] cursor-pointer text-[16px] tablet:text-[24px]" />
+        </div>
+      )}
+
       {open && (
         <>
           <div
             className="fixed inset-0 z-50 bg-white/50"
             onClick={() => setOpen(false)}
           ></div>
-          <div className="absolute right-0 top-full z-[500] flex w-[260px] flex-col gap-[14px] rounded-[8px] border border-secondLightActive bg-white p-4 shadow-6xl tablet:w-[440px] tablet:px-4 tablet:py-[32px] laptop:gap-4">
+          <div className="absolute right-0 top-[120%] z-[500] flex w-[260px] flex-col gap-[14px] rounded-[8px] border border-secondLightActive bg-white p-4 shadow-6xl tablet:w-[440px] tablet:px-4 tablet:py-[32px] laptop:gap-4">
             <DateFilter />
             <div className="space-y-4 tablet:space-y-3">
               <p className="tablet:text-16sm">Select by number of seats:</p>
