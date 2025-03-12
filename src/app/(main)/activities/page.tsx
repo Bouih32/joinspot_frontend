@@ -1,4 +1,5 @@
 import ActivityCard from "@/components/activities/ActivityCard";
+import NoActivities from "@/components/activities/NoActivities";
 import SideFilter from "@/components/activities/SideFilter";
 import UpperHeader from "@/components/activities/UpperHeader";
 import Container from "@/components/Container";
@@ -9,12 +10,13 @@ export default function ActivitiesPage() {
       <UpperHeader />
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
-        <main className="w-full space-y-4 pb-5 tablet:space-y-5">
+        <main className="flexCenter w-full flex-col space-y-4 pb-5 tablet:space-y-5">
+          <NoActivities />
+          {/* <ActivityCard full />
           <ActivityCard full />
           <ActivityCard full />
           <ActivityCard full />
-          <ActivityCard full />
-          <ActivityCard full />
+          <ActivityCard full /> */}
         </main>
       </Container>
     </main>

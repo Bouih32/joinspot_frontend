@@ -12,10 +12,17 @@ export const getContext = <T>(provider: Context<T>) => {
   return context;
 };
 
-export const shuffleArray = <T>(arr: T[]) => {
-  const lastElement = arr.pop();
-  if (lastElement) {
-    arr.unshift(lastElement);
+export function addParam(
+  param: string,
+  value: string,
+  searchParams: URLSearchParams,
+) {
+  const newParam = new URLSearchParams(searchParams.toString());
+  if (newParam.get(param) === value) {
+    newParam.delete(param);
+  } else {
+    newParam.set(param, value);
   }
-  return arr;
-};
+
+  return newParam;
+}
