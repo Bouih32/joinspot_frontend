@@ -4,6 +4,7 @@ import Container from "../Container";
 import MobileFilter from "./MobileFilter";
 import Search from "./Search";
 import MobileUpperHeader from "./MobileUpperHeader";
+import MainFilters from "./mainFilters/MainFilters";
 
 export default function UpperHeader() {
   return (
@@ -13,9 +14,7 @@ export default function UpperHeader() {
           <MobileUpperHeader />
           <Search />
 
-          <div className="hidden h-[30px] w-[30px] cursor-pointer place-content-center rounded-full bg-secondHover text-white tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:bg-transparent tablet:text-main">
-            <IoFilter className="cursor-pointer text-[16px] tablet:text-[24px]" />
-          </div>
+          <MainFilters />
           <div className="hidden h-[30px] w-[30px] cursor-pointer place-content-center rounded-full border border-secondHover text-secondHover tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:text-white">
             <FaPlus />
           </div>

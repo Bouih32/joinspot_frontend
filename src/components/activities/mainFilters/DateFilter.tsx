@@ -10,7 +10,7 @@ export default function DateFilter() {
   const [show, setShow] = useState(false);
 
   const handleOpen = () => {
-    setShow(true);
+    setShow((prev) => !prev);
   };
 
   const handleClose = (dates: string[]) => {

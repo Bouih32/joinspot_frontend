@@ -1,14 +1,15 @@
 "use client";
 
 import { MdChair } from "react-icons/md";
-import DatePick from "./DatePick";
+
 import { useRef, useState } from "react";
 import Button from "@/components/Button";
-import Calender from "./Calender";
 import DateFilter from "./DateFilter";
+import { IoFilter } from "react-icons/io5";
 
 export default function MainFilters() {
-  const [value, setValue] = useState(0); // Start at 0
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false); // Start at 0
   const trackRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -34,37 +35,53 @@ export default function MainFilters() {
     document.removeEventListener("mouseup", stopDragging);
   };
   return (
-    <div className="flex w-[260px] flex-col gap-[14px] rounded-[8px] border border-secondLightActive p-4 shadow-6xl tablet:w-[440px] tablet:px-4 tablet:py-[32px] laptop:gap-4">
-      <DateFilter />
-      <div className="space-y-4 tablet:space-y-3">
-        <p className="tablet:text-16sm">Select by number of seats:</p>
-        <div className="flexBetween">
-          <div
-            ref={trackRef}
-            className="relative h-[3px] w-[175px] cursor-pointer select-none rounded-[14px] bg-secondLightActive tablet:w-[367px]"
-            onMouseDown={(e) => handleMouseMove(e.nativeEvent)}
-          >
-            {/* Filled Track */}
-            <div
-              className="absolute h-full rounded-[14px] bg-main transition-all duration-75"
-              style={{ width: `${(value / 50) * 100}%` }} // Scale width dynamically
-            />
-
-            {/* Draggable Thumb */}
-            <span
-              className="absolute top-0 grid h-5 w-5 -translate-y-[50%] cursor-pointer select-none place-content-center rounded bg-main text-12xl text-white transition-transform hover:scale-110 tablet:h-[21px] tablet:w-[29px]"
-              style={{
-                left: `calc(${(value / 50) * 100}% - ${value > 0 ? "14px" : "0px"})`,
-              }} // Move thumb accordingly
-              onMouseDown={startDragging}
-            >
-              {value}
-            </span>
-          </div>
-          <MdChair className="text-[20px] text-second" />
-        </div>
+    <div className="relative flex flex-col">
+      <div
+        className="hidden h-[30px] w-[30px] cursor-pointer place-content-center self-end rounded-full bg-secondHover text-white tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:bg-transparent tablet:text-main"
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        <IoFilter className="z-[500] cursor-pointer text-[16px] tablet:text-[24px]" />
       </div>
-      <Button classname="self-end">Apply</Button>
+      {open && (
+        <>
+          <div
+            className="fixed inset-0 z-50 bg-white/50"
+            onClick={() => setOpen(false)}
+          ></div>
+          <div className="absolute right-0 top-full z-[500] flex w-[260px] flex-col gap-[14px] rounded-[8px] border border-secondLightActive bg-white p-4 shadow-6xl tablet:w-[440px] tablet:px-4 tablet:py-[32px] laptop:gap-4">
+            <DateFilter />
+            <div className="space-y-4 tablet:space-y-3">
+              <p className="tablet:text-16sm">Select by number of seats:</p>
+              <div className="flexBetween">
+                <div
+                  ref={trackRef}
+                  className="relative h-[3px] w-[175px] cursor-pointer select-none rounded-[14px] bg-secondLightActive tablet:w-[367px]"
+                  onMouseDown={(e) => handleMouseMove(e.nativeEvent)}
+                >
+                  {/* Filled Track */}
+                  <div
+                    className="absolute h-full rounded-[14px] bg-main transition-all duration-75"
+                    style={{ width: `${(value / 50) * 100}%` }} // Scale width dynamically
+                  />
+
+                  {/* Draggable Thumb */}
+                  <span
+                    className="absolute top-0 grid h-5 w-5 -translate-y-[50%] cursor-pointer select-none place-content-center rounded bg-main text-12xl text-white transition-transform hover:scale-110 tablet:h-[21px] tablet:w-[29px]"
+                    style={{
+                      left: `calc(${(value / 50) * 100}% - ${value > 0 ? "14px" : "0px"})`,
+                    }} // Move thumb accordingly
+                    onMouseDown={startDragging}
+                  >
+                    {value}
+                  </span>
+                </div>
+                <MdChair className="text-[20px] text-second" />
+              </div>
+            </div>
+            <Button classname="self-end">Apply</Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
