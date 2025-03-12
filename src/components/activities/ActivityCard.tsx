@@ -60,7 +60,11 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
       </div>
       <section className="flexCenter flex-1 tablet:pr-[29px]">
         <div className="w-full space-y-[6px]">
-          <UserCard avatar={data.avatar} userName={data.userName} />
+          <UserCard
+            avatar={data.avatar}
+            userName={data.userName}
+            category={data.category}
+          />
           <ActivityDetails description={data.description} stars={data.score} />
           <Seats seat={data.seat} />
           <div className="flexBetween">
