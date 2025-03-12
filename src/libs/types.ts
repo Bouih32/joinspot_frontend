@@ -38,3 +38,28 @@ export type City = {
   cityName: string;
   cover: string;
 };
+
+export type ActivityType = {
+  activityId: string;
+  coverPic: string;
+  title: string;
+  description: string;
+  startTime: string;
+  endTime: string;
+  location: string;
+  startDay: string;
+  endDay: string;
+  seat: number;
+  cityId: string;
+  price: number;
+  score: number;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: null;
+  userId: string;
+  categoryId: string;
+  user: { avatar: string; userName: string };
+  activityTags: [];
+  city: { cityName: string };
+  category: { categoryName: string };
+};
