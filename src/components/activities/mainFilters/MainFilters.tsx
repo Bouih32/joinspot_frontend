@@ -4,6 +4,8 @@ import { MdChair } from "react-icons/md";
 import DatePick from "./DatePick";
 import { useRef, useState } from "react";
 import Button from "@/components/Button";
+import Calender from "./Calender";
+import DateFilter from "./DateFilter";
 
 export default function MainFilters() {
   const [value, setValue] = useState(0); // Start at 0
@@ -32,14 +34,8 @@ export default function MainFilters() {
     document.removeEventListener("mouseup", stopDragging);
   };
   return (
-    <div className="flex flex-col gap-[14px] rounded-[8px] border border-secondLightActive p-4 shadow-6xl tablet:px-4 tablet:py-[32px] laptop:gap-4">
-      <div className="space-y-3">
-        <p className="tablet:text-16sm">Select by date:</p>
-        <div className="flexBetween flex-col gap-2 tablet:flex-row tablet:gap-4">
-          <DatePick />
-          <DatePick />
-        </div>
-      </div>
+    <div className="flex w-[260px] flex-col gap-[14px] rounded-[8px] border border-secondLightActive p-4 shadow-6xl tablet:w-[440px] tablet:px-4 tablet:py-[32px] laptop:gap-4">
+      <DateFilter />
       <div className="space-y-4 tablet:space-y-3">
         <p className="tablet:text-16sm">Select by number of seats:</p>
         <div className="flexBetween">

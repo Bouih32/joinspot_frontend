@@ -1,10 +1,18 @@
 import React from "react";
 import { IoToday } from "react-icons/io5";
 
-export default function DatePick() {
+type DatePickProps = {
+  day: string;
+  handleOpen: () => void;
+};
+
+export default function DatePick({ day, handleOpen }: DatePickProps) {
   return (
-    <div className="flexBetween w-[203px] rounded bg-secondLight px-3 py-2.5 tablet:w-[196px]">
-      <p className="text-16lg text-second">09/03/2025</p>
+    <div
+      className="flexBetween w-full cursor-pointer rounded bg-secondLight px-3 py-2.5 tablet:w-[196px]"
+      onClick={handleOpen}
+    >
+      <p className="text-16lg text-second">{day}</p>
       <IoToday className="text-main" />
     </div>
   );

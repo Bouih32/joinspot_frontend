@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { Context, useContext } from "react";
 import { twMerge } from "tailwind-merge";
+import { format } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -26,3 +27,14 @@ export function addParam(
 
   return newParam;
 }
+
+export const formatTimestamp = (timestampMs: number): string => {
+  /**
+   * Formats a timestamp in milliseconds to the format "DD/MM/YYYY".
+   *
+   * @param timestampMs The timestamp in milliseconds.
+   * @returns The formatted date string in "DD/MM/YYYY" format.
+   */
+  const date = new Date(timestampMs);
+  return format(date, "dd/MM/yyyy");
+};
