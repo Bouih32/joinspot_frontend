@@ -31,7 +31,7 @@ export default function MainFilters() {
     document.removeEventListener("mouseup", stopDragging);
   };
   return (
-    <div className="shadow-6xl space-y-[14px] rounded-[8px] border border-secondLightActive p-4 tablet:px-4 tablet:py-[32px] laptop:space-y-4">
+    <div className="space-y-[14px] rounded-[8px] border border-secondLightActive p-4 shadow-6xl tablet:px-4 tablet:py-[32px] laptop:space-y-4">
       <div className="space-y-3">
         <p className="tablet:text-16sm">Select by date:</p>
         <div className="flexBetween flex-col gap-2 tablet:flex-row tablet:gap-4">
@@ -44,7 +44,7 @@ export default function MainFilters() {
         <div className="flexBetween">
           <div
             ref={trackRef}
-            className="relative h-[3px] w-[367px] cursor-pointer select-none rounded-[14px] bg-secondLightActive"
+            className="relative h-[3px] w-[175px] cursor-pointer select-none rounded-[14px] bg-secondLightActive tablet:w-[367px]"
             onMouseDown={(e) => handleMouseMove(e.nativeEvent)}
           >
             {/* Filled Track */}
@@ -55,7 +55,7 @@ export default function MainFilters() {
 
             {/* Draggable Thumb */}
             <span
-              className="absolute top-0 grid h-[21px] w-[29px] -translate-y-[50%] cursor-pointer select-none place-content-center rounded bg-main text-12xl text-white transition-transform hover:scale-110"
+              className="absolute top-0 grid h-5 w-5 -translate-y-[50%] cursor-pointer select-none place-content-center rounded bg-main text-12xl text-white transition-transform hover:scale-110 tablet:h-[21px] tablet:w-[29px]"
               style={{
                 left: `calc(${(value / 50) * 100}% - ${value > 0 ? "14px" : "0px"})`,
               }} // Move thumb accordingly
