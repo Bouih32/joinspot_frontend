@@ -1,11 +1,12 @@
 import { MdLocationOn, MdOutlineTurnedInNot } from "react-icons/md";
 import UserCard from "./UserCard";
 import ActivityDetails from "./ActivityDetails";
+import placeholder from "../../../public/images/activityImg.jpg";
 import Seats from "./Seats";
 import Button from "../Button";
 import { cn } from "@/libs/utils";
 
-type ActivityCard = {
+export type ActivityCardType = {
   activityId: string;
   coverPic: string;
   title: string;
@@ -23,10 +24,13 @@ type ActivityCard = {
 type ActivityCardProps = {
   hide?: boolean;
   full?: boolean;
-  data: ActivityCard;
+  data: ActivityCardType;
 };
 
 export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
+  if (!data) {
+    return null; // or show a loading state
+  }
   return (
     <section
       className={cn(
@@ -40,7 +44,9 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
           `tablet:cover relative h-[177px] w-[304px] rounded-[8px] bg-cover bg-bottom p-2 before:z-30 before:bg-activityGrad tablet:h-[245px] tablet:w-[274px] tablet:rounded-none`,
           full && "tablet:w-[287px] laptop:h-[319px] laptop:w-[475px]",
         )}
-        style={{ backgroundImage: `url(${data.coverPic})` }}
+        style={{
+          backgroundImage: `url(${data.coverPic ? data.coverPic : placeholder})`,
+        }}
       >
         <section className="flexBetween">
           <div className="flexCenter z-40 w-fit gap-1 rounded bg-main px-3 py-[3px] font-openSans text-10xxl text-white tablet:px-4 tablet:py-[6px]">

@@ -2,13 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import ActivityCard from "@/components/activities/ActivityCard";
+
 import Container from "../../Container";
 import HeroFilter from "./HeroFilter";
 import { FaCircle } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
+import ActivityCard, {
+  ActivityCardType,
+} from "@/components/activities/ActivityCard";
 
-export default function Hero() {
+type HeroProps = { data: ActivityCardType[] };
+
+export default function Hero({ data }: HeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false); // State to track if component has mounted
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -78,8 +83,8 @@ export default function Hero() {
               className={`flex ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
               style={{ [motionAxis]: motionValue }}
             >
-              {[...Array(totalSlides)].map((_, i) => (
-                <ActivityCard key={i} />
+              {data.map((ele, i) => (
+                <ActivityCard key={i} data={ele} />
               ))}
             </motion.div>
           </motion.div>
