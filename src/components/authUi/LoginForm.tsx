@@ -42,7 +42,8 @@ export default function LoginForm() {
       });
     } else {
       setLoading(false);
-      router.push("/");
+      router.refresh();
+      window.location.reload();
     }
   };
 
