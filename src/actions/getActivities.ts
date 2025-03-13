@@ -1,9 +1,10 @@
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
 
-export const getActivities = async () => {
+export const getActivities = async (params: {}) => {
   try {
-    const res = await fetch(`${API_URL}/activity`, {
+    const queryString = new URLSearchParams(params).toString();
+    const res = await fetch(`${API_URL}/activity?${queryString}`, {
       credentials: "include", // Equivalent to `withCredentials: true` in Axios
     });
 

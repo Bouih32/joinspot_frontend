@@ -1,8 +1,6 @@
 import { FaRegBookmark, FaRegQuestionCircle } from "react-icons/fa";
 import CategoryFilter from "./CategoryFilter";
 import { MdChatBubbleOutline } from "react-icons/md";
-import { getCategoriesServer } from "@/actions/getCategory";
-import { unstable_cache } from "next/cache";
 import { nanoid } from "nanoid";
 import { Category } from "@/libs/types";
 import { getCachedCategories } from "@/libs/utils";

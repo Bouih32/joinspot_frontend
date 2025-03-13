@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
 import { unstable_cache } from "next/cache";
 import { getCategoriesServer } from "@/actions/getCategory";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -19,6 +20,7 @@ export function addParam(
   param: string,
   value: string,
   searchParams: URLSearchParams,
+  router: AppRouterInstance,
 ) {
   const newParam = new URLSearchParams(searchParams.toString());
   if (newParam.get(param) === value) {
@@ -27,7 +29,7 @@ export function addParam(
     newParam.set(param, value);
   }
 
-  return newParam;
+  router.push(`?${newParam.toString()}`);
 }
 
 export const formatTimestamp = (timestampMs: number): string => {
