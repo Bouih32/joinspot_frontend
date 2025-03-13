@@ -15,11 +15,15 @@ export default async function ActivitiesPage() {
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
         <main className="flexCenter w-full flex-col space-y-4 pb-5 tablet:space-y-5">
-          {/* <NoActivities /> */}
-
-          {data.map((ele) => (
-            <ActivityCard key={nanoid()} full data={ele} />
-          ))}
+          {!data || data.length === 0 ? (
+            <NoActivities />
+          ) : (
+            <>
+              {data.map((ele) => (
+                <ActivityCard key={nanoid()} full data={ele} />
+              ))}
+            </>
+          )}
         </main>
       </Container>
     </main>

@@ -16,9 +16,7 @@ type HeaderProps = {
 
 export default async function Header() {
   const user = await getHeaderData();
-  console.log(user);
-  // const user = await getToken();
-  // console.log(user);
+
   return (
     <section className="bg-white">
       <Container>

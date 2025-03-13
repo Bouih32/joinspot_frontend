@@ -51,7 +51,7 @@ export default function ProfileNav({
           ></div>
 
           <section
-            className="absolute right-0 top-[115%] z-50 w-[143px] space-y-2.5 rounded bg-secondLight p-3 laptop:w-[159px] laptop:p-4"
+            className="absolute right-0 top-[115%] z-[600] w-[143px] space-y-2.5 rounded bg-secondLight p-3 laptop:w-[159px] laptop:p-4"
             onClick={(e) => e.stopPropagation()}
           >
             {dropNav.map((ele, index) => (
