@@ -1,9 +1,11 @@
+import { getToken } from "@/actions/decodeToken";
 import { getActivities } from "@/actions/getActivities";
 import ActivityCard from "@/components/activities/ActivityCard";
 import NoActivities from "@/components/activities/NoActivities";
 import SideFilter from "@/components/activities/SideFilter";
 import UpperHeader from "@/components/activities/UpperHeader";
 import Container from "@/components/Container";
+import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
 export default async function ActivitiesPage({
@@ -18,7 +20,17 @@ export default async function ActivitiesPage({
   }>;
 }) {
   const params = await searchParams;
-  const data = await getActivities(params);
+  const token = await getToken();
+  let role: string | undefined;
+
+  if (typeof token !== "string" && token !== null) {
+    role = (token as JwtPayload).role;
+  }
+
+  const data =
+    (params.my === "own" && !token) || role === "VISITOR"
+      ? null
+      : await getActivities(params);
 
   return (
     <main className="space-y-5 tablet:space-y-[32px]">
@@ -27,7 +39,7 @@ export default async function ActivitiesPage({
         <SideFilter />
         <main className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
           {!data || data.length === 0 ? (
-            <NoActivities />
+            <NoActivities token={token} params={params} />
           ) : (
             <>
               {data.map((ele) => (

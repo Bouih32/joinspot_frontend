@@ -193,7 +193,7 @@ export default function Calender({ handleClose }: CalenderProps) {
       </div>
 
       <div className="self-end" onClick={handleApply}>
-        <Button>Apply</Button>
+        <Button disabled={selectedDates.length < 2}>Apply</Button>
       </div>
     </div>
   );

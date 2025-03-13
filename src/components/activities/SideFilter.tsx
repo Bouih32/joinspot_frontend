@@ -1,9 +1,8 @@
-import { FaRegBookmark, FaRegQuestionCircle } from "react-icons/fa";
 import CategoryFilter from "./CategoryFilter";
-import { MdChatBubbleOutline } from "react-icons/md";
 import { nanoid } from "nanoid";
 import { Category } from "@/libs/types";
 import { getCachedCategories } from "@/libs/utils";
+import LowerFilter from "./LowerFilter";
 
 export default async function SideFilter() {
   const categories = await getCachedCategories();
@@ -15,10 +14,10 @@ export default async function SideFilter() {
           <CategoryFilter key={nanoid()} title={ele.categoryName} />
         ))}
       </div>
-      <div className="flexBetween rounded-[10px] bg-secondLight px-4 py-5 text-[20px] text-main">
-        <FaRegBookmark />
-        <MdChatBubbleOutline />
-        <FaRegQuestionCircle />
+      <div className="flexBetween w-full rounded-[10px] bg-secondLight px-4 py-2 text-[20px] text-main">
+        {["save", "own", "faq"].map((ele) => (
+          <LowerFilter key={nanoid()} filter={ele} />
+        ))}
       </div>
     </aside>
   );

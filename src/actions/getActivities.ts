@@ -1,8 +1,11 @@
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
+import { cookies } from "next/headers";
 
 export const getActivities = async (params?: Record<string, string>) => {
   try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
     const queryString =
       params && Object.keys(params).length > 0
         ? new URLSearchParams(params).toString()
@@ -13,7 +16,12 @@ export const getActivities = async (params?: Record<string, string>) => {
       : `${API_URL}/activity`;
 
     const res = await fetch(link, {
-      credentials: "include",
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
     });
 
     if (!res.ok) {
