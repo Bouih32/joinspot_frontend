@@ -17,7 +17,6 @@ export default async function ActivitiesPage({
   }>;
 }) {
   const params = await searchParams;
-  console.log(params);
   const data = await getActivities(params);
 
   return (

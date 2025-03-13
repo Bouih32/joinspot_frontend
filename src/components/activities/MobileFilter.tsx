@@ -1,17 +1,22 @@
 "use client";
-import { cn } from "@/libs/utils";
+import { addParam, cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { HeaderProps } from "./MobileUpperHeader";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function MobileFilter({ categories }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string>("Categories");
+  const params = useSearchParams();
+  const router = useRouter();
+  const category = params.get("category");
 
   const filters = ["Saved Posts", "My Posts", "FQA"];
 
   const handleSelect = (ele: string) => {
+    addParam("category", ele, params, router);
     setSelected(ele);
     setOpen(false);
   };
@@ -41,7 +46,9 @@ export default function MobileFilter({ categories }: HeaderProps) {
                   key={nanoid()}
                   className={cn(
                     "py-1 pl-2 first-letter:uppercase",
-                    ele.categoryName === selected && "bg-secondLight text-main",
+                    ele.categoryName === selected ||
+                      (ele.categoryName === category &&
+                        "bg-secondLight text-main"),
                   )}
                   onClick={() => handleSelect(ele.categoryName)}
                 >
