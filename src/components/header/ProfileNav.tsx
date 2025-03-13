@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import avatar from "../../../public/images/avatar.png";
+import placeholder from "../../../public/images/avatar.png";
 import Image from "next/image";
 import { RiVipCrown2Fill, RiSettings3Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
@@ -16,6 +15,7 @@ export default function ProfileNav({
   open,
   handleOpen,
   handleClose,
+  avatar,
 }: DropProps) {
   const router = useRouter();
 
@@ -36,9 +36,11 @@ export default function ProfileNav({
         onClick={() => {
           handleOpen && handleOpen("profile");
         }}
-        src={avatar}
+        width={40}
+        height={40}
+        src={avatar ? avatar : placeholder}
         alt="avatar"
-        className="h-[25px] w-[25px] cursor-pointer rounded-full object-contain tablet:h-[40px] tablet:w-[40px]"
+        className="h-[25px] w-[25px] cursor-pointer rounded-full object-cover tablet:h-[40px] tablet:w-[40px]"
       />
 
       {open === "profile" && (

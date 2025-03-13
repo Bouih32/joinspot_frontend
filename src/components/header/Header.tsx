@@ -6,14 +6,19 @@ import Container from "../Container";
 import Link from "next/link";
 import MobileNav from "./MobileNav";
 import LogedUi from "./LogedUi";
-import { navLinks } from "@/libs/constantes";
 import NoUserNav from "./NoUserNav";
+import { navLinks } from "@/libs/constantes";
+import { getHeaderData } from "@/actions/getUserData";
 
 type HeaderProps = {
   user?: boolean;
 };
 
-export default function Header({ user }: HeaderProps) {
+export default async function Header() {
+  const user = await getHeaderData();
+  console.log(user);
+  // const user = await getToken();
+  // console.log(user);
   return (
     <section className="bg-white">
       <Container>
@@ -25,7 +30,7 @@ export default function Header({ user }: HeaderProps) {
           />
           <Nav classname="hidden tablet:block" navInfo={navLinks} />
           {user ? (
-            <LogedUi />
+            <LogedUi avatar={user} />
           ) : (
             <div className="tablet:flexCenter hidden gap-[5px] tablet:gap-2.5">
               <Link href="/signup">

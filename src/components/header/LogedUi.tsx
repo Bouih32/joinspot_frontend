@@ -5,7 +5,7 @@ import Messages from "./Messages";
 import ProfileNav from "./ProfileNav";
 import { useState } from "react";
 
-export default function LogedUi() {
+export default function LogedUi({ avatar }: { avatar: string }) {
   const [open, setOpen] = useState<
     "notifications" | "messages" | "profile" | "nav" | null
   >(null);
@@ -33,6 +33,7 @@ export default function LogedUi() {
         open={open}
         handleOpen={handleOpen}
         handleClose={handleClose}
+        avatar={avatar}
       />
       <MobileNav
         user

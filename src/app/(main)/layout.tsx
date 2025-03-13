@@ -9,10 +9,9 @@ export default async function MainPageLayoute({
 }: {
   children: ReactNode;
 }) {
-  const payload = await getToken();
   return (
     <main>
-      <Header user={!!payload} />
+      <Header />
       {children}
       <Footer />
     </main>

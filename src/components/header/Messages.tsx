@@ -10,6 +10,7 @@ export type DropProps = {
   open?: "notifications" | "messages" | "profile" | "nav" | null;
   handleOpen?: (ele: "notifications" | "messages" | "profile" | "nav") => void;
   handleClose?: () => void;
+  avatar?: string;
 };
 
 export default function Messages({ open, handleOpen, handleClose }: DropProps) {
