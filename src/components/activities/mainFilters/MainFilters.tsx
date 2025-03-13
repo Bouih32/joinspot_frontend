@@ -94,14 +94,23 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
                 <MdChair className="text-[20px] text-second" />
               </div>
             </div>
-            <div
-              onClick={() =>
-                value > 0
-                  ? addParam("seats", value.toString(), params, router)
-                  : setOpen(false)
-              }
-            >
-              <Button classname="self-end">Apply</Button>
+            <div className="flexCenter gap-2.5 self-end">
+              <div
+                onClick={() =>
+                  router.replace(window.location.pathname, { scroll: false })
+                }
+              >
+                <Button secondary>Clear All</Button>
+              </div>
+              <div
+                onClick={() =>
+                  value > 0
+                    ? addParam("seats", value.toString(), params, router)
+                    : setOpen(false)
+                }
+              >
+                <Button>Apply</Button>
+              </div>
             </div>
           </div>
         </>

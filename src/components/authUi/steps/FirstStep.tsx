@@ -12,7 +12,6 @@ import { z } from "zod";
 import Role from "../Role";
 import { getContext } from "@/libs/utils";
 import SelectCities from "@/components/select/SelectCities";
-import { City } from "@/libs/types";
 
 type FirstStepT = z.infer<typeof firstStepValidation>;
 

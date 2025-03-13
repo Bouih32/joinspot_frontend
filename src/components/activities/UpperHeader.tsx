@@ -1,7 +1,5 @@
 import { FaPlus } from "react-icons/fa";
-import { IoFilter, IoSearch } from "react-icons/io5";
 import Container from "../Container";
-import MobileFilter from "./MobileFilter";
 import Search from "./Search";
 import MobileUpperHeader from "./MobileUpperHeader";
 import MainFilters from "./mainFilters/MainFilters";

@@ -124,3 +124,11 @@ export const newPswrd = z
     message: "Passwords don't match",
     path: ["passwordValidate"],
   });
+
+export const searchValidation = z.object({
+  search: z
+    .string()
+    .trim()
+    .max(20, { message: "Heey! that's too long" })
+    .optional(),
+});
