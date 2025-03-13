@@ -2,6 +2,8 @@ import { clsx, type ClassValue } from "clsx";
 import { Context, useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
+import { unstable_cache } from "next/cache";
+import { getCategoriesServer } from "@/actions/getCategory";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -37,4 +39,18 @@ export const formatTimestamp = (timestampMs: number): string => {
    */
   const date = new Date(timestampMs);
   return format(date, "dd/MM/yyyy");
+};
+
+export const getCachedCategories = async () => {
+  const getCachedCategories = unstable_cache(
+    getCategoriesServer,
+    ["category-server"],
+    {
+      tags: ["category-server"],
+      revalidate: false,
+    },
+  );
+
+  const categories = await getCachedCategories();
+  return categories;
 };

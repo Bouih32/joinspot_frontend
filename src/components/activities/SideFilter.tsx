@@ -5,17 +5,9 @@ import { getCategoriesServer } from "@/actions/getCategory";
 import { unstable_cache } from "next/cache";
 import { nanoid } from "nanoid";
 import { Category } from "@/libs/types";
+import { getCachedCategories } from "@/libs/utils";
 
 export default async function SideFilter() {
-  const getCachedCategories = unstable_cache(
-    getCategoriesServer,
-    ["category-server"],
-    {
-      tags: ["category-server"],
-      revalidate: false,
-    },
-  );
-
   const categories = await getCachedCategories();
 
   return (

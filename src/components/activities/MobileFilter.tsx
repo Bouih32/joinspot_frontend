@@ -3,12 +3,12 @@ import { cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { HeaderProps } from "./MobileUpperHeader";
 
-export default function MobileFilter() {
+export default function MobileFilter({ categories }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string>("Categories");
 
-  const categories = ["Sports", "Outdoors", "Cuisine", "Learning"];
   const filters = ["Saved Posts", "My Posts", "FQA"];
 
   const handleSelect = (ele: string) => {
@@ -22,7 +22,7 @@ export default function MobileFilter() {
         className="flexBetween w-[241px]"
         onClick={() => setOpen((prev) => !prev)}
       >
-        <p className="">{selected}</p>
+        <p className="first-letter:uppercase">{selected}</p>
         {open ? <IoIosArrowUp className="text-main" /> : <IoIosArrowDown />}
       </div>
       {open && (
@@ -32,7 +32,7 @@ export default function MobileFilter() {
             onClick={() => setOpen(false)}
           ></div>
           <div
-            className="shadow-33xl absolute left-0 top-[120%] w-full bg-white text-12sm"
+            className="absolute left-0 top-[120%] w-full bg-white text-12sm shadow-33xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="border-b border-secondLightHover">
@@ -40,12 +40,12 @@ export default function MobileFilter() {
                 <p
                   key={nanoid()}
                   className={cn(
-                    "py-1 pl-2",
-                    ele === selected && "bg-secondLight text-main",
+                    "py-1 pl-2 first-letter:uppercase",
+                    ele.categoryName === selected && "bg-secondLight text-main",
                   )}
-                  onClick={() => handleSelect(ele)}
+                  onClick={() => handleSelect(ele.categoryName)}
                 >
-                  {ele}
+                  {ele.categoryName}
                 </p>
               ))}
             </div>

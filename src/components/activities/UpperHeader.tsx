@@ -5,13 +5,15 @@ import MobileFilter from "./MobileFilter";
 import Search from "./Search";
 import MobileUpperHeader from "./MobileUpperHeader";
 import MainFilters from "./mainFilters/MainFilters";
+import { getCachedCategories } from "@/libs/utils";
 
-export default function UpperHeader() {
+export default async function UpperHeader() {
+  const categories = await getCachedCategories();
   return (
     <section>
       <div className="border-b border-secondLightActive py-[6px] text-main tablet:bg-secondLight tablet:py-1 laptop:py-2.5">
         <Container classname="flex items-center justify-between tablet:justify-end gap-[14px]">
-          <MobileUpperHeader />
+          <MobileUpperHeader categories={categories} />
           <Search />
 
           <MainFilters />
