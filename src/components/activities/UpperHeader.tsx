@@ -12,7 +12,7 @@ export default async function UpperHeader() {
   return (
     <section>
       <div className="border-b border-secondLightActive py-[6px] text-main tablet:bg-secondLight tablet:py-1 laptop:py-2.5">
-        <Container classname="flex items-center justify-between tablet:justify-end gap-[14px]">
+        <Container classname="flex items-center justify-between tablet:justify-end tablet:gap-[14px]">
           <MobileUpperHeader categories={categories} />
           <Search />
 
