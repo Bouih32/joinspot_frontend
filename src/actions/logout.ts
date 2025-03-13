@@ -10,5 +10,5 @@ export const logout = async () => {
     },
   );
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
-  window.location.href = "/login";
+  window.location.href = "/";
 };
