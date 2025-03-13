@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { cn, formatTimestamp } from "@/libs/utils";
+import { addParam, cn, formatTimestamp } from "@/libs/utils";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Button from "@/components/Button";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface CalendarDay {
   day: number;
@@ -18,6 +19,8 @@ export default function Calender({ handleClose }: CalenderProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState<number[]>([]);
   const [todayDate, setTodayDate] = useState<Date | null>(null);
+  const params = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     const today = new Date();
@@ -27,10 +30,20 @@ export default function Calender({ handleClose }: CalenderProps) {
   }, []);
 
   const handleApply = () => {
-    const data = [
-      formatTimestamp(selectedDates[0]),
-      formatTimestamp(selectedDates[1]),
-    ];
+    const data = selectedDates.map((timestamp) => {
+      const date = new Date(timestamp);
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    });
+
+    const unixTimestamps = selectedDates.map((timestamp) => {
+      const date = new Date(timestamp);
+      return date.getTime(); // Get Unix timestamp in milliseconds
+    });
+
+    addParam("date", unixTimestamps.join("_"), params, router);
 
     handleClose(data);
   };
@@ -116,7 +129,7 @@ export default function Calender({ handleClose }: CalenderProps) {
   const calendarDays = generateCalendarDays(currentDate);
 
   return (
-    <div className="shadow-22xl flex w-full flex-col gap-4 self-center p-[5.5px] tablet:w-[324px] tablet:p-4">
+    <div className="flex w-full flex-col gap-4 self-center p-[5.5px] shadow-22xl tablet:w-[324px] tablet:p-4">
       <div className="flexBetween text-12xl text-neutral tablet:text-16xl">
         <MdKeyboardArrowLeft
           className="cursor-pointer text-[20px]"
@@ -170,8 +183,6 @@ export default function Calender({ handleClose }: CalenderProps) {
                 onClick={() => {
                   !isPastDate(dayData.year, dayData.month, dayData.day) &&
                     handleDateClick(dayData.day, dayData.month, dayData.year);
-                  // selectedDates.length > 0 &&
-                  //   console.log(formatTimestamp(selectedDates[0]));
                 }}
               >
                 {dayData.day}

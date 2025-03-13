@@ -3,7 +3,7 @@ import empty from "../../../public/images/empty.png";
 
 export default function NoActivities() {
   return (
-    <section className="space-y-5 text-center">
+    <section className="space-y-5 self-center justify-self-center text-center">
       <Image
         src={empty}
         alt="empty"

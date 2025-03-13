@@ -6,11 +6,15 @@ import { useRef, useState } from "react";
 import Button from "@/components/Button";
 import DateFilter from "./DateFilter";
 import { IoFilter } from "react-icons/io5";
+import { addParam } from "@/libs/utils";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function MainFilters({ mobile }: { mobile?: boolean }) {
   const [value, setValue] = useState(0);
-  const [open, setOpen] = useState(false); // Start at 0
+  const [open, setOpen] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  const params = useSearchParams();
+  const router = useRouter();
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!trackRef.current) return;
@@ -61,7 +65,9 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
           <div className="absolute right-0 top-[120%] z-[500] flex w-[260px] flex-col gap-[14px] rounded-[8px] border border-secondLightActive bg-white p-4 shadow-6xl tablet:w-[440px] tablet:px-4 tablet:py-[32px] laptop:gap-4">
             <DateFilter />
             <div className="space-y-4 tablet:space-y-3">
-              <p className="tablet:text-16sm">Select by number of seats:</p>
+              <p className="text-darker tablet:text-16sm">
+                Select by number of seats:
+              </p>
               <div className="flexBetween">
                 <div
                   ref={trackRef}
@@ -88,7 +94,15 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
                 <MdChair className="text-[20px] text-second" />
               </div>
             </div>
-            <Button classname="self-end">Apply</Button>
+            <div
+              onClick={() =>
+                value > 0
+                  ? addParam("seats", value.toString(), params, router)
+                  : setOpen(false)
+              }
+            >
+              <Button classname="self-end">Apply</Button>
+            </div>
           </div>
         </>
       )}

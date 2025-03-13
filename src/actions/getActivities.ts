@@ -4,6 +4,7 @@ import { ActivityType } from "@/libs/types";
 export const getActivities = async (params: {}) => {
   try {
     const queryString = new URLSearchParams(params).toString();
+    console.log(queryString);
     const res = await fetch(`${API_URL}/activity?${queryString}`, {
       credentials: "include", // Equivalent to `withCredentials: true` in Axios
     });
