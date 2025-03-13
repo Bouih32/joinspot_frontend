@@ -21,7 +21,6 @@ export default function ProfileNav({
 
   const handleLogOut = async () => {
     await logout();
-    router.push("/login");
   };
 
   const dropNav = [
