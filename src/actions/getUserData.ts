@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 export const getHeaderData = async () => {
   const cookiesStore = await cookies();
   const token = cookiesStore.get("token");
+  if (!token) return null;
   try {
     const res = await fetch(`${API_URL}/user/profile`, {
       method: "GET",
