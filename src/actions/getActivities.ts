@@ -1,12 +1,19 @@
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
 
-export const getActivities = async (params: {}) => {
+export const getActivities = async (params?: Record<string, string>) => {
   try {
-    const queryString = new URLSearchParams(params).toString();
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
 
-    const res = await fetch(`${API_URL}/activity?${queryString}`, {
-      credentials: "include", // Equivalent to `withCredentials: true` in Axios
+    const link = queryString
+      ? `${API_URL}/activity?${queryString}`
+      : `${API_URL}/activity`;
+
+    const res = await fetch(link, {
+      credentials: "include",
     });
 
     if (!res.ok) {
@@ -16,7 +23,7 @@ export const getActivities = async (params: {}) => {
     const data = await res.json();
     const activities: ActivityType[] = data.activities;
 
-    const info = activities.map((ele) => ({
+    return activities.map((ele) => ({
       activityId: ele.activityId,
       coverPic: ele.coverPic,
       title: ele.title,
@@ -30,8 +37,6 @@ export const getActivities = async (params: {}) => {
       city: ele.city.cityName,
       category: ele.category.categoryName,
     }));
-
-    return info;
   } catch (error) {
     console.error("Error fetching activities:", error);
     throw error;
