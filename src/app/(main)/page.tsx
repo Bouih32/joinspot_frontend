@@ -10,7 +10,7 @@ export default async function Home() {
     <main className="font-openSans">
       <Hero data={data} />
       <Services />
-      <Offers />
+      <Offers data={data} />
       <Community />
     </main>
   );

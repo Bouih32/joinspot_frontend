@@ -83,7 +83,7 @@ export default function Hero({ data }: HeroProps) {
               className={`flex ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
               style={{ [motionAxis]: motionValue }}
             >
-              {data.map((ele, i) => (
+              {data.slice(0, 4).map((ele, i) => (
                 <ActivityCard key={i} data={ele} />
               ))}
             </motion.div>

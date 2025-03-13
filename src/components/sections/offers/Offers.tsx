@@ -7,12 +7,17 @@ import SubTitle from "../SubTitle";
 import Title from "../Title";
 import Link from "next/link";
 import Button from "@/components/Button";
-import ActivityCard from "@/components/activities/ActivityCard";
+import ActivityCard, {
+  ActivityCardType,
+} from "@/components/activities/ActivityCard";
 import { FaCircle } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { nanoid } from "nanoid";
 
-export default function Offers() {
+type OffersProps = { data: ActivityCardType[] };
+
+export default function Offers({ data }: OffersProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false); // State to track if component has mounted
   const motionValue = useMotionValue(0);
@@ -140,8 +145,8 @@ export default function Offers() {
               className="flex gap-5"
               style={{ x: motionValue }}
             >
-              {[...Array(totalSlides)].map((_, i) => (
-                <ActivityCard key={i} />
+              {data.slice(0, 4).map((ele, i) => (
+                <ActivityCard key={nanoid()} data={ele} />
               ))}
             </motion.div>
           </motion.div>
