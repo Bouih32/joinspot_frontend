@@ -72,7 +72,7 @@ export default function SignupUpload<T extends FieldValues>({
     <div className="space-y-[3px]">
       <div
         className={cn(
-          "flexBetween w-full gap-3 rounded border border-neutral px-2 py-[3px] font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
+          "flexBetween w-full gap-3 rounded border border-neutral px-2 py-2 font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
           valid && "border-success text-darker",
           error && "border-error text-error",
           disabled && "bg-neutralLight",
@@ -86,11 +86,11 @@ export default function SignupUpload<T extends FieldValues>({
           onChange={handleImageUpload}
           type="file"
           className={cn(
-            "sr-only h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
+            "sr-only h-full w-full bg-transparent text-14sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
             error && "placeholder:text-error",
           )}
         />
-        <p className="text-12sm tablet:text-14sm">
+        <p className="text-14sm">
           {target || (data as Record<string, any>)[targetName] || placeholder}
         </p>
         {loading ? (
@@ -105,7 +105,7 @@ export default function SignupUpload<T extends FieldValues>({
         )}
       </div>
       {error && (
-        <p className="text-start font-openSans text-10sm text-error">{error}</p>
+        <p className="text-start font-openSans text-12sm text-error">{error}</p>
       )}
     </div>
   );

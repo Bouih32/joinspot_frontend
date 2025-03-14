@@ -55,9 +55,7 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
   const stopDragging = () => {
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", stopDragging);
-
     document.removeEventListener("touchmove", handleTouchMove);
-
     document.removeEventListener("touchend", stopDragging);
   };
 

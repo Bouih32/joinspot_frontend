@@ -36,7 +36,7 @@ export default function SelectCategories<T extends FieldValues>({
       <section className="z-50">
         <div
           className={cn(
-            "flexBetween z-50 w-full cursor-pointer gap-3 border border-neutral px-2 py-[3px] text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
+            "flexBetween z-50 w-full cursor-pointer gap-3 border border-neutral px-2 py-2 text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
             valid && "border-success text-darker",
             error && "border-error text-error",
             disabled && "bg-neutralLight",
@@ -56,7 +56,7 @@ export default function SelectCategories<T extends FieldValues>({
             readOnly
             value={selected ? selected : "Please select a category"}
             className={cn(
-              "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
+              "h-full w-full bg-transparent text-14sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none",
               error && "placeholder:text-error",
             )}
           />
