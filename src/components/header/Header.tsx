@@ -16,8 +16,8 @@ type HeaderProps = {
 };
 
 export default async function Header() {
-  // const isLogged = await getToken()
-  const user = await getHeaderData();
+  const isLogged = await getToken();
+  const userImg = await getHeaderData();
 
   return (
     <section className="bg-white">
@@ -29,8 +29,8 @@ export default async function Header() {
             className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
           />
           <Nav classname="hidden tablet:block" navInfo={navLinks} />
-          {user ? (
-            <LogedUi avatar={user} />
+          {isLogged ? (
+            <LogedUi avatar={userImg} />
           ) : (
             <div className="tablet:flexCenter hidden gap-[5px] tablet:gap-2.5">
               <Link href="/signup">
@@ -42,7 +42,7 @@ export default async function Header() {
             </div>
           )}
 
-          {!user && <NoUserNav />}
+          {!isLogged && <NoUserNav />}
         </header>
       </Container>
     </section>
