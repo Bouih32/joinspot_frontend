@@ -67,7 +67,7 @@ export default function AuthWrapper({
           </p>
         )}
       </section>
-      <section className="flexCenter relative flex-1 flex-col gap-[28px] pb-10 font-openSans tablet:pb-0">
+      <section className="relative flex flex-1 flex-col gap-[28px] pb-10 font-openSans tablet:justify-center tablet:pb-0">
         <AuthHeaders title={title} signup={signup} />
         {children}
       </section>

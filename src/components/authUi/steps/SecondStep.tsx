@@ -91,7 +91,7 @@ export default function SecondStep() {
           />
         </div>
 
-        <div className="tablet:flexBetween flex-col justify-items-start gap-3 tablet:flex-row">
+        <div className="flex flex-col items-start gap-3 tablet:flex-row tablet:justify-between">
           <Check
             id="degree"
             handleClick={() => handleProveBy("degree")}
