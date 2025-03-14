@@ -12,12 +12,23 @@ export default function MobileFilter({ categories }: HeaderProps) {
   const params = useSearchParams();
   const router = useRouter();
   const category = params.get("category");
+  const my = params.get("my");
 
-  const filters = ["Saved Posts", "My Posts", "FQA"];
+  const filters = [
+    { title: "Saved Posts", filter: "save" },
+    { title: "My Posts", filter: "own" },
+    { title: "FAQ", filter: "faq" },
+  ];
 
   const handleSelect = (ele: string) => {
     addParam("category", ele, params, router);
     setSelected(ele);
+    setOpen(false);
+  };
+
+  const handleLowerFilter = (ele: { title: string; filter: string }) => {
+    addParam("my", ele.filter, params, router);
+    setSelected(ele.title);
     setOpen(false);
   };
 
@@ -62,11 +73,12 @@ export default function MobileFilter({ categories }: HeaderProps) {
                   key={nanoid()}
                   className={cn(
                     "py-1 pl-2",
-                    ele === selected && "bg-secondLight text-main",
+                    ele.title === selected && "bg-secondLight text-main",
+                    ele.filter === my && "bg-secondLight text-main",
                   )}
-                  onClick={() => handleSelect(ele)}
+                  onClick={() => handleLowerFilter(ele)}
                 >
-                  {ele}
+                  {ele.title}
                 </p>
               ))}
             </div>

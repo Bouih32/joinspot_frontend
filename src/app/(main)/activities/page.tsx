@@ -43,7 +43,6 @@ export default async function ActivitiesPage({
             <Questions activities />
           ) : (
             <>
-              {" "}
               {!data || data.length === 0 ? (
                 <NoActivities token={token} params={params} />
               ) : (
