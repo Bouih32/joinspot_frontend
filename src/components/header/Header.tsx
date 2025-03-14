@@ -4,16 +4,11 @@ import Nav from "./Nav";
 import Button from "../Button";
 import Container from "../Container";
 import Link from "next/link";
-import MobileNav from "./MobileNav";
 import LogedUi from "./LogedUi";
 import NoUserNav from "./NoUserNav";
 import { navLinks } from "@/libs/constantes";
 import { getHeaderData } from "@/actions/getUserData";
 import { getToken } from "@/actions/decodeToken";
-
-type HeaderProps = {
-  user?: boolean;
-};
 
 export default async function Header() {
   const isLogged = await getToken();

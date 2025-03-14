@@ -48,7 +48,7 @@ export default function MobileFilter({ categories }: HeaderProps) {
             onClick={() => setOpen(false)}
           ></div>
           <div
-            className="absolute left-0 top-[120%] w-full bg-white text-12sm shadow-33xl"
+            className="absolute left-0 top-[120%] w-full bg-white text-14sm shadow-33xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="border-b border-secondLightHover">

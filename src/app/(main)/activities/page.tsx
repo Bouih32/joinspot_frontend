@@ -29,7 +29,7 @@ export default async function ActivitiesPage({
   }
 
   const data =
-    (params.my === "own" && !token) || role === "VISITOR"
+    params.my === "own" && (!token || role === "VISITOR")
       ? null
       : await getActivities(params);
 
