@@ -34,12 +34,12 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", stopDragging);
 
-    document.addEventListener("touchmove", handleTouchMove);
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
     document.addEventListener("touchend", stopDragging);
   };
 
   const handleTouchMove = (e: TouchEvent) => {
-    e.preventDefault(); // Prevent screen from scrolling while dragging
+    e.preventDefault(); // Stop scrolling while dragging
 
     if (!trackRef.current) return;
 
@@ -56,7 +56,7 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", stopDragging);
 
-    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.removeEventListener("touchmove", handleTouchMove);
 
     document.removeEventListener("touchend", stopDragging);
   };
