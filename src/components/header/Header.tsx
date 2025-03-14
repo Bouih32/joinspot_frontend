@@ -18,11 +18,13 @@ export default async function Header() {
     <section className="bg-white">
       <Container>
         <header className="flexBetween py-[8.5px] font-openSans text-darker tablet:py-3">
-          <Image
-            src={logo}
-            alt="logo"
-            className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
-          />
+          <Link href="/">
+            <Image
+              src={logo}
+              alt="logo"
+              className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
+            />
+          </Link>
           <Nav classname="hidden tablet:block" navInfo={navLinks} />
           {isLogged ? (
             <LogedUi avatar={userImg} />

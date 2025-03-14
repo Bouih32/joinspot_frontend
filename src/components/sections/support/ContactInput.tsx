@@ -1,6 +1,6 @@
 export default function ContactInput() {
   return (
-    <div className="flex flex-col gap-3 text-darker">
+    <div className="flex w-full flex-col gap-3 text-darker">
       <label htmlFor="" className="text-14lg">
         First Name
       </label>
