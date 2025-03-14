@@ -25,7 +25,7 @@ export default function UniqueCard({ title, para, value }: UniqueCardProps) {
       </h4>
       <p
         className={cn(
-          "w-[278px] text-12lg tablet:w-[240px] tablet:text-14lg laptop:w-[319px] laptop:text-16lg",
+          "w-[278px] text-wrap text-12lg tablet:w-[240px] tablet:text-14lg laptop:w-[319px] laptop:text-16lg",
           value && "w-[243px] tablet:w-[243px] laptop:w-[243px]",
         )}
       >

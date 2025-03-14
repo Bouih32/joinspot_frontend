@@ -66,7 +66,7 @@ export const unique = [
 export const values = [
   {
     title: "Community First",
-    para: "We’re all about bringing people together and fostering connections.",
+    para: "We’re all about bringing people from around the world together and fostering connections .",
   },
   {
     title: "Authenticity",
@@ -78,7 +78,7 @@ export const values = [
   },
   {
     title: "Inclusivity",
-    para: "Everyone is welcome on JoinSpot, whether you're a seasoned pro or a first-timer",
+    para: "Everyone is welcome on JoinSpot, whether you're a seasoned pro or a first time organiser.",
   },
 ];
 
