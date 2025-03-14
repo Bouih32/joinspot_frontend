@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import Welcome from "@/components/sections/about/Welcome";
 import Contact from "../../../components/sections/support/Contact";
-import Questions from "./Questions";
+import Questions from "@/components/sections/support/Questions";
 
 export default function SupportPage() {
   return (

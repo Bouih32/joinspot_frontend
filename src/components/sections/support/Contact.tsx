@@ -1,7 +1,6 @@
-import Socials from "@/app/(main)/support/Socials";
-
 import React from "react";
 import ContactForm from "./ContactForm";
+import Socials from "./Socials";
 
 export default function Contact() {
   return (

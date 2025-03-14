@@ -23,7 +23,6 @@ export default function NoActivities({
     role = (token as JwtPayload).role;
   }
 
-  console.log(role);
   return (
     <section className="space-y-5 self-center justify-self-center text-center tablet:mt-10">
       <Image

@@ -5,6 +5,7 @@ import NoActivities from "@/components/activities/NoActivities";
 import SideFilter from "@/components/activities/SideFilter";
 import UpperHeader from "@/components/activities/UpperHeader";
 import Container from "@/components/Container";
+import Questions from "@/components/sections/support/Questions";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
@@ -38,13 +39,20 @@ export default async function ActivitiesPage({
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
         <main className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
-          {!data || data.length === 0 ? (
-            <NoActivities token={token} params={params} />
+          {params.my === "faq" ? (
+            <Questions activities />
           ) : (
             <>
-              {data.map((ele) => (
-                <ActivityCard key={nanoid()} full data={ele} />
-              ))}
+              {" "}
+              {!data || data.length === 0 ? (
+                <NoActivities token={token} params={params} />
+              ) : (
+                <>
+                  {data.map((ele) => (
+                    <ActivityCard key={nanoid()} full data={ele} />
+                  ))}
+                </>
+              )}
             </>
           )}
         </main>
