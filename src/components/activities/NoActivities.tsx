@@ -40,6 +40,7 @@ export default function NoActivities({
           </p>
         </div>
       )}
+
       {token && role === "VISITOR" && params.my === "own" && (
         <div className="flexCenter flex-col">
           <h1 className="text-16xxl text-main">
