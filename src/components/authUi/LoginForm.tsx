@@ -76,7 +76,7 @@ export default function LoginForm() {
           type="password"
           error={errors.password?.message as string}
         />
-        <div className="flexBetween text-10sm text-secondActive tablet:text-12sm">
+        <div className="flexBetween text-12sm text-secondActive">
           <p>
             You don’t have account ?
             <Link href="/signup" className="font-semibold text-main">

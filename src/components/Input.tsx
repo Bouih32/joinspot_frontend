@@ -27,7 +27,7 @@ export default function Input<T extends FieldValues>({
     <div className="space-y-[3px]">
       <div
         className={cn(
-          "flexBetween w-full gap-3 rounded border border-neutral px-2 py-[3px] font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
+          "flexBetween w-full gap-3 rounded border border-neutral px-2 py-2 font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
           valid && "border-success text-darker",
           error && "border-error text-error",
           disabled && "bg-neutralLight",
@@ -39,7 +39,7 @@ export default function Input<T extends FieldValues>({
           placeholder={placeholder}
           type={type}
           className={cn(
-            "h-full w-full bg-transparent text-12sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
+            "h-full w-full bg-transparent text-14sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm",
             error && "placeholder:text-error",
           )}
         />
