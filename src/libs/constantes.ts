@@ -2,7 +2,6 @@ export const navLinks = [
   { name: "Home", href: "/" },
   { name: "About us", href: "/about" },
   { name: "Activities", href: "/activities" },
-  { name: "Community", href: "/community" },
   { name: "Support", href: "/support" },
 ];
 

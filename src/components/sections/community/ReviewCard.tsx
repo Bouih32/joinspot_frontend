@@ -19,7 +19,7 @@ export default function ReviewCard({
   return (
     <section
       className={cn(
-        "flex h-[307px] min-w-[328px] flex-col items-center gap-[14px] rounded-[8px] bg-white px-6 pt-[65px] tablet:h-[355px] tablet:w-[346px] xl:w-[384px]",
+        "flexCenter h-[280px] min-w-[328px] flex-col gap-[14px] rounded-[8px] bg-white px-6 tablet:h-[300px] tablet:w-[346px] xl:w-[384px]",
       )}
     >
       <div className="flex gap-[6px] text-[20px]">
