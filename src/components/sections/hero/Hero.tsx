@@ -24,7 +24,7 @@ export default function Hero({ data }: HeroProps) {
   // Adjust these based on actual dimensions
   const itemSize = isMobile ? 340 : 220; // Width for mobile, height for larger screens
   const totalSlides = 5;
-  const maxDrag = -((totalSlides - 1) * itemSize);
+  const maxDrag = -((totalSlides - 2) * itemSize);
 
   // Dynamically track current index
   const progress = useTransform(
@@ -48,16 +48,19 @@ export default function Hero({ data }: HeroProps) {
     const currentPosition = motionValue.get();
     const newIndex = Math.round(-currentPosition / itemSize);
 
-    // Ensure the index stays within bounds
-    const clampedIndex = Math.max(0, Math.min(newIndex, totalSlides - 1));
-    setCurrentIndex(clampedIndex);
+    // Allow slight overdrag but animate back
+    const clampedIndex = Math.max(
+      -0.2,
+      Math.min(newIndex, totalSlides - 1 + 0.2),
+    );
 
-    // Animate to the new position
     animate(motionValue, -clampedIndex * itemSize, {
       type: "spring",
-      stiffness: 100,
-      damping: 20, // Add damping for smoother animation
+      stiffness: 150,
+      damping: 20,
     });
+
+    setCurrentIndex(Math.round(clampedIndex)); // Ensure UI updates correctly
   };
 
   if (!isClient) {
@@ -71,19 +74,19 @@ export default function Hero({ data }: HeroProps) {
           <HeroFilter />
 
           {/* Framer Motion Adaptive Carousel */}
-          <motion.div className="relative flex w-full cursor-grab overflow-hidden">
+          <motion.div className="relative flex w-full cursor-grab select-none overflow-hidden">
             <motion.div
               drag={motionAxis}
               dragConstraints={{
-                [motionAxis === "x" ? "left" : "top"]: maxDrag,
-                [motionAxis === "x" ? "right" : "bottom"]: 0,
+                [motionAxis === "x" ? "left" : "top"]: maxDrag - itemSize * 0.2, // Allow slight overdrag
+                [motionAxis === "x" ? "right" : "bottom"]: itemSize * 0.2, // Allow slight overdrag
               }}
-              dragElastic={0.1} // Add slight elasticity for a natural feel
+              dragElastic={0.2} // More elasticity for a smooth bounce effect
               onDragEnd={handleDragEnd}
-              className={`flex ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
+              className={`flex select-none ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
               style={{ [motionAxis]: motionValue }}
             >
-              {data.slice(0, 4).map((ele, i) => (
+              {data.slice(0, totalSlides).map((ele, i) => (
                 <ActivityCard key={i} data={ele} />
               ))}
             </motion.div>
@@ -91,7 +94,7 @@ export default function Hero({ data }: HeroProps) {
 
           {/* Pagination Dots */}
           <div className="flexCenter mx-auto gap-[2px] tablet:hidden">
-            {[...Array(totalSlides)].map((_, i) => (
+            {[...Array(totalSlides - 1)].map((_, i) => (
               <FaCircle
                 key={i}
                 className={`cursor-pointer text-[10px] ${

@@ -10,8 +10,10 @@ export default function ActivityDetails({
   stars,
 }: ActivityDetailsProps) {
   return (
-    <section className="select-none space-y-1">
-      <p className="text-14xxl text-darker tablet:w-[288px]">{description}</p>
+    <section className="space-y-1">
+      <p className="select-none text-14xxl text-darker tablet:w-[288px]">
+        {description}
+      </p>
       <Stars stars={stars} />
     </section>
   );
