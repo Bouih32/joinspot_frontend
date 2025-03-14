@@ -28,16 +28,39 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
     setValue(newValue);
   };
 
-  const startDragging = (e: React.MouseEvent) => {
+  const startDragging = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
+
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", stopDragging);
+
+    document.addEventListener("touchmove", handleTouchMove);
+    document.addEventListener("touchend", stopDragging);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    e.preventDefault(); // Prevent screen from scrolling while dragging
+
+    if (!trackRef.current) return;
+
+    const track = trackRef.current;
+    const rect = track.getBoundingClientRect();
+    let newValue = ((e.touches[0].clientX - rect.left) / rect.width) * 50;
+
+    newValue = Math.round(newValue / 10) * 10;
+    newValue = Math.max(0, Math.min(50, newValue));
+    setValue(newValue);
   };
 
   const stopDragging = () => {
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", stopDragging);
+
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    document.removeEventListener("touchend", stopDragging);
   };
+
   return (
     <div className="relative flex flex-col">
       {mobile ? (
@@ -85,8 +108,9 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
                     className="absolute top-0 grid h-5 w-5 -translate-y-[50%] cursor-pointer select-none place-content-center rounded bg-main text-12xl text-white transition-transform hover:scale-110 tablet:h-[21px] tablet:w-[29px]"
                     style={{
                       left: `calc(${(value / 50) * 100}% - ${value > 0 ? "14px" : "0px"})`,
-                    }} // Move thumb accordingly
+                    }}
                     onMouseDown={startDragging}
+                    onTouchStart={startDragging} // Add touch support
                   >
                     {value}
                   </span>

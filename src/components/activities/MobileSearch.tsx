@@ -44,9 +44,7 @@ export default function MobileSearch({
     setShow(true);
   };
   return (
-    <div
-      className={cn("text-14sm text-main tablet:text-14sm", show && "w-full")}
-    >
+    <div className={cn("text-14sm text-main", show && "w-full")}>
       {!show && (
         <IoSearch className="cursor-pointer text-[24px]" onClick={handleOpen} />
       )}
