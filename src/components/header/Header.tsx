@@ -9,6 +9,7 @@ import NoUserNav from "./NoUserNav";
 import { navLinks } from "@/libs/constantes";
 import { getHeaderData } from "@/actions/getUserData";
 import { getToken } from "@/actions/decodeToken";
+import NavigationContext from "@/contexts/NavigationContext";
 
 export default async function Header() {
   const isLogged = await getToken();
@@ -16,32 +17,34 @@ export default async function Header() {
 
   return (
     <section className="sticky top-0 z-[600] bg-white">
-      <Container>
-        <header className="flexBetween py-[8.5px] font-openSans text-darker tablet:py-3">
-          <Link href="/">
-            <Image
-              src={logo}
-              alt="logo"
-              className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
-            />
-          </Link>
-          <Nav classname="hidden tablet:block" navInfo={navLinks} />
-          {isLogged ? (
-            <LogedUi avatar={userImg} />
-          ) : (
-            <div className="tablet:flexCenter hidden gap-[5px] tablet:gap-2.5">
-              <Link href="/signup">
-                <Button variant>Sign Up</Button>
-              </Link>
-              <Link href="/login">
-                <Button>Login</Button>
-              </Link>
-            </div>
-          )}
+      <NavigationContext>
+        <Container>
+          <header className="flexBetween py-[8.5px] font-openSans text-darker tablet:py-3">
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="logo"
+                className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
+              />
+            </Link>
+            <Nav classname="hidden tablet:block" navInfo={navLinks} />
+            {isLogged ? (
+              <LogedUi avatar={userImg} />
+            ) : (
+              <div className="tablet:flexCenter hidden gap-[5px] tablet:gap-2.5">
+                <Link href="/signup">
+                  <Button variant>Sign Up</Button>
+                </Link>
+                <Link href="/login">
+                  <Button>Login</Button>
+                </Link>
+              </div>
+            )}
 
-          {!isLogged && <NoUserNav />}
-        </header>
-      </Container>
+            {!isLogged && <NoUserNav />}
+          </header>
+        </Container>
+      </NavigationContext>
     </section>
   );
 }

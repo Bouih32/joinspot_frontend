@@ -8,17 +8,10 @@ import { LuLogOut } from "react-icons/lu";
 import ProfileCard from "./ProfileCard";
 import { nanoid } from "nanoid";
 import { logout } from "@/actions/logout";
-import { useRouter } from "next/navigation";
-import { DropProps } from "./Messages";
+import { useContext } from "react";
+import { NavContext } from "@/contexts/NavigationContext";
 
-export default function ProfileNav({
-  open,
-  handleOpen,
-  handleClose,
-  avatar,
-}: DropProps) {
-  const router = useRouter();
-
+export default function ProfileNav({ avatar }: { avatar: string }) {
   const handleLogOut = async () => {
     await logout();
   };
@@ -28,6 +21,10 @@ export default function ProfileNav({
     { icon: <CgProfile />, title: "Profile", href: "/profile" },
     { icon: <RiSettings3Line />, title: "Settings", href: "/settings" },
   ];
+
+  const context = useContext(NavContext);
+  if (!context) return;
+  const { handleClose, handleOpen, open } = context;
 
   return (
     <div className="relative">
@@ -39,18 +36,18 @@ export default function ProfileNav({
         height={40}
         src={avatar ? avatar : placeholder}
         alt="avatar"
-        className="h-[25px] w-[25px] cursor-pointer rounded-full object-cover tablet:h-[40px] tablet:w-[40px]"
+        className="relative z-[500] h-[25px] w-[25px] cursor-pointer rounded-full object-cover tablet:h-[40px] tablet:w-[40px]"
       />
 
       {open === "profile" && (
         <>
           <div
-            className="fixed bottom-0 left-0 right-0 top-[40px] z-40 bg-transparent tablet:top-[60px]"
+            className="fixed inset-0 z-30 bg-transparent"
             onClick={handleClose}
           ></div>
 
           <section
-            className="absolute right-0 top-[115%] z-[600] w-[143px] space-y-2.5 rounded bg-secondLight p-3 laptop:w-[159px] laptop:p-4"
+            className="absolute right-0 top-[115%] z-50 w-[143px] space-y-2.5 rounded bg-secondLight p-3 laptop:w-[159px] laptop:p-4"
             onClick={(e) => e.stopPropagation()}
           >
             {dropNav.map((ele, index) => (

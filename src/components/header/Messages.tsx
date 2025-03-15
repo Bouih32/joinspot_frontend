@@ -1,22 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdOutlineMail, MdOutlineNotificationsNone } from "react-icons/md";
 import EmptyMessage from "./EmptyMessage";
 import NotificationNumber from "./NotificationNumber";
 import { cn } from "@/libs/utils";
+import { NavContext } from "@/contexts/NavigationContext";
 
-export type DropProps = {
-  open?: "notifications" | "messages" | "profile" | "nav" | null;
-  handleOpen?: (ele: "notifications" | "messages" | "profile" | "nav") => void;
-  handleClose?: () => void;
-  avatar?: string;
-};
-
-export default function Messages({ open, handleOpen, handleClose }: DropProps) {
+export default function Messages() {
+  const context = useContext(NavContext);
+  if (!context) return;
+  const { handleClose, handleOpen, open } = context;
   return (
     <div className="relative">
-      <div className="relative">
+      <div className="relative z-[600]">
         <MdOutlineMail
           className={cn(
             "cursor-pointer hover:text-main",
@@ -32,7 +29,7 @@ export default function Messages({ open, handleOpen, handleClose }: DropProps) {
       {open === "messages" && (
         <>
           <div
-            className="fixed bottom-0 left-0 right-0 top-[40px] z-40 bg-transparent tablet:top-[60px]"
+            className="fixed inset-0 z-40 bg-transparent"
             onClick={handleClose}
           ></div>
 

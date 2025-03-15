@@ -8,22 +8,21 @@ import Link from "next/link";
 import Button from "../Button";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { navLinks } from "@/libs/constantes";
-import { DropProps } from "./Messages";
+import { useContext } from "react";
+import { NavContext } from "@/contexts/NavigationContext";
 
-type MobileNavProps = DropProps & {
+type MobileNavProps = {
   user?: boolean;
 };
 
-export default function MobileNav({
-  user,
-  handleOpen,
-  open,
-  handleClose,
-}: MobileNavProps) {
+export default function MobileNav({ user }: MobileNavProps) {
+  const context = useContext(NavContext);
+  if (!context) return;
+  const { handleClose, handleOpen, open } = context;
   return (
     <>
       <HiMenuAlt3
-        className="text-[22px] text-main tablet:hidden"
+        className="z-[600] text-[22px] text-main tablet:hidden"
         onClick={() => {
           handleOpen && handleOpen("nav");
         }}
@@ -37,7 +36,7 @@ export default function MobileNav({
           ></div>
           <section
             onClick={(e) => e.stopPropagation()}
-            className="bg-mobileNavBg absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-[length:100%_60%] bg-bottom bg-no-repeat px-4 pt-[48px] tablet:hidden"
+            className="absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-mobileNavBg bg-[length:100%_60%] bg-bottom bg-no-repeat px-4 pt-[48px] tablet:hidden"
           >
             <div className="flexBetween">
               <Image
