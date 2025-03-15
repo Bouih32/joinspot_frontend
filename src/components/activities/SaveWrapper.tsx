@@ -41,7 +41,8 @@ export default function SaveWrapper({
           <div className="">
             <h1 className="text-16xxl text-main">No saved activities</h1>
             <p className="text-14xxl text-secondActive">
-              Log in to your account to see your activities
+              No saved activities found. To save an activity, look for the
+              'save' icon on activity card.
             </p>
           </div>
         </section>
