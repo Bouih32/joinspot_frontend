@@ -34,7 +34,7 @@ export default function Messages() {
           ></div>
 
           <section
-            className="absolute right-0 top-[150%] z-50 w-[242px] rounded bg-secondLight p-2 laptop:w-[385px] laptop:p-[18px]"
+            className="absolute right-0 top-[150%] z-[600] w-[242px] rounded bg-secondLight p-2 laptop:w-[385px] laptop:p-[18px]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flexBetween border-b border-neutral pb-2 text-10lg text-neutral laptop:text-12lg">
