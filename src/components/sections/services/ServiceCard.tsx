@@ -10,7 +10,7 @@ type ServiceCardProps = {
 export default function ServiceCard({ title, sub, icon }: ServiceCardProps) {
   return (
     <section className="flex flex-row items-start gap-5 laptop:flex-col laptop:gap-4">
-      <div className="grid h-[46px] w-[46px] place-content-center rounded-[8px] bg-main text-[22px] text-white tablet:h-[58px] tablet:w-[58px] tablet:text-[34px]">
+      <div className="grid h-[46px] min-w-[46px] place-content-center rounded-[8px] bg-main text-[22px] text-white tablet:h-[58px] tablet:w-[58px] tablet:text-[34px]">
         {icon}
       </div>
       <div className="space-y-2 laptop:space-y-3">
