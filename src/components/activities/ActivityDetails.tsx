@@ -3,6 +3,7 @@ import Stars from "./Stars";
 type ActivityDetailsProps = {
   description: string;
   stars: number;
+  full?: boolean;
 };
 
 export default function ActivityDetails({
@@ -11,7 +12,7 @@ export default function ActivityDetails({
 }: ActivityDetailsProps) {
   return (
     <section className="space-y-1 laptop:space-y-[14px]">
-      <p className="select-none text-14xxl text-darker tablet:w-[288px]">
+      <p className="select-none text-14xxl text-darker tablet:w-full">
         {description}
       </p>
       <Stars stars={stars} />
