@@ -8,7 +8,6 @@ import Link from "next/link";
 import Button from "../Button";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { navLinks } from "@/libs/constantes";
-import { DropProps } from "./Messages";
 import { useState } from "react";
 
 export default function NoUserNav() {

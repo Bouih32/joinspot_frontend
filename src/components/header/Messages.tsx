@@ -1,7 +1,7 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { MdOutlineMail, MdOutlineNotificationsNone } from "react-icons/md";
+import { useContext } from "react";
+import { MdOutlineMail } from "react-icons/md";
 import EmptyMessage from "./EmptyMessage";
 import NotificationNumber from "./NotificationNumber";
 import { cn } from "@/libs/utils";
