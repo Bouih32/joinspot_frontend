@@ -134,9 +134,9 @@ export default function Offers({ data }: OffersProps) {
         </section>
       </Container>
 
-      <section className="flex flex-col space-y-[22px]">
-        <div className="overflow-hidden">
-          <motion.div className="ml-4 mt-[48px] flex cursor-grab items-start gap-5 tablet:mt-6 laptop:mt-[57px] xl:ml-20">
+      <section className="flex flex-col space-y-[22px] overflow-hidden">
+        <Container>
+          <motion.div className="mt-[48px] flex cursor-grab items-start gap-5 tablet:mt-6 laptop:mt-[57px]">
             <motion.div
               drag="x"
               dragConstraints={{ left: maxDrag, right: 0 }}
@@ -150,7 +150,7 @@ export default function Offers({ data }: OffersProps) {
               ))}
             </motion.div>
           </motion.div>
-        </div>
+        </Container>
 
         <section className="tablet:flexBetween mt-5 hidden gap-10 self-center tablet:block laptop:hidden">
           <div className="grid h-[2px] w-[676px] grid-cols-4 bg-secondLightHover laptop:w-[1086.316px]">

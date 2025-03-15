@@ -15,7 +15,7 @@ export default async function Header() {
   const userImg = await getHeaderData();
 
   return (
-    <section className="bg-white">
+    <section className="sticky top-0 z-[600] bg-white">
       <Container>
         <header className="flexBetween py-[8.5px] font-openSans text-darker tablet:py-3">
           <Link href="/">

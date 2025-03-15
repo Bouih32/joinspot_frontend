@@ -9,7 +9,7 @@ export default async function SideFilter() {
 
   return (
     <aside className="relative hidden w-[204px] tablet:block laptop:w-[286px]">
-      <section className="sticky top-0 flex h-screen flex-col justify-between pb-5">
+      <section className="sticky top-[150px] flex flex-col gap-11 xl:gap-20">
         <div className="space-y-3">
           {categories.map((ele: Category) => (
             <CategoryFilter key={nanoid()} title={ele.categoryName} />

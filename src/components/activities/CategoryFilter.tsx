@@ -28,7 +28,7 @@ export default function CategoryFilter({ title }: CategoryFilterProps) {
   return (
     <div
       className={cn(
-        "flex cursor-pointer items-center gap-3 rounded-[5px] px-2 py-3 text-14lg text-darker hover:bg-secondLight hover:text-14xxl hover:text-main laptop:py-5",
+        "flex cursor-pointer items-center gap-3 rounded-[5px] px-2 py-3 text-14lg text-darker transition-all duration-75 hover:bg-secondLight hover:pl-4 hover:text-14xxl hover:text-main laptop:py-5",
         title === category && "bg-secondLight text-main",
       )}
       onClick={() => addParam("category", title, params, router)}

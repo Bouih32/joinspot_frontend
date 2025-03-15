@@ -15,6 +15,9 @@
     @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full;
   }
 
+  .coverMore {
+    @apply before:absolute before:top-0 before:h-full before:w-full;
+  }
   .gridCenter {
     @apply grid place-content-center;
   }
