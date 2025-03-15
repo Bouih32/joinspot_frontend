@@ -1,10 +1,11 @@
-import { MdLocationOn, MdOutlineTurnedInNot } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
 import UserCard from "./UserCard";
 import ActivityDetails from "./ActivityDetails";
 import placeholder from "../../../public/images/activityImg.jpg";
 import Seats from "./Seats";
 import Button from "../Button";
 import { cn } from "@/libs/utils";
+import Save from "./Save";
 
 export type ActivityCardType = {
   activityId: string;
@@ -53,9 +54,7 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
             <MdLocationOn />
             <h3>{data.city}</h3>
           </div>
-          <div className="z-40 w-fit cursor-pointer rounded-md bg-white p-[5px] text-main">
-            <MdOutlineTurnedInNot />
-          </div>
+          <Save id={data.activityId} />
         </section>
       </div>
       <section className="flexCenter flex-1 tablet:pr-3">
