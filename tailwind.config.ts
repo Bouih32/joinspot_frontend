@@ -342,6 +342,7 @@ export default {
         "33xl": "0px 8px 24px 0px rgba(149, 157, 165, 0.20)",
         "6xl": "0px 8px 24px 0px rgba(149, 157, 165, 0.20)",
         "22xl": " 0px 8px 24px -2px rgba(149, 157, 165, 0.20)",
+        "23xl": "0px 8px 24px 0px rgba(149, 157, 165, 0.20)",
       },
       borderRadius: {
         lg: "var(--radius)",
