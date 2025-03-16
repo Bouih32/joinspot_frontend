@@ -132,3 +132,18 @@ export const searchValidation = z.object({
     .max(20, { message: "Heey! that's too long" })
     .optional(),
 });
+
+export const addValidation = z.object({
+  coverPic: z.string().trim().min(1),
+  title: z.string().trim().min(1).max(50, { message: "Thats too long" }),
+  description: z.string().trim().min(10).max(50, { message: "Thats too long" }),
+  tags: z.string().trim().min(1),
+  startTime: z.string().trim().min(1).max(5, { message: "that's too much" }),
+  endTime: z.string().trim().min(1).max(5, { message: "that's too much" }),
+  startDay: z.string().trim().min(1),
+  endDay: z.string().trim().min(1),
+  seat: z.string().trim().min(1),
+  price: z.string().trim().min(1),
+  location: z.string().trim().min(3),
+  cityId: z.string().trim().min(3),
+});

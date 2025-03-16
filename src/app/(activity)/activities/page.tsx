@@ -22,6 +22,7 @@ export default async function ActivitiesPage({
     date: string;
     my: string;
     search: string;
+    page: string;
   }>;
 }) {
   const params = await searchParams;
