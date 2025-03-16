@@ -119,14 +119,6 @@ export default function MainFilters({ mobile }: { mobile?: boolean }) {
             <div className="flexCenter gap-2.5 self-end">
               <div
                 onClick={() => {
-                  router.replace(window.location.pathname, { scroll: false });
-                  setOpen(false);
-                }}
-              >
-                <Button secondary>Clear All</Button>
-              </div>
-              <div
-                onClick={() => {
                   value > 0 &&
                     addParam("seats", value.toString(), params, router);
                   setOpen(false);

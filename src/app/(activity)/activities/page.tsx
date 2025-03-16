@@ -1,11 +1,13 @@
 import { getToken } from "@/actions/decodeToken";
 import { getActivities } from "@/actions/getActivities";
 import ActivityCard from "@/components/activities/ActivityCard";
+import ClearAll from "@/components/activities/mainFilters/ClearAll";
 import NoActivities from "@/components/activities/NoActivities";
 import SaveWrapper from "@/components/activities/SaveWrapper";
 import SideFilter from "@/components/activities/SideFilter";
 import UpperHeader from "@/components/activities/UpperHeader";
 import Container from "@/components/Container";
+import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
@@ -41,6 +43,7 @@ export default async function ActivitiesPage({
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
         <main className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
+          <ClearAll />
           {params.my === "faq" ? (
             <Questions activities />
           ) : params.my === "save" ? (
@@ -50,6 +53,7 @@ export default async function ActivitiesPage({
           ) : (
             data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
           )}
+          <Pagination />
         </main>
       </Container>
     </main>

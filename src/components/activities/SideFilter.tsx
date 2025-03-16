@@ -8,7 +8,7 @@ export default async function SideFilter() {
   const categories = await getCachedCategories();
 
   return (
-    <aside className="sticky top-[151px] hidden h-[calc(100vh-160px)] w-[204px] tablet:block laptop:w-[286px] xl:h-[calc(100vh-400px)]">
+    <aside className="sticky top-[70px] hidden h-[calc(100vh-155px)] w-[204px] tablet:block laptop:w-[286px] xl:h-[calc(100vh-400px)]">
       <section className="flex h-full flex-col justify-between">
         <div className="space-y-3">
           {categories.map((ele: Category) => (
