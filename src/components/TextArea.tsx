@@ -1,21 +1,32 @@
 import { cn } from "@/libs/utils";
+import { ReactElement } from "react";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-type TextAreaProps = {
-  valid?: boolean;
-  error?: boolean;
-  disabled?: boolean;
+type InputProps<T extends FieldValues> = {
+  register: UseFormRegister<T>;
+  error: string | undefined;
+  placeholder: string;
+  name: Path<T>;
+  classname?: string;
 };
 
-export default function TextArea({ valid, error, disabled }: TextAreaProps) {
+export default function TextArea<T extends FieldValues>({
+  error,
+  placeholder,
+  name,
+  classname,
+  register,
+}: InputProps<T>) {
   return (
     <textarea
-      disabled={disabled}
+      {...register(name)}
       className={cn(
-        "resize-none rounded border border-neutralHover px-3 py-2 font-openSans text-16sm text-darker outline-none placeholder:text-neutralHover disabled:pointer-events-none disabled:bg-neutralLight",
-        valid && "border-success text-darker",
+        "h-[100px] w-full resize-none rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] text-secondDark outline-none placeholder:text-secondDark laptop:h-[120px]",
+
         error && "border-error text-error placeholder:text-error",
+        classname,
       )}
-      placeholder="Placeholder"
+      placeholder={placeholder}
     ></textarea>
   );
 }

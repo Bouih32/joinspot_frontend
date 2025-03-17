@@ -4,9 +4,7 @@ import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 type InputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
-  valid?: boolean;
   error: string | undefined;
-  disabled?: boolean;
   type: string;
   icon?: ReactElement;
   placeholder: string;
@@ -14,31 +12,27 @@ type InputProps<T extends FieldValues> = {
   classname?: string;
 };
 
-export default function Input<T extends FieldValues>({
-  valid,
+export default function AddInput<T extends FieldValues>({
   error,
-  disabled,
+
   icon,
   placeholder,
   name,
   type,
-  classname,
+
   register,
 }: InputProps<T>) {
   return (
     <div className="space-y-[3px]">
       <div
         className={cn(
-          "flexBetween w-full gap-3 rounded border border-neutral px-2 py-2 font-openSans text-16sm text-darker tablet:px-3 tablet:py-[6px] xl:py-3.5",
-          valid && "border-success text-darker",
+          "flexBetween h-[30px] w-full gap-3 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[12px] leading-[24px] text-secondDark",
+
           error && "border-error text-error",
-          disabled && "bg-neutralLight",
-          classname,
         )}
       >
         <input
           {...register(name)}
-          disabled={disabled}
           placeholder={placeholder}
           type={type}
           className={cn(
