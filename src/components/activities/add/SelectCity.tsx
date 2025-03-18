@@ -46,6 +46,7 @@ export default function SelectCity<T extends FieldValues>({
             </div>
           )}
           <input
+            placeholder="Activity location"
             type="text"
             {...register(name)}
             className="text-[14px] font-normal leading-[24px] text-secondDark outline-none"

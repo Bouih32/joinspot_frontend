@@ -52,14 +52,14 @@ export default function AddImage({ addCover, error }: AddImageProps) {
   };
   return (
     <div
-      className={cn(
-        "flex cursor-pointer flex-col items-start gap-2 laptop:items-center",
-        error && "border-error",
-      )}
+      className="flex cursor-pointer flex-col items-start gap-2 laptop:items-center"
       onClick={() => uploadRef.current?.click()}
     >
       <div
-        className="flexCenter h-[130px] w-[239px] flex-col rounded-[8px] bg-[#F8F8F8] bg-cover bg-center bg-no-repeat text-center text-10xl text-secondDark tablet:h-[200px] tablet:w-[280px] laptop:h-[235px] laptop:w-[384px]"
+        className={cn(
+          "flexCenter h-[130px] w-[239px] flex-col rounded-[8px] bg-[#F8F8F8] bg-cover bg-center bg-no-repeat text-center text-10xl text-secondDark tablet:h-[200px] tablet:w-[280px] laptop:h-[235px] laptop:w-[384px]",
+          error && "border border-error",
+        )}
         style={{
           backgroundImage: `url(${imageUrl ? imageUrl : null})`,
         }}
