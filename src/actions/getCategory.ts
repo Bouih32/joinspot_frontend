@@ -43,14 +43,11 @@ type TagsT = {
   categoryId: string;
 };
 
-export const getTagsById = async () => {
+export const getTagsById = async (categoryId: string) => {
   try {
-    const res = await axios.get(
-      `${API_URL}/category/67b654b90614d66231800307/tags`,
-      {
-        withCredentials: true,
-      },
-    );
+    const res = await axios.get(`${API_URL}/category/${categoryId}/tags`, {
+      withCredentials: true,
+    });
     const info: TagsT[] = res.data.data;
 
     return info.map((ele) => ({ tagName: ele.tagName, tagId: ele.tagId }));

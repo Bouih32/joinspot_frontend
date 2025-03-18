@@ -63,3 +63,18 @@ export type ActivityType = {
   city: { cityName: string };
   category: { categoryName: string };
 };
+
+export type AddActivityT = {
+  coverPic: string;
+  title: string;
+  description: string;
+  startTime: string;
+  endTime: string;
+  location: string;
+  startDay: string;
+  endDay: string;
+  seat: string;
+  cityId: string;
+  price: string;
+  tags: string;
+};

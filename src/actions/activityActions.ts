@@ -1,18 +1,22 @@
 import { API_URL } from "@/libs/constantes";
-import { cookies } from "next/headers";
+import { AddActivityT } from "@/libs/types";
+import Cookies from "js-cookie";
 
-export const getHeaderData = async () => {
-  const cookiesStore = await cookies();
-  const token = cookiesStore.get("token");
+export const addActivity = async (activity: AddActivityT) => {
+  // On the client side
+  const token = Cookies.get("token"); // Retrieve the token from cookies
+
   if (!token) return null;
+
   try {
-    const res = await fetch(`${API_URL}/user/profile`, {
-      method: "GET",
+    const res = await fetch(`${API_URL}/activity/add`, {
+      method: "POST",
       credentials: "include", // Ensures cookies are sent
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token?.value}`,
+        Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(activity),
     });
 
     if (!res.ok) {
@@ -23,11 +27,10 @@ export const getHeaderData = async () => {
       );
     }
     const data = await res.json();
-    const userData = data.user;
 
-    return userData;
+    return data;
   } catch (error) {
-    console.error("Login error", error);
+    console.error("add error", error);
     throw error;
   }
 };

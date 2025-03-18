@@ -15,9 +15,12 @@ import { MdChair } from "react-icons/md";
 import { AiFillDollarCircle } from "react-icons/ai";
 import SelectDay from "./SelectDay";
 import Link from "next/link";
+import { addActivity } from "@/actions/activityActions";
+import { useRouter } from "next/navigation";
 
 type addType = z.infer<typeof addValidation>;
-export default function AddForm() {
+export default function AddForm({ userCategory }: { userCategory: string }) {
+  const router = useRouter();
   const {
     register,
     trigger,
@@ -49,7 +52,8 @@ export default function AddForm() {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
+    await addActivity(formData);
+    router.push("/activities");
   };
 
   return (
@@ -92,7 +96,11 @@ export default function AddForm() {
               name="description"
               error={errors.description?.message as string}
             />
-            <SelectTag addTag={addTag} error={errors.tags?.message as string} />
+            <SelectTag
+              addTag={addTag}
+              error={errors.tags?.message as string}
+              userCategory={userCategory}
+            />
           </div>
         </section>
 

@@ -1,7 +1,10 @@
+import { getHeaderData } from "@/actions/getUserData";
 import AddForm from "@/components/activities/add/AddForm";
 import Container from "@/components/Container";
 
-export default function page() {
+export default async function page() {
+  const userCategory = await getHeaderData();
+
   return (
     <Container classname="py-10">
       <section className="mx-auto w-full space-y-5 rounded-xl border-neutralLightActive px-4 py-[22px] tablet:mt-10 tablet:w-[677px] tablet:space-y-[30px] tablet:border laptop:w-[1064px] laptop:space-y-[45px] laptop:py-8 laptop:pb-[70px]">
@@ -20,7 +23,7 @@ export default function page() {
             makes it easy for others to discover and join your event.
           </p>
         </div>
-        <AddForm />
+        <AddForm userCategory={userCategory.categoryId} />
       </section>
     </Container>
   );

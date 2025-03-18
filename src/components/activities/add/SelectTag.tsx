@@ -10,18 +10,23 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 type SelectTagProps = {
   addTag: (tag: string) => void;
   error: string;
+  userCategory: string;
 };
 
 type TagsT = { tagName: string; tagId: string };
 
-export default function SelectTag({ addTag, error }: SelectTagProps) {
+export default function SelectTag({
+  addTag,
+  error,
+  userCategory,
+}: SelectTagProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<TagsT[]>([]);
   const [tags, setTags] = useState<TagsT[]>([]);
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getTagsById();
+      const data = await getTagsById(userCategory);
       if (Array.isArray(data)) {
         setTags(data); // Ensure data is an array before setting the state
       }

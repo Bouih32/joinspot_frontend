@@ -56,3 +56,9 @@ export const getCachedCategories = async () => {
   const categories = await getCachedCategories();
   return categories;
 };
+
+export const convertToISODate = (dateString: string): string => {
+  const [day, month, year] = dateString.split("/").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day)); // Ensure UTC time
+  return date.toISOString();
+};
