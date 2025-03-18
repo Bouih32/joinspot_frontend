@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 export const addActivity = async (activity: AddActivityT) => {
   // On the client side
   const token = Cookies.get("token"); // Retrieve the token from cookies
-
+  console.log(token);
   if (!token) return null;
 
   try {
