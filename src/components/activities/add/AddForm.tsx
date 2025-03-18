@@ -14,6 +14,7 @@ import { BiSolidTime } from "react-icons/bi";
 import { MdChair } from "react-icons/md";
 import { AiFillDollarCircle } from "react-icons/ai";
 import SelectDay from "./SelectDay";
+import Link from "next/link";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm() {
@@ -46,7 +47,7 @@ export default function AddForm() {
 
   const handleSubmit = async () => {
     const resault = await trigger();
-    if (!resault) console.log(errors);
+    if (!resault) return;
     const formData = getValues();
     console.log(formData);
   };
@@ -103,7 +104,7 @@ export default function AddForm() {
             />
             <div className="flex flex-col gap-[10px] tablet:gap-[18px] laptop:flex-row laptop:gap-[14px]">
               <AddInput<addType>
-                placeholder="Start time"
+                placeholder="Start time (8AM ..)"
                 register={register}
                 name="startTime"
                 type="text"
@@ -111,7 +112,7 @@ export default function AddForm() {
                 icon={<BiSolidTime className="text-[18px]" />}
               />
               <AddInput<addType>
-                placeholder="End time"
+                placeholder="End time (12PM ..)"
                 register={register}
                 name="endTime"
                 type="text"
@@ -134,7 +135,7 @@ export default function AddForm() {
               register={register}
               name="seat"
               type="text"
-              error={errors.title?.message as string}
+              error={errors.seat?.message as string}
               icon={<MdChair className="text-[18px]" />}
             />
             <AddInput<addType>
@@ -149,7 +150,13 @@ export default function AddForm() {
         </section>
       </div>
       <div className="flex gap-2 self-end">
-        {/* <Button secondary>Cancel</Button>  */}
+        <Link
+          href="/activities"
+          className="flexCenter w-fit cursor-pointer gap-2 rounded border border-main bg-transparent px-3 py-[3px] font-openSans text-14xl text-main outline-none tablet:px-4 tablet:py-[6px]"
+        >
+          Cancel
+        </Link>
+
         <Button>Post</Button>
       </div>
     </form>

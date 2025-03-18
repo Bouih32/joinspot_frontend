@@ -6,7 +6,7 @@ export const getCities = async () => {
     const res = await axios.get(`${API_URL}/user/cities`, {
       withCredentials: true,
     });
-    console.log("API response:", res.status, res.data);
+
     return res.data;
   } catch (error) {
     console.error("Error fetching cities:", error);

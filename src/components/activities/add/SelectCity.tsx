@@ -1,9 +1,11 @@
 "use client";
 
+import { getCities } from "@/actions/getCities";
+import { City } from "@/libs/types";
 import { cn } from "@/libs/utils";
 import { set } from "date-fns";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TbTriangleFilled } from "react-icons/tb";
@@ -23,7 +25,15 @@ export default function SelectCity<T extends FieldValues>({
 }: SelectCityProps<T>) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const data = ["Casablanca", "Agadir", "Marrakech", "Fes"];
+  const [cities, setCities] = useState<City[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getCities();
+      setCities(data.cities);
+    };
+    getData();
+  }, []);
 
   const handleAdd = (city: string) => {
     setSelected(selected === city ? null : city);
@@ -41,8 +51,8 @@ export default function SelectCity<T extends FieldValues>({
       >
         <div className="flexCenter gap-2.5">
           {selected && (
-            <div className="grid h-[14px] place-content-center rounded bg-mainLightHover px-[6px] py-[1px] text-[8px] font-semibold text-main">
-              <span>{selected}</span>
+            <div className="grid h-[14px] place-content-center rounded bg-mainLightHover px-[6px] py-[1px] text-[10px] font-semibold text-main">
+              <span className="first-letter:uppercase"> {selected}</span>
             </div>
           )}
           <input
@@ -66,22 +76,22 @@ export default function SelectCity<T extends FieldValues>({
       </div>
       {open && (
         <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
-          {data.map((ele) => (
+          {cities.map((ele) => (
             <div
               onClick={() => {
-                handleAdd(ele);
-                addCity(ele);
+                handleAdd(ele.cityName);
+                addCity(ele.cityId);
               }}
               key={nanoid()}
               className={cn(
                 "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14sm text-neutralHover hover:bg-[#F8F8F8]",
-                selected === ele && "bg-[#F8F8F8]",
+                selected === ele.cityName && "bg-[#F8F8F8]",
               )}
             >
-              {ele === selected && (
+              {ele.cityName === selected && (
                 <TbTriangleFilled className="rotate-180 text-main" />
               )}
-              <p>{ele}</p>
+              <p className="first-letter:uppercase">{ele.cityName}</p>
             </div>
           ))}
         </div>

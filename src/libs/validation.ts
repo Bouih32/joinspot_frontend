@@ -133,13 +133,23 @@ export const searchValidation = z.object({
     .optional(),
 });
 
+const timeRegex = /^(0?[1-9]|1[0-2])(AM|PM)$/;
+
 export const addValidation = z.object({
   coverPic: z.string().trim().min(1),
   title: z.string().trim().min(1).max(50, { message: "Thats too long" }),
   description: z.string().trim().min(10).max(50, { message: "Thats too long" }),
   tags: z.string().trim().min(1),
-  startTime: z.string().trim().min(1),
-  endTime: z.string().trim().min(1),
+  startTime: z
+    .string()
+    .trim()
+    .min(1, "Time is required")
+    .regex(timeRegex, "Invalid time format. Use format like 12PM or 5PM."),
+  endTime: z
+    .string()
+    .trim()
+    .min(1, "Time is required")
+    .regex(timeRegex, "Invalid time format. Use format like 12PM or 5PM."),
   startDay: z.string().trim().min(1),
   endDay: z.string().trim().min(1),
   seat: z.string().trim().min(1),

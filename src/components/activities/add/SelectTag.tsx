@@ -60,7 +60,7 @@ export default function SelectTag({ addTag, error }: SelectTagProps) {
       >
         <p>
           {selected.length > 0
-            ? selected.map((ele) => ele.tagName).join("-")
+            ? selected.map((ele) => ele.tagName).join(" - ")
             : "Select tags"}
         </p>
         {open ? (
@@ -93,7 +93,7 @@ export default function SelectTag({ addTag, error }: SelectTagProps) {
                   selected.includes(ele) && "rotate-45 text-main",
                 )}
               />
-              <p>{ele.tagName}</p>
+              <p className="first-letter:uppercase">{ele.tagName}</p>
             </div>
           ))}
         </div>
