@@ -130,7 +130,12 @@ export default function Calender({ handleClose, add }: CalenderProps) {
   const calendarDays = generateCalendarDays(currentDate);
 
   return (
-    <div className="flex w-full flex-col gap-4 self-center bg-white p-[5.5px] shadow-22xl tablet:w-[324px] tablet:p-4">
+    <div
+      className={cn(
+        "flex w-full flex-col gap-4 self-center bg-white p-[5.5px] shadow-22xl tablet:w-[324px] tablet:p-4",
+        add && "w-full",
+      )}
+    >
       <div className="flexBetween text-12xl text-neutral tablet:text-16xl">
         <MdKeyboardArrowLeft
           className="cursor-pointer text-[20px]"

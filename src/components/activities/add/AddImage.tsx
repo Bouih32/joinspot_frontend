@@ -1,10 +1,16 @@
 "use client";
 
+import { cn } from "@/libs/utils";
 import { ChangeEvent, useRef, useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { MdOutlineStar } from "react-icons/md";
 
-export default function AddImage() {
+type AddImageProps = {
+  addCover: (cover: string) => void;
+  error: string;
+};
+
+export default function AddImage({ addCover, error }: AddImageProps) {
   const [imageUrl, setImageUrl] = useState("");
 
   const uploadRef = useRef<HTMLInputElement>(null);
@@ -34,7 +40,8 @@ export default function AddImage() {
 
       if (result.secure_url) {
         setImageUrl(result.secure_url);
-        console.log("Image URL:", result.secure_url); // Log the URL
+        console.log("Image URL:", result.secure_url);
+        addCover(result.secure_url); // Log the URL
         // Now you can store this imageUrl in your database
       } else {
         console.error("Upload failed:", result); // Handle errors
@@ -45,7 +52,10 @@ export default function AddImage() {
   };
   return (
     <div
-      className="flex cursor-pointer flex-col items-start gap-2 laptop:items-center"
+      className={cn(
+        "flex cursor-pointer flex-col items-start gap-2 laptop:items-center",
+        error && "border-error",
+      )}
       onClick={() => uploadRef.current?.click()}
     >
       <div

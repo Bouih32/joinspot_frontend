@@ -35,8 +35,30 @@ export default function AddForm() {
     setValue("cityId", city);
   };
 
+  const addDay = (day: string[]) => {
+    setValue("startDay", day[0]);
+    setValue("endDay", day[1]);
+  };
+
+  const addCover = (cover: string) => {
+    setValue("coverPic", cover);
+  };
+
+  const handleSubmit = async () => {
+    const resault = await trigger();
+    if (!resault) console.log(errors);
+    const formData = getValues();
+    console.log(formData);
+  };
+
   return (
-    <form className="flex flex-col gap-[21px] tablet:gap-[36px]">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+      className="flex flex-col gap-[21px] tablet:gap-[36px]"
+    >
       {Object.keys(errors).length > 0 && (
         <div className="w-full rounded border-error bg-errorHover py-1 text-center text-10xxl text-error tablet:text-12xxl">
           <p className="hidden tablet:block">
@@ -50,7 +72,10 @@ export default function AddForm() {
       )}
       <div className="flex flex-col gap-[21px] tablet:gap-[36px] laptop:flex-row">
         <section className="flex flex-col items-center gap-[21px] tablet:flex-row tablet:items-start tablet:justify-between tablet:gap-[36px]">
-          <AddImage />
+          <AddImage
+            addCover={addCover}
+            error={errors.coverPic?.message as string}
+          />
 
           <div className="w-full space-y-[10px] tablet:w-[291px] tablet:space-y-[18px] laptop:w-[288px]">
             <AddInput<addType>
@@ -66,13 +91,16 @@ export default function AddForm() {
               name="description"
               error={errors.description?.message as string}
             />
-            <SelectTag addTag={addTag} />
+            <SelectTag addTag={addTag} error={errors.tags?.message as string} />
           </div>
         </section>
 
         <section className="flex w-full flex-col gap-[10px] tablet:flex-row tablet:justify-between tablet:gap-[18px] laptop:w-[288px] laptop:flex-col laptop:justify-start">
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
-            <SelectDay />
+            <SelectDay
+              addDay={addDay}
+              error={errors.startDay?.message as string}
+            />
             <div className="flex flex-col gap-[10px] tablet:gap-[18px] laptop:flex-row laptop:gap-[14px]">
               <AddInput<addType>
                 placeholder="Start time"
@@ -93,7 +121,14 @@ export default function AddForm() {
             </div>
           </div>
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
-            <SelectCity addCity={addCity} />
+            <SelectCity<addType>
+              addCity={addCity}
+              error={
+                errors.cityId?.message || (errors.location?.message as string)
+              }
+              register={register}
+              name="location"
+            />
             <AddInput<addType>
               placeholder="Number of seats"
               register={register}
@@ -114,7 +149,8 @@ export default function AddForm() {
         </section>
       </div>
       <div className="flex gap-2 self-end">
-        <Button secondary>Cancel</Button> <Button>Post</Button>
+        {/* <Button secondary>Cancel</Button>  */}
+        <Button>Post</Button>
       </div>
     </form>
   );

@@ -8,23 +8,27 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 type SelectTagProps = {
   addTag: (tag: string) => void;
+  error: string;
 };
 
-export default function SelectTag({ addTag }: SelectTagProps) {
+export default function SelectTag({ addTag, error }: SelectTagProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const data = ["sleepng", "running", "swiming", "eating"];
 
+  const handletag = (tag: string) => {
+    const data = selected?.includes(tag)
+      ? selected.filter((ele) => ele !== tag) // Remove if already present
+      : selected.length < 3
+        ? [...selected, tag]
+        : selected;
+
+    return data;
+  };
+
   const handleAdd = (tag: string) => {
-    setSelected(
-      selected?.includes(tag)
-        ? selected.filter((ele) => ele !== tag) // Remove if already present
-        : selected.length < 3
-          ? [...selected, tag]
-          : selected,
-    );
+    setSelected(handletag(tag));
     setOpen(false);
-    addTag(selected.join("-"));
   };
 
   return (
@@ -36,6 +40,7 @@ export default function SelectTag({ addTag }: SelectTagProps) {
         className={cn(
           "flexBetween h-[30px] w-full cursor-pointer gap-3 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] leading-[24px] text-secondDark",
           selected.length > 0 && "font-semibold text-main",
+          error && "border-error",
         )}
       >
         <p>{selected.length > 0 ? selected.join("-") : "Select tags"}</p>
@@ -49,7 +54,10 @@ export default function SelectTag({ addTag }: SelectTagProps) {
         <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
           {data.map((ele) => (
             <div
-              onClick={() => handleAdd(ele)}
+              onClick={() => {
+                handleAdd(ele);
+                addTag(handletag(ele).join("-"));
+              }}
               key={nanoid()}
               className={cn(
                 "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14lg text-neutralHover hover:bg-[#F8F8F8]",

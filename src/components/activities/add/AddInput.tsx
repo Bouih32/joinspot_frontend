@@ -18,7 +18,6 @@ export default function AddInput<T extends FieldValues>({
   placeholder,
   name,
   type,
-
   register,
 }: InputProps<T>) {
   return (
@@ -41,9 +40,6 @@ export default function AddInput<T extends FieldValues>({
 
         {icon && icon}
       </div>
-      {error && (
-        <p className="text-start font-openSans text-10sm text-error">{error}</p>
-      )}
     </div>
   );
 }

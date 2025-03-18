@@ -4,14 +4,23 @@ import { cn } from "@/libs/utils";
 import { set } from "date-fns";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TbTriangleFilled } from "react-icons/tb";
 
-type SelectCityProps = {
+type SelectCityProps<T extends FieldValues> = {
   addCity: (city: string) => void;
+  error: string;
+  name: Path<T>;
+  register: UseFormRegister<T>;
 };
 
-export default function SelectCity({ addCity }: SelectCityProps) {
+export default function SelectCity<T extends FieldValues>({
+  addCity,
+  error,
+  register,
+  name,
+}: SelectCityProps<T>) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const data = ["Casablanca", "Agadir", "Marrakech", "Fes"];
@@ -27,6 +36,7 @@ export default function SelectCity({ addCity }: SelectCityProps) {
         className={cn(
           "flexBetween h-[30px] w-full cursor-pointer rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] leading-[24px] text-secondDark",
           selected && "font-semibold text-main",
+          error && "border-error",
         )}
       >
         <div className="flexCenter gap-2.5">
@@ -37,8 +47,7 @@ export default function SelectCity({ addCity }: SelectCityProps) {
           )}
           <input
             type="text"
-            name=""
-            id=""
+            {...register(name)}
             className="text-[14px] font-normal leading-[24px] text-secondDark outline-none"
           />
         </div>
@@ -58,7 +67,10 @@ export default function SelectCity({ addCity }: SelectCityProps) {
         <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
           {data.map((ele) => (
             <div
-              onClick={() => handleAdd(ele)}
+              onClick={() => {
+                handleAdd(ele);
+                addCity(ele);
+              }}
               key={nanoid()}
               className={cn(
                 "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14sm text-neutralHover hover:bg-[#F8F8F8]",
