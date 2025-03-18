@@ -8,7 +8,7 @@ export const getCategories = async () => {
     });
     return res.data;
   } catch (error) {
-    console.log("Login error", error);
+    console.log(" error", error);
     if (isAxiosError(error) && error.response) {
       return error.response;
     } else {
@@ -31,7 +31,35 @@ export const getCategoriesServer = async () => {
 
     return data.categories;
   } catch (error) {
-    console.log("Login error", error);
+    console.log(" error", error);
     return { error: error instanceof Error ? error.message : "Unknown error" };
+  }
+};
+
+type TagsT = {
+  tagId: string;
+  tagName: string;
+  deletedAt: Date | null;
+  categoryId: string;
+};
+
+export const getTagsById = async () => {
+  try {
+    const res = await axios.get(
+      `${API_URL}/category/67b654b90614d66231800307/tags`,
+      {
+        withCredentials: true,
+      },
+    );
+    const info: TagsT[] = res.data.data;
+
+    return info.map((ele) => ({ tagName: ele.tagName, tagId: ele.tagId }));
+  } catch (error) {
+    console.log(" error", error);
+    if (isAxiosError(error) && error.response) {
+      return error.response;
+    } else {
+      throw error;
+    }
   }
 };

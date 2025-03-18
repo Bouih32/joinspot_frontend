@@ -1,8 +1,9 @@
 "use client";
 
+import { getTagsById } from "@/actions/getCategory";
 import { cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgAdd } from "react-icons/cg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -11,23 +12,37 @@ type SelectTagProps = {
   error: string;
 };
 
+type TagsT = { tagName: string; tagId: string };
+
 export default function SelectTag({ addTag, error }: SelectTagProps) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
-  const data = ["sleepng", "running", "swiming", "eating"];
+  const [selected, setSelected] = useState<TagsT[]>([]);
+  const [tags, setTags] = useState<TagsT[]>([]);
 
-  const handletag = (tag: string) => {
-    const data = selected?.includes(tag)
-      ? selected.filter((ele) => ele !== tag) // Remove if already present
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getTagsById();
+      if (Array.isArray(data)) {
+        setTags(data); // Ensure data is an array before setting the state
+      }
+    };
+    getData();
+  }, []);
+
+  const handleTag = (tag: TagsT) => {
+    const exists = selected?.some((ele) => ele.tagName === tag.tagName);
+
+    const data = exists
+      ? selected.filter((ele) => ele.tagName !== tag.tagName) // Remove if already present
       : selected.length < 3
-        ? [...selected, tag]
-        : selected;
+        ? [...selected, tag] // Add if under limit
+        : selected; // Keep the same if limit is reached
 
     return data;
   };
 
-  const handleAdd = (tag: string) => {
-    setSelected(handletag(tag));
+  const handleAdd = (tag: TagsT) => {
+    setSelected(handleTag(tag));
     setOpen(false);
   };
 
@@ -43,7 +58,11 @@ export default function SelectTag({ addTag, error }: SelectTagProps) {
           error && "border-error",
         )}
       >
-        <p>{selected.length > 0 ? selected.join("-") : "Select tags"}</p>
+        <p>
+          {selected.length > 0
+            ? selected.map((ele) => ele.tagName).join("-")
+            : "Select tags"}
+        </p>
         {open ? (
           <IoIosArrowUp className="hover:text-main" />
         ) : (
@@ -52,11 +71,15 @@ export default function SelectTag({ addTag, error }: SelectTagProps) {
       </div>
       {open && (
         <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
-          {data.map((ele) => (
+          {tags.map((ele) => (
             <div
               onClick={() => {
                 handleAdd(ele);
-                addTag(handletag(ele).join("-"));
+                addTag(
+                  handleTag(ele)
+                    .map((ele) => ele.tagId)
+                    .join("-"),
+                );
               }}
               key={nanoid()}
               className={cn(
@@ -70,7 +93,7 @@ export default function SelectTag({ addTag, error }: SelectTagProps) {
                   selected.includes(ele) && "rotate-45 text-main",
                 )}
               />
-              <p>{ele}</p>
+              <p>{ele.tagName}</p>
             </div>
           ))}
         </div>
