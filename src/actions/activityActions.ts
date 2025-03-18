@@ -4,18 +4,18 @@ import Cookies from "js-cookie";
 
 export const addActivity = async (activity: AddActivityT) => {
   // On the client side
-  const token = Cookies.get("token"); // Retrieve the token from cookies
-  console.log(token);
-  if (!token) return null;
+  // const token = Cookies.get("token"); // Retrieve the token from cookies
+  // console.log(token);
+  // if (!token) return null;
 
   try {
     const res = await fetch(`${API_URL}/activity/add`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${token}`,
+      // },
       body: JSON.stringify(activity),
     });
 
