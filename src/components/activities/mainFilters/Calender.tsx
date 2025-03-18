@@ -13,9 +13,10 @@ interface CalendarDay {
 
 type CalenderProps = {
   handleClose: (dates: string[]) => void;
+  add?: boolean;
 };
 
-export default function Calender({ handleClose }: CalenderProps) {
+export default function Calender({ handleClose, add }: CalenderProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState<number[]>([]);
   const [todayDate, setTodayDate] = useState<Date | null>(null);
@@ -43,7 +44,7 @@ export default function Calender({ handleClose }: CalenderProps) {
       return date.getTime(); // Get Unix timestamp in milliseconds
     });
 
-    addParam("date", unixTimestamps.join("_"), params, router);
+    !add && addParam("date", unixTimestamps.join("_"), params, router);
 
     handleClose(data);
   };
@@ -129,7 +130,7 @@ export default function Calender({ handleClose }: CalenderProps) {
   const calendarDays = generateCalendarDays(currentDate);
 
   return (
-    <div className="flex w-full flex-col gap-4 self-center p-[5.5px] shadow-22xl tablet:w-[324px] tablet:p-4">
+    <div className="flex w-full flex-col gap-4 self-center bg-white p-[5.5px] shadow-22xl tablet:w-[324px] tablet:p-4">
       <div className="flexBetween text-12xl text-neutral tablet:text-16xl">
         <MdKeyboardArrowLeft
           className="cursor-pointer text-[20px]"

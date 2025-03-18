@@ -10,6 +10,10 @@ import AddImage from "./AddImage";
 import Button from "@/components/Button";
 import SelectTag from "./SelectTag";
 import SelectCity from "./SelectCity";
+import { BiSolidTime } from "react-icons/bi";
+import { MdChair } from "react-icons/md";
+import { AiFillDollarCircle } from "react-icons/ai";
+import SelectDay from "./SelectDay";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm() {
@@ -17,14 +21,33 @@ export default function AddForm() {
     register,
     trigger,
     formState: { errors },
-    setError,
     getValues,
     setValue,
   } = useForm<addType>({
     resolver: zodResolver(addValidation),
   });
+
+  const addTag = (tags: string) => {
+    setValue("tags", tags);
+  };
+
+  const addCity = (city: string) => {
+    setValue("cityId", city);
+  };
+
   return (
     <form className="flex flex-col gap-[21px] tablet:gap-[36px]">
+      {Object.keys(errors).length > 0 && (
+        <div className="w-full rounded border-error bg-errorHover py-1 text-center text-10xxl text-error tablet:text-12xxl">
+          <p className="hidden tablet:block">
+            Oops! Please fill in all required fields before publishing your
+            activity.
+          </p>
+          <p className="tablet:hidden">
+            Please complete all required fields before submitting.
+          </p>
+        </div>
+      )}
       <div className="flex flex-col gap-[21px] tablet:gap-[36px] laptop:flex-row">
         <section className="flex flex-col items-center gap-[21px] tablet:flex-row tablet:items-start tablet:justify-between tablet:gap-[36px]">
           <AddImage />
@@ -43,43 +66,41 @@ export default function AddForm() {
               name="description"
               error={errors.description?.message as string}
             />
-            <SelectTag />
+            <SelectTag addTag={addTag} />
           </div>
         </section>
+
         <section className="flex w-full flex-col gap-[10px] tablet:flex-row tablet:justify-between tablet:gap-[18px] laptop:w-[288px] laptop:flex-col laptop:justify-start">
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
-            <AddInput<addType>
-              placeholder="Your full name"
-              register={register}
-              name="title"
-              type="text"
-              error={errors.title?.message as string}
-            />
+            <SelectDay />
             <div className="flex flex-col gap-[10px] tablet:gap-[18px] laptop:flex-row laptop:gap-[14px]">
               <AddInput<addType>
-                placeholder="Your full name"
+                placeholder="Start time"
                 register={register}
-                name="title"
+                name="startTime"
                 type="text"
-                error={errors.title?.message as string}
+                error={errors.startTime?.message as string}
+                icon={<BiSolidTime className="text-[18px]" />}
               />
               <AddInput<addType>
-                placeholder="Your full name"
+                placeholder="End time"
                 register={register}
-                name="title"
+                name="endTime"
                 type="text"
-                error={errors.title?.message as string}
+                error={errors.endTime?.message as string}
+                icon={<BiSolidTime className="text-[18px]" />}
               />
             </div>
           </div>
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
-            <SelectCity />
+            <SelectCity addCity={addCity} />
             <AddInput<addType>
               placeholder="Number of seats"
               register={register}
               name="seat"
               type="text"
               error={errors.title?.message as string}
+              icon={<MdChair className="text-[18px]" />}
             />
             <AddInput<addType>
               placeholder="Price"
@@ -87,6 +108,7 @@ export default function AddForm() {
               name="price"
               type="text"
               error={errors.price?.message as string}
+              icon={<AiFillDollarCircle className="text-[18px]" />}
             />
           </div>
         </section>

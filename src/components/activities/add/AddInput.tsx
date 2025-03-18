@@ -14,7 +14,6 @@ type InputProps<T extends FieldValues> = {
 
 export default function AddInput<T extends FieldValues>({
   error,
-
   icon,
   placeholder,
   name,
@@ -27,7 +26,6 @@ export default function AddInput<T extends FieldValues>({
       <div
         className={cn(
           "flexBetween h-[30px] w-full gap-3 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[12px] leading-[24px] text-secondDark",
-
           error && "border-error text-error",
         )}
       >

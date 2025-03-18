@@ -6,7 +6,11 @@ import { useState } from "react";
 import { CgAdd } from "react-icons/cg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-export default function SelectTag() {
+type SelectTagProps = {
+  addTag: (tag: string) => void;
+};
+
+export default function SelectTag({ addTag }: SelectTagProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const data = ["sleepng", "running", "swiming", "eating"];
@@ -19,6 +23,8 @@ export default function SelectTag() {
           ? [...selected, tag]
           : selected,
     );
+    setOpen(false);
+    addTag(selected.join("-"));
   };
 
   return (
