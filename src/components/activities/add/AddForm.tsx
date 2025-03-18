@@ -9,6 +9,7 @@ import AddInput from "./AddInput";
 import AddImage from "./AddImage";
 import Button from "@/components/Button";
 import SelectTag from "./SelectTag";
+import SelectCity from "./SelectCity";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm() {
@@ -72,13 +73,7 @@ export default function AddForm() {
             </div>
           </div>
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
-            <AddInput<addType>
-              placeholder="Your full name"
-              register={register}
-              name="title"
-              type="text"
-              error={errors.title?.message as string}
-            />
+            <SelectCity />
             <AddInput<addType>
               placeholder="Number of seats"
               register={register}

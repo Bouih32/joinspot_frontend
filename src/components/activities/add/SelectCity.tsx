@@ -3,13 +3,13 @@
 import { cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import { CgAdd } from "react-icons/cg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { TbTriangleFilled } from "react-icons/tb";
 
-export default function SelectTag() {
+export default function SelectCity() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
-  const data = ["sleepng", "running", "swiming", "eating"];
+  const data = ["Casablanca", "Agadir", "Marrakech", "Fes"];
 
   const handleAdd = (tag: string) => {
     setSelected(
@@ -46,16 +46,11 @@ export default function SelectTag() {
               onClick={() => handleAdd(ele)}
               key={nanoid()}
               className={cn(
-                "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14lg text-neutralHover hover:bg-[#F8F8F8]",
+                "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14sm text-neutralHover hover:bg-[#F8F8F8]",
                 selected.includes(ele) && "bg-[#F8F8F8]",
               )}
             >
-              <CgAdd
-                className={cn(
-                  "text-[20px]",
-                  selected.includes(ele) && "rotate-45 text-main",
-                )}
-              />
+              <TbTriangleFilled />
               <p>{ele}</p>
             </div>
           ))}
