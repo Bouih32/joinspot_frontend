@@ -5,6 +5,7 @@ import MainFilters from "./mainFilters/MainFilters";
 import { getCachedCategories } from "@/libs/utils";
 import { GoPlus } from "react-icons/go";
 import Link from "next/link";
+import AddButton from "./add/AddButton";
 
 export default async function UpperHeader() {
   const categories = await getCachedCategories();
@@ -16,22 +17,12 @@ export default async function UpperHeader() {
           <Search />
 
           <MainFilters />
-          <Link
-            href="/activities/add"
-            className="hidden h-[30px] w-[30px] cursor-pointer place-content-center rounded-full border border-secondHover text-secondHover tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:text-white"
-          >
-            <GoPlus className="text-[20px]" />
-          </Link>
+          <AddButton />
         </Container>
       </div>
 
       <Container classname="flex items-center justify-end gap-2 pt-[6px] tablet:hidden">
-        <Link
-          href="/activities/add"
-          className="grid h-[30px] w-[30px] cursor-pointer place-content-center rounded-full border border-secondHover text-secondHover tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:text-white"
-        >
-          <GoPlus className="text-[20px]" />
-        </Link>
+        <AddButton mobile />
 
         <MainFilters mobile />
       </Container>
