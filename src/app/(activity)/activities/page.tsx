@@ -58,8 +58,7 @@ export default async function ActivitiesPage({
               data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
             )}
           </div>
-
-          <Pagination />
+          {data && data.length > 0 && <Pagination />}
         </main>
       </Container>
     </main>

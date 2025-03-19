@@ -11,7 +11,7 @@ export default function Story() {
 
       <section className="hidden w-full justify-between overflow-hidden bg-lines bg-cover bg-center bg-no-repeat tablet:relative tablet:flex">
         <Container>
-          <section className="flex flex-col py-[50px]">
+          <section className="flex flex-col space-y-40 pt-[50px]">
             <div className="space-y-4 laptop:space-y-5">
               <h1 className="title text-main">Our Story</h1>
               <SubTitle classname="text-darker laptop:w-[648px] w-[421px]">
@@ -50,7 +50,7 @@ export default function Story() {
           alt="people running"
           width={608}
           height={768}
-          className="absolute right-0 top-0 h-[700px] w-[425px] object-cover xl:h-[768px] xl:w-[608px]"
+          className="absolute right-0 top-0 h-full w-[425px] object-cover xl:w-[608px]"
         />
       </section>
     </>
