@@ -35,7 +35,7 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
   return (
     <section
       className={cn(
-        "flex min-w-[328px] select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
+        "flex h-[418px] min-w-[328px] select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
         full && "tablet:w-full",
       )}
