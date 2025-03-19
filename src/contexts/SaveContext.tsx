@@ -5,12 +5,22 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 type SaveContextT = {
   handleSave: (data: string) => void;
   data: string[];
+  handleSuccess: () => void;
+  success: boolean;
 };
 
 export const SaveContext = createContext<SaveContextT | null>(null);
 
 export default function SaveProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<string[]>([]); // Always start with an empty array
+  const [data, setData] = useState<string[]>([]);
+  const [success, setSuccess] = useState(false);
+
+  const handleSuccess = () => {
+    setSuccess(true);
+    const timout = setTimeout(() => {
+      setSuccess(false);
+    }, 5000);
+  };
 
   useEffect(() => {
     const storedData = localStorage.getItem("saved");
@@ -41,7 +51,7 @@ export default function SaveProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SaveContext.Provider value={{ data, handleSave }}>
+    <SaveContext.Provider value={{ data, handleSave, handleSuccess, success }}>
       {children}
     </SaveContext.Provider>
   );

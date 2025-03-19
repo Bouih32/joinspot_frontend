@@ -17,12 +17,16 @@ import SelectDay from "./SelectDay";
 import Link from "next/link";
 import { addActivity } from "@/actions/activityActions";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SaveContext } from "@/contexts/SaveContext";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm({ userCategory }: { userCategory: string }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const context = useContext(SaveContext);
+  if (!context) return;
+  const { handleSuccess } = context;
 
   const {
     register,
@@ -58,6 +62,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
     setLoading(true);
     await addActivity(formData);
     setLoading(false);
+    handleSuccess();
     router.push("/activities");
   };
 
@@ -70,7 +75,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
       className="flex flex-col gap-[21px] tablet:gap-[36px]"
     >
       {Object.keys(errors).length > 0 && (
-        <div className="w-full rounded border-error bg-errorHover py-1 text-center text-10xxl text-error tablet:text-12xxl">
+        <div className="w-full rounded border border-error bg-errorHover py-1 text-center text-10xxl text-error tablet:text-12xxl">
           <p className="hidden tablet:block">
             Oops! Please fill in all required fields before publishing your
             activity.

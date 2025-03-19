@@ -1,6 +1,7 @@
 import { getToken } from "@/actions/decodeToken";
 import { getActivities } from "@/actions/getActivities";
 import ActivityCard from "@/components/activities/ActivityCard";
+import Success from "@/components/activities/add/Success";
 import ClearAll from "@/components/activities/mainFilters/ClearAll";
 import NoActivities from "@/components/activities/NoActivities";
 import SaveWrapper from "@/components/activities/SaveWrapper";
@@ -44,6 +45,7 @@ export default async function ActivitiesPage({
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
         <main className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
+          <Success />
           <ClearAll />
           {params.my === "faq" ? (
             <Questions activities />
