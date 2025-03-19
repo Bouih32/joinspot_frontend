@@ -152,7 +152,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
               placeholder="Number of seats"
               register={register}
               name="seat"
-              type="text"
+              type="number"
               error={errors.seat?.message as string}
               icon={<MdChair className="text-[18px]" />}
             />
@@ -160,7 +160,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
               placeholder="Price"
               register={register}
               name="price"
-              type="text"
+              type="number"
               error={errors.price?.message as string}
               icon={<AiFillDollarCircle className="text-[18px]" />}
             />

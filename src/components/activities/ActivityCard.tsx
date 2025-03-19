@@ -42,7 +42,7 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
     >
       <div
         className={cn(
-          `tablet:coverMore -before:right-5 relative h-[177px] max-w-[304px] rounded-[8px] bg-cover bg-bottom p-2 before:z-30 before:bg-activityGrad tablet:h-[245px] tablet:w-[274px] tablet:rounded-none`,
+          `tablet:coverMore -before:right-5 relative h-[177px] w-[304px] rounded-[8px] bg-cover bg-bottom p-2 before:z-30 before:bg-activityGrad tablet:h-[245px] tablet:w-[274px] tablet:rounded-none`,
           full && "tablet:w-[287px] laptop:h-[319px] laptop:w-[475px]",
         )}
         style={{

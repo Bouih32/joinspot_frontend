@@ -27,6 +27,19 @@
   }
 }
 
+input[type="number"] {
+  appearance: textfield; /* Standard property */
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none; /* Standard property */
+  margin: 0;
+}
+
 label:has(input:checked) {
   background-color: #fe5722;
 }
