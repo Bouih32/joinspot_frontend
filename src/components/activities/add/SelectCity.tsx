@@ -75,26 +75,32 @@ export default function SelectCity<T extends FieldValues>({
         </div>
       </div>
       {open && (
-        <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
-          {cities.map((ele) => (
-            <div
-              onClick={() => {
-                handleAdd(ele.cityName);
-                addCity(ele.cityId);
-              }}
-              key={nanoid()}
-              className={cn(
-                "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14sm text-neutralHover hover:bg-[#F8F8F8]",
-                selected === ele.cityName && "bg-[#F8F8F8]",
-              )}
-            >
-              {ele.cityName === selected && (
-                <TbTriangleFilled className="rotate-180 text-main" />
-              )}
-              <p className="first-letter:uppercase">{ele.cityName}</p>
-            </div>
-          ))}
-        </div>
+        <>
+          <div
+            className="fixed inset-0 cursor-pointer bg-transparent"
+            onClick={() => setOpen(false)}
+          ></div>
+          <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
+            {cities.map((ele) => (
+              <div
+                onClick={() => {
+                  handleAdd(ele.cityName);
+                  addCity(ele.cityId);
+                }}
+                key={nanoid()}
+                className={cn(
+                  "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14sm text-neutralHover hover:bg-[#F8F8F8]",
+                  selected === ele.cityName && "bg-[#F8F8F8]",
+                )}
+              >
+                {ele.cityName === selected && (
+                  <TbTriangleFilled className="rotate-180 text-main" />
+                )}
+                <p className="first-letter:uppercase">{ele.cityName}</p>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

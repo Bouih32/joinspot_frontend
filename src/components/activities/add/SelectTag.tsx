@@ -52,16 +52,14 @@ export default function SelectTag({
   };
 
   return (
-    <div
-      className="relative space-y-1"
-      onClick={() => setOpen((prev) => !prev)}
-    >
+    <div className="relative space-y-1">
       <div
         className={cn(
           "flexBetween h-[30px] w-full cursor-pointer gap-3 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] leading-[24px] text-secondDark",
           selected.length > 0 && "font-semibold text-main",
           error && "border-error",
         )}
+        onClick={() => setOpen((prev) => !prev)}
       >
         <p>
           {selected.length > 0
@@ -75,33 +73,39 @@ export default function SelectTag({
         )}
       </div>
       {open && (
-        <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
-          {tags.map((ele) => (
-            <div
-              onClick={() => {
-                handleAdd(ele);
-                addTag(
-                  handleTag(ele)
-                    .map((ele) => ele.tagId)
-                    .join("-"),
-                );
-              }}
-              key={nanoid()}
-              className={cn(
-                "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14lg text-neutralHover hover:bg-[#F8F8F8]",
-                selected.includes(ele) && "bg-[#F8F8F8]",
-              )}
-            >
-              <CgAdd
+        <>
+          <div
+            className="fixed inset-0 cursor-pointer bg-transparent"
+            onClick={() => setOpen(false)}
+          ></div>
+          <div className="absolute left-0 top-[120%] z-50 w-full space-y-[5px] rounded bg-white p-[6px] shadow-22xl">
+            {tags.map((ele) => (
+              <div
+                onClick={() => {
+                  handleAdd(ele);
+                  addTag(
+                    handleTag(ele)
+                      .map((ele) => ele.tagId)
+                      .join("-"),
+                  );
+                }}
+                key={nanoid()}
                 className={cn(
-                  "text-[20px]",
-                  selected.includes(ele) && "rotate-45 text-main",
+                  "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14lg text-neutralHover hover:bg-[#F8F8F8]",
+                  selected.includes(ele) && "bg-[#F8F8F8]",
                 )}
-              />
-              <p className="first-letter:uppercase">{ele.tagName}</p>
-            </div>
-          ))}
-        </div>
+              >
+                <CgAdd
+                  className={cn(
+                    "text-[20px]",
+                    selected.includes(ele) && "rotate-45 text-main",
+                  )}
+                />
+                <p className="first-letter:uppercase">{ele.tagName}</p>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

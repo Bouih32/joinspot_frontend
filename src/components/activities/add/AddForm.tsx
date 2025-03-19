@@ -171,7 +171,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
         </Link>
 
         <Button>
-          Post{" "}
+          Post
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
         </Button>
       </div>
