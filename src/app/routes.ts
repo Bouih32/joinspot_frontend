@@ -9,6 +9,7 @@ export const publicRoutes = [
 export const authRoutes = ["/login", "/signup"];
 export const apiAuthPrefix = "/api/auth";
 export const redirectUser = "/";
+export const organizerRoutes = ["/activities/add"];
 export const redirectAdmin = "/account/admin";
 export const adminOnly = "/account/admin";
 export const userOnly = "/user";

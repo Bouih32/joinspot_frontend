@@ -50,9 +50,11 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
         }}
       >
         <section className="flexBetween">
-          <div className="flexCenter z-40 w-fit gap-1 rounded bg-main px-3 py-[3px] font-openSans text-10xxl text-white tablet:px-4 tablet:py-[6px]">
-            <MdLocationOn />
-            <h3>{data.city}</h3>
+          <div className="flexCenter z-40 w-fit gap-1 rounded bg-main px-3 py-[3px] font-openSans text-10xxl text-white tablet:py-[6px]">
+            <MdLocationOn className="text-12sm tablet:text-16sm" />
+            <h3 className="text-12xxl first-letter:uppercase tablet:text-14xxl">
+              {data.city}
+            </h3>
           </div>
           <Save id={data.activityId} />
         </section>

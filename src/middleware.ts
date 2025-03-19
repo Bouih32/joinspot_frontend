@@ -1,12 +1,28 @@
 // middleware.ts
 import { NextRequest, NextResponse } from "next/server";
-import { authRoutes, publicRoutes } from "./app/routes";
+import { authRoutes, organizerRoutes, publicRoutes } from "./app/routes";
+import { jwtVerify } from "jose";
 
-export function middleware(req: NextRequest) {
+const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET!);
+async function verifyToken(token: string) {
+  try {
+    const { payload } = await jwtVerify(token, SECRET);
+    return payload;
+  } catch (error) {
+    console.error("Invalid token:", error);
+    return null;
+  }
+}
+
+export async function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const token = req.cookies.get("token");
 
+  const decoded = token ? await verifyToken(token.value) : null;
+  const role = decoded?.role;
+
   const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
+  const isOrganizerRoute = organizerRoutes.includes(nextUrl.pathname);
   const isPublicRoutes =
     publicRoutes.includes(nextUrl.pathname) ||
     nextUrl.pathname.startsWith("/reset");
@@ -20,6 +36,13 @@ export function middleware(req: NextRequest) {
 
   if (isAuthRoutes) {
     if (isLoggedIn) return NextResponse.redirect(new URL("/", nextUrl));
+
+    return undefined;
+  }
+
+  if (isLoggedIn) {
+    if (isOrganizerRoute && role !== "ORGANISER")
+      return NextResponse.redirect(new URL("/activities", nextUrl));
 
     return undefined;
   }
