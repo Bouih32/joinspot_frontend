@@ -40,22 +40,25 @@ export default async function ActivitiesPage({
       : await getActivities(params);
 
   return (
-    <main className="space-y-5 tablet:space-y-[32px]">
+    <main className="min-h-screen space-y-5 pb-5 tablet:space-y-[32px]">
       <UpperHeader />
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
-        <main className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
-          <Success />
-          <ClearAll />
-          {params.my === "faq" ? (
-            <Questions activities />
-          ) : params.my === "save" ? (
-            <SaveWrapper activities={data} />
-          ) : !data || data.length === 0 ? (
-            <NoActivities token={token} params={params} />
-          ) : (
-            data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
-          )}
+        <main className="flex w-full flex-col justify-between">
+          <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
+            <Success />
+            <ClearAll />
+            {params.my === "faq" ? (
+              <Questions activities />
+            ) : params.my === "save" ? (
+              <SaveWrapper activities={data} />
+            ) : !data || data.length === 0 ? (
+              <NoActivities token={token} params={params} />
+            ) : (
+              data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
+            )}
+          </div>
+
           <Pagination />
         </main>
       </Container>

@@ -3,11 +3,17 @@
 import Button from "@/components/Button";
 import { cn } from "@/libs/utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
 
-export default function AddButton({ mobile }: { mobile?: boolean }) {
+type AddButtonProps = {
+  mobile?: boolean;
+  role: string | null;
+};
+export default function AddButton({ mobile, role }: AddButtonProps) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     if (open) {
       const scrollbarWidth =
@@ -24,6 +30,13 @@ export default function AddButton({ mobile }: { mobile?: boolean }) {
       document.body.style.paddingRight = "";
     };
   }, [open]);
+
+  const handleAdd = () => {
+    if (!role || role === "VISITOR") {
+      setOpen(true);
+    } else router.push("/activities/add");
+  };
+
   return (
     <div className="">
       <div
@@ -31,7 +44,7 @@ export default function AddButton({ mobile }: { mobile?: boolean }) {
           "hidden h-[30px] w-[30px] cursor-pointer place-content-center rounded-full border border-secondHover text-secondHover tablet:grid tablet:h-[35px] tablet:w-[35px] tablet:border-none tablet:bg-main tablet:text-white",
           mobile && "grid tablet:hidden",
         )}
-        onClick={() => setOpen(true)}
+        onClick={handleAdd}
       >
         <GoPlus className="text-[20px]" />
       </div>
