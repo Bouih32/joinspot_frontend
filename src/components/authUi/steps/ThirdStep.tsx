@@ -35,7 +35,7 @@ export default function ThirdStep() {
     if (!resault) return;
     const formData = getValues();
     handleData(formData);
-    console.log(formData);
+
     setStep(4);
   };
   return (

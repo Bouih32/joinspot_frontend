@@ -8,12 +8,12 @@ export default function ClearAll() {
   const router = useRouter();
   const params = useSearchParams();
   const hasParams = Array.from(params.entries()).length > 0;
-  console.log(hasParams);
+
   return (
     <>
       {hasParams ? (
         <div
-          className="text-12xxl flexCenter cursor-pointer gap-[6px] self-end rounded bg-mainLightHover px-2 py-1 text-main"
+          className="flexCenter cursor-pointer gap-[6px] self-end rounded bg-mainLightHover px-2 py-1 text-12xxl text-main"
           onClick={() => {
             router.replace(window.location.pathname, { scroll: false });
           }}

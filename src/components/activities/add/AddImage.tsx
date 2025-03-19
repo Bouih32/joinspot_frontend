@@ -44,7 +44,6 @@ export default function AddImage({ addCover, error }: AddImageProps) {
 
       if (result.secure_url) {
         setImageUrl(result.secure_url);
-        console.log("Image URL:", result.secure_url);
         addCover(result.secure_url);
         setLoading(false);
         setDone(true);

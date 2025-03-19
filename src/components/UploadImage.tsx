@@ -38,8 +38,6 @@ const ImageUpload = () => {
 
       if (result.secure_url) {
         setImageUrl(result.secure_url);
-        console.log("Image URL:", result.secure_url); // Log the URL
-        // Now you can store this imageUrl in your database
       } else {
         console.error("Upload failed:", result); // Handle errors
       }

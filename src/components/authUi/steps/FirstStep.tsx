@@ -58,7 +58,6 @@ export default function FirstStep() {
 
     const formData = getValues();
     handleData(formData);
-    console.log(formData);
 
     formData.role === "visitor" ? setStep(5) : setStep(2);
   };

@@ -59,10 +59,9 @@ export default function SecondStep() {
   const handleSubmit = async () => {
     const resault = await trigger();
 
-    console.log(errors);
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
+
     handleData(formData);
 
     setStep(3);

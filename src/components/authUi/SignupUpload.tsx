@@ -59,7 +59,6 @@ export default function SignupUpload<T extends FieldValues>({
 
       if (result.secure_url) {
         setValue(name, result.secure_url);
-        console.log("Image URL:", result.secure_url);
         setLoading(false);
       } else {
         console.error("Upload failed:", result);
