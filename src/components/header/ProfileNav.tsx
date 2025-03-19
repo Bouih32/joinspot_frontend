@@ -10,17 +10,27 @@ import { nanoid } from "nanoid";
 import { logout } from "@/actions/logout";
 import { useContext } from "react";
 import { NavContext } from "@/contexts/NavigationContext";
+import { LogedUiProps } from "./LogedUi";
 
-export default function ProfileNav({ avatar }: { avatar: string }) {
+export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const handleLogOut = async () => {
     await logout();
   };
 
-  const dropNav = [
-    { icon: <RiVipCrown2Fill />, title: "Upgrade Pro", href: "/update" },
-    { icon: <CgProfile />, title: "Profile", href: "/profile" },
-    { icon: <RiSettings3Line />, title: "Settings", href: "/settings" },
-  ];
+  const role =
+    typeof isLogged !== "string" && isLogged?.role ? isLogged.role : undefined;
+
+  const dropNav =
+    role === "VISITOR"
+      ? [
+          { icon: <RiVipCrown2Fill />, title: "Upgrade Pro", href: "/update" },
+          { icon: <CgProfile />, title: "Profile", href: "/profile" },
+          { icon: <RiSettings3Line />, title: "Settings", href: "/settings" },
+        ]
+      : [
+          { icon: <CgProfile />, title: "Profile", href: "/profile" },
+          { icon: <RiSettings3Line />, title: "Settings", href: "/settings" },
+        ];
 
   const context = useContext(NavContext);
   if (!context) return;
@@ -47,7 +57,7 @@ export default function ProfileNav({ avatar }: { avatar: string }) {
           ></div>
 
           <section
-            className="shadow-23xl absolute right-0 top-[115%] z-[600] w-[143px] space-y-2.5 rounded bg-secondLight p-3 laptop:w-[159px] laptop:p-4"
+            className="absolute right-0 top-[115%] z-[600] w-[143px] space-y-2.5 rounded bg-secondLight p-3 shadow-23xl laptop:w-[159px] laptop:p-4"
             onClick={(e) => e.stopPropagation()}
           >
             {dropNav.map((ele, index) => (

@@ -29,7 +29,7 @@ export default async function Header() {
             </Link>
             <Nav classname="hidden tablet:block" navInfo={navLinks} />
             {isLogged ? (
-              <LogedUi avatar={userImg.avatar} />
+              <LogedUi avatar={userImg.avatar} isLogged={isLogged} />
             ) : (
               <div className="tablet:flexCenter hidden gap-[5px] tablet:gap-2.5">
                 <Link href="/signup">
