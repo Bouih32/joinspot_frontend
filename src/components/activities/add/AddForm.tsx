@@ -12,15 +12,18 @@ import SelectTag from "./SelectTag";
 import SelectCity from "./SelectCity";
 import { BiSolidTime } from "react-icons/bi";
 import { MdChair } from "react-icons/md";
-import { AiFillDollarCircle } from "react-icons/ai";
+import { AiFillDollarCircle, AiOutlineLoading3Quarters } from "react-icons/ai";
 import SelectDay from "./SelectDay";
 import Link from "next/link";
 import { addActivity } from "@/actions/activityActions";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm({ userCategory }: { userCategory: string }) {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   const {
     register,
     trigger,
@@ -52,7 +55,9 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
+    setLoading(true);
     await addActivity(formData);
+    setLoading(false);
     router.push("/activities");
   };
 
@@ -165,7 +170,10 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
           Cancel
         </Link>
 
-        <Button>Post</Button>
+        <Button>
+          Post{" "}
+          {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+        </Button>
       </div>
     </form>
   );

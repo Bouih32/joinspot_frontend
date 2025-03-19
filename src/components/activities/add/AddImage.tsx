@@ -2,6 +2,7 @@
 
 import { cn } from "@/libs/utils";
 import { ChangeEvent, useRef, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiImageAdd } from "react-icons/bi";
 import { MdOutlineStar } from "react-icons/md";
 
@@ -12,6 +13,8 @@ type AddImageProps = {
 
 export default function AddImage({ addCover, error }: AddImageProps) {
   const [imageUrl, setImageUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
 
   const uploadRef = useRef<HTMLInputElement>(null);
 
@@ -28,6 +31,7 @@ export default function AddImage({ addCover, error }: AddImageProps) {
     );
 
     try {
+      setLoading(true);
       const response = await fetch(
         `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
         {
@@ -41,8 +45,9 @@ export default function AddImage({ addCover, error }: AddImageProps) {
       if (result.secure_url) {
         setImageUrl(result.secure_url);
         console.log("Image URL:", result.secure_url);
-        addCover(result.secure_url); // Log the URL
-        // Now you can store this imageUrl in your database
+        addCover(result.secure_url);
+        setLoading(false);
+        setDone(true);
       } else {
         console.error("Upload failed:", result); // Handle errors
       }
@@ -64,10 +69,17 @@ export default function AddImage({ addCover, error }: AddImageProps) {
           backgroundImage: `url(${imageUrl ? imageUrl : null})`,
         }}
       >
-        <BiImageAdd className="text-[24px]" />
-        <p>
-          Add activity <br /> image
-        </p>
+        {loading ? (
+          <AiOutlineLoading3Quarters className="animate-spin text-[24px]" />
+        ) : null}
+        {!loading && !done && (
+          <>
+            <BiImageAdd className="text-[24px]" />
+            <p>
+              Add activity <br /> image
+            </p>
+          </>
+        )}
       </div>
       <div className="flexCenter gap-[5px] text-[10px] font-semibold text-neutralDarkHover">
         <MdOutlineStar className="text-neutralActive" />
