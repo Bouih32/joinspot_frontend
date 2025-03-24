@@ -18,15 +18,20 @@ export default function TextArea<T extends FieldValues>({
   register,
 }: InputProps<T>) {
   return (
-    <textarea
-      {...register(name)}
-      className={cn(
-        "h-[100px] w-full resize-none rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] text-secondDark outline-none placeholder:text-secondDark laptop:h-[120px]",
+    <div>
+      <textarea
+        {...register(name)}
+        className={cn(
+          "h-[100px] w-full resize-none rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] text-secondDark outline-none placeholder:text-secondDark laptop:h-[120px]",
 
-        error && "border-error text-error placeholder:text-error",
-        classname,
-      )}
-      placeholder={placeholder}
-    ></textarea>
+          error && "border-error text-error placeholder:text-error",
+          classname,
+        )}
+        placeholder={placeholder}
+      ></textarea>
+      {error ? (
+        <p className="text-[9px] leading-3 text-error">{error}</p>
+      ) : null}
+    </div>
   );
 }

@@ -21,7 +21,7 @@ export default function AddInput<T extends FieldValues>({
   register,
 }: InputProps<T>) {
   return (
-    <div className="space-y-[3px]">
+    <div className="space-y-[6px]">
       <div
         className={cn(
           "flexBetween h-[30px] w-full gap-2 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[12px] leading-[24px] text-secondDark",
@@ -40,6 +40,9 @@ export default function AddInput<T extends FieldValues>({
 
         {icon && icon}
       </div>
+      {error ? (
+        <p className="text-[9px] leading-3 text-error">{error}</p>
+      ) : null}
     </div>
   );
 }

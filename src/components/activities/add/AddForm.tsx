@@ -19,6 +19,7 @@ import { addActivity } from "@/actions/activityActions";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { SaveContext } from "@/contexts/SaveContext";
+import SelectTime from "./SelectTime";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm({ userCategory }: { userCategory: string }) {
@@ -121,22 +122,8 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
               error={errors.startDay?.message as string}
             />
             <div className="flex flex-col gap-[10px] tablet:gap-[18px] laptop:flex-row laptop:gap-[14px]">
-              <AddInput<addType>
-                placeholder="Start time (8AM ..)"
-                register={register}
-                name="startTime"
-                type="text"
-                error={errors.startTime?.message as string}
-                icon={<BiSolidTime className="text-[18px]" />}
-              />
-              <AddInput<addType>
-                placeholder="End time (12PM ..)"
-                register={register}
-                name="endTime"
-                type="text"
-                error={errors.endTime?.message as string}
-                icon={<BiSolidTime className="text-[18px]" />}
-              />
+              <SelectTime />
+              <SelectTime />
             </div>
           </div>
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
