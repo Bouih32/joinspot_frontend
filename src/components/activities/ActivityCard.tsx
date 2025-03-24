@@ -66,11 +66,7 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
             userName={data.userName}
             category={data.category}
           />
-          <ActivityDetails
-            description={data.description}
-            stars={data.score}
-            full={full}
-          />
+          <ActivityDetails title={data.title} stars={data.score} full={full} />
           <Seats seat={data.seat} />
           <div className="flexBetween">
             <p className="text-10sm text-neutralDark">

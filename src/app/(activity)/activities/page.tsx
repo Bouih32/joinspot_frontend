@@ -34,10 +34,12 @@ export default async function ActivitiesPage({
     role = (token as JwtPayload).role;
   }
 
+  const activitiesData = await getActivities(params);
+
   const data =
     params.my === "own" && (!token || role === "VISITOR")
       ? null
-      : await getActivities(params);
+      : activitiesData.activities;
 
   return (
     <main className="min-h-screen space-y-5 pb-5 tablet:space-y-[32px]">
@@ -58,7 +60,12 @@ export default async function ActivitiesPage({
               data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
             )}
           </div>
-          {data && data.length > 0 && <Pagination />}
+          {data && data.length > 0 && (
+            <Pagination
+              pages={activitiesData.pages}
+              page={params.page ? parseInt(params.page) : undefined}
+            />
+          )}
         </main>
       </Container>
     </main>

@@ -50,6 +50,7 @@ export default function SelectTime({
     const time = `${selectHour}:${selectminutes}`;
     setSelected(time);
     handleSelect(time);
+    setOpen(false);
   };
 
   return (

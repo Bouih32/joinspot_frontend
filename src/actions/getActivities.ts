@@ -31,20 +31,23 @@ export const getActivities = async (params?: Record<string, string>) => {
     const data = await res.json();
     const activities: ActivityType[] = data.activities;
 
-    return activities.map((ele) => ({
-      activityId: ele.activityId,
-      coverPic: ele.coverPic,
-      title: ele.title,
-      description: ele.description,
-      seat: ele.seat,
-      price: ele.price,
-      score: ele.score,
-      categoryId: ele.categoryId,
-      avatar: ele.user?.avatar ?? ele.user.avatar,
-      userName: ele.user.userName,
-      city: ele.city.cityName,
-      category: ele.category.categoryName,
-    }));
+    return {
+      activities: activities.map((ele) => ({
+        activityId: ele.activityId,
+        coverPic: ele.coverPic,
+        title: ele.title,
+        description: ele.description,
+        seat: ele.seat,
+        price: ele.price,
+        score: ele.score,
+        categoryId: ele.categoryId,
+        avatar: ele.user?.avatar ?? ele.user.avatar,
+        userName: ele.user.userName,
+        city: ele.city.cityName,
+        category: ele.category.categoryName,
+      })),
+      pages: data.pages,
+    };
   } catch (error) {
     console.error("Error fetching activities:", error);
     throw error;

@@ -68,7 +68,6 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-
     setLoading(true);
     await addActivity(formData);
     setLoading(false);
