@@ -65,15 +65,15 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
   };
 
   const handleSubmit = async () => {
-    // const resault = await trigger();
-    // if (!resault) return;
+    const resault = await trigger();
+    if (!resault) return;
     const formData = getValues();
-    console.log(formData);
-    // setLoading(true);
-    // await addActivity(formData);
-    // setLoading(false);
-    // handleSuccess();
-    // router.push("/activities");
+
+    setLoading(true);
+    await addActivity(formData);
+    setLoading(false);
+    handleSuccess();
+    router.push("/activities");
   };
 
   return (
