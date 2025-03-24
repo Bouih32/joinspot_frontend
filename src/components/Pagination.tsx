@@ -22,7 +22,6 @@ export default function Pagination({ pages, page = 1 }: PaginationProps) {
     if (page < pages) addParam("page", (page + 1).toString(), params, router);
   };
 
-  // Determine which pages to show
   let pageNumbers: (number | "...")[] = [];
 
   if (pages <= 5) {
@@ -32,7 +31,17 @@ export default function Pagination({ pages, page = 1 }: PaginationProps) {
     // Always show first page
     pageNumbers = [1];
 
-    // Show "..." if there's a gap between first and last two pages
+    // Show "..." if there's a gap after the first page and before current page
+    if (page > 3) {
+      pageNumbers.push("...");
+    }
+
+    // Always show current page (if it's not first or last two pages)
+    if (page !== 1 && page !== pages && page !== pages - 1) {
+      pageNumbers.push(page);
+    }
+
+    // Show "..." before last two pages if necessary
     if (page < pages - 2) {
       pageNumbers.push("...");
     }
