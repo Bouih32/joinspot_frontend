@@ -72,7 +72,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
         e.preventDefault();
         handleSubmit();
       }}
-      className="flex flex-col gap-[21px] tablet:gap-[36px]"
+      className="flex flex-col gap-[21px] tablet:gap-5"
     >
       {Object.keys(errors).length > 0 && (
         <div className="w-full rounded border border-error bg-errorHover py-1 text-center text-10xxl text-error tablet:text-12xxl">
@@ -85,8 +85,8 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
           </p>
         </div>
       )}
-      <div className="flex flex-col gap-[21px] tablet:gap-[36px] laptop:flex-row">
-        <section className="flex flex-col items-center gap-[21px] tablet:flex-row tablet:items-start tablet:justify-between tablet:gap-[36px]">
+      <div className="flex flex-col gap-[21px] tablet:gap-5 laptop:flex-row">
+        <section className="flex flex-col items-center gap-[21px] tablet:flex-row tablet:items-start tablet:justify-between tablet:gap-5">
           <AddImage
             addCover={addCover}
             error={errors.coverPic?.message as string}
@@ -114,7 +114,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
           </div>
         </section>
 
-        <section className="flex w-full flex-col gap-[10px] tablet:flex-row tablet:justify-between tablet:gap-[18px] laptop:w-[288px] laptop:flex-col laptop:justify-start">
+        <section className="flex w-full flex-col gap-[10px] tablet:flex-row tablet:gap-[48px] laptop:w-[288px] laptop:flex-col laptop:justify-start laptop:gap-[18px]">
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">
             <SelectDay
               addDay={addDay}

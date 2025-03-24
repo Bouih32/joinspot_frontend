@@ -6,8 +6,8 @@ export default async function page() {
   const userCategory = await getHeaderData();
 
   return (
-    <Container classname="py-10">
-      <section className="mx-auto w-full space-y-5 rounded-xl border-neutralLightActive px-4 py-[22px] tablet:mt-10 tablet:w-[677px] tablet:space-y-[30px] tablet:border laptop:w-[1064px] laptop:space-y-[45px] laptop:py-8 laptop:pb-[70px]">
+    <Container classname="py-10 bg-secondLight">
+      <section className="mx-auto w-full space-y-5 rounded-xl border-neutralLightHover bg-white px-4 py-[22px] tablet:mt-10 tablet:space-y-[30px] tablet:border laptop:w-[1064px] laptop:space-y-[45px] laptop:py-8 laptop:pb-[70px]">
         <div className="space-y-2 tablet:space-y-[6px]">
           <h1 className="text-14xxl text-main tablet:text-16xxl laptop:text-20xxl">
             Add a New Activity

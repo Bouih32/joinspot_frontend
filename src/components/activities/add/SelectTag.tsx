@@ -91,7 +91,7 @@ export default function SelectTag({
                 }}
                 key={nanoid()}
                 className={cn(
-                  "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14lg text-neutralHover hover:bg-[#F8F8F8]",
+                  "flex cursor-pointer items-center gap-[9px] rounded-[2px] p-[9px] text-center text-14lg text-second hover:bg-[#F8F8F8]",
                   selected.includes(ele) && "bg-[#F8F8F8]",
                 )}
               >

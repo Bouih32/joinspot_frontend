@@ -61,7 +61,7 @@ export default function AddImage({ addCover, error }: AddImageProps) {
     >
       <div
         className={cn(
-          "flexCenter h-[130px] w-[239px] flex-col rounded-[8px] bg-[#F8F8F8] bg-cover bg-center bg-no-repeat text-center text-10xl text-secondDark tablet:h-[200px] tablet:w-[280px] laptop:h-[235px] laptop:w-[384px]",
+          "flexCenter h-[130px] w-[239px] flex-col rounded-[8px] bg-secondLightHover bg-cover bg-center bg-no-repeat text-center text-10xl text-secondDark tablet:h-[200px] tablet:w-[478px] laptop:h-[235px] laptop:w-[384px]",
           error && "border border-error",
         )}
         style={{
