@@ -107,6 +107,9 @@ export default function SelectTag({
           </div>
         </>
       )}
+      {error ? (
+        <p className="text-[9px] leading-3 text-error">{error}</p>
+      ) : null}
     </div>
   );
 }

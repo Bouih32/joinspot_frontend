@@ -25,7 +25,7 @@ export default function SelectDay({ addDay, error }: SelectDayProps) {
       <div
         className={cn(
           "flexBetween h-[30px] w-full cursor-pointer rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[14px] leading-[24px] text-secondDark",
-          error && "border-error",
+          error && "border-error text-error",
         )}
         onClick={() => setOpen((prev) => !prev)}
       >
@@ -57,6 +57,9 @@ export default function SelectDay({ addDay, error }: SelectDayProps) {
           </div>
         </>
       )}
+      {error ? (
+        <p className="text-[9px] leading-3 text-error">{error}</p>
+      ) : null}
     </div>
   );
 }

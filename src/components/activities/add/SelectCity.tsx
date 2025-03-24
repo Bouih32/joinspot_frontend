@@ -3,7 +3,6 @@
 import { getCities } from "@/actions/getCities";
 import { City } from "@/libs/types";
 import { cn } from "@/libs/utils";
-import { set } from "date-fns";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
@@ -59,7 +58,10 @@ export default function SelectCity<T extends FieldValues>({
             placeholder="Activity location"
             type="text"
             {...register(name)}
-            className="text-[14px] font-normal leading-[24px] text-secondDark outline-none"
+            className={cn(
+              "text-[14px] font-normal leading-[24px] text-secondDark outline-none",
+              error && "text-error placeholder:text-error",
+            )}
           />
         </div>
         <div
@@ -102,6 +104,9 @@ export default function SelectCity<T extends FieldValues>({
           </div>
         </>
       )}
+      {error ? (
+        <p className="text-[9px] leading-3 text-error">{error}</p>
+      ) : null}
     </div>
   );
 }

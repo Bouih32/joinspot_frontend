@@ -56,15 +56,24 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
     setValue("coverPic", cover);
   };
 
+  const addStartTime = (time: string) => {
+    setValue("startTime", time);
+  };
+
+  const addEndTime = (time: string) => {
+    setValue("endTime", time);
+  };
+
   const handleSubmit = async () => {
-    const resault = await trigger();
-    if (!resault) return;
+    // const resault = await trigger();
+    // if (!resault) return;
     const formData = getValues();
-    setLoading(true);
-    await addActivity(formData);
-    setLoading(false);
-    handleSuccess();
-    router.push("/activities");
+    console.log(formData);
+    // setLoading(true);
+    // await addActivity(formData);
+    // setLoading(false);
+    // handleSuccess();
+    // router.push("/activities");
   };
 
   return (
@@ -122,8 +131,16 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
               error={errors.startDay?.message as string}
             />
             <div className="flex flex-col gap-[10px] tablet:gap-[18px] laptop:flex-row laptop:gap-[14px]">
-              <SelectTime />
-              <SelectTime />
+              <SelectTime
+                error={errors.startTime?.message as string}
+                placeholder="Start time"
+                handleSelect={addStartTime}
+              />
+              <SelectTime
+                error={errors.endTime?.message as string}
+                placeholder="End time"
+                handleSelect={addEndTime}
+              />
             </div>
           </div>
           <div className="space-y-[10px] tablet:w-[288px] tablet:space-y-[18px] laptop:w-full">

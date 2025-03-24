@@ -133,27 +133,25 @@ export const searchValidation = z.object({
     .optional(),
 });
 
-const timeRegex = /^(0?[1-9]|1[0-2])(AM|PM)$/;
-
 export const addValidation = z.object({
   coverPic: z.string().trim().min(1),
-  title: z.string().trim().min(1).max(50, { message: "Thats too long" }),
-  description: z.string().trim().min(10).max(50, { message: "Thats too long" }),
-  tags: z.string().trim().min(1),
-  startTime: z
+  title: z.string().trim().min(1).max(50, {
+    message: "Title is too long. Only  50 characters allowed",
+  }),
+  description: z
     .string()
     .trim()
-    .min(1, "Time is required")
-    .regex(timeRegex, "Invalid time format. Use format like 12PM or 5PM."),
-  endTime: z
-    .string()
-    .trim()
-    .min(1, "Time is required")
-    .regex(timeRegex, "Invalid time format. Use format like 12PM or 5PM."),
-  startDay: z.string().trim().min(1),
-  endDay: z.string().trim().min(1),
-  seat: z.string().trim().min(1),
-  price: z.string().trim().min(1),
-  location: z.string().trim().min(3),
-  cityId: z.string().trim().min(3),
+    .min(10, { message: "The description is required." })
+    .max(500, {
+      message: "Title is too long. Only 500 characters allowed",
+    }),
+  tags: z.string().trim().min(1, { message: "This field is required" }),
+  startTime: z.string().trim().min(1, "Time is required"),
+  endTime: z.string().trim().min(1, { message: "This field is required" }),
+  startDay: z.string().trim().min(1, { message: "This field is required" }),
+  endDay: z.string().trim().min(1, { message: "This field is required" }),
+  seat: z.string().trim().min(1, { message: "This field is required" }),
+  price: z.string().trim().min(1, { message: "This field is required" }),
+  location: z.string().trim().min(3, { message: "This field is required" }),
+  cityId: z.string().trim().min(3, { message: "This field is required" }),
 });
