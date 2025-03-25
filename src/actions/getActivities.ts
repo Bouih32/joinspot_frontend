@@ -53,3 +53,68 @@ export const getActivities = async (params?: Record<string, string>) => {
     throw error;
   }
 };
+
+type TagT = {
+  activityTagsId: string;
+  tagId: string;
+  activityId: string;
+  tag: { tagName: string };
+};
+
+export const getActivityById = async (id: string) => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const res = await fetch(`${API_URL}/activity/${id}`, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    const data = await res.json();
+    const activity = data.activity;
+
+    const dateString = activity.startDay;
+    const date = new Date(dateString);
+
+    const formattedDate = date.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return {
+      activityId: activity.activityId,
+      coverPic: activity.coverPic,
+      title: activity.title,
+      description: activity.description,
+      seat: activity.seat,
+      price: activity.price,
+      score: activity.score,
+      categoryId: activity.categoryId,
+      avatar: activity.user?.avatar ?? activity.user.avatar,
+      userName: activity.user.userName,
+      city: activity.city.cityName,
+      location: activity.location,
+      category: activity.category.categoryName,
+      tags: activity.activityTags.map((ele: TagT) => ele.tag.tagName),
+      startTime: activity.startTime,
+      startDay: formattedDate,
+    };
+  } catch (error) {
+    console.error("add error", error);
+    throw error;
+  }
+};

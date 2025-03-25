@@ -5,6 +5,7 @@ import Description from "@/components/activities/details/Description";
 import Ratings from "@/components/activities/details/Ratings";
 import JoinSection from "@/components/activities/details/JoinSection";
 import Button from "@/components/Button";
+import { getActivityById } from "@/actions/getActivities";
 
 export default async function ActivityDetails({
   params,
@@ -12,6 +13,9 @@ export default async function ActivityDetails({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+
+  const activities = await getActivityById(id);
+  console.log(activities);
   return (
     <main className="space-y-10">
       <Container classname="tablet:border laptop:p-[25px] space-y-3 tablet:space-y-5  tablet:p-4 border-secondLightActive rounded-xl tablet:mt-10 mt-[25px]">
