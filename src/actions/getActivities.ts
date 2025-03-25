@@ -112,6 +112,7 @@ export const getActivityById = async (id: string) => {
       tags: activity.activityTags.map((ele: TagT) => ele.tag.tagName),
       startTime: activity.startTime,
       startDay: formattedDate,
+      joined: activity.joined,
     };
   } catch (error) {
     console.error("add error", error);

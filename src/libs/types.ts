@@ -78,3 +78,23 @@ export type AddActivityT = {
   price: string;
   tags: string;
 };
+
+export type ActivityDetailsT = {
+  activityId: string;
+  coverPic: string;
+  title: string;
+  description: string;
+  seat: number;
+  price: number;
+  score: number;
+  categoryId: string;
+  avatar: string;
+  userName: string;
+  city: string;
+  location: string;
+  category: string;
+  tags: string[];
+  startTime: string;
+  startDay: string;
+  joined: number;
+};
