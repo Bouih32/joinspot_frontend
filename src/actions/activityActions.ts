@@ -28,9 +28,9 @@ export const addActivity = async (activity: AddActivityT) => {
   }
 };
 
-export const reviewActivity = async (review: ReviewT) => {
+export const reviewActivity = async (review: ReviewT, id: string) => {
   try {
-    const res = await fetch(`${API_URL}/activity/add`, {
+    const res = await fetch(`${API_URL}/activity/${id}/review`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {

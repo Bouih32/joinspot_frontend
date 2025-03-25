@@ -1,12 +1,15 @@
 import Button from "@/components/Button";
 import Stars from "../Stars";
 import ReviewButton from "./ReviewButton";
+import { JwtPayload } from "jsonwebtoken";
 
 type RatingsProps = {
   score: number;
+  token: string | JwtPayload | null;
+  id: string;
 };
 
-export default function Ratings({ score }: RatingsProps) {
+export default function Ratings({ score, token, id }: RatingsProps) {
   return (
     <section className="space-y-4 rounded-xl bg-secondLight p-4 tablet:p-[18px]">
       <div className="flexBetween">
@@ -30,7 +33,7 @@ export default function Ratings({ score }: RatingsProps) {
         <span className="text-neutralDark">– Emily R.</span>
       </div>
       <div className="flex tablet:justify-end">
-        <ReviewButton />
+        <ReviewButton token={token} id={id} />
       </div>
     </section>
   );

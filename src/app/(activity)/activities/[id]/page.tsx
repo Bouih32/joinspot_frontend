@@ -7,6 +7,7 @@ import JoinSection from "@/components/activities/details/JoinSection";
 import Button from "@/components/Button";
 import { getActivityById } from "@/actions/getActivities";
 import { ActivityDetailsT } from "@/libs/types";
+import { getToken } from "@/actions/decodeToken";
 
 export default async function ActivityDetails({
   params,
@@ -14,6 +15,7 @@ export default async function ActivityDetails({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const token = await getToken();
   const activity: ActivityDetailsT = await getActivityById(id);
 
   return (
@@ -21,7 +23,7 @@ export default async function ActivityDetails({
       <Container classname="tablet:border laptop:p-[25px] space-y-3 tablet:space-y-5  tablet:p-4 border-secondLightActive rounded-xl tablet:mt-10 mt-[25px]">
         <Overview activity={activity} />
         <Description description={activity.description} />
-        <Ratings score={activity.score} />
+        <Ratings score={activity.score} token={token} id={activity.activityId}/>
         <JoinSection />
       </Container>
       <Container>

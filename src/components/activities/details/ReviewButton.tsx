@@ -10,14 +10,19 @@ import { reviewValidation } from "@/libs/validation";
 import { z } from "zod";
 import TextArea from "@/components/TextArea";
 import { cn } from "@/libs/utils";
+import { JwtPayload } from "jsonwebtoken";
+import { reviewActivity } from "@/actions/activityActions";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 type ReviewButtonProps = {
-  role?: string | null;
+  token: string | JwtPayload | null;
+  id: string;
 };
 
 export type ReviewT = z.infer<typeof reviewValidation>;
-export default function ReviewButton({ role }: ReviewButtonProps) {
+export default function ReviewButton({ token, id }: ReviewButtonProps) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -51,21 +56,26 @@ export default function ReviewButton({ role }: ReviewButtonProps) {
     setValue("stars", stars.toString());
   };
 
+  const handleOpen = () => {
+    token ? setOpen(true) : router.push("/login");
+  };
+
   const handleSubmit = async () => {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
     console.log(formData);
-    // setLoading(true);
-    // await addActivity(formData);
-    // setLoading(false);
+    setLoading(true);
+    await reviewActivity(formData, id);
+    setLoading(false);
     // handleSuccess();
-    // router.push("/activities");
+    router.push(`/activities/${id}`);
+    setOpen(false);
   };
 
   return (
     <div className="">
-      <div onClick={() => setOpen(true)} className="flex tablet:justify-end">
+      <div onClick={handleOpen} className="flex tablet:justify-end">
         <Button secondary>Share Your Experience</Button>
       </div>
 
@@ -105,7 +115,12 @@ export default function ReviewButton({ role }: ReviewButtonProps) {
             />
 
             <div className="flexCenter gap-2 self-end">
-              <Button secondary>Submit</Button>
+              <Button secondary>
+                Submit
+                {loading && (
+                  <AiOutlineLoading3Quarters className="animate-spin" />
+                )}
+              </Button>
             </div>
           </form>
         </div>
