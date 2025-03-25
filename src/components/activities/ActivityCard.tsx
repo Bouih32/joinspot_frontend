@@ -21,6 +21,7 @@ export type ActivityCardType = {
   userName: string;
   city: string;
   category: string;
+  joined: number;
 };
 
 type ActivityCardProps = {
@@ -69,7 +70,7 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
             category={data.category}
           />
           <ActivityDetails title={data.title} stars={data.score} full={full} />
-          <Seats seat={data.seat} />
+          <Seats seat={data.seat} joined={data.joined} />
           <div className="flexBetween">
             <p className="text-10sm text-neutralDark">
               <span className="mr-1 select-none text-14xxl text-main">

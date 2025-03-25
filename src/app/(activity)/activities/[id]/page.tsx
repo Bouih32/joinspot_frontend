@@ -21,7 +21,7 @@ export default async function ActivityDetails({
       <Container classname="tablet:border laptop:p-[25px] space-y-3 tablet:space-y-5  tablet:p-4 border-secondLightActive rounded-xl tablet:mt-10 mt-[25px]">
         <Overview activity={activity} />
         <Description description={activity.description} />
-        <Ratings />
+        <Ratings score={activity.score} />
         <JoinSection />
       </Container>
       <Container>

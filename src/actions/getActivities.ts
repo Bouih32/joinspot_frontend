@@ -45,6 +45,7 @@ export const getActivities = async (params?: Record<string, string>) => {
         userName: ele.user.userName,
         city: ele.city.cityName,
         category: ele.category.categoryName,
+        joined: ele.joined,
       })),
       pages: data.pages,
     };
