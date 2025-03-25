@@ -62,7 +62,7 @@ export type ActivityType = {
   activityTags: [];
   city: { cityName: string };
   category: { categoryName: string };
-  joined: string;
+  joined: number;
 };
 
 export type AddActivityT = {

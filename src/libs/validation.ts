@@ -155,3 +155,12 @@ export const addValidation = z.object({
   location: z.string().trim().min(3, { message: "This field is required" }),
   cityId: z.string().trim().min(3, { message: "This field is required" }),
 });
+
+export const reviewValidation = z.object({
+  comment: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your comment" })
+    .max(100, { message: "Heey! that's too long" }),
+  stars: z.string().trim().min(1, { message: "Please enter your rating" }),
+});

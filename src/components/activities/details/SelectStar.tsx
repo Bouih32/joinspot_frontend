@@ -5,7 +5,11 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
 
-export default function SelectStar() {
+type SelectStarProps = {
+  addStars: (stars: number) => void;
+};
+
+export default function SelectStar({ addStars }: SelectStarProps) {
   const [stars, setStars] = useState(0);
   return (
     <div className="flex gap-1 text-[12px] tablet:gap-[6px] tablet:text-[16px]">
@@ -13,6 +17,10 @@ export default function SelectStar() {
         <FaStar
           key={nanoid()}
           className={cn("text-neutral/20", index < stars && "text-alert")}
+          onClick={() => {
+            setStars(index + 1);
+            addStars(index + 1);
+          }}
         />
       ))}
     </div>
