@@ -8,9 +8,9 @@ export default async function Home() {
   const data = await getActivities();
   return (
     <main className="font-openSans">
-      <Hero data={data} />
+      <Hero data={data.activities} />
       <Services />
-      <Offers data={data} />
+      <Offers data={data.activities} />
       <Community />
     </main>
   );

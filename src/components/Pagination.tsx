@@ -25,33 +25,32 @@ export default function Pagination({ pages, page = 1 }: PaginationProps) {
   let pageNumbers: (number | "...")[] = [];
 
   if (pages <= 5) {
-    // Show all pages if <= 5
     pageNumbers = Array.from({ length: pages }, (_, i) => i + 1);
   } else {
-    // Always show first page
     pageNumbers = [1];
 
-    // Show "..." if there's a gap after the first page and before current page
     if (page > 3) {
       pageNumbers.push("...");
     }
 
-    // Always show current page (if it's not first or last two pages)
     if (page !== 1 && page !== pages && page !== pages - 1) {
       pageNumbers.push(page);
     }
 
-    // Show "..." before last two pages if necessary
     if (page < pages - 2) {
       pageNumbers.push("...");
     }
 
-    // Always show last two pages
     pageNumbers.push(pages - 1, pages);
   }
 
   return (
-    <section className="flexCenter gap-1 self-end text-12xxl text-darker tablet:text-16xxl">
+    <section
+      className={cn(
+        "flexCenter gap-1 self-end text-12xxl text-darker tablet:text-16xxl",
+        pages <= 1 && "hidden",
+      )}
+    >
       <MdKeyboardArrowLeft
         className="cursor-pointer text-[20px] text-neutral hover:text-neutralActive tablet:text-[24px]"
         onClick={handlePrev}

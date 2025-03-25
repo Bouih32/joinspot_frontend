@@ -6,6 +6,7 @@ import Seats from "./Seats";
 import Button from "../Button";
 import { cn } from "@/libs/utils";
 import Save from "./Save";
+import Link from "next/link";
 
 export type ActivityCardType = {
   activityId: string;
@@ -33,7 +34,8 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
     return null; // or show a loading state
   }
   return (
-    <section
+    <Link
+      href={`/activities/${data.activityId}`}
       className={cn(
         "flex h-[380px] w-[328px] select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
@@ -42,7 +44,7 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
     >
       <div
         className={cn(
-          `tablet:coverMore -before:right-5 relative h-[177px] w-[304px] rounded-[8px] bg-cover bg-bottom p-2 before:z-30 before:bg-activityGrad tablet:h-[245px] tablet:w-[274px] tablet:rounded-none`,
+          "tablet:coverMore relative h-[177px] w-[304px] rounded-[8px] bg-cover bg-bottom p-2 before:right-0 before:z-30 before:bg-activityGrad tablet:h-[245px] tablet:w-[274px] tablet:rounded-none",
           full && "tablet:w-[287px] laptop:h-[319px] laptop:w-[475px]",
         )}
         style={{
@@ -79,6 +81,6 @@ export default function ActivityCard({ hide, full, data }: ActivityCardProps) {
           </div>
         </div>
       </section>
-    </section>
+    </Link>
   );
 }
