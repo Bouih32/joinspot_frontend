@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import { nanoid } from "nanoid";
 import Stars from "../Stars";
 import ReviewButton from "./ReviewButton";
 import { JwtPayload } from "jsonwebtoken";
@@ -7,9 +7,10 @@ type RatingsProps = {
   score: number;
   token: string | JwtPayload | null;
   id: string;
+  reviews: { userName: string; comment: string }[];
 };
 
-export default function Ratings({ score, token, id }: RatingsProps) {
+export default function Ratings({ score, token, id, reviews }: RatingsProps) {
   return (
     <section className="space-y-4 rounded-xl bg-secondLight p-4 tablet:p-[18px]">
       <div className="flexBetween">
@@ -18,20 +19,16 @@ export default function Ratings({ score, token, id }: RatingsProps) {
         </h3>
         <Stars stars={score} />
       </div>
-      <div className="border-l-[4px] border-main pl-2.5 text-12sm text-darker tablet:pl-4 tablet:text-14sm laptop:text-16sm">
-        <p>
-          "Absolutely magical experience! Sophie is a fantastic instructor, and
-          the sunset view was breathtaking."
-        </p>
-        <span className="text-neutralDark">– Emily R.</span>
-      </div>
-      <div className="border-l-[4px] border-main pl-2.5 text-12sm text-darker tablet:pl-4 tablet:text-14sm laptop:text-16sm">
-        <p>
-          "Absolutely magical experience! Sophie is a fantastic instructor, and
-          the sunset view was breathtaking."
-        </p>
-        <span className="text-neutralDark">– Emily R.</span>
-      </div>
+      {reviews.map((ele) => (
+        <div
+          key={nanoid()}
+          className="border-l-[4px] border-main pl-2.5 text-12sm text-darker tablet:pl-4 tablet:text-14sm laptop:text-16sm"
+        >
+          <p>"{ele.comment}"</p>
+          <span className="text-neutralDark">– {ele.userName}.</span>
+        </div>
+      ))}
+
       <div className="flex tablet:justify-end">
         <ReviewButton token={token} id={id} />
       </div>

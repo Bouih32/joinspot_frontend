@@ -98,6 +98,7 @@ export const getActivityById = async (id: string) => {
 
     return {
       activityId: activity.activityId,
+      userId: activity.userId,
       coverPic: activity.coverPic,
       title: activity.title,
       description: activity.description,
@@ -117,6 +118,79 @@ export const getActivityById = async (id: string) => {
     };
   } catch (error) {
     console.error("add error", error);
+    throw error;
+  }
+};
+
+export const getUserActivities = async (id: string) => {
+  try {
+    const res = await fetch(`${API_URL}/activity/user/${id}`, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    const data = await res.json();
+    const activities: ActivityType[] = data.activities;
+
+    return activities.map((ele) => ({
+      activityId: ele.activityId,
+      coverPic: ele.coverPic,
+      title: ele.title,
+      description: ele.description,
+      seat: ele.seat,
+      price: ele.price,
+      score: ele.score,
+      categoryId: ele.categoryId,
+      avatar: ele.user?.avatar ?? ele.user.avatar,
+      userName: ele.user.userName,
+      city: ele.city.cityName,
+      category: ele.category.categoryName,
+      joined: ele.joined,
+    }));
+  } catch (error) {
+    console.error("get error", error);
+    throw error;
+  }
+};
+
+export type ReviewType = {
+  user: { userName: string };
+  comment: string;
+  stars: number;
+};
+
+export const getActivityReviews = async (id: string) => {
+  try {
+    const res = await fetch(`${API_URL}/activity/${id}/reviews`, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    const data = await res.json();
+    const reviews: ReviewType[] = data.reviews;
+
+    return reviews.map((ele) => ({
+      userName: ele.user.userName,
+      comment: ele.comment,
+    }));
+  } catch (error) {
+    console.error("get review error", error);
     throw error;
   }
 };

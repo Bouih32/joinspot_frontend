@@ -82,6 +82,7 @@ export type AddActivityT = {
 
 export type ActivityDetailsT = {
   activityId: string;
+  userId: string;
   coverPic: string;
   title: string;
   description: string;
