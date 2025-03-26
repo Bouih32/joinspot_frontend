@@ -1,7 +1,7 @@
 import { getCategories } from "@/actions/getCategory";
 import { getCities } from "@/actions/getCities";
 import SignupContext from "@/contexts/SignupContext";
-import { Category, City } from "@/libs/types";
+
 import { unstable_cache } from "next/cache";
 import { ReactNode } from "react";
 

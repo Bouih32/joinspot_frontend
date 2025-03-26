@@ -1,5 +1,6 @@
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
+import { unstable_cache } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getActivities = async (params?: Record<string, string>) => {
