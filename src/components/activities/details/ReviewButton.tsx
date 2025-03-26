@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SelectStar from "./SelectStar";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,6 +13,7 @@ import { cn } from "@/libs/utils";
 import { JwtPayload } from "jsonwebtoken";
 import { reviewActivity } from "@/actions/activityActions";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { SaveContext } from "@/contexts/SaveContext";
 
 type ReviewButtonProps = {
   token: string | JwtPayload | null;
@@ -24,6 +25,9 @@ export default function ReviewButton({ token, id }: ReviewButtonProps) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const context = useContext(SaveContext);
+  if (!context) return;
+  const { handleSuccess } = context;
 
   useEffect(() => {
     if (open) {
@@ -68,7 +72,7 @@ export default function ReviewButton({ token, id }: ReviewButtonProps) {
     setLoading(true);
     await reviewActivity(formData, id);
     setLoading(false);
-    // handleSuccess();
+    handleSuccess();
     router.push(`/activities/${id}`);
     setOpen(false);
   };

@@ -74,7 +74,7 @@ export type AddActivityT = {
   location: string;
   startDay: string;
   endDay: string;
-  seat: string;
+  seat: number;
   cityId: string;
   price: string;
   tags: string;

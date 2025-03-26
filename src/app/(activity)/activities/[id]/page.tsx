@@ -14,6 +14,7 @@ import { ActivityDetailsT } from "@/libs/types";
 import { getToken } from "@/actions/decodeToken";
 import ActivityCard from "@/components/activities/ActivityCard";
 import { nanoid } from "nanoid";
+import Success from "@/components/activities/add/Success";
 
 export default async function ActivityDetails({
   params,
@@ -35,6 +36,7 @@ export default async function ActivityDetails({
   return (
     <main className="space-y-10">
       <Container classname="tablet:border laptop:p-[25px] space-y-3 tablet:space-y-5  tablet:p-4 border-secondLightActive rounded-xl tablet:mt-10 mt-[25px]">
+        <Success review />
         <Overview activity={activity} />
         <Description description={activity.description} />
         <Ratings
