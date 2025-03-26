@@ -60,9 +60,11 @@ export default async function ActivityDetails({
             </div>
           </div>
           <section className="mt-10 flex flex-col gap-6">
-            {userActivities.map((ele) => (
-              <ActivityCard key={nanoid()} details data={ele} />
-            ))}
+            {userActivities
+              .filter((ele) => ele.activityId !== id)
+              .map((ele) => (
+                <ActivityCard key={nanoid()} details data={ele} />
+              ))}
           </section>
         </section>
       </Container>
