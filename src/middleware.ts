@@ -1,6 +1,11 @@
 // middleware.ts
 import { NextRequest, NextResponse } from "next/server";
-import { authRoutes, organizerRoutes, publicRoutes } from "./app/routes";
+import {
+  authRoutes,
+  dynamicPublicRegex,
+  organizerRoutes,
+  publicRoutes,
+} from "./app/routes";
 import { jwtVerify } from "jose";
 
 const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET!);
@@ -25,7 +30,8 @@ export async function middleware(req: NextRequest) {
   const isOrganizerRoute = organizerRoutes.includes(nextUrl.pathname);
   const isPublicRoutes =
     publicRoutes.includes(nextUrl.pathname) ||
-    nextUrl.pathname.startsWith("/reset");
+    nextUrl.pathname.startsWith("/reset") ||
+    dynamicPublicRegex.test(nextUrl.pathname);
   const isLoggedIn = !!token;
 
   if (!token && !isAuthRoutes && !isPublicRoutes) {

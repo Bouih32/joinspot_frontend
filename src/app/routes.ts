@@ -13,3 +13,4 @@ export const organizerRoutes = ["/activities/add"];
 export const redirectAdmin = "/account/admin";
 export const adminOnly = "/account/admin";
 export const userOnly = "/user";
+export const dynamicPublicRegex = /^\/activities\/(?!add$)[^\/]+$/;
