@@ -28,6 +28,9 @@ export default async function ActivityDetails({
     getActivityReviews(id),
   ]);
   const userActivities = await getUserActivities(activity.userId);
+  const filtredActivities = userActivities.filter(
+    (ele) => ele.activityId !== id,
+  );
 
   return (
     <main className="space-y-10">
@@ -42,32 +45,32 @@ export default async function ActivityDetails({
         />
         <JoinSection />
       </Container>
-      <Container>
-        <section className="pb-10">
-          <div className="flexBetween flex-col gap-4 tablet:flex-row">
-            <div className="">
-              <h3 className="text-16xxl text-main laptop:text-26xxl">
-                Reviews & Ratings
-              </h3>
-              <p className="text-12sm text-darker tablet:text-14sm laptop:text-16sm">
-                Join <span className="font-bold">{activity.userName}</span> for
-                more unforgettable experiences. Spots fill up fast—reserve your
-                next adventure today!
-              </p>
+      {filtredActivities.length > 0 && (
+        <Container>
+          <section className="pb-10">
+            <div className="flexBetween flex-col gap-4 tablet:flex-row">
+              <div className="">
+                <h3 className="text-16xxl text-main laptop:text-26xxl">
+                  Reviews & Ratings
+                </h3>
+                <p className="text-12sm text-darker tablet:text-14sm laptop:text-16sm">
+                  Join <span className="font-bold">{activity.userName}</span>{" "}
+                  for more unforgettable experiences. Spots fill up fast—reserve
+                  your next adventure today!
+                </p>
+              </div>
+              <div className="self-end">
+                <Button secondary>See more</Button>
+              </div>
             </div>
-            <div className="self-end">
-              <Button secondary>See more</Button>
-            </div>
-          </div>
-          <section className="mt-10 flex flex-col gap-6">
-            {userActivities
-              .filter((ele) => ele.activityId !== id)
-              .map((ele) => (
+            <section className="mt-10 flex flex-col gap-6">
+              {filtredActivities.map((ele) => (
                 <ActivityCard key={nanoid()} details data={ele} />
               ))}
+            </section>
           </section>
-        </section>
-      </Container>
+        </Container>
+      )}
     </main>
   );
 }

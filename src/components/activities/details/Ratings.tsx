@@ -19,15 +19,25 @@ export default function Ratings({ score, token, id, reviews }: RatingsProps) {
         </h3>
         <Stars stars={score} />
       </div>
-      {reviews.map((ele) => (
+      {reviews.length > 0 ? (
+        reviews.map((ele) => (
+          <div
+            key={nanoid()}
+            className="border-l-[4px] border-main pl-2.5 text-12sm text-darker tablet:pl-4 tablet:text-14sm laptop:text-16sm"
+          >
+            <p>"{ele.comment}"</p>
+            <span className="text-neutralDark">– {ele.userName}.</span>
+          </div>
+        ))
+      ) : (
         <div
           key={nanoid()}
           className="border-l-[4px] border-main pl-2.5 text-12sm text-darker tablet:pl-4 tablet:text-14sm laptop:text-16sm"
         >
-          <p>"{ele.comment}"</p>
-          <span className="text-neutralDark">– {ele.userName}.</span>
+          <p>"Your voice matters! Be the first to leave a review."</p>
+          <span className="text-neutralDark">– Joinspot Team.</span>
         </div>
-      ))}
+      )}
 
       <div className="flex tablet:justify-end">
         <ReviewButton token={token} id={id} />
