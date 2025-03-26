@@ -91,7 +91,10 @@ export default function Overview({ activity }: OverviewProps) {
               From {activity.price}DH{" "}
               <span className="text-12sm text-neutralDark">per person</span>
             </p>
-            <Link href="#">
+            <Link
+              href={`/activities/${activity.activityId}/payment`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <Button>Join</Button>
             </Link>
           </div>

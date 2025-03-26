@@ -1,4 +1,4 @@
-export default async function page({
+export default async function PaymentPage({
   params,
 }: {
   params: Promise<{ id: string }>;

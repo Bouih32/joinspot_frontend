@@ -1,3 +1,5 @@
+"use client";
+
 import { MdLocationOn } from "react-icons/md";
 import UserCard from "./UserCard";
 import ActivityDetails from "./ActivityDetails";
@@ -6,6 +8,7 @@ import Seats from "./Seats";
 import Button from "../Button";
 import { cn } from "@/libs/utils";
 import Save from "./Save";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export type ActivityCardType = {
@@ -40,15 +43,22 @@ export default function ActivityCard({
   if (!data) {
     return null; // or show a loading state
   }
+
+  const router = useRouter();
+
+  const handleNavigation = () => {
+    router.push(`/activities/${data.activityId}`);
+  };
+
   return (
-    <Link
-      href={`/activities/${data.activityId}`}
+    <div
       className={cn(
         "flex h-[380px] w-[328px] select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
         full && "tablet:w-full",
         details && "tablet:w-full tablet:gap-[65px]",
       )}
+      onClick={handleNavigation}
     >
       <div
         className={cn(
@@ -86,10 +96,15 @@ export default function ActivityCard({
               </span>
               per person
             </p>
-            <Button>Join</Button>
+            <Link
+              href={`/activities/${data.activityId}/payment`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Button>Join</Button>
+            </Link>
           </div>
         </div>
       </section>
-    </Link>
+    </div>
   );
 }
