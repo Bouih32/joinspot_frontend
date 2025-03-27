@@ -23,10 +23,17 @@ export default function JoinContext({
 }: JointContextProps) {
   const [count, setCount] = useState(1);
   const handleArrows = (action: "add" | "minus") => {
-    action === "add"
-      ? setCount((prev) => prev + 1)
-      : setCount((prev) => (prev > 1 ? prev - 1 : 1));
+    setCount((prev) =>
+      action === "add"
+        ? prev < activity.seat - activity.joined
+          ? prev + 1
+          : prev
+        : prev > 1
+          ? prev - 1
+          : 1,
+    );
   };
+
   return (
     <JoinContextP.Provider value={{ activity, count, handleArrows, user }}>
       {children}

@@ -14,11 +14,12 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { cn } from "@/lib/utils";
 import { JoinContextP } from "@/contexts/JoinContext";
 import { getContext } from "@/libs/utils";
+import { joinActivity } from "@/actions/activityActions";
 
-type JoinT = z.infer<typeof joinValidation>;
+export type JoinT = z.infer<typeof joinValidation>;
 
 export default function JoinForm() {
-  const { user } = getContext(JoinContextP);
+  const { user, activity } = getContext(JoinContextP);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -43,12 +44,13 @@ export default function JoinForm() {
 
   const handleSubmit = async () => {
     const resault = await trigger();
+    console.log(errors);
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
-    // setLoading(true);
-
-    // setLoading(false);
+    setLoading(true);
+    const code = await joinActivity(formData, activity.activityId);
+    console.log(code);
+    setLoading(false);
   };
   return (
     <form
