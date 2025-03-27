@@ -173,3 +173,40 @@ export const reviewValidation = z.object({
     .max(100, { message: "Heey! that's too long" }),
   stars: z.string().trim().min(1, { message: "Please enter your rating" }),
 });
+
+export const joinValidation = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your email" })
+    .max(50, { message: "Heey! that's too long" }),
+  cardNumber: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your card number" })
+    .max(16, { message: "Oops,that's too long" }),
+  expDate: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter the experation date" })
+    .max(5, { message: "Oops,that's too long" }),
+  cvvlast4Digits: z
+    .string()
+    .trim()
+    .min(4, { message: "Please enter the last 4 degits of your CVV" })
+    .max(4, { message: "Oops,that's too long" }),
+  fullName: z
+    .string()
+    .trim()
+    .min(3, { message: "Please enter the card holder name" })
+    .max(50, { message: "Oops,that's too long" }),
+  country: z
+    .string()
+    .trim()
+    .min(3, { message: "Please enter your country/region" })
+    .max(50, { message: "Oops,that's too long" }),
+  quantity: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter number of tickets" }),
+});

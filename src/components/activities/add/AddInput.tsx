@@ -18,6 +18,7 @@ export default function AddInput<T extends FieldValues>({
   placeholder,
   name,
   type,
+  classname,
   register,
 }: InputProps<T>) {
   return (
@@ -26,6 +27,7 @@ export default function AddInput<T extends FieldValues>({
         className={cn(
           "flexBetween h-[30px] w-full gap-2 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[12px] leading-[24px] text-secondDark",
           error && "border-error text-error",
+          classname,
         )}
       >
         <input
