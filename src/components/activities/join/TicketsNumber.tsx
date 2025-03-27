@@ -1,16 +1,14 @@
 "use client";
 
+import { JoinContextP } from "@/contexts/JoinContext";
+import { getContext } from "@/libs/utils";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { SummaryProps } from "./Summary";
 
-export default function TicketsNumber() {
-  const [count, setCount] = useState(0);
+export default function TicketsNumber({ handleQuantity }: SummaryProps) {
+  const { count, handleArrows } = getContext(JoinContextP);
 
-  const handleArrows = (action: "add" | "minus") => {
-    action === "add"
-      ? setCount((prev) => prev + 1)
-      : setCount((prev) => (prev > 0 ? prev - 1 : 0));
-  };
   return (
     <div className="select-none space-y-1 text-14xxl">
       <p className="text-second">Number of Participants</p>
@@ -19,11 +17,17 @@ export default function TicketsNumber() {
         <div className="text-[10px]">
           <IoIosArrowUp
             className="cursor-pointer"
-            onClick={() => handleArrows("add")}
+            onClick={() => {
+              handleQuantity(count + 1);
+              handleArrows("add");
+            }}
           />
           <IoIosArrowDown
             className="cursor-pointer"
-            onClick={() => handleArrows("minus")}
+            onClick={() => {
+              handleQuantity(count - 1);
+              handleArrows("minus");
+            }}
           />
         </div>
       </div>

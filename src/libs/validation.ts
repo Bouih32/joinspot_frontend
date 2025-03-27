@@ -180,33 +180,44 @@ export const joinValidation = z.object({
     .trim()
     .min(1, { message: "Please enter your email" })
     .max(50, { message: "Heey! that's too long" }),
+
   cardNumber: z
     .string()
     .trim()
     .min(1, { message: "Please enter your card number" })
-    .max(16, { message: "Oops,that's too long" }),
+    .max(16, { message: "Oops, that's too long" })
+    .regex(/^\d{16}$/, { message: "Card number must be exactly 16 digits" }),
+
   expDate: z
     .string()
     .trim()
-    .min(1, { message: "Please enter the experation date" })
-    .max(5, { message: "Oops,that's too long" }),
+    .min(1, { message: "Please enter the expiration date" })
+    .max(5, { message: "Oops, that's too long" })
+    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, {
+      message: "Expiration date must be in MM/YY format",
+    }),
+
   cvvlast4Digits: z
     .string()
     .trim()
-    .min(4, { message: "Please enter the last 4 degits of your CVV" })
-    .max(4, { message: "Oops,that's too long" }),
+    .min(4, { message: "Please enter the last 4 digits of your CVV" })
+    .max(4, { message: "Oops, that's too long" })
+    .regex(/^\d{4}$/, { message: "CVV must be exactly 4 digits" }),
+
   fullName: z
     .string()
     .trim()
-    .min(3, { message: "Please enter the card holder name" })
-    .max(50, { message: "Oops,that's too long" }),
+    .min(3, { message: "Please enter the cardholder name" })
+    .max(50, { message: "Oops, that's too long" }),
+
   country: z
     .string()
     .trim()
     .min(3, { message: "Please enter your country/region" })
-    .max(50, { message: "Oops,that's too long" }),
+    .max(50, { message: "Oops, that's too long" }),
+
   quantity: z
     .string()
     .trim()
-    .min(1, { message: "Please enter number of tickets" }),
+    .min(1, { message: "Please enter the number of tickets" }),
 });

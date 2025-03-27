@@ -7,10 +7,20 @@ import { z } from "zod";
 import { joinValidation } from "@/libs/validation";
 import AddInput from "../add/AddInput";
 import Button from "@/components/Button";
+import { MdOutlinePayment } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
+import { useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { cn } from "@/lib/utils";
+import { JoinContextP } from "@/contexts/JoinContext";
+import { getContext } from "@/libs/utils";
 
 type JoinT = z.infer<typeof joinValidation>;
 
 export default function JoinForm() {
+  const { user } = getContext(JoinContextP);
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     trigger,
@@ -19,10 +29,36 @@ export default function JoinForm() {
     setValue,
   } = useForm<JoinT>({
     resolver: zodResolver(joinValidation),
+    defaultValues: {
+      email: user.email && user.email,
+      fullName: user.fullName && user.fullName,
+      country: "Morocco",
+      quantity: "1",
+    },
   });
+
+  const handleQuantity = (count: number) => {
+    setValue("quantity", count.toString());
+  };
+
+  const handleSubmit = async () => {
+    const resault = await trigger();
+    if (!resault) return;
+    const formData = getValues();
+    console.log(formData);
+    // setLoading(true);
+
+    // setLoading(false);
+  };
   return (
-    <form className="mx-auto flex w-full flex-col justify-between gap-8 rounded-xl border-neutralLightActive tablet:flex-row tablet:border tablet:p-5 laptop:w-[1064px]">
-      <Summary />
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}
+      className="mx-auto flex w-full flex-col justify-between gap-8 rounded-xl border-neutralLightActive tablet:flex-row tablet:border tablet:p-5 laptop:w-[1064px] laptop:justify-start laptop:gap-[141px]"
+    >
+      <Summary handleQuantity={handleQuantity} />
       <section className="flex h-full w-full flex-col gap-4 tablet:w-[409px] tablet:gap-6 laptop:gap-8">
         <h3 className="text-20lg text-second">Pay with card</h3>
         <div className="space-y-1">
@@ -37,14 +73,20 @@ export default function JoinForm() {
         </div>
         <div className="space-y-1">
           <p className="text-14lg text-neutral">Card information</p>
-          <div className="">
+          <div
+            className={cn(
+              (errors.cardNumber || errors.cvvlast4Digits || errors.expDate) &&
+                "rounded border border-error",
+            )}
+          >
             <AddInput<JoinT>
               placeholder="1234 1234 1234 1234"
               register={register}
               name="cardNumber"
-              type="text"
+              type="number"
               classname="rounded-b-none"
-              error={errors.cardNumber?.message as string}
+              error={undefined}
+              icon={<MdOutlinePayment className="text-[20px] text-second" />}
             />
             <div className="grid w-full grid-cols-2">
               <AddInput<JoinT>
@@ -53,15 +95,15 @@ export default function JoinForm() {
                 name="expDate"
                 type="text"
                 classname="border-t-0 rounded-br-none rounded-t-none"
-                error={errors.expDate?.message as string}
+                error={undefined}
               />
               <AddInput<JoinT>
                 placeholder="CVC"
                 register={register}
                 classname="border-t-0 rounded-t-none rounded-bl-none border-l-0"
                 name="cvvlast4Digits"
-                type="text"
-                error={errors.cvvlast4Digits?.message as string}
+                type="number"
+                error={undefined}
               />
             </div>
           </div>
@@ -88,14 +130,34 @@ export default function JoinForm() {
           />
         </div>
 
-        <div className="text-10sm tablet:text-14sm">
-          <p>Securely save my information for 1-click checkout</p>
+        <div className="text-12sm tablet:text-14sm">
+          <div className="flex items-center gap-[6px]">
+            <label
+              htmlFor="check"
+              className="flexCenter group h-[18px] w-[18px] cursor-pointer items-center rounded border border-mainLightActive text-main"
+            >
+              <input
+                type="checkbox"
+                id="check"
+                className="peer sr-only"
+                readOnly
+              />
+              <FaCheck className="hidden text-[12px] text-white peer-checked:block" />
+            </label>
+            <label htmlFor="check" className="cursor-pointer">
+              Securely save my information for 1-click checkout
+            </label>
+          </div>
+
           <p className="text-neutral">
             pay faster on this site and everywhere is accepted
           </p>
         </div>
 
-        <Button classname="w-full">Pay</Button>
+        <Button classname={cn("w-full", loading && "pointer-events-none")}>
+          Pay
+          {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+        </Button>
       </section>
     </form>
   );

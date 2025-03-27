@@ -100,3 +100,22 @@ export type ActivityDetailsT = {
   startDay: string;
   joined: number;
 };
+
+export type UserT = {
+  userId: string;
+  userName: string;
+  fullName: string;
+  email: string;
+  cityId: string;
+  role: string;
+  bio?: string;
+  phone?: string;
+  sex?: string;
+  avatar?: string;
+  idFrontPic?: string;
+  idBackPic?: null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string;
+  categoryId?: string;
+};
