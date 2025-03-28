@@ -10,11 +10,12 @@ import {
   getActivityReviews,
   getUserActivities,
 } from "@/actions/getActivities";
-import { ActivityDetailsT } from "@/libs/types";
+
 import { getToken } from "@/actions/decodeToken";
 import ActivityCard from "@/components/activities/ActivityCard";
 import { nanoid } from "nanoid";
 import Success from "@/components/activities/add/Success";
+import Link from "next/link";
 
 export default async function ActivityDetails({
   params,
@@ -45,7 +46,7 @@ export default async function ActivityDetails({
           id={activity.activityId}
           reviews={reviews}
         />
-        <JoinSection />
+        <JoinSection activity={activity} />
       </Container>
       {filtredActivities.length > 0 && (
         <Container>
@@ -61,9 +62,9 @@ export default async function ActivityDetails({
                   your next adventure today!
                 </p>
               </div>
-              <div className="self-end">
+              <Link href="/activities" className="self-end">
                 <Button secondary>See more</Button>
-              </div>
+              </Link>
             </div>
             <section className="mt-10 flex flex-col gap-6">
               {filtredActivities.map((ele) => (

@@ -7,7 +7,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { SummaryProps } from "./Summary";
 
 export default function TicketsNumber({ handleQuantity }: SummaryProps) {
-  const { count, handleArrows } = getContext(JoinContextP);
+  const { count, handleArrows, activity } = getContext(JoinContextP);
 
   return (
     <div className="select-none space-y-1 text-14xxl">
@@ -18,7 +18,8 @@ export default function TicketsNumber({ handleQuantity }: SummaryProps) {
           <IoIosArrowUp
             className="cursor-pointer"
             onClick={() => {
-              handleQuantity(count + 1);
+              count < activity.seat - activity.joined &&
+                handleQuantity(count + 1);
               handleArrows("add");
             }}
           />

@@ -53,7 +53,7 @@ export default function ActivityCard({
   return (
     <div
       className={cn(
-        "flex h-[380px] w-[328px] select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
+        "flex h-[380px] w-[328px] cursor-pointer select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
         full && "tablet:w-full",
         details && "tablet:w-full tablet:gap-[65px]",
@@ -96,12 +96,19 @@ export default function ActivityCard({
               </span>
               per person
             </p>
-            <Link
-              href={`/activities/${data.activityId}/payment`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Button>Join</Button>
-            </Link>
+
+            {data.seat === data.joined ? (
+              <div onClick={(e) => e.stopPropagation()}>
+                <Button disabled={data.seat === data.joined}>Full</Button>
+              </div>
+            ) : (
+              <Link
+                href={`/activities/${data.activityId}/payment`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Button>Join</Button>
+              </Link>
+            )}
           </div>
         </div>
       </section>

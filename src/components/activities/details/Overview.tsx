@@ -91,9 +91,17 @@ export default function Overview({ activity }: OverviewProps) {
               From {activity.price}DH{" "}
               <span className="text-12sm text-neutralDark">per person</span>
             </p>
-            <Link href={`/activities/${activity.activityId}/payment`}>
-              <Button>Join</Button>
-            </Link>
+            {activity.seat === activity.joined ? (
+              <div>
+                <Button disabled={activity.seat === activity.joined}>
+                  Full
+                </Button>
+              </div>
+            ) : (
+              <Link href={`/activities/${activity.activityId}/payment`}>
+                <Button>Join</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
