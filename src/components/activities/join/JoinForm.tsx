@@ -19,7 +19,7 @@ import { joinActivity } from "@/actions/activityActions";
 export type JoinT = z.infer<typeof joinValidation>;
 
 export default function JoinForm() {
-  const { user, activity } = getContext(JoinContextP);
+  const { user, activity, handleCode } = getContext(JoinContextP);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -49,8 +49,8 @@ export default function JoinForm() {
     const formData = getValues();
     setLoading(true);
     const code = await joinActivity(formData, activity.activityId);
-    console.log(code);
     setLoading(false);
+    handleCode(code.code);
   };
   return (
     <form

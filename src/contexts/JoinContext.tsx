@@ -8,6 +8,9 @@ type JoinContextT = {
   count: number;
   handleArrows: (action: "add" | "minus") => void;
   user: UserT;
+  handleCode: (code: string) => void;
+  step: number;
+  code: string | null;
 };
 
 type JointContextProps = {
@@ -22,6 +25,9 @@ export default function JoinContext({
   user,
 }: JointContextProps) {
   const [count, setCount] = useState(1);
+  const [code, setCode] = useState<string | null>(null);
+  const [step, setStep] = useState(2);
+
   const handleArrows = (action: "add" | "minus") => {
     setCount((prev) =>
       action === "add"
@@ -34,8 +40,15 @@ export default function JoinContext({
     );
   };
 
+  const handleCode = (code: string) => {
+    setCode(code);
+    setStep(2);
+  };
+
   return (
-    <JoinContextP.Provider value={{ activity, count, handleArrows, user }}>
+    <JoinContextP.Provider
+      value={{ activity, count, handleArrows, user, handleCode, step, code }}
+    >
       {children}
     </JoinContextP.Provider>
   );

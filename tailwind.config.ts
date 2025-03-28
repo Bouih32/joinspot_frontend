@@ -256,6 +256,7 @@ export default {
         story: "url(/images/story.png)",
         lines: "url(/images/lines.png)",
         linesLight: "url(/images/linesLight.png)",
+        ticketPattern: "url(/images/ticketPattern.png)",
         mobileNavBg: "url(/images/mobileBg.png)",
         resetGrad: "linear-gradient(60deg, #98F9FF, #FE5722)",
         activityGrad:
