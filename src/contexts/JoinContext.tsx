@@ -26,7 +26,7 @@ export default function JoinContext({
 }: JointContextProps) {
   const [count, setCount] = useState(1);
   const [code, setCode] = useState<string | null>(null);
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   const handleArrows = (action: "add" | "minus") => {
     setCount((prev) =>
