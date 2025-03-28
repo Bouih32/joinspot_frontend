@@ -62,3 +62,22 @@ export const convertToISODate = (dateString: string): string => {
   const date = new Date(Date.UTC(year, month - 1, day)); // Ensure UTC time
   return date.toISOString();
 };
+
+export const formatTicketDate = () => {
+  const now = new Date();
+
+  const date = now.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+  });
+
+  const time = now
+    .toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .toLowerCase(); // Ensures "am/pm" is lowercase
+
+  return `${date} · ${time}`;
+};

@@ -6,7 +6,7 @@ import jsPDF from "jspdf";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { JoinContextP } from "@/contexts/JoinContext";
-import { getContext } from "@/libs/utils";
+import { formatTicketDate, getContext } from "@/libs/utils";
 import Link from "next/link";
 
 export default function Ticket() {
@@ -27,6 +27,8 @@ export default function Ticket() {
     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
     pdf.save("ticket.pdf");
   };
+
+  const ticketDate = formatTicketDate();
 
   return (
     <Container>
@@ -50,7 +52,6 @@ export default function Ticket() {
           </span>
         </section>
 
-        {/* Ticket Content to Convert to PDF */}
         <section
           ref={ticketRef}
           className="rounded-xl border-neutralLightActive tablet:border tablet:p-5"
@@ -60,7 +61,7 @@ export default function Ticket() {
               <div>
                 <h3 className="mb-4 text-20xl text-main">{activity.title}</h3>
                 <ul className="space-y-2.5">
-                  <li>January 30 · 1:30pm</li>
+                  <li>{ticketDate}</li>
                   <li>Organised by {activity.userName} </li>
                 </ul>
               </div>
