@@ -12,7 +12,6 @@ import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
-// New client component
 
 export default async function ActivitiesPage({
   searchParams,

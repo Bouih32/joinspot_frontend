@@ -8,8 +8,8 @@ export default function ProfileLayout({ children }: { children: ReactNode }) {
   return (
     <main>
       <Header />
+      <ProfileHeader />
       <Container>
-        <ProfileHeader />
         <section className="flex h-screen flex-col tablet:flex-row">
           <SideNav />
           {children}

@@ -11,6 +11,7 @@ import { logout } from "@/actions/logout";
 import { useContext } from "react";
 import { NavContext } from "@/contexts/NavigationContext";
 import { LogedUiProps } from "./LogedUi";
+import Link from "next/link";
 
 export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const handleLogOut = async () => {
@@ -20,17 +21,14 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const role =
     typeof isLogged !== "string" && isLogged?.role ? isLogged.role : undefined;
 
-  const dropNav =
-    role === "VISITOR"
-      ? [
-          { icon: <RiVipCrown2Fill />, title: "Upgrade Pro", href: "/update" },
-          { icon: <CgProfile />, title: "Profile", href: "/profile" },
-          { icon: <RiSettings3Line />, title: "Settings", href: "/settings" },
-        ]
-      : [
-          { icon: <CgProfile />, title: "Profile", href: "/profile" },
-          { icon: <RiSettings3Line />, title: "Settings", href: "/settings" },
-        ];
+  const dropNav = [
+    { icon: <CgProfile />, title: "Profile", href: "/user" },
+    {
+      icon: <RiSettings3Line />,
+      title: "Settings",
+      href: "/user/settings",
+    },
+  ];
 
   const context = useContext(NavContext);
   if (!context) return;
@@ -60,12 +58,21 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
             className="absolute right-0 top-[115%] z-[600] w-[143px] space-y-2.5 rounded bg-secondLight p-3 shadow-23xl laptop:w-[159px] laptop:p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {dropNav.map((ele, index) => (
+            {role === "VISITOR" && (
+              <Link
+                href="/update"
+                className="flex cursor-pointer items-center gap-1 pb-3 text-neutral"
+              >
+                <RiVipCrown2Fill />
+                <h2 className="text-10lg laptop:text-12lg">Upgrade Pro</h2>
+              </Link>
+            )}
+
+            {dropNav.map((ele) => (
               <ProfileCard
                 href={ele.href}
                 icon={ele.icon}
                 title={ele.title}
-                index={index}
                 key={nanoid()}
               />
             ))}
