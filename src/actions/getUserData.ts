@@ -27,7 +27,47 @@ export const getHeaderData = async () => {
 
     return userData;
   } catch (error) {
-    console.error("Login error", error);
+    console.error("request error", error);
+    throw error;
+  }
+};
+
+export const getProfileData = async () => {
+  const cookiesStore = await cookies();
+  const token = cookiesStore.get("token");
+  if (!token) return null;
+  try {
+    const res = await fetch(`${API_URL}/user/profile/header`, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); // Log the error message returned from the server
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+    const data = await res.json();
+    const info = data.data;
+
+    const userData = {
+      avatar: info.user.avatar,
+      userName: info.user.userName,
+      background: info.user.background,
+      activityNumber: info.activityNumber,
+      followersNum: info.followersNum,
+      followingNum: info.followingNum,
+    };
+
+    return userData;
+  } catch (error) {
+    console.error("request error", error);
     throw error;
   }
 };

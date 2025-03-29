@@ -119,3 +119,12 @@ export type UserT = {
   deletedAt?: string;
   categoryId?: string;
 };
+
+export type UserProfileT = {
+  avatar: string | null;
+  userName: string;
+  background: null;
+  activityNumber: number;
+  followersNum: number;
+  followingNum: number;
+};
