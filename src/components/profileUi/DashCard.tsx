@@ -10,9 +10,10 @@ type DashCardProps = {
   link: string;
   icon: ReactElement;
   title: string;
+  value: number;
 };
 
-export default function DashCard({ link, icon, title }: DashCardProps) {
+export default function DashCard({ link, icon, title, value }: DashCardProps) {
   const pathName = usePathname();
   return (
     <Link
@@ -39,7 +40,7 @@ export default function DashCard({ link, icon, title }: DashCardProps) {
             link === pathName && "bg-main text-white",
           )}
         >
-          400 {title === "Revenue" && "$"}
+          {value} {title === "Revenue" && "$"}
         </span>
       </div>
     </Link>

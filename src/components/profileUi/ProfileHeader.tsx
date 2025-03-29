@@ -20,8 +20,6 @@ export default async function ProfileHeader() {
 
   const userData = (await getProfileData()) as UserProfileT;
 
-  console.log(userData);
-
   return (
     <section className="flex h-[209px] items-end bg-red-300 bg-profileCover bg-cover bg-right bg-no-repeat pb-8 tablet:h-[287px] tablet:bg-center">
       <Container classname="flex flex-col items-center gap-[15px] tablet:flex-row justify-between">
@@ -49,7 +47,7 @@ export default async function ProfileHeader() {
           </div>
         </section>
 
-        {role === "VISITOR" ? <UpdateLink /> : <OrganiserNav />}
+        {role === "VISITOR" ? <UpdateLink /> : <OrganiserNav data={userData} />}
       </Container>
     </section>
   );
