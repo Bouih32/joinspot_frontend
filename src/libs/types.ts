@@ -127,4 +127,6 @@ export type UserProfileT = {
   activityNumber: number;
   followersNum: number;
   followingNum: number;
+  totalRevenue: number;
+  joinedNum: number;
 };
