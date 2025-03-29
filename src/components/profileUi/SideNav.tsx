@@ -44,7 +44,7 @@ export default function SideNav() {
           "flex w-fit cursor-pointer items-center gap-2 px-5 py-[17px] text-16xxl text-neutralDarkHover transition-all duration-75 hover:bg-main hover:text-white tablet:w-full tablet:rounded-[8px] tablet:border-b-0",
         )}
       >
-        <div className="text-[24px]">
+        <div className="text-[18px] tablet:text-[24px]">
           <LuLogOut />
         </div>
         <p className="hidden first-letter:uppercase tablet:block">Log out</p>

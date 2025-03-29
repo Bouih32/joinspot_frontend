@@ -1,10 +1,10 @@
 import { cn } from "@/libs/utils";
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 type ButtonProps = {
   variant?: boolean;
   secondary?: boolean;
-  icon?: boolean;
+  icon?: ReactElement;
   children: ReactNode;
   disabled?: boolean;
   classname?: string;
@@ -31,7 +31,7 @@ export default function Button({
       )}
     >
       {children}
-      {icon && <MdKeyboardArrowRight className="text-[20px]" />}
+      {icon && icon}
     </button>
   );
 }
