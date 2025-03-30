@@ -4,6 +4,7 @@ import ActivityCard from "@/components/activities/ActivityCard";
 import Button from "@/components/Button";
 import AddTags from "@/components/profileUi/AddTags";
 import SocialsHeader from "@/components/profileUi/SocialsHeader";
+import VisitorCTA from "@/components/profileUi/VisitorCTA";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import { AiFillEdit } from "react-icons/ai";
@@ -60,11 +61,15 @@ export default async function UserPage() {
           <Button icon={<CgMathPlus />}>Creat activity</Button>
         </div>
 
-        <section className="mt-[30px] flex flex-col gap-6">
-          {userActivities.map((ele) => (
-            <ActivityCard key={nanoid()} full data={ele} />
-          ))}
-        </section>
+        {role === "VISITOR" ? (
+          <VisitorCTA />
+        ) : (
+          <section className="mt-[30px] flex flex-col gap-6">
+            {userActivities.map((ele) => (
+              <ActivityCard key={nanoid()} full data={ele} />
+            ))}
+          </section>
+        )}
       </section>
     </main>
   );
