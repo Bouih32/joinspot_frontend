@@ -36,7 +36,7 @@ export const getCategoriesServer = async () => {
   }
 };
 
-type TagsT = {
+export type TagsT = {
   tagId: string;
   tagName: string;
   deletedAt: Date | null;
@@ -51,6 +51,24 @@ export const getTagsById = async (categoryId: string) => {
     const info: TagsT[] = res.data.data;
 
     return info.map((ele) => ({ tagName: ele.tagName, tagId: ele.tagId }));
+  } catch (error) {
+    console.log(" error", error);
+    if (isAxiosError(error) && error.response) {
+      return error.response;
+    } else {
+      throw error;
+    }
+  }
+};
+
+export const getAllTags = async () => {
+  try {
+    const res = await axios.get(`${API_URL}/category/tags`, {
+      withCredentials: true,
+    });
+    const info = res.data;
+
+    return info.tags;
   } catch (error) {
     console.log(" error", error);
     if (isAxiosError(error) && error.response) {

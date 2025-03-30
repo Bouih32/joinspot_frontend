@@ -8,13 +8,31 @@ import { GoPlus } from "react-icons/go";
 import { TbTriangleFilled } from "react-icons/tb";
 import TagCard from "./TagCard";
 import CategoryCard from "./CategoryCard";
-import { getCategories } from "@/actions/getCategory";
+import { getAllTags, getCategories, TagsT } from "@/actions/getCategory";
 import { Category } from "@/libs/types";
 import { nanoid } from "nanoid";
+import Chip from "../Chip";
 
 export default function AddTags() {
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [tags, setTags] = useState<TagsT[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const selectCategory = (id: string) => {
+    setSelectedCategory(id);
+  };
+
+  const selectTags = (id: string) => {
+    setSelectedTags((prevTags) =>
+      prevTags.includes(id)
+        ? prevTags.filter((ele) => ele !== id) // Remove if already selected
+        : prevTags.length < 3
+          ? [...prevTags, id]
+          : prevTags,
+    );
+  };
 
   useEffect(() => {
     if (open) {
@@ -36,7 +54,9 @@ export default function AddTags() {
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await getCategories();
+      const tags = await getAllTags();
       setCategories(data.categories);
+      setTags(tags);
     };
     fetchCategories();
   }, []);
@@ -65,7 +85,18 @@ export default function AddTags() {
             <div className="space-y-[9px]">
               <p className="text-neutralDark">Choose your tags by category.</p>
               <div className="flexBetween rounded bg-neutralLightHover px-1 py-[6px] tablet:rounded-xl tablet:px-3 laptop:py-[11px]">
-                <p className="text-12sm text-neutralHover">No tag yet</p>
+                {selectedTags.length > 0 ? (
+                  <div className="flex items-center gap-1">
+                    {tags
+                      .filter((ele) => selectedTags.includes(ele.tagId))
+                      .map((ele) => (
+                        <Chip key={nanoid()}>{ele.tagName}</Chip>
+                      ))}
+                  </div>
+                ) : (
+                  <p className="text-12sm text-neutralHover">No tag yet</p>
+                )}
+
                 <div className="">
                   <Button icon={<TbTriangleFilled className="rotate-180" />}>
                     Add tags
@@ -84,6 +115,7 @@ export default function AddTags() {
                     key={nanoid()}
                     categoryName={ele.categoryName}
                     categoryId={ele.categoryId}
+                    selectCategory={selectCategory}
                   />
                 ))}
               </div>
@@ -91,11 +123,17 @@ export default function AddTags() {
                 <p className="pb-1 text-14xxl text-main tablet:text-16xxl">
                   Tags
                 </p>
-                <TagCard />
-                <TagCard />
-                <TagCard />
-                <TagCard />
-                <TagCard />
+
+                {tags
+                  ?.filter((ele) => ele.categoryId === selectedCategory)
+                  .map((ele) => (
+                    <TagCard
+                      key={nanoid()}
+                      tagName={ele.tagName}
+                      tagId={ele.tagId}
+                      selectTags={selectTags}
+                    />
+                  ))}
               </div>
             </section>
           </div>
