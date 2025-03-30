@@ -75,7 +75,7 @@ export default function ResetForm() {
       ) : (
         <div className="flexCenter flex-col gap-[26px] text-main">
           <MdMarkEmailRead className="text-[40px] tablet:text-[70px] laptop:text-[90px]" />
-          <h3 className="tablet:text-28xxl text-22xxl">
+          <h3 className="text-22xxl tablet:text-28xxl">
             Password reset link sent!
           </h3>
           <p className="text-12lg text-neutralDarkHover tablet:text-16lg">

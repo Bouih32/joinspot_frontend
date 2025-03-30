@@ -4,7 +4,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 type ButtonProps = {
   variant?: boolean;
   secondary?: boolean;
-  icon?: ReactElement;
+  icon?: ReactElement | boolean;
   children: ReactNode;
   disabled?: boolean;
   classname?: string;
