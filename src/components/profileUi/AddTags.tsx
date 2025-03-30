@@ -8,9 +8,13 @@ import { GoPlus } from "react-icons/go";
 import { TbTriangleFilled } from "react-icons/tb";
 import TagCard from "./TagCard";
 import CategoryCard from "./CategoryCard";
+import { getCategories } from "@/actions/getCategory";
+import { Category } from "@/libs/types";
+import { nanoid } from "nanoid";
 
 export default function AddTags() {
   const [open, setOpen] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     if (open) {
@@ -28,6 +32,14 @@ export default function AddTags() {
       document.body.style.paddingRight = "";
     };
   }, [open]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await getCategories();
+      setCategories(data.categories);
+    };
+    fetchCategories();
+  }, []);
 
   return (
     <div className="">
@@ -67,11 +79,13 @@ export default function AddTags() {
                 <p className="pb-1 text-14xxl text-main tablet:text-16xxl">
                   Categories
                 </p>
-
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
-                <CategoryCard />
+                {categories?.map((ele) => (
+                  <CategoryCard
+                    key={nanoid()}
+                    categoryName={ele.categoryName}
+                    categoryId={ele.categoryId}
+                  />
+                ))}
               </div>
               <div className="flex-1 rounded-xl border-neutralLightActive p-3 tablet:border">
                 <p className="pb-1 text-14xxl text-main tablet:text-16xxl">
