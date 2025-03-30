@@ -12,6 +12,7 @@ import { getAllTags, getCategories, TagsT } from "@/actions/getCategory";
 import { Category } from "@/libs/types";
 import { nanoid } from "nanoid";
 import Chip from "../Chip";
+import { BiSolidCheckCircle } from "react-icons/bi";
 
 export default function AddTags() {
   const [open, setOpen] = useState(false);
@@ -98,15 +99,23 @@ export default function AddTags() {
                 )}
 
                 <div className="">
-                  <Button icon={<TbTriangleFilled className="rotate-180" />}>
-                    Add tags
-                  </Button>
+                  {selectedTags.length > 0 ? (
+                    <Button icon={<BiSolidCheckCircle />}>Save</Button>
+                  ) : (
+                    <Button
+                      icon={
+                        <TbTriangleFilled className="rotate-180 text-[10px]" />
+                      }
+                    >
+                      Add tags
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
 
             <section className="flex w-full items-start justify-center rounded-xl border border-neutralLightActive tablet:gap-2.5 tablet:border-0">
-              <div className="f h-full border-r border-neutralLightActive p-3 tablet:flex-1 tablet:rounded-xl tablet:border">
+              <div className="f h-full min-w-[150px] border-r border-neutralLightActive p-3 tablet:flex-1 tablet:rounded-xl tablet:border">
                 <p className="pb-1 text-14xxl text-main tablet:text-16xxl">
                   Categories
                 </p>
@@ -116,6 +125,7 @@ export default function AddTags() {
                     categoryName={ele.categoryName}
                     categoryId={ele.categoryId}
                     selectCategory={selectCategory}
+                    selectedCategory={selectedCategory}
                   />
                 ))}
               </div>
