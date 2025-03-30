@@ -46,19 +46,15 @@ export default function ActivityCard({
 
   const router = useRouter();
 
-  const handleNavigation = () => {
-    router.push(`/activities/${data.activityId}`);
-  };
-
   return (
-    <div
+    <Link
+      href={`/activities/${data.activityId}`}
       className={cn(
         "flex h-[380px] w-[328px] cursor-pointer select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
         full && "tablet:w-full",
         details && "tablet:w-full tablet:gap-[65px]",
       )}
-      onClick={handleNavigation}
     >
       <div
         className={cn(
@@ -102,16 +98,18 @@ export default function ActivityCard({
                 <Button disabled={data.seat === data.joined}>Full</Button>
               </div>
             ) : (
-              <Link
-                href={`/activities/${data.activityId}/payment`}
-                onClick={(e) => e.stopPropagation()}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  router.push(`/activities/${data.activityId}/payment`);
+                }}
               >
                 <Button>Join</Button>
-              </Link>
+              </div>
             )}
           </div>
         </div>
       </section>
-    </div>
+    </Link>
   );
 }
