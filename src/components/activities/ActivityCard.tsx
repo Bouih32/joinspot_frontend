@@ -9,7 +9,7 @@ import Button from "../Button";
 import { cn } from "@/libs/utils";
 import Save from "./Save";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useState } from "react";
 
 export type ActivityCardType = {
   activityId: string;
@@ -45,10 +45,19 @@ export default function ActivityCard({
   }
 
   const router = useRouter();
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleNavigation = () => {
+    if (!isDragging) {
+      router.push(`/activities/${data.activityId}`);
+    }
+  };
 
   return (
-    <Link
-      href={`/activities/${data.activityId}`}
+    <div
+      onClick={handleNavigation}
+      onPointerDown={() => setIsDragging(false)} // Reset when user starts touch
+      onPointerMove={() => setIsDragging(true)} //
       className={cn(
         "flex h-[380px] w-[328px] cursor-pointer select-none flex-col-reverse gap-5 self-center justify-self-center overflow-hidden rounded-xl bg-secondLight px-3 py-[17px] tablet:h-[245px] tablet:w-[648px] tablet:flex-row tablet:gap-2.5 tablet:rounded-[8px] tablet:px-0 tablet:py-0",
         hide && "cover relative before:bg-white/50",
@@ -110,6 +119,6 @@ export default function ActivityCard({
           </div>
         </div>
       </section>
-    </Link>
+    </div>
   );
 }

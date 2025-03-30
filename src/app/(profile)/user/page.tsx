@@ -3,10 +3,12 @@ import { getUserActivities } from "@/actions/getActivities";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Button from "@/components/Button";
 import AddTags from "@/components/profileUi/AddTags";
+import NoActivity from "@/components/profileUi/NoActivity";
 import SocialsHeader from "@/components/profileUi/SocialsHeader";
 import VisitorCTA from "@/components/profileUi/VisitorCTA";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
+import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";
 import { CgMathPlus } from "react-icons/cg";
 
@@ -58,16 +60,22 @@ export default async function UserPage() {
           <p className="text-14lg text-main tablet:text-16lg laptop:text-20lg">
             Your activities
           </p>
-          <Button icon={<CgMathPlus />}>Creat activity</Button>
+          <Link href="/activities/add">
+            <Button icon={<CgMathPlus />}>Creat activity</Button>
+          </Link>
         </div>
 
         {role === "VISITOR" ? (
           <VisitorCTA />
         ) : (
           <section className="mt-[30px] flex flex-col gap-6">
-            {userActivities.map((ele) => (
-              <ActivityCard key={nanoid()} full data={ele} />
-            ))}
+            {userActivities.length > 0 ? (
+              userActivities.map((ele) => (
+                <ActivityCard key={nanoid()} full data={ele} />
+              ))
+            ) : (
+              <NoActivity />
+            )}
           </section>
         )}
       </section>
