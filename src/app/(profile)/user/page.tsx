@@ -1,7 +1,11 @@
 import { getToken } from "@/actions/decodeToken";
 import { getUserActivities } from "@/actions/getActivities";
+import { TagsT } from "@/actions/getCategory";
+import { getHeaderData } from "@/actions/getUserData";
+import { getUserTags } from "@/actions/userActions";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Button from "@/components/Button";
+import Chip from "@/components/Chip";
 import AddTags from "@/components/profileUi/AddTags";
 import NoActivity from "@/components/profileUi/NoActivity";
 import SocialsHeader from "@/components/profileUi/SocialsHeader";
@@ -20,27 +24,30 @@ export default async function UserPage() {
     userId = (token as JwtPayload).userId;
     role = (token as JwtPayload).role;
   }
+
+  const userData = await getHeaderData();
   const userActivities = await getUserActivities(userId);
+  const userTags = (await getUserTags()) as { name: string; id: string }[];
+  console.log(userData.city);
 
   return (
     <main className="flex-1 space-y-4 pt-8 tablet:space-y-[30px] tablet:pl-[6px] tablet:pt-5 laptop:pl-5">
-      <SocialsHeader />
+      <SocialsHeader
+        location={userData.city.cityName}
+        socials={userData.userSocials}
+      />
       <section className="">
         <div className="flex items-center gap-2.5">
           <h2 className="text-14lg text-darker tablet:text-16lg laptop:text-20lg">
             Description
           </h2>
-          <AiFillEdit className="text-main" />
+          <Link href="user/settings">
+            <AiFillEdit className="text-main" />
+          </Link>
         </div>
 
         <p className="text-12sm text-neutral tablet:text-14sm laptop:text-16sm">
-          Lorem ipsum dolor sit amet consectetur. Cras odio leo a massa dui
-          aliquam ultricies at porta. Suspendisse consequat justo lorem nec
-          fermentum eget. Blandit sit feugiat mi proin. Fermentum id gravida
-          amet elementum. Eu imperdiet pellentesque in elit sit duis ridiculus.
-          A pellentesque sed venenatis suspendisse viverra facilisis tempor
-          adipiscing. Urna mattis urna nisl velit. Sit ut blandit placerat nunc
-          nunc gravida eu metus. Nec mattis tempus ipsum eleifend.
+          {userData.bio ?? "No description yet"}
         </p>
       </section>
 
@@ -52,7 +59,12 @@ export default async function UserPage() {
         <p className="text-12sm text-neutral tablet:text-14sm laptop:text-16sm">
           Select three tags to represent your interests and hobbies.
         </p>
-        <AddTags />
+        <div className="mt-2 flex items-center gap-1">
+          <AddTags />
+          {userTags.map((ele) => (
+            <Chip key={nanoid()}>{ele.name}</Chip>
+          ))}
+        </div>
       </section>
 
       <section className="pb-10">

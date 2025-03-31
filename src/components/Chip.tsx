@@ -17,7 +17,7 @@ export default function Chip({
   return (
     <div
       className={cn(
-        "flexCenter h-fit w-fit gap-2 rounded-[20px] bg-main px-2.5 py-[1px] font-openSans text-10sm text-white first-letter:uppercase tablet:px-[14px] tablet:py-1 tablet:text-14sm",
+        "flexCenter h-full w-fit gap-[2px] text-nowrap rounded-[20px] bg-main px-2.5 py-[6px] font-openSans text-10sm text-white first-letter:uppercase tablet:gap-2 tablet:px-[14px] tablet:py-1 tablet:text-14sm",
         secondary && "border border-main bg-transparent text-main",
 
         classname,

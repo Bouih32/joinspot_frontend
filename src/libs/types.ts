@@ -130,3 +130,9 @@ export type UserProfileT = {
   totalRevenue: number;
   joinedNum: number;
 };
+
+export type SocialsT = {
+  socialId: string;
+  link: string;
+  platform: string;
+};

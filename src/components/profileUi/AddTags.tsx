@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgMathPlus } from "react-icons/cg";
-import { GoPlus } from "react-icons/go";
 import { TbTriangleFilled } from "react-icons/tb";
 import TagCard from "./TagCard";
 import CategoryCard from "./CategoryCard";
@@ -13,15 +12,22 @@ import { Category } from "@/libs/types";
 import { nanoid } from "nanoid";
 import Chip from "../Chip";
 import { BiSolidCheckCircle } from "react-icons/bi";
+import { addTagTwo } from "@/actions/activityActions";
+import { RxCross2 } from "react-icons/rx";
 
 export default function AddTags() {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<TagsT[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    "67b654e50614d66231800308",
+  );
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const router = useRouter();
 
   const selectCategory = (id: string) => {
+    console.log(selectedCategory);
     setSelectedCategory(id);
   };
 
@@ -33,6 +39,15 @@ export default function AddTags() {
           ? [...prevTags, id]
           : prevTags,
     );
+  };
+
+  const handleAdd = async () => {
+    console.log(selectedTags);
+    setLoading(true);
+    await addTagTwo(selectedTags);
+    setLoading(false);
+    router.refresh();
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -66,7 +81,7 @@ export default function AddTags() {
     <div className="">
       <div
         onClick={() => setOpen(true)}
-        className="flexCenter mt-2 w-fit cursor-pointer gap-2 rounded-[20px] border border-main px-3 py-[3px] font-openSans text-14sm text-main tablet:px-4 tablet:py-[6px]"
+        className="flexCenter h-fit w-fit cursor-pointer gap-2 rounded-[20px] border border-main px-3 py-[3px] font-openSans text-14sm text-main tablet:px-4 tablet:py-[6px]"
       >
         <p>Add Tag</p>
         <CgMathPlus />
@@ -78,20 +93,37 @@ export default function AddTags() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="tablet:text-14lsm flex w-[328px] flex-col justify-between gap-[30px] rounded-[8px] bg-secondLight px-2.5 py-5 text-12sm shadow-8xl tablet:w-[676px] tablet:rounded-xl tablet:px-[14px] laptop:gap-[50px] laptop:text-16sm"
+            className="tablet:text-14lsm flex w-[340px] flex-col justify-between gap-[30px] rounded-[8px] bg-secondLight px-2.5 py-5 text-12sm shadow-8xl tablet:w-[676px] tablet:rounded-xl tablet:px-[14px] laptop:gap-[50px] laptop:text-16sm"
           >
-            <h3 className="text-16xl text-main tablet:text-28xl laptop:text-40xl">
-              Tags
-            </h3>
+            <div className="flexBetween">
+              <h3 className="text-16xl text-main tablet:text-28xl laptop:text-40xl">
+                Tags
+              </h3>
+              <div
+                className="rounded-full bg-white p-[2px] text-main tablet:p-[9px]"
+                onClick={() => setOpen(false)}
+              >
+                <RxCross2 className="text-[18px]" />
+              </div>
+            </div>
             <div className="space-y-[9px]">
               <p className="text-neutralDark">Choose your tags by category.</p>
               <div className="flexBetween rounded bg-neutralLightHover px-1 py-[6px] tablet:rounded-xl tablet:px-3 laptop:py-[11px]">
                 {selectedTags.length > 0 ? (
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-[2px] tablet:gap-1">
                     {tags
                       .filter((ele) => selectedTags.includes(ele.tagId))
                       .map((ele) => (
-                        <Chip key={nanoid()}>{ele.tagName}</Chip>
+                        <div
+                          key={nanoid()}
+                          onClick={() =>
+                            setSelectedTags(
+                              selectedTags.filter((tag) => ele.tagId !== tag),
+                            )
+                          }
+                        >
+                          <Chip icon>{ele.tagName}</Chip>
+                        </div>
                       ))}
                   </div>
                 ) : (
@@ -100,7 +132,11 @@ export default function AddTags() {
 
                 <div className="">
                   {selectedTags.length > 0 ? (
-                    <Button icon={<BiSolidCheckCircle />}>Save</Button>
+                    <div onClick={handleAdd}>
+                      <Button icon={<BiSolidCheckCircle />} disabled={loading}>
+                        Save
+                      </Button>
+                    </div>
                   ) : (
                     <Button
                       icon={
@@ -142,6 +178,7 @@ export default function AddTags() {
                       tagName={ele.tagName}
                       tagId={ele.tagId}
                       selectTags={selectTags}
+                      selectedTags={selectedTags}
                     />
                   ))}
               </div>
