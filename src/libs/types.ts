@@ -136,3 +136,12 @@ export type SocialsT = {
   link: string;
   platform: string;
 };
+
+export type TicketT = {
+  code: string;
+  quantity: number;
+  title: string;
+  date: string;
+  ended: boolean;
+  totalPaid: number;
+};
