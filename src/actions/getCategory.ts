@@ -1,5 +1,3 @@
-"use client";
-
 import { API_URL } from "@/libs/constantes";
 import axios, { isAxiosError } from "axios";
 
