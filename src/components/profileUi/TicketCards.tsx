@@ -1,7 +1,7 @@
 import { getActivityById } from "@/actions/getActivities";
 import { getHeaderData } from "@/actions/getUserData";
 import { TicketT } from "@/libs/types";
-import { formatTicketDate } from "@/libs/utils";
+import { cn, formatTicketDate } from "@/libs/utils";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { nanoid } from "nanoid";
@@ -67,12 +67,17 @@ export default async function TicketCards({
             <div className="bg-[#F8F8F8] py-4 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
               {ele.title}
             </div>
-            <div className="bg-[#F8F8F8] py-4 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
-              {ele.date}
+            <div
+              className={cn(
+                "bg-[#F8F8F8] py-4 text-12lg text-neutral tablet:text-14lg laptop:text-16lg",
+                ele.ended && "text-error",
+              )}
+            >
+              {ele.ended ? "EXPIRED" : ele.date}
             </div>
             <div className="flexBetween bg-[#F8F8F8] py-4 pr-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
               <div className="">{ele.totalPaid}$</div>
-              <DownloadTicket myTicket={ele} user={user} />
+              {!ele.ended && <DownloadTicket myTicket={ele} user={user} />}
             </div>
           </div>
         ))}

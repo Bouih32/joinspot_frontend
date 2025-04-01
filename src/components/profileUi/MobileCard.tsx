@@ -20,7 +20,7 @@ export default function MobileCard({ ele, user }: { ele: TicketT; user: any }) {
         <p>{ele.code}</p>
 
         <div className="flexCenter gap-2.5">
-          <DownloadTicket myTicket={ele} user={user} />
+          {!ele.ended && <DownloadTicket myTicket={ele} user={user} />}
           <IoIosArrowDown className={cn(open && "rotate-180 text-main")} />
         </div>
       </div>
@@ -49,7 +49,9 @@ export default function MobileCard({ ele, user }: { ele: TicketT; user: any }) {
               <p className="text-[12px] font-thin"> Activity Date</p>
             </div>
 
-            <p>{ele.date}</p>
+            <p className={cn(ele.ended && "text-error")}>
+              {ele.ended ? "EXPIRED" : ele.date}
+            </p>
           </div>
           <div className="space-y-2 text-left text-14sm font-semibold text-neutral">
             <div className="flex items-center gap-[6px]">
