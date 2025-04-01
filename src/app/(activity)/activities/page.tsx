@@ -13,6 +13,7 @@ import Questions from "@/components/sections/support/Questions";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import { unstable_cache } from "next/cache";
+import { cookies } from "next/headers";
 
 export default async function ActivitiesPage({
   searchParams,
@@ -33,10 +34,11 @@ export default async function ActivitiesPage({
   if (typeof token !== "string" && token !== null) {
     role = (token as JwtPayload).role;
   }
-
+  const cookiesStore = await cookies();
+  const cookiesToken = cookiesStore.get("token");
   const getCashedActivities = unstable_cache(
     async () => {
-      const data = await getActivities(params);
+      const data = await getActivities(cookiesToken, params);
       return data;
     },
     [
@@ -57,11 +59,11 @@ export default async function ActivitiesPage({
         params.page ? params.page : "",
         "activities",
       ],
-      revalidate: 5,
+      revalidate: false,
     },
   );
 
-  const activitiesData = await getActivities(params);
+  const activitiesData = await getCashedActivities();
 
   const data =
     params.my === "own" && (!token || role === "VISITOR")

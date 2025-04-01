@@ -1,15 +1,22 @@
+"use server";
+
 import { ReviewT } from "@/components/activities/details/ReviewButton";
 import { JoinT } from "@/components/activities/join/JoinForm";
 import { API_URL } from "@/libs/constantes";
 import { AddActivityT } from "@/libs/types";
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 
 export const addActivity = async (activity: AddActivityT) => {
   try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/activity/add`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
       },
       body: JSON.stringify(activity),
     });
@@ -21,7 +28,7 @@ export const addActivity = async (activity: AddActivityT) => {
         `HTTP error! Status: ${res.status}, Response: ${errorText}`,
       );
     }
-
+    revalidateTag("activities");
     return await res.json();
   } catch (error) {
     console.error("add error", error);
@@ -31,11 +38,14 @@ export const addActivity = async (activity: AddActivityT) => {
 
 export const reviewActivity = async (review: ReviewT, id: string) => {
   try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/activity/${id}/review`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
       },
       body: JSON.stringify(review),
     });
@@ -57,11 +67,14 @@ export const reviewActivity = async (review: ReviewT, id: string) => {
 
 export const joinActivity = async (data: JoinT, id: string) => {
   try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/activity/${id}/join`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
       },
       body: JSON.stringify(data),
     });
@@ -82,12 +95,15 @@ export const joinActivity = async (data: JoinT, id: string) => {
 };
 
 export const addTagTwo = async (tags: string[]) => {
+  const cookiesStore = await cookies();
+  const token = cookiesStore.get("token");
   try {
     const res = await fetch(`${API_URL}/user/tags`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
       },
       body: JSON.stringify(tags),
     });

@@ -1,10 +1,11 @@
-"use server";
-
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
-// import { cookies } from "next/headers";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
-export const getActivities = async (params?: Record<string, string>) => {
+export const getActivities = async (
+  token?: RequestCookie | undefined,
+  params?: Record<string, string>,
+) => {
   try {
     // const cookiesStore = await cookies();
     // const token = cookiesStore.get("token");
@@ -22,7 +23,7 @@ export const getActivities = async (params?: Record<string, string>) => {
       credentials: "include", // Ensures cookies are sent
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${token?.value}`,
+        Authorization: `Bearer ${token?.value}`,
       },
     });
 
