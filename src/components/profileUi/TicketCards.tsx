@@ -11,9 +11,13 @@ import { BsFillPostcardFill, BsTicketFill } from "react-icons/bs";
 import { IoMdDownload } from "react-icons/io";
 import DownloadTicket from "./DownloadTicket";
 
-export default async function TicketCards({ tickets }: { tickets: TicketT[] }) {
-  const user = await getHeaderData();
-
+export default async function TicketCards({
+  tickets,
+  user,
+}: {
+  tickets: TicketT[];
+  user: any;
+}) {
   return (
     <section className="relative hidden tablet:block">
       <div className="mb-6 grid w-full grid-cols-2 tablet:grid-cols-5">
