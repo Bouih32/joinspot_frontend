@@ -29,6 +29,7 @@ export const addActivity = async (activity: AddActivityT) => {
       );
     }
     revalidateTag("activities");
+    revalidateTag("getUserActivities");
     return await res.json();
   } catch (error) {
     console.error("add error", error);
@@ -86,7 +87,9 @@ export const joinActivity = async (data: JoinT, id: string) => {
         `HTTP error! Status: ${res.status}, Response: ${errorText}`,
       );
     }
-
+    revalidateTag(id);
+    revalidateTag("activities");
+    revalidateTag("useActivities");
     return await res.json();
   } catch (error) {
     console.error("join error", error);
