@@ -5,7 +5,7 @@ import { AiOutlineQrcode } from "react-icons/ai";
 
 export default async function TicketPage() {
   const tickets = (await getUserTickets()) as TicketT[];
-  console.log(tickets);
+
   return (
     <main className="w-full py-10 laptop:pl-6">
       <div className="mb-6 grid w-full grid-cols-2 tablet:grid-cols-5">

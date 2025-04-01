@@ -1,11 +1,13 @@
+"use server";
+
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export const getActivities = async (params?: Record<string, string>) => {
   try {
-    const cookiesStore = await cookies();
-    const token = cookiesStore.get("token");
+    // const cookiesStore = await cookies();
+    // const token = cookiesStore.get("token");
     const queryString =
       params && Object.keys(params).length > 0
         ? new URLSearchParams(params).toString()
@@ -20,7 +22,7 @@ export const getActivities = async (params?: Record<string, string>) => {
       credentials: "include", // Ensures cookies are sent
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token?.value}`,
+        // Authorization: `Bearer ${token?.value}`,
       },
     });
 
@@ -64,14 +66,14 @@ type TagT = {
 
 export const getActivityById = async (id: string) => {
   try {
-    const cookiesStore = await cookies();
-    const token = cookiesStore.get("token");
+    // const cookiesStore = await cookies();
+    // const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/activity/${id}`, {
       method: "GET",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token?.value}`,
+        // Authorization: `Bearer ${token?.value}`,
       },
     });
 

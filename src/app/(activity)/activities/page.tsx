@@ -12,6 +12,7 @@ import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
+import { unstable_cache } from "next/cache";
 
 export default async function ActivitiesPage({
   searchParams,
@@ -32,6 +33,33 @@ export default async function ActivitiesPage({
   if (typeof token !== "string" && token !== null) {
     role = (token as JwtPayload).role;
   }
+
+  const getCashedActivities = unstable_cache(
+    async () => {
+      const data = await getActivities(params);
+      return data;
+    },
+    [
+      params.seats,
+      params.category,
+      params.date,
+      params.my,
+      params.search,
+      params.page,
+    ],
+    {
+      tags: [
+        params.seats ? params.seats : "",
+        params.category ? params.category : "",
+        params.date ? params.date : "",
+        params.my ? params.my : "",
+        params.search ? params.search : "",
+        params.page ? params.page : "",
+        "activities",
+      ],
+      revalidate: 5,
+    },
+  );
 
   const activitiesData = await getActivities(params);
 
