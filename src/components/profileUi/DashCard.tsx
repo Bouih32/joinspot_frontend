@@ -32,7 +32,7 @@ export default function DashCard({ link, icon, title, value }: DashCardProps) {
           )}
         />
       </div>
-      <div className="flexBetween">
+      <div className="flex items-end justify-between gap-1">
         <p className="text-12lg tablet:text-14lg laptop:text-16lg">{title}</p>
         <span
           className={cn(

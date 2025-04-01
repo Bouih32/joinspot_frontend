@@ -138,6 +138,13 @@ export type SocialsT = {
 };
 
 export type TicketT = {
+  ticketDate: string;
+  seats: number;
+  location: string;
+  city: string;
+  category: string;
+  organizer: string;
+  activityId: string;
   code: string;
   quantity: number;
   title: string;

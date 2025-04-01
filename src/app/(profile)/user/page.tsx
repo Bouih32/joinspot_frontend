@@ -28,7 +28,6 @@ export default async function UserPage() {
   const userData = await getHeaderData();
   const userActivities = await getUserActivities(userId);
   const userTags = (await getUserTags()) as { name: string; id: string }[];
-  console.log(userData.city);
 
   return (
     <main className="flex-1 space-y-4 pt-8 tablet:space-y-[30px] tablet:pl-[6px] tablet:pt-5 laptop:pl-5">

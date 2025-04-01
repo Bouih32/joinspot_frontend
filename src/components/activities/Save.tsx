@@ -23,7 +23,10 @@ export default function Save({ id }: { id: string }) {
   return (
     <div
       className="z-40 w-fit cursor-pointer rounded-md bg-white p-[5px] text-main"
-      onClick={handleClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
     >
       {open ? <MdBookmark /> : <MdOutlineTurnedInNot />}
     </div>
