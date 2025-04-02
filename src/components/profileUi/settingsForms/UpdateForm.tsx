@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { resetPswrd } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -85,7 +86,13 @@ export default function UpdateForm() {
           />
         </div>
       </section>
-      <div className="tablet:self-end">
+      <div className="items-senter flex flex-row-reverse gap-2.5 self-start tablet:flex-row tablet:self-end">
+        <Link
+          href="/reset"
+          className="flexCenter w-fit cursor-pointer gap-2 rounded border border-main bg-transparent px-3 py-[3px] font-openSans text-14xl text-main tablet:px-4 tablet:py-[6px]"
+        >
+          Forgot password
+        </Link>
         <Button>
           Change
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}

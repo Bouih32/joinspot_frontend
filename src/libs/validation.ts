@@ -260,25 +260,21 @@ export const socialsValidation = z.object({
   facebook: z
     .string()
     .trim()
-    .min(1, { message: "Please enter your facebook username" })
-    .max(30, { message: "Heey! that's too long" })
+    .max(100, { message: "Heey! that's too long" })
     .optional(),
   instagram: z
     .string()
     .trim()
-    .min(1, { message: "Please enter your facebook username" })
-    .max(30, { message: "Heey! that's too long" })
+    .max(100, { message: "Heey! that's too long" })
     .optional(),
   youtube: z
     .string()
     .trim()
-    .min(1, { message: "Please enter your facebook username" })
-    .max(30, { message: "Heey! that's too long" })
+    .max(100, { message: "Heey! that's too long" })
     .optional(),
   website: z
     .string()
     .trim()
-    .min(1, { message: "Please enter your facebook username" })
-    .max(50, { message: "Heey! that's too long" })
+    .max(100, { message: "Heey! that's too long" })
     .optional(),
 });
