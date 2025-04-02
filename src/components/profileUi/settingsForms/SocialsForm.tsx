@@ -1,15 +1,10 @@
 "use client";
 
-import {
-  updatePassword,
-  updateSocials,
-  updateUserData,
-} from "@/actions/getActivities";
+import { updateSocials } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { resetPswrd, socialsValidation } from "@/libs/validation";
+import { socialsValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";

@@ -1,6 +1,7 @@
 import { getHeaderData } from "@/actions/getUserData";
 import Container from "@/components/Container";
 import InfoForm from "@/components/profileUi/settingsForms/InfoForm";
+import PhoneForm from "@/components/profileUi/settingsForms/PhoneForm";
 import SocialsForm from "@/components/profileUi/settingsForms/SocialsForm";
 import UpdateForm from "@/components/profileUi/settingsForms/UpdateForm";
 import { IoSettings } from "react-icons/io5";
@@ -21,6 +22,7 @@ export default async function SettingsPage() {
 
       <UpdateForm />
       <SocialsForm socials={userData.userSocials} />
+      <PhoneForm phone={userData.phone} />
     </main>
   );
 }

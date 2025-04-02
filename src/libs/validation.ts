@@ -278,3 +278,11 @@ export const socialsValidation = z.object({
     .max(100, { message: "Heey! that's too long" })
     .optional(),
 });
+
+export const phoneValidation = z.object({
+  phone: z
+    .string()
+    .trim()
+    .max(20, { message: "Heey! that's too long" })
+    .optional(),
+});
