@@ -236,23 +236,22 @@ export const infoValidation = z.object({
   bio: z
     .string()
     .trim()
-    .min(2, { message: "Please enter your bio" })
     .max(500, { message: "Heey! that's too long" })
     .optional(),
 });
 
 export const resetPswrd = z
   .object({
-    currenPswrd: z
+    oldPassword: z
       .string()
       .trim()
       .min(1, { message: "Please enter your current password" }),
-    password: passwordSchema,
+    newPassword: passwordSchema,
     passwordValidate: z
       .string()
       .min(1, { message: "Please confirm your password" }),
   })
-  .refine((data) => data.password === data.passwordValidate, {
+  .refine((data) => data.newPassword === data.passwordValidate, {
     message: "Passwords don't match",
     path: ["passwordValidate"],
   });

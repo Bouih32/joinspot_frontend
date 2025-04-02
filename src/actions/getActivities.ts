@@ -224,3 +224,32 @@ export const updateUserData = async (info: infoT) => {
     throw error;
   }
 };
+
+export const updatePassword = async (info: {
+  newPassword: string;
+  oldPassword: string;
+}) => {
+  try {
+    const res = await fetch(`${API_URL}/user/change-password`, {
+      method: "PATCH",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+
+    // if (!res.ok) {
+    //   const errorText = await res.text(); // Log the error message returned from the server
+    //   console.error(`Server responded with ${res.status}:`, errorText);
+    //   throw new Error(
+    //     `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+    //   );
+    // }
+
+    return await res;
+  } catch (error) {
+    console.error("request error", error);
+    throw error;
+  }
+};

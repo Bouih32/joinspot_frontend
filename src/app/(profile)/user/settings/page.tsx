@@ -1,6 +1,7 @@
 import { getHeaderData } from "@/actions/getUserData";
 import Container from "@/components/Container";
 import InfoForm from "@/components/profileUi/settingsForms/InfoForm";
+import UpdateForm from "@/components/profileUi/settingsForms/UpdateForm";
 import { IoSettings } from "react-icons/io5";
 
 export default async function SettingsPage() {
@@ -16,6 +17,8 @@ export default async function SettingsPage() {
         email={userData.email}
         bio={userData.bio}
       />
+
+      <UpdateForm />
     </main>
   );
 }

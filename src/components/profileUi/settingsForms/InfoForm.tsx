@@ -26,7 +26,6 @@ export default function InfoForm({ userName, email, bio }: InfoFormProps) {
     trigger,
     formState: { errors },
     getValues,
-    setValue,
   } = useForm<infoT>({
     resolver: zodResolver(infoValidation),
     defaultValues: {
