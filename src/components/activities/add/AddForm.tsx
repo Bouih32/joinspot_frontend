@@ -10,7 +10,6 @@ import AddImage from "./AddImage";
 import Button from "@/components/Button";
 import SelectTag from "./SelectTag";
 import SelectCity from "./SelectCity";
-import { BiSolidTime } from "react-icons/bi";
 import { MdChair } from "react-icons/md";
 import { AiFillDollarCircle, AiOutlineLoading3Quarters } from "react-icons/ai";
 import SelectDay from "./SelectDay";
@@ -20,7 +19,6 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { SaveContext } from "@/contexts/SaveContext";
 import SelectTime from "./SelectTime";
-import { revalidateTag } from "next/cache";
 
 type addType = z.infer<typeof addValidation>;
 export default function AddForm({ userCategory }: { userCategory: string }) {

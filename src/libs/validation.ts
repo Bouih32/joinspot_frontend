@@ -221,3 +221,65 @@ export const joinValidation = z.object({
     .trim()
     .min(1, { message: "Please enter the number of tickets" }),
 });
+
+export const infoValidation = z.object({
+  userName: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your userName" })
+    .max(20, { message: "Heey! that's too long" }),
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your email" })
+    .max(50, { message: "Heey! that's too long" }),
+  bio: z
+    .string()
+    .trim()
+    .min(2, { message: "Please enter your bio" })
+    .max(500, { message: "Heey! that's too long" })
+    .optional(),
+});
+
+export const resetPswrd = z
+  .object({
+    currenPswrd: z
+      .string()
+      .trim()
+      .min(1, { message: "Please enter your current password" }),
+    password: passwordSchema,
+    passwordValidate: z
+      .string()
+      .min(1, { message: "Please confirm your password" }),
+  })
+  .refine((data) => data.password === data.passwordValidate, {
+    message: "Passwords don't match",
+    path: ["passwordValidate"],
+  });
+
+export const socialsValidation = z.object({
+  facebook: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your facebook username" })
+    .max(30, { message: "Heey! that's too long" })
+    .optional(),
+  instagram: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your facebook username" })
+    .max(30, { message: "Heey! that's too long" })
+    .optional(),
+  youtube: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your facebook username" })
+    .max(30, { message: "Heey! that's too long" })
+    .optional(),
+  website: z
+    .string()
+    .trim()
+    .min(1, { message: "Please enter your facebook username" })
+    .max(50, { message: "Heey! that's too long" })
+    .optional(),
+});
