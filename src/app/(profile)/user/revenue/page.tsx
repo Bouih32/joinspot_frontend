@@ -1,7 +1,7 @@
 import { getActivityTickets } from "@/actions/userActions";
 import RevenueCard from "@/components/profileUi/RevenueCard";
 import { nanoid } from "nanoid";
-import { AiFillDollarCircle, AiOutlineQrcode } from "react-icons/ai";
+import { AiFillDollarCircle } from "react-icons/ai";
 import { BsFillPostcardFill } from "react-icons/bs";
 import { IoWallet } from "react-icons/io5";
 
