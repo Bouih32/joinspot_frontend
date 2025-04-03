@@ -303,3 +303,29 @@ export const updatePhone = async (info: phoneT) => {
     throw error;
   }
 };
+
+export const updateProfilePic = async (avatar: { avatar: string }) => {
+  try {
+    const res = await fetch(`${API_URL}/user/edit-profil`, {
+      method: "PATCH",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(avatar),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); // Log the error message returned from the server
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("request error", error);
+    throw error;
+  }
+};

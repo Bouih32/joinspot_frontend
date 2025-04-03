@@ -238,6 +238,7 @@ export const infoValidation = z.object({
     .trim()
     .max(500, { message: "Heey! that's too long" })
     .optional(),
+  avatar: z.string().trim().optional(),
 });
 
 export const resetPswrd = z
