@@ -20,7 +20,7 @@ export default function MessageCard({ data }: { data: MessageT }) {
       </div>
 
       <div className="flex items-center gap-3 self-end text-neutralDark tablet:self-auto">
-        <DeleteMessage />
+        <DeleteMessage messageId={data.messageId} />
         <MessageDetails messageId={data.messageId} />
       </div>
     </section>
