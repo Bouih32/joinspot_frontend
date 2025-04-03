@@ -312,7 +312,6 @@ export const updateProfilePic = async (avatar: { avatar: string }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(avatar),
     });
 
     if (!res.ok) {
@@ -326,6 +325,31 @@ export const updateProfilePic = async (avatar: { avatar: string }) => {
     return await res.json();
   } catch (error) {
     console.error("request error", error);
+    throw error;
+  }
+};
+
+export const markAsRead = async (id: string) => {
+  try {
+    const res = await fetch(`${API_URL}/user/messages/${id}/read`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      }, // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("get error", error);
     throw error;
   }
 };
