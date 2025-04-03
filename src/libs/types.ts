@@ -129,6 +129,7 @@ export type UserProfileT = {
   followingNum: number;
   totalRevenue: number;
   joinedNum: number;
+  activeActivities: number;
 };
 
 export type SocialsT = {

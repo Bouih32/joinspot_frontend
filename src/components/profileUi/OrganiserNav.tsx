@@ -27,7 +27,7 @@ export default function OrganiserNav({ data }: OrganiserNavProps) {
       icon: <BsPostcardFill />,
       link: "/user/active",
       title: "Active activities",
-      value: data.activityNumber,
+      value: data.activeActivities,
     },
   ];
   return (

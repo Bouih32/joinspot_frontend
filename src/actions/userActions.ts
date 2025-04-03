@@ -94,3 +94,63 @@ export const getMessageDetails = async (
     throw error;
   }
 };
+
+export const getActivityTickets = async () => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const res = await fetch(`${API_URL}/user/profile/revenue`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      }, // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    const data = await res.json();
+
+    return data.activityRevenue;
+  } catch (error) {
+    console.error("get error", error);
+    throw error;
+  }
+};
+
+export const getActive = async () => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const res = await fetch(`${API_URL}/user/profile/active`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      }, // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    const data = await res.json();
+
+    return data.activeActivities;
+  } catch (error) {
+    console.error("get error", error);
+    throw error;
+  }
+};

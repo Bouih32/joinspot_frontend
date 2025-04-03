@@ -66,6 +66,7 @@ export const getProfileData = async () => {
       followingNum: info.followingNum,
       joinedNum: info.joinedNum,
       totalRevenue: info.totalRevenue,
+      activeActivities: info.activeActivities,
     };
 
     return userData;
