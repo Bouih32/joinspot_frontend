@@ -353,3 +353,28 @@ export const markAsRead = async (id: string) => {
     throw error;
   }
 };
+
+export const deleteMessage = async (id: string) => {
+  try {
+    const res = await fetch(`${API_URL}/user/messages/${id}/delete`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      }, // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("get error", error);
+    throw error;
+  }
+};

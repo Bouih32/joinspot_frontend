@@ -1,20 +1,35 @@
 import Image from "next/image";
 import avatar from "../../../public/images/avatar2.png";
 import { formatTime } from "@/libs/utils";
+import { useRouter } from "next/navigation";
+import { markAsRead } from "@/actions/getActivities";
 
-type NotificationCardProps = {
+type MessageNotifCardProps = {
   content: string;
   date: string;
   userData: { avatar: string; userName: string };
+  messageId: string;
+  handleClose: (() => void) | undefined;
 };
 
-export default function NotificationCard({
+export default function MessageNotifCard({
   content,
   date,
   userData,
-}: NotificationCardProps) {
+  messageId,
+  handleClose,
+}: MessageNotifCardProps) {
+  const router = useRouter();
+  const handleSeen = async () => {
+    handleClose && handleClose();
+    router.push(`/user/messages/${messageId}`);
+    await markAsRead(messageId);
+  };
   return (
-    <div className="flexBetween cursor-pointer rounded-[2px] border-b border-neutralLightHover p-1 py-[2px] font-openSans hover:bg-errorHover">
+    <div
+      onClick={handleSeen}
+      className="flexBetween cursor-pointer rounded-[2px] border-b border-neutralLightHover p-1 py-[2px] font-openSans hover:bg-errorHover"
+    >
       <div className="flexCenter gap-2">
         <div className="h-[25px] w-[25px] overflow-hidden rounded-full laptop:h-[31px] laptop:w-[31px]">
           <Image

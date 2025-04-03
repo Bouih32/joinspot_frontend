@@ -1,6 +1,7 @@
 "use server";
 
 import { API_URL } from "@/libs/constantes";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
 export const getUserTags = async () => {
@@ -63,10 +64,11 @@ export const getUserMessages = async () => {
   }
 };
 
-export const getMessageDetails = async (id: string) => {
+export const getMessageDetails = async (
+  id: string,
+  token?: RequestCookie | undefined,
+) => {
   try {
-    const cookiesStore = await cookies();
-    const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/user/messages/details/${id}`, {
       method: "GET",
       credentials: "include",

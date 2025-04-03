@@ -1,15 +1,14 @@
-import { BiSolidTrash } from "react-icons/bi";
 import SenderUi from "./SenderUi";
-import { IoSend } from "react-icons/io5";
 import { MessageT } from "@/libs/types";
 import { cn } from "@/libs/utils";
 import MessageDetails from "./MessageDetails";
+import DeleteMessage from "./DeleteMessage";
 
 export default function MessageCard({ data }: { data: MessageT }) {
   return (
     <section
       className={cn(
-        "flexBetween group flex-col gap-[15px] rounded bg-neutralLight px-[6px] py-[14px] tablet:flex-row tablet:rounded-[8px] tablet:px-3 tablet:py-2",
+        "flexBetween group w-full flex-col gap-[15px] rounded bg-neutralLight px-[6px] py-[14px] tablet:flex-row tablet:rounded-[8px] tablet:px-3 tablet:py-2",
         !data.read && "bg-mainLightHover",
       )}
     >
@@ -21,7 +20,7 @@ export default function MessageCard({ data }: { data: MessageT }) {
       </div>
 
       <div className="flex items-center gap-3 self-end text-neutralDark tablet:self-auto">
-        <BiSolidTrash className="cursor-pointer hover:text-main" />
+        <DeleteMessage />
         <MessageDetails messageId={data.messageId} />
       </div>
     </section>

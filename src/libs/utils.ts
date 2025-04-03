@@ -104,3 +104,22 @@ export function formatDate(isoDateString: string) {
     return "Invalid date format";
   }
 }
+
+export function formatTime(isoDateString: string) {
+  try {
+    const date = new Date(isoDateString);
+
+    if (isNaN(date.getTime())) {
+      return "Invalid date format";
+    }
+
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12;
+
+    return `${formattedHours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}${ampm}`;
+  } catch (error) {
+    return "Invalid date format";
+  }
+}

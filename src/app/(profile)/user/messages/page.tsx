@@ -1,5 +1,7 @@
 import { getUserMessages } from "@/actions/userActions";
+import NoActivities from "@/components/activities/NoActivities";
 import MessageCard from "@/components/profileUi/messages/MessageCard";
+import NoActivity from "@/components/profileUi/NoActivity";
 import { MessageT } from "@/libs/types";
 import { nanoid } from "nanoid";
 import { HiOutlineMail } from "react-icons/hi";
@@ -12,11 +14,16 @@ export default async function MessagesPage() {
         <HiOutlineMail className="text-main" />
         <p>Messages</p>
       </div>
-      <section className="space-y-3 tablet:space-y-[19px]">
-        {messages.map((ele) => (
-          <MessageCard key={nanoid()} data={ele} />
-        ))}
-      </section>
+
+      {messages.length > 0 ? (
+        <section className="w-full space-y-3 tablet:space-y-[19px]">
+          {messages.map((ele) => (
+            <MessageCard key={nanoid()} data={ele} />
+          ))}
+        </section>
+      ) : (
+        <NoActivity message />
+      )}
     </main>
   );
 }
