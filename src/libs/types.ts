@@ -152,3 +152,12 @@ export type TicketT = {
   ended: boolean;
   totalPaid: number;
 };
+
+export type MessageT = {
+  content: string;
+  createdAt: string;
+  message_from: {
+    avatar: string;
+    userName: string;
+  };
+};

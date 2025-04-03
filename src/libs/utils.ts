@@ -81,3 +81,26 @@ export const formatTicketDate = () => {
 
   return `${date} · ${time}`;
 };
+
+export function formatDate(isoDateString: string) {
+  try {
+    const date = new Date(isoDateString);
+
+    if (isNaN(date.getTime())) {
+      return "Invalid date format";
+    }
+
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "short" }); // Get abbreviated month name
+    const year = date.getFullYear();
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12; // Convert to 12-hour format
+
+    return `At ${formattedHours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")} ${ampm}. ${day.toString().padStart(2, "0")} ${month} ${year}`;
+  } catch (error) {
+    return "Invalid date format";
+  }
+}
