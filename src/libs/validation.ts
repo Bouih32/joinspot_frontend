@@ -287,3 +287,11 @@ export const phoneValidation = z.object({
     .max(20, { message: "Heey! that's too long" })
     .optional(),
 });
+
+export const messageValidation = z.object({
+  content: z
+    .string()
+    .trim()
+    .min(5, { message: "Please enter your message" })
+    .max(600, { message: "Heey! that's too long" }),
+});

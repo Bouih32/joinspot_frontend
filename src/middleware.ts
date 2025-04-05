@@ -31,7 +31,8 @@ export async function middleware(req: NextRequest) {
   const isPublicRoutes =
     publicRoutes.includes(nextUrl.pathname) ||
     nextUrl.pathname.startsWith("/reset") ||
-    dynamicPublicRegex.test(nextUrl.pathname);
+    dynamicPublicRegex.test(nextUrl.pathname) ||
+    nextUrl.pathname.startsWith("/profile");
   const isLoggedIn = !!token;
 
   if (!token && !isAuthRoutes && !isPublicRoutes) {

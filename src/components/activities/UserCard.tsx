@@ -1,20 +1,31 @@
 import Image from "next/image";
 import avatarPlaceholder from "../../../public/images/avatar.png";
 import { MdMoreHoriz } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 type UserCardProps = {
   avatar: string;
   userName: string;
   category: string;
+  userId: string;
 };
 
 export default function UserCard({
   avatar,
   userName,
   category,
+  userId,
 }: UserCardProps) {
+  const router = useRouter();
+
   return (
-    <div className="flex items-start justify-between">
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        router.push(`/profile/${userId}`);
+      }}
+      className="flex items-start justify-between"
+    >
       <div className="flexCenter gap-2">
         <Image
           src={avatar ? avatar : avatarPlaceholder}

@@ -5,6 +5,7 @@ export const publicRoutes = [
   "/about",
   "/community",
   "/support",
+  "/profile",
 ];
 export const authRoutes = ["/login", "/signup"];
 export const apiAuthPrefix = "/api/auth";

@@ -12,6 +12,7 @@ import { PiUsersFill } from "react-icons/pi";
 import placeholder from "../../../../../public/images/avatar_placeholder.jpg";
 import JoinedCard from "@/components/profileUi/JoinedCard";
 import MarkAsUsed from "@/components/profileUi/MarkAsUsed";
+import Link from "next/link";
 
 export default async function JoinedPage() {
   const tickets = (await getJoinedUsers()) as joinedT[];
@@ -66,7 +67,10 @@ export default async function JoinedPage() {
               key={nanoid()}
               className="grid w-full grid-cols-5 items-center bg-[#F8F8F8]"
             >
-              <div className="flex items-center gap-3 bg-[#F8F8F8] pl-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
+              <Link
+                href={`/profile/${ele.userId}`}
+                className="flex items-center gap-3 bg-[#F8F8F8] pl-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg"
+              >
                 <div
                   style={{
                     backgroundImage: `url(${ele.avatar ? ele.avatar : placeholder})`,
@@ -76,7 +80,7 @@ export default async function JoinedPage() {
                 <h3 className="line-clamp-1 w-[120px] overflow-hidden text-14lg text-neutralDarkHover laptop:text-16lg">
                   {ele.userName}
                 </h3>
-              </div>
+              </Link>
               <div className="bg-[#F8F8F8] py-4 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
                 {ele.code}
               </div>

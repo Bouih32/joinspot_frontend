@@ -25,6 +25,7 @@ export type ActivityCardType = {
   city: string;
   category: string;
   joined: number;
+  userId: string;
 };
 
 type ActivityCardProps = {
@@ -91,6 +92,7 @@ export default function ActivityCard({
             avatar={data.avatar}
             userName={data.userName}
             category={data.category}
+            userId={data.userId}
           />
           <ActivityDetails title={data.title} stars={data.score} full={full} />
           <Seats seat={data.seat} joined={data.joined} />

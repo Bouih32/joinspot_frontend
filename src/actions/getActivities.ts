@@ -44,6 +44,7 @@ export const getActivities = async (params?: Record<string, string>) => {
         city: ele.city.cityName,
         category: ele.category.categoryName,
         joined: ele.joined,
+        userId: ele.user.userId,
       })),
       pages: data.pages,
     };
@@ -62,8 +63,6 @@ type TagT = {
 
 export const getActivityById = async (id: string) => {
   try {
-    // const cookiesStore = await cookies();
-    // const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/activity/${id}`, {
       method: "GET",
       credentials: "include", // Ensures cookies are sent automatically
@@ -152,6 +151,7 @@ export const getUserActivities = async (id: string) => {
       city: ele.city.cityName,
       category: ele.category.categoryName,
       joined: ele.joined,
+      userId: ele.user.userId,
     }));
   } catch (error) {
     console.error("get error", error);
@@ -394,6 +394,32 @@ export const handleUsed = async (id: string) => {
     return await res.json();
   } catch (error) {
     console.error("get error", error);
+    throw error;
+  }
+};
+
+export const sendMessage = async (data: { content: string; toId: string }) => {
+  try {
+    const res = await fetch(`${API_URL}/user/send-message`, {
+      method: "POST",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); // Log the error message returned from the server
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("request error", error);
     throw error;
   }
 };

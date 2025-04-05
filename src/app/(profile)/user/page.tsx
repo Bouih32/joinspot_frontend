@@ -1,6 +1,5 @@
 import { getToken } from "@/actions/decodeToken";
 import { getUserActivities } from "@/actions/getActivities";
-import { TagsT } from "@/actions/getCategory";
 import { getHeaderData } from "@/actions/getUserData";
 import { getUserTags } from "@/actions/userActions";
 import ActivityCard from "@/components/activities/ActivityCard";

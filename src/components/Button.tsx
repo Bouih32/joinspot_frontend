@@ -5,7 +5,7 @@ type ButtonProps = {
   variant?: boolean;
   secondary?: boolean;
   icon?: ReactElement | boolean;
-  children: ReactNode;
+  children?: ReactNode;
   disabled?: boolean;
   classname?: string;
 };
@@ -30,7 +30,7 @@ export default function Button({
         classname,
       )}
     >
-      {children}
+      {children && children}
       {icon && icon}
     </button>
   );

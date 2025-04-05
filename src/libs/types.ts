@@ -58,7 +58,7 @@ export type ActivityType = {
   deletedAt: null;
   userId: string;
   categoryId: string;
-  user: { avatar: string; userName: string };
+  user: { avatar: string; userName: string; userId: string };
   activityTags: [];
   city: { cityName: string };
   category: { categoryName: string };
@@ -169,9 +169,26 @@ export type joinedT = {
   avatar: string;
   userName: string;
   quantity: number;
+  userId: string;
   id: string;
   payed: number;
   code: string;
   title: string;
   used: boolean;
+};
+
+export type ProfileT = {
+  user: {
+    userName: string;
+    avatar: string;
+    background: { link: string };
+    bio: string;
+    city: { cityName: string };
+    socials: string[];
+    role: string;
+  };
+  activityNumber: 4;
+  followersNum: 0;
+  followingNum: 0;
+  tags: string[];
 };

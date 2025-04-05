@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { MdLocationOn, MdPeopleAlt } from "react-icons/md";
-import placeholder from "../../../../public/images/activityImg.jpg";
 import { FaShareSquare } from "react-icons/fa";
 import Save from "../Save";
 import { ActivityDetailsT } from "@/libs/types";
@@ -31,7 +30,10 @@ export default function Overview({ activity }: OverviewProps) {
             {activity.title}
           </h1>
           <div className="flexBetween">
-            <div className="flexCenter gap-2">
+            <Link
+              href={`/profile/${activity.userId}`}
+              className="flexCenter gap-2"
+            >
               <Image
                 src={activity.avatar}
                 alt="avatar"
@@ -45,7 +47,7 @@ export default function Overview({ activity }: OverviewProps) {
                   {activity.category}
                 </span>
               </div>
-            </div>
+            </Link>
             <div className="flexCenter gap-2">
               <Save id={activity.activityId} />
               <div className="z-40 w-fit cursor-pointer rounded-md bg-white p-[5px] text-main">
