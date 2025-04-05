@@ -173,4 +173,5 @@ export type joinedT = {
   payed: number;
   code: string;
   title: string;
+  used: boolean;
 };

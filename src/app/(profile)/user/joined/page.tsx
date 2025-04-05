@@ -11,7 +11,7 @@ import {
 import { PiUsersFill } from "react-icons/pi";
 import placeholder from "../../../../../public/images/avatar_placeholder.jpg";
 import JoinedCard from "@/components/profileUi/JoinedCard";
-import { LuTicketCheck } from "react-icons/lu";
+import MarkAsUsed from "@/components/profileUi/MarkAsUsed";
 
 export default async function JoinedPage() {
   const tickets = (await getJoinedUsers()) as joinedT[];
@@ -90,12 +90,16 @@ export default async function JoinedPage() {
                   "bg-[#F8F8F8] py-4 text-12lg text-neutral tablet:text-14lg laptop:text-16lg",
                 )}
               >
-                {ele.quantity} places
+                {ele.used ? (
+                  <p className="text-main">Ticket Used</p>
+                ) : (
+                  <p> {ele.quantity} places</p>
+                )}
               </div>
               <div className="bg-[#F8F8F8] py-4 pr-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
                 <div className="flexBetween">
                   <p> {ele.payed}$</p>
-                  <LuTicketCheck className="cursor-pointer text-[20px] hover:text-main" />
+                  <MarkAsUsed id={ele.id} used={ele.used} />
                 </div>
               </div>
             </div>
