@@ -12,7 +12,7 @@ export default function ActivityDetails({
 }: ActivityDetailsProps) {
   return (
     <section className="space-y-1 laptop:space-y-[14px]">
-      <p className="select-none text-14xxl text-darker tablet:w-full">
+      <p className="line-clamp-2 select-none overflow-hidden text-14xxl text-darker tablet:w-full">
         {title}
       </p>
       <Stars stars={stars} />

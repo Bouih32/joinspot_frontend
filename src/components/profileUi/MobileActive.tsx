@@ -1,11 +1,8 @@
 "use client";
 
-import { TicketT } from "@/libs/types";
 import { useState } from "react";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { BiSolidTimeFive } from "react-icons/bi";
-import { BsFillPostcardFill, BsTicketFill } from "react-icons/bs";
-import DownloadTicket from "./DownloadTicket";
 import { IoIosArrowDown } from "react-icons/io";
 import { cn, formatDate } from "@/libs/utils";
 import { activeT } from "@/app/(profile)/user/active/page";

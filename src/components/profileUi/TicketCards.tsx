@@ -65,7 +65,9 @@ export default async function TicketCards({
               {ele.quantity} tickets
             </div>
             <div className="bg-[#F8F8F8] py-4 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
-              {ele.title}
+              <p className="line-clamp-1 w-[130px] overflow-hidden">
+                {ele.title}
+              </p>
             </div>
             <div
               className={cn(

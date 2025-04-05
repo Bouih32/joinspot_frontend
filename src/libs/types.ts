@@ -164,3 +164,13 @@ export type MessageT = {
     userName: string;
   };
 };
+
+export type joinedT = {
+  avatar: string;
+  userName: string;
+  quantity: number;
+  id: string;
+  payed: number;
+  code: string;
+  title: string;
+};
