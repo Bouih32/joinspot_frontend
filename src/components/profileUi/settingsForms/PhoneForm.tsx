@@ -49,7 +49,7 @@ export default function PhoneForm({ phone }: { phone: string }) {
         <div className="w-full space-y-[2px]">
           <p className="text-12xxl tablet:text-14xxl">First phone number</p>
           <Input<phoneT>
-            placeholder="Current password"
+            placeholder="Your phone number"
             register={register}
             name="phone"
             type="number"

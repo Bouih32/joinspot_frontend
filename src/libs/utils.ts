@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { unstable_cache } from "next/cache";
 import { getCategoriesServer } from "@/actions/getCategory";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { revalidate } from "./constantes";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -49,7 +50,7 @@ export const getCachedCategories = async () => {
     ["category-server"],
     {
       tags: ["category-server"],
-      revalidate: false,
+      revalidate: revalidate,
     },
   );
 

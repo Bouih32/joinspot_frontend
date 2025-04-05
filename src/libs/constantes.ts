@@ -131,3 +131,5 @@ export const questions = [
     para: "Currently, the JoinSpot platform is available in English. We’re working on adding more languages in the future to make the platform accessible to more users worldwide.",
   },
 ];
+
+export const revalidate = 300;

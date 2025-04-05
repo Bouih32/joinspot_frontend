@@ -1,5 +1,6 @@
 import { getMessageDetails } from "@/actions/userActions";
 import SenderUi from "@/components/profileUi/messages/SenderUi";
+import { revalidate } from "@/libs/constantes";
 import { MessageT } from "@/libs/types";
 import { unstable_cache } from "next/cache";
 import { cookies } from "next/headers";
@@ -21,7 +22,7 @@ export default async function MessagDetailPage({
       return message;
     },
     [id],
-    { tags: [id] },
+    { tags: [id], revalidate: revalidate },
   );
   const message = (await cachedMessage()) as MessageT;
   return (

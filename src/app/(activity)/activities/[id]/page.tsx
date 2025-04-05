@@ -17,6 +17,7 @@ import { nanoid } from "nanoid";
 import Success from "@/components/activities/add/Success";
 import Link from "next/link";
 import { unstable_cache } from "next/cache";
+import { revalidate } from "@/libs/constantes";
 
 export default async function ActivityDetails({
   params,
@@ -47,7 +48,7 @@ export default async function ActivityDetails({
     ["userActivities"],
     {
       tags: ["userActivities"],
-      revalidate: false,
+      revalidate: revalidate,
     },
   );
   const userActivities = await getCachedUserActivities();

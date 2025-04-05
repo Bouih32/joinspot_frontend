@@ -67,7 +67,7 @@ export default function InfoForm({ userName, email, bio }: InfoFormProps) {
             />
           </div>
           <div className="space-y-[2px]">
-            <p className="text-12xxl tablet:text-14xxl">Your username</p>
+            <p className="text-12xxl tablet:text-14xxl">Your email</p>
             <Input<infoT>
               placeholder="Your email"
               register={register}

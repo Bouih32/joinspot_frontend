@@ -2,15 +2,9 @@ import { infoT } from "@/components/profileUi/settingsForms/InfoForm";
 import { phoneT } from "@/components/profileUi/settingsForms/PhoneForm";
 import { API_URL } from "@/libs/constantes";
 import { ActivityType } from "@/libs/types";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
-export const getActivities = async (
-  token?: RequestCookie | undefined,
-  params?: Record<string, string>,
-) => {
+export const getActivities = async (params?: Record<string, string>) => {
   try {
-    // const cookiesStore = await cookies();
-    // const token = cookiesStore.get("token");
     const queryString =
       params && Object.keys(params).length > 0
         ? new URLSearchParams(params).toString()
@@ -25,7 +19,6 @@ export const getActivities = async (
       credentials: "include", // Ensures cookies are sent
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token?.value}`,
       },
     });
 
@@ -312,6 +305,7 @@ export const updateProfilePic = async (avatar: { avatar: string }) => {
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(avatar),
     });
 
     if (!res.ok) {

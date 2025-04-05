@@ -1,6 +1,7 @@
 import { getCategories } from "@/actions/getCategory";
 import { getCities } from "@/actions/getCities";
 import SignupContext from "@/contexts/SignupContext";
+import { revalidate } from "@/libs/constantes";
 
 import { unstable_cache } from "next/cache";
 import { ReactNode } from "react";
@@ -12,12 +13,12 @@ export default async function AuthLayout({
 }) {
   const getCachedCategories = unstable_cache(getCategories, ["category-data"], {
     tags: ["category-data"],
-    revalidate: false,
+    revalidate: revalidate,
   });
 
   const getCachedCities = unstable_cache(getCities, ["cities-data"], {
     tags: ["cities-data"],
-    revalidate: false,
+    revalidate: revalidate,
   });
 
   const cetegoriesData = await getCachedCategories();

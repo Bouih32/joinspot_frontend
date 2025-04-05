@@ -10,6 +10,7 @@ import UpperHeader from "@/components/activities/UpperHeader";
 import Container from "@/components/Container";
 import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
+import { revalidate } from "@/libs/constantes";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
 import { unstable_cache } from "next/cache";
@@ -34,11 +35,12 @@ export default async function ActivitiesPage({
   if (typeof token !== "string" && token !== null) {
     role = (token as JwtPayload).role;
   }
-  const cookiesStore = await cookies();
-  const cookiesToken = cookiesStore.get("token");
+
+  console.log(token);
+
   const getCashedActivities = unstable_cache(
     async () => {
-      const data = await getActivities(cookiesToken, params);
+      const data = await getActivities(params);
       return data;
     },
     [
@@ -59,7 +61,7 @@ export default async function ActivitiesPage({
         params.page ? params.page : "",
         "activities",
       ],
-      revalidate: false,
+      revalidate: revalidate,
     },
   );
 
