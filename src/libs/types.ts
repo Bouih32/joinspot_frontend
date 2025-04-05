@@ -123,7 +123,7 @@ export type UserT = {
 export type UserProfileT = {
   avatar: string | null;
   userName: string;
-  background: null;
+  background: { link: string };
   activityNumber: number;
   followersNum: number;
   followingNum: number;

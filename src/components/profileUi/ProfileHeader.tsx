@@ -22,7 +22,12 @@ export default async function ProfileHeader() {
   const userData = (await getProfileData()) as UserProfileT;
 
   return (
-    <section className="flex h-[209px] items-end bg-red-300 bg-profileCover bg-cover bg-right bg-no-repeat pb-8 tablet:h-[287px] tablet:bg-center">
+    <section
+      style={{
+        backgroundImage: `url(${userData.background.link && userData.background.link})`,
+      }}
+      className="flex h-[209px] items-end bg-red-300 bg-cover bg-right bg-no-repeat pb-8 tablet:h-[287px] tablet:bg-center"
+    >
       <Container classname="flex flex-col items-center gap-[15px] tablet:flex-row justify-between">
         <section className="flex items-center gap-6 tablet:gap-5">
           <ProfilePic avatar={userData.avatar} />

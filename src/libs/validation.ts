@@ -22,9 +22,9 @@ export const firstStepValidation = z.object({
     .trim()
     .min(5, { message: "Please enter your email" })
     .max(50, { message: "Heey! that's too long" }),
-  city: z.string().trim().min(5, { message: "Please enter your city" }),
+  city: z.string().trim().min(1, { message: "Please enter your city" }),
 
-  role: z.string().trim().min(5, { message: "Please enter your city" }),
+  role: z.string().trim().min(1, { message: "Please enter your city" }),
 });
 
 export const secondStepValidation = (proveBy: "degree" | "business" | "") => {
