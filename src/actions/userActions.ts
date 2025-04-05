@@ -64,11 +64,10 @@ export const getUserMessages = async () => {
   }
 };
 
-export const getMessageDetails = async (
-  id: string,
-  token?: RequestCookie | undefined,
-) => {
+export const getMessageDetails = async (id: string) => {
   try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
     const res = await fetch(`${API_URL}/user/messages/details/${id}`, {
       method: "GET",
       credentials: "include",

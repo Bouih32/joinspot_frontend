@@ -3,7 +3,6 @@ import SenderUi from "@/components/profileUi/messages/SenderUi";
 import { revalidate } from "@/libs/constantes";
 import { MessageT } from "@/libs/types";
 import { unstable_cache } from "next/cache";
-import { cookies } from "next/headers";
 import Link from "next/link";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -14,11 +13,10 @@ export default async function MessagDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const cookiesStore = await cookies();
-  const token = cookiesStore.get("token");
+
   const cachedMessage = unstable_cache(
     async () => {
-      const message = await getMessageDetails(id, token);
+      const message = await getMessageDetails(id);
       return message;
     },
     [id],
