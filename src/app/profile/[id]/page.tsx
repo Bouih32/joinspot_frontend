@@ -1,4 +1,5 @@
 import { getUserProfile } from "@/actions/userActions";
+import Header from "@/components/header/Header";
 import UserCover from "@/components/user/UserCover";
 
 export default async function ProfilePage({
@@ -10,8 +11,11 @@ export default async function ProfilePage({
   const userData = await getUserProfile(id);
 
   return (
-    <main>
-      <UserCover userData={userData} />
-    </main>
+    <>
+      <Header />
+      <main>
+        <UserCover userData={userData} />
+      </main>
+    </>
   );
 }

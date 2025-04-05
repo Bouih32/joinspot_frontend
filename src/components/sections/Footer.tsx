@@ -45,7 +45,7 @@ export default function footer() {
             </div>
 
             <div className="flex gap-20 xl:gap-[142px]">
-              <Nav navInfo={navLinks.slice(0, 4)} footer />
+              <Nav navInfo={navLinks.slice(0, 3)} footer />
               <Nav navInfo={footerLinks} footer />
             </div>
 

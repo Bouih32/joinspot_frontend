@@ -12,7 +12,6 @@ export default function SocialsHeader({
   location,
   socials,
 }: SocialsHeaderProps) {
-  console.log(socials);
   return (
     <section className="flex flex-col-reverse justify-between gap-4 border-b border-neutralLightActive pb-2.5 text-12lg text-neutralDarkHover tablet:flex-row tablet:items-center tablet:pb-[15px] tablet:text-14lg laptop:text-16lg">
       {socials.length === 0 && (

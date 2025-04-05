@@ -44,7 +44,6 @@ export default function SendMessage() {
   });
 
   const handleSend = async () => {
-    console.log("submit");
     const res = await trigger();
     if (!res) return;
     setLoading(true);

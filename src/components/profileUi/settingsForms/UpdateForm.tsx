@@ -1,6 +1,6 @@
 "use client";
 
-import { updatePassword, updateUserData } from "@/actions/getActivities";
+import { updatePassword } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { resetPswrd } from "@/libs/validation";
@@ -31,7 +31,6 @@ export default function UpdateForm() {
     const formData = getValues();
     setLoading(true);
     const res = await updatePassword(formData);
-    console.log("---------------------------------", res);
 
     if (res.status === 401) {
       setLoading(false);
