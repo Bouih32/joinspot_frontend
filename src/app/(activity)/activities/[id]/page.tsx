@@ -16,8 +16,6 @@ import ActivityCard from "@/components/activities/ActivityCard";
 import { nanoid } from "nanoid";
 import Success from "@/components/activities/add/Success";
 import Link from "next/link";
-import { unstable_cache } from "next/cache";
-import { revalidate } from "@/libs/constantes";
 
 export default async function ActivityDetails({
   params,
@@ -26,20 +24,9 @@ export default async function ActivityDetails({
 }) {
   const { id } = await params;
   const token = await getToken();
-  const getCachedActivity = unstable_cache(
-    async () => {
-      const data = await getActivityById(id);
-      return data;
-    },
-    [id],
-    {
-      tags: [id],
-      revalidate: false,
-    },
-  );
 
   const reviews = await getActivityReviews(id);
-  const activity = await getCachedActivity();
+  const activity = await await getActivityById(id);
 
   const userActivities = await getUserActivities(activity.userId);
 

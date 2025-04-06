@@ -20,7 +20,7 @@ export default function SocialsHeader({
   return (
     <section
       className={cn(
-        "flex flex-col-reverse justify-between gap-4 border-b border-neutralLightActive pb-2.5 text-12lg text-neutralDarkHover tablet:flex-row tablet:items-center tablet:pb-[15px] tablet:text-14lg laptop:text-16lg",
+        "flex justify-between gap-4 border-b border-neutralLightActive pb-2.5 text-12lg text-neutralDarkHover tablet:flex-row tablet:items-center tablet:pb-[15px] tablet:text-14lg laptop:text-16lg",
         socials.length === 0 && !profile && "flex-col-reverse",
       )}
     >

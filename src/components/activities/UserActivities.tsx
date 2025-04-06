@@ -5,8 +5,6 @@ import React from "react";
 import ActivityCard from "./ActivityCard";
 import { nanoid } from "nanoid";
 import NoActivities from "./NoActivities";
-import { unstable_cache } from "next/cache";
-import { revalidate } from "@/libs/constantes";
 
 export default async function UserActivities({
   params,
@@ -28,16 +26,7 @@ export default async function UserActivities({
 
   if (!userId) return;
 
-  const cachedUserActivities = unstable_cache(
-    async () => {
-      const userActivities = await getUserActivities(userId);
-      return userActivities;
-    },
-    [userId, "activities"],
-    { tags: [userId, "activities"], revalidate: revalidate },
-  );
-
-  const userActivities = await cachedUserActivities();
+  const userActivities = await getUserActivities(userId);
   return (
     <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
       {!userActivities || userActivities.length === 0 ? (

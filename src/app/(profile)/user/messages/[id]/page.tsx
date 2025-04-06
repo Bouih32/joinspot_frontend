@@ -1,8 +1,6 @@
 import { getMessageDetails } from "@/actions/userActions";
 import SenderUi from "@/components/profileUi/messages/SenderUi";
-import { revalidate } from "@/libs/constantes";
 import { MessageT } from "@/libs/types";
-import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -14,15 +12,7 @@ export default async function MessagDetailPage({
 }) {
   const { id } = await params;
 
-  const cachedMessage = unstable_cache(
-    async () => {
-      const message = await getMessageDetails(id);
-      return message;
-    },
-    [id],
-    { tags: [id], revalidate: revalidate },
-  );
-  const message = (await cachedMessage()) as MessageT;
+  const message = (await getMessageDetails(id)) as MessageT;
   return (
     <main className="w-full space-y-6 pb-10 tablet:space-y-[56px] tablet:pl-5 tablet:pt-5 laptop:pl-8 laptop:pt-8">
       <div className="flex items-center gap-2 text-14xxl text-neutralDark tablet:text-16xxl laptop:text-20xxl">

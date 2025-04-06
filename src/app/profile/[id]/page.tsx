@@ -6,6 +6,7 @@ import Chip from "@/components/Chip";
 import Container from "@/components/Container";
 import Header from "@/components/header/Header";
 import SocialsHeader from "@/components/profileUi/SocialsHeader";
+import NoData from "@/components/user/NoData";
 import UserCover from "@/components/user/UserCover";
 import { ProfileT } from "@/libs/types";
 import { nanoid } from "nanoid";
@@ -54,12 +55,16 @@ export default async function ProfilePage({
           </section>
           <section className="mt-8 space-y-6 tablet:mt-10 tablet:space-y-10">
             <h3 className="text-14xxl text-main tablet:text-16xxl laptop:text-20xxl">
-              Alexander’s activities
+              {userData.user.userName} activities
             </h3>
             <section className="flex flex-col gap-6 pb-10">
-              {userActivities.map((ele) => (
-                <ActivityCard key={nanoid()} details data={ele} />
-              ))}
+              {userActivities.length !== 0 ? (
+                userActivities.map((ele) => (
+                  <ActivityCard key={nanoid()} details data={ele} />
+                ))
+              ) : (
+                <NoData />
+              )}
             </section>
           </section>
         </Container>

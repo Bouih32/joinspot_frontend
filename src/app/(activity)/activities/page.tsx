@@ -11,11 +11,8 @@ import UserActivities from "@/components/activities/UserActivities";
 import Container from "@/components/Container";
 import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
-import { revalidate } from "@/libs/constantes";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
-import { unstable_cache } from "next/cache";
-import { cookies } from "next/headers";
 
 export default async function ActivitiesPage({
   searchParams,
@@ -37,34 +34,7 @@ export default async function ActivitiesPage({
     role = (token as JwtPayload).role;
   }
 
-  const getCashedActivities = unstable_cache(
-    async () => {
-      const data = await getActivities(params);
-      return data;
-    },
-    [
-      params.seats,
-      params.category,
-      params.date,
-      params.my,
-      params.search,
-      params.page,
-    ],
-    {
-      tags: [
-        params.seats ? params.seats : "",
-        params.category ? params.category : "",
-        params.date ? params.date : "",
-        params.my ? params.my : "",
-        params.search ? params.search : "",
-        params.page ? params.page : "",
-        "activities",
-      ],
-      revalidate: revalidate,
-    },
-  );
-
-  const activitiesData = await getCashedActivities();
+  const activitiesData = await getActivities(params);
 
   const data =
     params.my === "own" && (!token || role === "VISITOR")

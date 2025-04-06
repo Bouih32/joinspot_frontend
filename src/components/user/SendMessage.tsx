@@ -10,12 +10,15 @@ import { HiOutlineMail } from "react-icons/hi";
 import { z } from "zod";
 import TextArea from "../TextArea";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useParams } from "next/navigation";
 
 type messageT = z.infer<typeof messageValidation>;
 
 export default function SendMessage() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const { id } = useParams();
 
   useEffect(() => {
     if (open) {
@@ -48,9 +51,10 @@ export default function SendMessage() {
     if (!res) return;
     setLoading(true);
     const content = getValues("content");
-    const data = { content, toId: "snjsdd" };
+    const data = { content, toId: id as string };
     await sendMessage(data);
     setLoading(false);
+    setOpen(false);
   };
 
   return (
@@ -100,14 +104,14 @@ export default function SendMessage() {
                     setOpen(false);
                   }}
                 >
-                  <Button secondary>
-                    Cancel
-                    {loading && (
-                      <AiOutlineLoading3Quarters className="animate-spin" />
-                    )}
-                  </Button>
+                  <Button secondary>Cancel</Button>
                 </div>
-                <Button>Send</Button>
+                <Button>
+                  Send
+                  {loading && (
+                    <AiOutlineLoading3Quarters className="animate-spin" />
+                  )}
+                </Button>
               </div>
             </form>
           </div>
