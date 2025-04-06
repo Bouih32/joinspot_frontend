@@ -1,7 +1,6 @@
 import { getUserActivities } from "@/actions/getActivities";
-import { getUserProfile } from "@/actions/userActions";
+import { getFollowing, getUserProfile } from "@/actions/userActions";
 import ActivityCard from "@/components/activities/ActivityCard";
-import Button from "@/components/Button";
 import Chip from "@/components/Chip";
 import Container from "@/components/Container";
 import Header from "@/components/header/Header";
@@ -19,6 +18,8 @@ export default async function ProfilePage({
   const { id } = await params;
   const userData = (await getUserProfile(id)) as ProfileT;
   const userActivities = await getUserActivities(id);
+  const following = await getFollowing();
+  console.log(following);
 
   return (
     <>
