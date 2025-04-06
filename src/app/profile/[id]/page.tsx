@@ -18,8 +18,6 @@ export default async function ProfilePage({
   const { id } = await params;
   const userData = (await getUserProfile(id)) as ProfileT;
   const userActivities = await getUserActivities(id);
-  const following = await getFollowing();
-  console.log(following);
 
   return (
     <>

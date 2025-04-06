@@ -1,16 +1,14 @@
 import Container from "../Container";
-import { getToken } from "@/actions/decodeToken";
-import { JwtPayload } from "jsonwebtoken";
 import { RiVipCrown2Fill } from "react-icons/ri";
-import { getProfileData } from "@/actions/getUserData";
-import { ProfileT, UserProfileT } from "@/libs/types";
+import { ProfileT } from "@/libs/types";
 import ProfilePic from "../profileUi/ProfilePic";
 import StatsHolder from "../profileUi/StatsHolder";
-import Button from "../Button";
 import SendMessage from "./SendMessage";
-import { BsFillPersonPlusFill } from "react-icons/bs";
+import { getFollowing } from "@/actions/userActions";
+import Follow from "./Follow";
 
 export default async function UserCover({ userData }: { userData: ProfileT }) {
+  const following = await getFollowing();
   return (
     <section
       style={{
@@ -40,7 +38,7 @@ export default async function UserCover({ userData }: { userData: ProfileT }) {
         </section>
 
         <div className="flexCenter gap-2">
-          <Button classname="p-2 tablet:p-2 " icon={<BsFillPersonPlusFill />} />
+          <Follow following={following} />
           <SendMessage />
         </div>
       </Container>

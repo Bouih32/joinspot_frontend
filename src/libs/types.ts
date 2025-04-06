@@ -157,6 +157,7 @@ export type TicketT = {
 export type MessageT = {
   content: string;
   createdAt: string;
+  deletedAt: string;
   messageId: string;
   read: boolean;
   message_from: {
