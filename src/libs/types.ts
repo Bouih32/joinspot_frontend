@@ -184,7 +184,7 @@ export type ProfileT = {
     background: { link: string };
     bio: string;
     city: { cityName: string };
-    socials: string[];
+    socials: { platform: string; link: string }[];
     role: string;
   };
   activityNumber: 4;

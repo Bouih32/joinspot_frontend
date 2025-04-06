@@ -40,18 +40,8 @@ export default async function ActivityDetails({
 
   const reviews = await getActivityReviews(id);
   const activity = await getCachedActivity();
-  const getCachedUserActivities = unstable_cache(
-    async () => {
-      const data = await getUserActivities(activity.userId);
-      return data;
-    },
-    ["userActivities"],
-    {
-      tags: ["userActivities"],
-      revalidate: revalidate,
-    },
-  );
-  const userActivities = await getCachedUserActivities();
+
+  const userActivities = await getUserActivities(activity.userId);
 
   const filtredActivities = userActivities.filter(
     (ele) => ele.activityId !== id,
