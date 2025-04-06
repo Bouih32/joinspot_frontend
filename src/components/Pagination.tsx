@@ -44,6 +44,8 @@ export default function Pagination({ pages, page = 1 }: PaginationProps) {
     pageNumbers.push(pages - 1, pages);
   }
 
+  console.log(pages);
+
   return (
     <section
       className={cn(

@@ -1,5 +1,5 @@
+import { getActivities } from "@/actions/activityActions";
 import { getToken } from "@/actions/decodeToken";
-import { getActivities } from "@/actions/getActivities";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Success from "@/components/activities/add/Success";
 import ClearAll from "@/components/activities/mainFilters/ClearAll";
@@ -62,7 +62,7 @@ export default async function ActivitiesPage({
               data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
             )}
           </div>
-          {data && data.length > 0 && (
+          {data && data.length > 0 && params.my !== "save" && (
             <Pagination
               pages={activitiesData.pages}
               page={params.page ? parseInt(params.page) : undefined}

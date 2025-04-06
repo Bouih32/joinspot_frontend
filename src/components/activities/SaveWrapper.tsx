@@ -6,6 +6,7 @@ import { SaveContext } from "@/contexts/SaveContext";
 import { nanoid } from "nanoid";
 import empty from "../../../public/images/empty.png";
 import Image from "next/image";
+import Pagination from "../Pagination";
 
 export default function SaveWrapper({
   activities,

@@ -2,16 +2,21 @@
 
 import { useContext, useState } from "react";
 import { MdOutlineNotificationsNone } from "react-icons/md";
-import NotificationCard from "./NotificationCard";
 import NotificationNumber from "./NotificationNumber";
 import { cn } from "@/libs/utils";
 import { NavContext } from "@/contexts/NavigationContext";
 import EmptyMessage from "./EmptyMessage";
+import { NotifT } from "@/libs/types";
 
-export default function Notifications() {
+export default function Notifications({
+  notifications,
+}: {
+  notifications: NotifT[];
+}) {
   const context = useContext(NavContext);
   if (!context) return;
   const { handleClose, handleOpen, open } = context;
+  console.log(notifications);
   return (
     <div className="relative">
       <div className="relative z-[600]">
@@ -24,7 +29,9 @@ export default function Notifications() {
             handleOpen && handleOpen("notifications");
           }}
         />
-        <NotificationNumber notification>1</NotificationNumber>
+        {notifications.length > 0 ? (
+          <NotificationNumber>{notifications.length}</NotificationNumber>
+        ) : null}
       </div>
 
       {open === "notifications" && (

@@ -1,4 +1,4 @@
-import { getActivities } from "@/actions/getActivities";
+import { getActivities } from "@/actions/activityActions";
 import Community from "@/components/sections/community/Community";
 import Hero from "@/components/sections/hero/Hero";
 import Offers from "@/components/sections/offers/Offers";

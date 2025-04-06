@@ -9,6 +9,7 @@ import { NavContext } from "@/contexts/NavigationContext";
 import { MessageT } from "@/libs/types";
 import { nanoid } from "nanoid";
 import MessageNotifCard from "./MessageNotifCard";
+import Link from "next/link";
 
 export default function Messages({ messages }: { messages: MessageT[] }) {
   const context = useContext(NavContext);
@@ -47,7 +48,9 @@ export default function Messages({ messages }: { messages: MessageT[] }) {
           >
             <div className="flexBetween border-b border-neutral pb-2 text-10lg text-neutral laptop:text-12lg">
               <h2>Messages</h2>
-              <p className="text-main">View Inbox</p>
+              <Link href="/user/messages" className="text-main">
+                View Inbox
+              </Link>
             </div>
             <section className="space-y-2">
               {data.length > 0 ? (

@@ -166,6 +166,16 @@ export type MessageT = {
   };
 };
 
+export type NotifT = {
+  content: string;
+  createdAt: string;
+  deletedAt: string;
+  notification_from: {
+    avatar: string;
+    userName: string;
+  };
+};
+
 export type joinedT = {
   avatar: string;
   userName: string;
