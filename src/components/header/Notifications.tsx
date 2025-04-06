@@ -7,6 +7,8 @@ import { cn } from "@/libs/utils";
 import { NavContext } from "@/contexts/NavigationContext";
 import EmptyMessage from "./EmptyMessage";
 import { NotifT } from "@/libs/types";
+import NotificationCard from "./NotificationCard";
+import { nanoid } from "nanoid";
 
 export default function Notifications({
   notifications,
@@ -16,7 +18,6 @@ export default function Notifications({
   const context = useContext(NavContext);
   if (!context) return;
   const { handleClose, handleOpen, open } = context;
-  console.log(notifications);
   return (
     <div className="relative">
       <div className="relative z-[600]">
@@ -47,10 +48,17 @@ export default function Notifications({
           >
             <div className="flexBetween border-b border-neutral pb-2 text-10lg text-neutral laptop:text-12lg">
               <h2>Notifications</h2>
-              <p className="text-main">Notification Settings</p>
+              <p className="text-main">Sorted by latest</p>
             </div>
             <section className="space-y-1">
-              <EmptyMessage />
+              {notifications.length > 0 ? (
+                notifications.map((ele) => (
+                  <NotificationCard key={nanoid()} data={ele} />
+                ))
+              ) : (
+                <EmptyMessage />
+              )}
+
               {/* <NotificationCard />
               <NotificationCard />
               <NotificationCard /> */}
