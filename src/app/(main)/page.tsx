@@ -7,15 +7,7 @@ import { revalidate } from "@/libs/constantes";
 import { unstable_cache } from "next/cache";
 
 export default async function Home() {
-  const getCashedActivities = unstable_cache(
-    async () => {
-      const data = await getActivities();
-      return data;
-    },
-    ["landing_activities"],
-    { tags: ["landing_activities", "activities"], revalidate: revalidate },
-  );
-  const data = await getCashedActivities();
+  const data = await getActivities();
   return (
     <main className="font-openSans">
       <Hero data={data.activities} />

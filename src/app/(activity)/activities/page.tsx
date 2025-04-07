@@ -7,7 +7,6 @@ import NoActivities from "@/components/activities/NoActivities";
 import SaveWrapper from "@/components/activities/SaveWrapper";
 import SideFilter from "@/components/activities/SideFilter";
 import UpperHeader from "@/components/activities/UpperHeader";
-import UserActivities from "@/components/activities/UserActivities";
 import Container from "@/components/Container";
 import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
@@ -56,8 +55,6 @@ export default async function ActivitiesPage({
               <SaveWrapper activities={data} />
             ) : !data || data.length === 0 ? (
               <NoActivities token={token} params={params} />
-            ) : params.my === "own" ? (
-              <UserActivities params={params} />
             ) : (
               data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
             )}
