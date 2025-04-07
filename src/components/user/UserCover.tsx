@@ -3,18 +3,11 @@ import { RiVipCrown2Fill } from "react-icons/ri";
 import { ProfileT } from "@/libs/types";
 import ProfilePic from "../profileUi/ProfilePic";
 import StatsHolder from "../profileUi/StatsHolder";
-import SendMessage from "./SendMessage";
-import { getFollowing } from "@/actions/userActions";
-import Follow from "./Follow";
+import UserCTA from "./UserCTA";
+import { getToken } from "@/actions/decodeToken";
 
-export default async function UserCover({
-  userData,
-  userId,
-}: {
-  userData: ProfileT;
-  userId: string;
-}) {
-  const following = await getFollowing(userId);
+export default async function UserCover({ userData }: { userData: ProfileT }) {
+  const token = await getToken();
   return (
     <section
       style={{
@@ -43,10 +36,7 @@ export default async function UserCover({
           </div>
         </section>
 
-        <div className="flexCenter gap-2">
-          <Follow following={following} />
-          <SendMessage />
-        </div>
+        {token && <UserCTA />}
       </Container>
     </section>
   );

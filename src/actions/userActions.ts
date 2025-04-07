@@ -241,13 +241,16 @@ export const getUserProfile = async (id: string) => {
   }
 };
 
-export const getFollowing = async (id: string) => {
+export const getFollowing = async () => {
   try {
-    const res = await fetch(`${API_URL}/user/following/${id}`, {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const res = await fetch(`${API_URL}/user/following`, {
       method: "GET",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
       }, // Ensures cookies are sent automatically
     });
 
