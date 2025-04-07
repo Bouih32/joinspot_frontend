@@ -1,6 +1,6 @@
 "use client";
 
-import { BsFillPersonPlusFill, BsFillPersonXFill } from "react-icons/bs";
+import { BsFillPersonCheckFill, BsFillPersonPlusFill } from "react-icons/bs";
 import Button from "../Button";
 import { useParams, useRouter } from "next/navigation";
 import { handleFollow } from "@/actions/getActivities";
@@ -27,7 +27,7 @@ export default function Follow({ following }: { following: string[] }) {
               loading ? (
                 <AiOutlineLoading3Quarters className="animate-spin" />
               ) : (
-                <BsFillPersonXFill />
+                <BsFillPersonCheckFill />
               )
             }
           />
