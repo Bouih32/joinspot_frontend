@@ -2,11 +2,10 @@
 
 import { useContext } from "react";
 import ActivityCard, { ActivityCardType } from "./ActivityCard";
-import { SaveContext } from "@/contexts/SaveContext";
 import { nanoid } from "nanoid";
 import empty from "../../../public/images/empty.png";
 import Image from "next/image";
-import Pagination from "../Pagination";
+import { SaveContext } from "@/contexts/SaveContext";
 
 export default function SaveWrapper({
   activities,
@@ -14,6 +13,7 @@ export default function SaveWrapper({
   activities: ActivityCardType[] | null;
 }) {
   const context = useContext(SaveContext);
+
   if (!context) return null;
 
   const { data } = context;

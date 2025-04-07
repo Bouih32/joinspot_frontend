@@ -27,7 +27,9 @@ export default function SaveProvider({ children }: { children: ReactNode }) {
     if (storedData) {
       setData(JSON.parse(storedData));
     }
-  }, []); // Load local storage **only on the client**
+    // Now localStorage is loaded
+  }, []);
+  // Load local storage **only on the client**
 
   useEffect(() => {
     const handleStorageChange = () => {

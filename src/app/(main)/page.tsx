@@ -3,8 +3,6 @@ import Community from "@/components/sections/community/Community";
 import Hero from "@/components/sections/hero/Hero";
 import Offers from "@/components/sections/offers/Offers";
 import Services from "@/components/sections/services/Services";
-import { revalidate } from "@/libs/constantes";
-import { unstable_cache } from "next/cache";
 
 export default async function Home() {
   const data = await getActivities();
