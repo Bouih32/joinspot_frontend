@@ -74,17 +74,20 @@ export default function Hero({ data }: HeroProps) {
           <HeroFilter />
 
           {/* Framer Motion Adaptive Carousel */}
-          <motion.div className="relative flex w-full cursor-grab select-none overflow-y-hidden">
+          <motion.div className="relative flex w-full cursor-grab select-none overflow-x-hidden tablet:overflow-y-hidden">
             <motion.div
               drag={motionAxis}
               dragConstraints={{
-                [motionAxis === "x" ? "left" : "top"]: maxDrag - itemSize * 0.2, // Allow slight overdrag
-                [motionAxis === "x" ? "right" : "bottom"]: itemSize * 0.2, // Allow slight overdrag
+                [motionAxis === "x" ? "left" : "top"]: maxDrag - itemSize * 0.2,
+                [motionAxis === "x" ? "right" : "bottom"]: itemSize * 0.2,
               }}
-              dragElastic={0.2} // More elasticity for a smooth bounce effect
+              dragElastic={0.2}
               onDragEnd={handleDragEnd}
-              className={`flex select-none ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
-              style={{ [motionAxis]: motionValue }}
+              className={`flex touch-none select-none ${isMobile ? "gap-2.5" : "tablet:flex-col tablet:gap-5"}`}
+              style={{
+                [motionAxis]: motionValue,
+                touchAction: motionAxis === "x" ? "pan-y" : "pan-x", // disables scrolling in drag direction
+              }}
             >
               {data.slice(0, totalSlides).map((ele, i) => (
                 <ActivityCard key={i} data={ele} />
