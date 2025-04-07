@@ -74,7 +74,7 @@ export default function Hero({ data }: HeroProps) {
           <HeroFilter />
 
           {/* Framer Motion Adaptive Carousel */}
-          <motion.div className="relative flex w-full cursor-grab select-none overflow-x-hidden tablet:overflow-y-hidden">
+          <motion.div className="relative flex w-full cursor-grab select-none tablet:overflow-y-hidden">
             <motion.div
               drag={motionAxis}
               dragConstraints={{
