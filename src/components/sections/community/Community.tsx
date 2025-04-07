@@ -84,8 +84,29 @@ export default function Community() {
           </div>
 
           {/* Pagination Dots */}
-          <div className="flexCenter gap-2 tablet:gap-5">
+          <div className="flexCenter gap-2 tablet:hidden">
             {Array.from({ length: 3 }).map((_, index) => (
+              <div
+                key={nanoid()}
+                className={cn(
+                  "h-2 w-2 cursor-pointer rounded-full bg-neutralLightActive tablet:h-[11px] tablet:w-[11px]",
+                  index === currentIndex &&
+                    "h-3 w-3 bg-main tablet:h-[14px] tablet:w-[14px]",
+                )}
+                onClick={() => {
+                  setCurrentIndex(index);
+                  animate(motionValue, -index * totalWidth, {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 20,
+                  });
+                }}
+              ></div>
+            ))}
+          </div>
+
+          <div className="tablet:flexCenter hidden gap-5">
+            {Array.from({ length: 2 }).map((_, index) => (
               <div
                 key={nanoid()}
                 className={cn(
