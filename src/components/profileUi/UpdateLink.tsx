@@ -4,7 +4,7 @@ import { RiVipCrown2Fill } from "react-icons/ri";
 export default function UpdateLink() {
   return (
     <Link
-      href="/update"
+      href="/upgrade"
       className="flexCenter w-fit cursor-pointer gap-2 rounded bg-main px-3 py-[3px] font-openSans text-14xl text-white outline-none disabled:pointer-events-none disabled:bg-secondLightActive tablet:px-4 tablet:py-[6px]"
     >
       <RiVipCrown2Fill className="tablet:text-[20px]" />

@@ -7,7 +7,7 @@ export const navLinks = [
 
 export const footerLinks = [
   { name: "Support", href: "/support" },
-  { name: "Rights", href: "/about" },
+  { name: "Rights", href: "/support" },
   { name: "Contacts", href: "/support" },
 ];
 

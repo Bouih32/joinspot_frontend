@@ -101,7 +101,10 @@ export default function Offers({ data }: OffersProps) {
               there's something for everyone!
             </SubTitle>
           </div>
-          <Link href="#" className="tablet:self-end laptop:self-center">
+          <Link
+            href="/activities"
+            className="tablet:self-end laptop:self-center"
+          >
             <Button secondary>Show all offers</Button>
           </Link>
         </section>

@@ -81,7 +81,9 @@ export default function AddButton({ mobile, role }: AddButtonProps) {
               >
                 <Button secondary>Cancel</Button>
               </div>
-              <Button>Upgrade to pro</Button>
+              <Link href="/upgrade">
+                <Button>Upgrade to pro</Button>
+              </Link>
             </div>
           </div>
         </div>

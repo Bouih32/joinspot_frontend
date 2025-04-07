@@ -50,7 +50,7 @@ export default function NoActivities({
             Please upgrade to an organiser account to be able to create
             activities.
           </p>
-          <Link href="#" className="mx-auto">
+          <Link href="/upgrade" className="mx-auto">
             <Button>Upgrade</Button>
           </Link>
         </div>

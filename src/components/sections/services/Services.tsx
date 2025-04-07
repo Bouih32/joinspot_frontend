@@ -44,7 +44,7 @@ export default function Services() {
               platform offers:
             </SubTitle>
           </div>
-          <Link href="#" className="text-16xl text-main underline">
+          <Link href="/about" className="text-16xl text-main underline">
             Discover more
           </Link>
         </section>

@@ -60,7 +60,7 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
           >
             {role === "VISITOR" && (
               <Link
-                href="/update"
+                href="/upgrade"
                 className="flex cursor-pointer items-center gap-1 pb-3 text-neutral"
               >
                 <RiVipCrown2Fill />
