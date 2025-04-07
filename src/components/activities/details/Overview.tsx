@@ -5,11 +5,11 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { MdLocationOn, MdPeopleAlt } from "react-icons/md";
 import { FaShareSquare } from "react-icons/fa";
 import Save from "../Save";
-import { ActivityDetailsT } from "@/libs/types";
+import { ActivityDetailsT, editActT } from "@/libs/types";
 import { nanoid } from "nanoid";
 
 type OverviewProps = {
-  activity: ActivityDetailsT;
+  activity: editActT;
 };
 
 export default function Overview({ activity }: OverviewProps) {
@@ -61,7 +61,7 @@ export default function Overview({ activity }: OverviewProps) {
                 key={nanoid()}
                 className="h-[22px] w-fit rounded-[20px] bg-second px-2.5 text-14sm text-white first-letter:uppercase"
               >
-                {ele}
+                {ele.tagName}
               </p>
             ))}
           </div>

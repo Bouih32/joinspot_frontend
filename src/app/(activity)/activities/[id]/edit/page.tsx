@@ -34,17 +34,11 @@ export default async function EditPage({
         <section className="mx-auto w-full space-y-5 rounded-xl border-neutralLightHover bg-white tablet:mt-10 tablet:space-y-[30px] tablet:border tablet:p-6 laptop:w-[1064px] laptop:space-y-[45px] laptop:p-[32px]">
           <div className="space-y-2 tablet:space-y-[6px]">
             <h1 className="text-14xxl text-main tablet:text-16xxl laptop:text-20xxl">
-              Add a New Activity
+              Edit your activity
             </h1>
             <p className="text-12sm text-neutralDark tablet:text-14sm laptop:text-16sm">
-              <span className="font-semibold">
-                Host an Experience and Connect with Others!
-              </span>
-              <br />
-              Organizing an activity is a great way to meet like-minded people,
-              share your passion, and create memorable experiences. Whether
-              you're offering a professional workshop or a casual get-together,
-              JoinSpot makes it easy for others to discover and join your event.
+              According to the security policy, certain activity informations
+              cannot be edited.
             </p>
           </div>
           <EditForm

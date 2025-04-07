@@ -17,6 +17,7 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { BiSolidTime } from "react-icons/bi";
 import { editActT } from "@/libs/types";
 import EditTag from "./EditTag";
+import { updateActivity } from "@/actions/getActivities";
 
 type editType = z.infer<typeof editValidation>;
 export default function EditForm({
@@ -39,7 +40,12 @@ export default function EditForm({
     getValues,
     setValue,
   } = useForm<editType>({
-    resolver: zodResolver(addValidation),
+    resolver: zodResolver(editValidation),
+    defaultValues: {
+      coverPic: activity.coverPic,
+      description: activity.description,
+      tags: activity.tags.map((ele) => ele.tagId).join("-"),
+    },
   });
 
   const addTag = (tags: string) => {
@@ -51,14 +57,15 @@ export default function EditForm({
   };
 
   const handleSubmit = async () => {
+    console.log(errors);
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
+    console.log(formData);
     setLoading(true);
-    // await addActivity(formData);
+    await updateActivity(formData, activity.activityId);
     setLoading(false);
-    handleSuccess();
-    router.push("/activities");
+    router.push(`/activities/${activity.activityId}`);
   };
 
   return (

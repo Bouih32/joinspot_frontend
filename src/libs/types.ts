@@ -231,5 +231,5 @@ export type editActT = {
   startTime: string;
   endTime: string;
   startDay: string;
-  joined: string;
+  joined: number;
 };
