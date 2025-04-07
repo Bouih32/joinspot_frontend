@@ -7,8 +7,14 @@ import SendMessage from "./SendMessage";
 import { getFollowing } from "@/actions/userActions";
 import Follow from "./Follow";
 
-export default async function UserCover({ userData }: { userData: ProfileT }) {
-  const following = await getFollowing();
+export default async function UserCover({
+  userData,
+  userId,
+}: {
+  userData: ProfileT;
+  userId: string;
+}) {
+  const following = await getFollowing(userId);
   return (
     <section
       style={{

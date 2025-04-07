@@ -1,5 +1,5 @@
 import { getUserActivities } from "@/actions/getActivities";
-import { getFollowing, getUserProfile } from "@/actions/userActions";
+import { getUserProfile } from "@/actions/userActions";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Chip from "@/components/Chip";
 import Container from "@/components/Container";
@@ -23,7 +23,7 @@ export default async function ProfilePage({
     <>
       <Header />
       <main>
-        <UserCover userData={userData} />
+        <UserCover userData={userData} userId={id} />
         <Container classname="mt-5">
           <SocialsHeader
             location={userData.user.city.cityName}
