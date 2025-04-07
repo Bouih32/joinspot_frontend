@@ -23,8 +23,8 @@ export default function Hero({ data }: HeroProps) {
 
   // Adjust these based on actual dimensions
   const itemSize = isMobile ? 340 : 220; // Width for mobile, height for larger screens
-  const totalSlides = 5;
-  const maxDrag = -((totalSlides - 2) * itemSize);
+  const totalSlides = 4;
+  const maxDrag = -((totalSlides - 1) * itemSize);
 
   // Dynamically track current index
   const progress = useTransform(
@@ -97,7 +97,7 @@ export default function Hero({ data }: HeroProps) {
 
           {/* Pagination Dots */}
           <div className="flexCenter mx-auto gap-[2px] tablet:hidden">
-            {[...Array(totalSlides - 1)].map((_, i) => (
+            {[...Array(totalSlides)].map((_, i) => (
               <FaCircle
                 key={i}
                 className={`cursor-pointer text-[10px] ${
