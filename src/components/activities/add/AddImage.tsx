@@ -7,11 +7,12 @@ import { BiImageAdd } from "react-icons/bi";
 import { MdOutlineStar } from "react-icons/md";
 
 type AddImageProps = {
+  cover?: string;
   addCover: (cover: string) => void;
   error: string;
 };
 
-export default function AddImage({ addCover, error }: AddImageProps) {
+export default function AddImage({ addCover, error, cover }: AddImageProps) {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -65,16 +66,18 @@ export default function AddImage({ addCover, error }: AddImageProps) {
           error && "border border-error",
         )}
         style={{
-          backgroundImage: `url(${imageUrl ? imageUrl : null})`,
+          backgroundImage: `url(${imageUrl ? imageUrl : cover ? cover : null})`,
         }}
       >
         {loading ? (
-          <AiOutlineLoading3Quarters className="animate-spin text-[24px]" />
+          <AiOutlineLoading3Quarters
+            className={cn("animate-spin text-[24px]", cover && "text-main")}
+          />
         ) : null}
         {!loading && !done && (
           <>
-            <BiImageAdd className="text-[24px]" />
-            <p>
+            <BiImageAdd className={cn("text-[24px]", cover && "text-main")} />
+            <p className={cn(cover && "text-main")}>
               Add activity <br /> image
             </p>
           </>

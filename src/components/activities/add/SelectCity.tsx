@@ -48,7 +48,7 @@ export default function SelectCity<T extends FieldValues>({
           error && "border-error",
         )}
       >
-        <div className="flexCenter gap-2.5">
+        <div className="flex items-center gap-2.5">
           {selected && (
             <div className="grid h-[14px] place-content-center rounded bg-mainLightHover px-[6px] py-[1px] text-[10px] font-semibold text-main">
               <span className="first-letter:uppercase"> {selected}</span>
@@ -59,7 +59,7 @@ export default function SelectCity<T extends FieldValues>({
             type="text"
             {...register(name)}
             className={cn(
-              "text-[14px] font-normal leading-[24px] text-secondDark outline-none",
+              "w-[70%] text-[14px] font-normal leading-[24px] text-secondDark outline-none",
               error && "text-error placeholder:text-error",
             )}
           />

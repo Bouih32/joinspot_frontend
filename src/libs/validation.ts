@@ -295,3 +295,27 @@ export const messageValidation = z.object({
     .min(5, { message: "Please enter your message" })
     .max(600, { message: "Heey! that's too long" }),
 });
+
+export const editValidation = z.object({
+  coverPic: z.string().trim().min(1),
+  description: z
+    .string()
+    .trim()
+    .min(10, { message: "The description is required." })
+    .max(500, {
+      message: "Title is too long. Only 500 characters allowed",
+    }),
+  tags: z.string().trim().min(1, { message: "This field is required" }),
+  startDay: z.string().trim().min(1, { message: "This field is required" }),
+  endDay: z.string().trim().min(1, { message: "This field is required" }),
+  seat: z
+    .string()
+    .trim()
+    .min(1, { message: "This field is required" })
+    .max(2, { message: "This field is required" })
+    .transform((val) => parseInt(val, 10)) // Transform the string to an integer
+    .refine((val) => !isNaN(val), { message: "Invalid number" }) // Ensure it's a valid number
+    .refine((val) => val > 2 && val < 50, {
+      message: "The number must be greater than 2 and less than 50",
+    }),
+});

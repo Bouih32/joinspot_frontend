@@ -82,8 +82,7 @@ export const addActivity = async (activity: AddActivityT) => {
         `HTTP error! Status: ${res.status}, Response: ${errorText}`,
       );
     }
-    revalidateTag("activities");
-    revalidateTag("getUserActivities");
+
     return await res.json();
   } catch (error) {
     console.error("add error", error);
@@ -176,6 +175,33 @@ export const addTagTwo = async (tags: string[]) => {
     return await res.json();
   } catch (error) {
     console.error("join error", error);
+    throw error;
+  }
+};
+
+export const getTicketsByActivity = async (id: string) => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+
+    const res = await fetch(`${API_URL}/activity/${id}/ticket`, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    }
+
+    const data = await res.json();
+
+    return data.strucuredData;
+  } catch (error) {
+    console.error("Error fetching activities:", error);
     throw error;
   }
 };

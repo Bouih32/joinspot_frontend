@@ -203,3 +203,33 @@ export type ProfileT = {
   followingNum: 0;
   tags: string[];
 };
+
+export type activityTicket = {
+  avatar: string;
+  userName: string;
+  quantity: number;
+  userId: string;
+  code: string;
+};
+
+export type editActT = {
+  activityId: string;
+  userId: string;
+  coverPic: string;
+  title: string;
+  description: string;
+  seat: number;
+  price: number;
+  score: number;
+  categoryId: string;
+  avatar: string;
+  userName: string;
+  city: string;
+  location: string;
+  category: string;
+  tags: { tagId: string; tagName: string }[];
+  startTime: string;
+  endTime: string;
+  startDay: string;
+  joined: string;
+};

@@ -7,7 +7,7 @@ type TagT = {
   activityTagsId: string;
   tagId: string;
   activityId: string;
-  tag: { tagName: string };
+  tag: { tagName: string; tagId: string };
 };
 
 export const getActivityById = async (id: string) => {
@@ -57,8 +57,12 @@ export const getActivityById = async (id: string) => {
       city: activity.city.cityName,
       location: activity.location,
       category: activity.category.categoryName,
-      tags: activity.activityTags.map((ele: TagT) => ele.tag.tagName),
+      tags: activity.activityTags.map((ele: TagT) => ({
+        tagName: ele.tag.tagName,
+        tagId: ele.tag.tagId,
+      })),
       startTime: activity.startTime,
+      endTime: activity.endTime,
       startDay: formattedDate,
       joined: activity.joined,
     };

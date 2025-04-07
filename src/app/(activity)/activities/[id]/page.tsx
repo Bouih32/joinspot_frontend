@@ -17,8 +17,8 @@ import { nanoid } from "nanoid";
 import Success from "@/components/activities/add/Success";
 import Link from "next/link";
 import { JwtPayload } from "jsonwebtoken";
-import { BsArrowLeftShort } from "react-icons/bs";
 import EditCTA from "@/components/activities/edit/EditCTA";
+import WhoJoined from "@/components/activities/edit/WhoJoined";
 
 export default async function ActivityDetails({
   params,
@@ -91,6 +91,7 @@ export default async function ActivityDetails({
           </Container>
         )}
       </section>
+      {userId === activity.userId && <WhoJoined id={activity.activityId} />}
     </main>
   );
 }

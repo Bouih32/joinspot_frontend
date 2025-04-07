@@ -23,7 +23,7 @@ export default async function JoinedPage() {
         <p>Users that joined your activities</p>
       </div>
 
-      <section className="relative hidden tablet:block">
+      <section className="relative hidden pb-10 tablet:block">
         <div className="mb-6 grid w-full grid-cols-2 tablet:grid-cols-5">
           {/* Header Row */}
           <div className="border-b border-neutralLightActive py-2 text-left text-14sm font-semibold text-neutral">
@@ -111,7 +111,7 @@ export default async function JoinedPage() {
         </section>
       </section>
 
-      <section className="tablet:hidden">
+      <section className="pb-10 tablet:hidden">
         <div className="mb-3 flex items-center gap-[6px] border-b border-neutralLightActive py-2 text-left text-12sm font-semibold text-neutral">
           <div className="flex items-center gap-[6px]">
             <BsFillPersonFill />
