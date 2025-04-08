@@ -11,6 +11,8 @@ import { z } from "zod";
 import SignupUpload from "../authUi/SignupUpload";
 import { useState } from "react";
 import { UpgradeContext } from "@/contexts/UpgradeContext";
+import { upgradeRequest } from "@/actions/getActivities";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 type ThirdStepT = z.infer<typeof thirdStepValidation>;
 
@@ -38,8 +40,8 @@ export default function SecondForm() {
   }) => {
     if (!data) return;
     setLoading(true);
-    // const res = await signup({ ...data, ...formData });
-
+    await upgradeRequest({ ...data, ...formData });
+    setLoading(false);
     setStep(3);
   };
 
@@ -48,10 +50,7 @@ export default function SecondForm() {
     if (!resault) return;
     const formData = getValues();
     handleData(formData);
-    // await handleUpgrade(formData);
-    console.log(data, formData);
-
-    setStep(3);
+    await handleUpgrade(formData);
   };
   return (
     <form
@@ -93,6 +92,7 @@ export default function SecondForm() {
 
       <Button secondary icon>
         Next
+        {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
       </Button>
     </form>
   );

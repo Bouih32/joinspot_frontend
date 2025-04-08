@@ -1,7 +1,7 @@
 import { infoT } from "@/components/profileUi/settingsForms/InfoForm";
 import { phoneT } from "@/components/profileUi/settingsForms/PhoneForm";
 import { API_URL } from "@/libs/constantes";
-import { ActivityType } from "@/libs/types";
+import { ActivityType, DataType } from "@/libs/types";
 
 type TagT = {
   activityTagsId: string;
@@ -415,6 +415,32 @@ export const updateActivity = async (
   try {
     const res = await fetch(`${API_URL}/activity/${id}/update`, {
       method: "PATCH",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); // Log the error message returned from the server
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("request error", error);
+    throw error;
+  }
+};
+
+export const upgradeRequest = async (info: DataType) => {
+  try {
+    const res = await fetch(`${API_URL}/user/profile/upgrade`, {
+      method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
         "Content-Type": "application/json",
