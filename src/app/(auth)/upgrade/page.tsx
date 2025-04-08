@@ -6,7 +6,6 @@ import UpgradeWrapper from "@/components/upgrade/UpgradeWrapper";
 
 export default async function UpgradePage() {
   const status = await getUpdateStatus();
-  console.log(status);
   return (
     <main className="flex flex-col">
       <Header />

@@ -51,6 +51,9 @@ export async function middleware(req: NextRequest) {
     if (isOrganizerRoute && role !== "ORGANISER")
       return NextResponse.redirect(new URL("/activities", nextUrl));
 
+    if (nextUrl.pathname.startsWith("/upgrade") && role === "ORGANISER")
+      return NextResponse.redirect(new URL("/user", nextUrl));
+
     return undefined;
   }
 

@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Container from "../Container";
-
 import OrganiserNav from "./OrganiserNav";
 import { getToken } from "@/actions/decodeToken";
 import { JwtPayload } from "jsonwebtoken";
