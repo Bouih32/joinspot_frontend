@@ -1,6 +1,5 @@
 import Container from "@/components/Container";
 import Header from "@/components/header/Header";
-import FirstForm from "@/components/upgrade/FirstForm";
 import UpgradeWrapper from "@/components/upgrade/UpgradeWrapper";
 
 export default function UpgradePage() {
