@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import logo from "../../../public/images/logoWhite.png";
 import AuthHeaders from "./AuthHeaders";
-import { SignupContext } from "@/contexts/SignupContext";
 import Link from "next/link";
 
 type WrapperProps = {

@@ -250,6 +250,8 @@ export default {
         signupBgMobile3: "url(/images/signup3Mobile.png)",
         activityImg: "url(/images/activityImg.jpg)",
         heroBg: "url(/images/hero.png)",
+        upgradeBg: "url(/images/upgrade.jpg)",
+        upgradeMobileBg: "url(/images/upgradeMobile.png)",
         resetBg: "url(/images/resetBg.png)",
         resetBgMobile: "url(/images/resetBgMobile.png)",
         footerBg: "url(/images/footerPattern.png)",

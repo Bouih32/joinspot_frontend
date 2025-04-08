@@ -4,19 +4,18 @@ import Button from "@/components/Button";
 import Check from "@/components/Check";
 import Input from "@/components/Input";
 import Select from "@/components/select/SelectCategories";
-import { SignupContext } from "@/contexts/SignupContext";
+import { UpgradeContext } from "@/contexts/UpgradeContext";
 import { getContext } from "@/libs/utils";
 import { secondStepValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import GoBack from "./GoBack";
-import SignupUpload from "../SignupUpload";
+import SignupUpload from "../authUi/SignupUpload";
 
-export default function SecondStep() {
+export default function FirstForm() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
-  const { setStep, goBack, data, handleData } = getContext(SignupContext);
+  const { setStep, goBack, data, handleData } = getContext(UpgradeContext);
   const [selected, setSelected] = useState<string | null>(
     data?.categoryName ?? null,
   );
@@ -71,9 +70,8 @@ export default function SecondStep() {
         e.preventDefault();
         handleSubmit();
       }}
-      className="flexCenter flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
+      className="flexCenter relative flex-col gap-[28px] text-12sm text-secondActive tablet:w-[440px] tablet:text-center laptop:w-[412px]"
     >
-      <GoBack goBack={goBack} />
       <div className="w-full space-y-3 tablet:space-y-[18px]">
         <div className="space-y-2 tablet:space-y-[6px]">
           <p className="text-start text-12sm text-darker">

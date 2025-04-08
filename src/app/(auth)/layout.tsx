@@ -1,6 +1,7 @@
 import { getCategories } from "@/actions/getCategory";
 import { getCities } from "@/actions/getCities";
 import SignupContext from "@/contexts/SignupContext";
+import UpgradeProvider from "@/contexts/UpgradeContext";
 import { revalidate } from "@/libs/constantes";
 
 import { unstable_cache } from "next/cache";
@@ -29,7 +30,9 @@ export default async function AuthLayout({
       categories={cetegoriesData.categories}
       cities={citiesData.cities}
     >
-      {children}
+      <UpgradeProvider categories={cetegoriesData.categories}>
+        {children}
+      </UpgradeProvider>
     </SignupContext>
   );
 }
