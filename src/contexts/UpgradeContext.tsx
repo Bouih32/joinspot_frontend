@@ -8,9 +8,6 @@ type SignupContextType = {
   step: number;
   setStep: (n: number) => void;
   handleData: (data: DataType) => void;
-  goBack: () => void;
-
-  error: string | null;
   categories: Category[];
 };
 
@@ -27,16 +24,6 @@ export default function UpgradeProvider({
 }: ContextProps) {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<DataType | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const goBack = () =>
-    setStep((prev) =>
-      prev > 1 && data?.role !== "visitor"
-        ? prev - 1
-        : prev === 5 && data?.role === "visitor"
-          ? 1
-          : prev,
-    );
 
   const handleData = (newData: DataType) => {
     setData((prevData) => {
@@ -53,8 +40,6 @@ export default function UpgradeProvider({
         setStep,
         handleData,
         data,
-        goBack,
-        error,
         categories,
       }}
     >

@@ -15,7 +15,7 @@ import SignupUpload from "../authUi/SignupUpload";
 
 export default function FirstForm() {
   const [proveBy, setProveBy] = useState<"degree" | "business" | "">("");
-  const { setStep, goBack, data, handleData } = getContext(UpgradeContext);
+  const { setStep, data, handleData } = getContext(UpgradeContext);
   const [selected, setSelected] = useState<string | null>(
     data?.categoryName ?? null,
   );
@@ -38,15 +38,6 @@ export default function FirstForm() {
     setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
-    defaultValues: {
-      degreeName: data?.degreeName,
-      schoolName: data?.schoolName,
-      categoryName: data?.categoryName ? data?.categoryName : "",
-      year: data?.year,
-      frontPic: data?.frontPic,
-      justification: data?.justification,
-      justificationPic: data?.justificationPic,
-    },
   });
 
   const handleProveBy = (prove: "" | "degree" | "business") => {
@@ -62,7 +53,7 @@ export default function FirstForm() {
 
     handleData(formData);
 
-    setStep(3);
+    setStep(2);
   };
   return (
     <form

@@ -90,7 +90,9 @@ export default function SignupUpload<T extends FieldValues>({
           )}
         />
         <p className="text-14sm">
-          {target || (data as Record<string, any>)[targetName] || placeholder}
+          {target ||
+            (data && (data as Record<string, any>)[targetName]) ||
+            placeholder}
         </p>
         {loading ? (
           <AiOutlineLoading3Quarters className="animate-spin" />
