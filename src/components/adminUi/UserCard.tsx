@@ -22,9 +22,9 @@ export default function UserCard({ data }: { data: UserT }) {
       </div>
       <div className="flex flex-col-reverse items-end gap-4 tablet:flex-row tablet:items-center tablet:divide-x-2">
         {data.deletedAt ? (
-          <UnSuspend userId={data.userId} />
+          <UnSuspend userId={data.userId} userName={data.userName} />
         ) : (
-          <Suspend userId={data.userId} />
+          <Suspend userId={data.userId} userName={data.userName} />
         )}
 
         <p className="text-12sm text-neutral tablet:pl-4 tablet:text-16lg">

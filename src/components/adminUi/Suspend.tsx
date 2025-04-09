@@ -7,7 +7,13 @@ import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaBan } from "react-icons/fa";
 
-export default function Suspend({ userId }: { userId: string }) {
+export default function Suspend({
+  userId,
+  userName,
+}: {
+  userId: string;
+  userName: string;
+}) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -62,7 +68,7 @@ export default function Suspend({ userId }: { userId: string }) {
             </h3>
             <div className="space-y-3">
               <p>
-                The user’s name account will be suspended after submitting this
+                {userName}'s account will be suspended after submitting this
                 form. Are you sure ?
               </p>
             </div>

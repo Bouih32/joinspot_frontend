@@ -6,13 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-export default function UnSuspend({
-  userId,
-  userName,
-}: {
-  userId: string;
-  userName: string;
-}) {
+export default function UnBanActivity({ id }: { id: string }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +31,7 @@ export default function UnSuspend({
 
   const handleSuspend = async () => {
     setLoading(true);
-    await banUser(userId);
+    // await banUser(userId);
     router.refresh();
     setLoading(false);
     setOpen(false);
@@ -47,7 +41,7 @@ export default function UnSuspend({
     <div className="">
       <div onClick={() => setOpen(true)}>
         <Button classname="bg-successHover px-1 tablet:p-[6px] text-success text-nowrap  flex-row-reverse">
-          Unsuspend account
+          Unsuspend
         </Button>
       </div>
 
@@ -65,8 +59,8 @@ export default function UnSuspend({
             </h3>
             <div className="space-y-3">
               <p>
-                {userName}'s account will be able to resume their activities .
-                Are you sure ?
+                This activity will be able to resumed and reposted . Are you
+                sure ?
               </p>
             </div>
 

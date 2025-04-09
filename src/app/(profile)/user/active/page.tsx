@@ -57,7 +57,7 @@ export default async function ActivePage() {
 
               {/* Data Row */}
             </div>
-            <section className="w-full space-y-2">
+            <section className="w-full space-y-2 pb-10">
               {activeActivities.map((ele) => (
                 <ActiveCard key={nanoid()} ele={ele} />
               ))}
@@ -69,7 +69,7 @@ export default async function ActivePage() {
               Activity
             </div>
 
-            <section className="space-y-2">
+            <section className="space-y-2 pb-10">
               {activeActivities.map((ele) => (
                 <MobileActive key={nanoid()} ele={ele} />
               ))}

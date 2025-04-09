@@ -5,17 +5,11 @@ import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { FaBan } from "react-icons/fa";
 
-export default function UnSuspend({
-  userId,
-  userName,
-}: {
-  userId: string;
-  userName: string;
-}) {
+export default function BanActivity({ id }: { id: string }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -37,7 +31,7 @@ export default function UnSuspend({
 
   const handleSuspend = async () => {
     setLoading(true);
-    await banUser(userId);
+    // await banUser(userId);
     router.refresh();
     setLoading(false);
     setOpen(false);
@@ -46,8 +40,11 @@ export default function UnSuspend({
   return (
     <div className="">
       <div onClick={() => setOpen(true)}>
-        <Button classname="bg-successHover px-1 tablet:p-[6px] text-success text-nowrap  flex-row-reverse">
-          Unsuspend account
+        <Button
+          classname="bg-errorHover px-1 tablet:p-[6px] text-error text-nowrap  flex-row-reverse"
+          icon={<FaBan />}
+        >
+          Suspend
         </Button>
       </div>
 
@@ -61,12 +58,12 @@ export default function UnSuspend({
             className="flex w-[259px] flex-col justify-between gap-4 rounded-[8px] bg-white px-4 py-4 text-14lg text-second shadow-8xl tablet:w-[540px] tablet:gap-6 tablet:rounded-xl tablet:px-5 tablet:py-[30px] tablet:text-16lg"
           >
             <h3 className="text-16xxl text-main tablet:text-20xxl">
-              Unsuspend account
+              Suspended activity
             </h3>
             <div className="space-y-3">
               <p>
-                {userName}'s account will be able to resume their activities .
-                Are you sure ?
+                The activity will be suspended after submitting this form. Are
+                you sure ?
               </p>
             </div>
 
@@ -76,13 +73,13 @@ export default function UnSuspend({
                   setOpen(false);
                 }}
               >
-                <Button secondary classname="text-success border-success">
+                <Button secondary classname="text-error border-error">
                   Cancel
                 </Button>
               </div>
               <div onClick={handleSuspend}>
-                <Button classname="bg-success">
-                  Agree
+                <Button classname="bg-error">
+                  Suspend
                   {loading && (
                     <AiOutlineLoading3Quarters className="animate-spin" />
                   )}
