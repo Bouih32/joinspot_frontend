@@ -54,6 +54,9 @@ export async function middleware(req: NextRequest) {
     if (nextUrl.pathname.startsWith("/upgrade") && role === "ORGANISER")
       return NextResponse.redirect(new URL("/user", nextUrl));
 
+    if (nextUrl.pathname.startsWith("/admin") && role !== "ADMIN")
+      return NextResponse.redirect(new URL("/user", nextUrl));
+
     return undefined;
   }
 
