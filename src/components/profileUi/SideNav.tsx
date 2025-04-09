@@ -44,7 +44,7 @@ export default function SideNav({ role }: { role: string }) {
     await logout();
   };
   return (
-    <aside className="flex h-fit w-full justify-between border-b border-neutralLightActive pt-3 tablet:w-[213px] tablet:flex-col tablet:gap-2.5 tablet:border-b-0 tablet:border-r tablet:pr-2.5 tablet:pt-5 laptop:w-[306px]">
+    <aside className="flex h-fit w-full justify-between border-b border-neutralLightActive pt-3 tablet:sticky tablet:top-[60px] tablet:w-[213px] tablet:flex-col tablet:gap-2.5 tablet:border-b-0 tablet:border-r tablet:pr-2.5 tablet:pt-5 laptop:w-[306px]">
       {navData.map((ele) => (
         <NavLink
           key={nanoid()}
