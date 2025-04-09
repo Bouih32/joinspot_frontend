@@ -10,8 +10,9 @@ import { nanoid } from "nanoid";
 import { LuLogOut } from "react-icons/lu";
 import { logout } from "@/actions/logout";
 import { usePathname } from "next/navigation";
+import { BiSolidCheckCircle } from "react-icons/bi";
 
-export default function SideNav() {
+export default function SideNav({ role }: { role: string }) {
   const pathName = usePathname();
   const navContent = [
     { icon: <FaUserCircle />, link: "/user", title: "profile" },
@@ -24,12 +25,27 @@ export default function SideNav() {
     { icon: <IoSettings />, link: "/user/settings", title: "Settings" },
   ];
 
+  const AdminContent = [
+    {
+      icon: <MdOutlineMailOutline />,
+      link: "/user/messages",
+      title: "messages",
+    },
+    {
+      icon: <BiSolidCheckCircle />,
+      link: "/admin/confirmation",
+      title: "Confirmation",
+    },
+  ];
+
+  const navData = role === "ORGANISER" ? navContent : AdminContent;
+
   const handleLogOut = async () => {
     await logout();
   };
   return (
     <aside className="flex h-fit w-full justify-between border-b border-neutralLightActive pt-3 tablet:w-[213px] tablet:flex-col tablet:gap-2.5 tablet:border-b-0 tablet:border-r tablet:pr-2.5 tablet:pt-5 laptop:w-[306px]">
-      {navContent.map((ele) => (
+      {navData.map((ele) => (
         <NavLink
           key={nanoid()}
           link={ele.link}

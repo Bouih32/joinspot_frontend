@@ -8,6 +8,7 @@ import { getProfileData } from "@/actions/getUserData";
 import { UserProfileT } from "@/libs/types";
 import StatsHolder from "./StatsHolder";
 import ProfilePic from "./ProfilePic";
+import AdminNav from "./AdminNav";
 
 export default async function ProfileHeader() {
   const token = await getToken();
@@ -47,7 +48,13 @@ export default async function ProfileHeader() {
           </div>
         </section>
 
-        {role === "VISITOR" ? <UpdateLink /> : <OrganiserNav data={userData} />}
+        {role === "VISITOR" ? (
+          <UpdateLink />
+        ) : role === "ADMIN" ? (
+          <AdminNav />
+        ) : (
+          <OrganiserNav data={userData} />
+        )}
       </Container>
     </section>
   );

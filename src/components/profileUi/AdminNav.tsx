@@ -3,17 +3,19 @@ import DashCard from "./DashCard";
 import { PiUsersFill } from "react-icons/pi";
 import { BsPostcardFill } from "react-icons/bs";
 import { nanoid } from "nanoid";
-import { UserProfileT } from "@/libs/types";
+import { getAdminStats } from "@/actions/getUserData";
 
-type AdminNavProps = {
-  data: UserProfileT;
-};
+export default async function AdminNav() {
+  const data = (await getAdminStats()) as {
+    joinedNum: number;
+    totalRevenue: number;
+    activeActivities: number;
+  };
 
-export default function AdminNav({ data }: AdminNavProps) {
   const navContent = [
     {
       icon: <IoWallet />,
-      link: "/admin/fees",
+      link: "/admin",
       title: "Fees",
       value: data.totalRevenue,
     },

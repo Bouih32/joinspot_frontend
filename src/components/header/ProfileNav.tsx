@@ -12,6 +12,8 @@ import { useContext } from "react";
 import { NavContext } from "@/contexts/NavigationContext";
 import { LogedUiProps } from "./LogedUi";
 import Link from "next/link";
+import { HiOutlineTicket } from "react-icons/hi";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const handleLogOut = async () => {
@@ -28,7 +30,19 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
       title: "Settings",
       href: "/user/settings",
     },
+    { icon: <HiOutlineTicket />, href: "/user/tickets", title: "My tickets" },
   ];
+
+  const adminNav = [
+    { icon: <CgProfile />, title: "Profile", href: "/admin" },
+    {
+      icon: <FaRegCheckCircle />,
+      title: "Confirmation",
+      href: "/admin/confirmation",
+    },
+  ];
+
+  const navData = role === "ORGANISER" ? dropNav : adminNav;
 
   const context = useContext(NavContext);
   if (!context) return;
@@ -68,7 +82,7 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
               </Link>
             )}
 
-            {dropNav.map((ele) => (
+            {navData.map((ele) => (
               <ProfileCard
                 href={ele.href}
                 icon={ele.icon}
