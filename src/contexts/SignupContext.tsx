@@ -13,6 +13,8 @@ type SignupContextType = {
   error: string | null;
   cities: City[];
   categories: Category[];
+  banned: boolean;
+  setBannedError: () => void;
 };
 
 type ContextProps = {
@@ -37,6 +39,7 @@ export default function SignupProvider({
   const [step, setStep] = useState(1);
   const [data, setData] = useState<DataType | null>(getLocalStorageData);
   const [error, setError] = useState<string | null>(null);
+  const [banned, setBanned] = useState(false);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -69,6 +72,10 @@ export default function SignupProvider({
     setStep(1);
   };
 
+  const setBannedError = () => {
+    setBanned(true);
+  };
+
   return (
     <SignupContext.Provider
       value={{
@@ -81,6 +88,8 @@ export default function SignupProvider({
         error,
         cities,
         categories,
+        banned,
+        setBannedError,
       }}
     >
       {children}

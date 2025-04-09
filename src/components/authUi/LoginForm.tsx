@@ -11,11 +11,15 @@ import { useForm } from "react-hook-form";
 import { login } from "@/actions/login";
 import { useRouter } from "next/navigation";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Banned from "./Banned";
+import { getContext } from "@/libs/utils";
+import { SignupContext } from "@/contexts/SignupContext";
 
 type LoginType = z.infer<typeof loginValidation>;
 export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { banned, setBannedError } = getContext(SignupContext);
   const {
     register,
     trigger,
@@ -40,6 +44,8 @@ export default function LoginForm() {
         type: "manual",
         message: "Uncorrect password",
       });
+    } else if (res?.status === 403) {
+      setBannedError();
     } else {
       setLoading(false);
       router.refresh();
@@ -53,7 +59,9 @@ export default function LoginForm() {
     const formData = getValues();
     await handleLogin(formData);
   };
-  return (
+  return banned ? (
+    <Banned />
+  ) : (
     <form
       className="flexCenter flex-col gap-[28px] tablet:w-[440px] laptop:w-[412px]"
       onSubmit={(event) => {

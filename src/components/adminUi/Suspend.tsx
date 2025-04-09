@@ -1,14 +1,17 @@
 "use client";
 
+import { banUser } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaBan } from "react-icons/fa";
 
-type SuspendProps = {};
-export default function Suspend() {
+export default function Suspend({ userId }: { userId: string }) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
     if (open) {
       const scrollbarWidth =
@@ -26,13 +29,17 @@ export default function Suspend() {
     };
   }, [open]);
 
-  const handleSuspend = () => {
-    setOpen(true);
+  const handleSuspend = async () => {
+    setLoading(true);
+    await banUser(userId);
+    router.refresh();
+    setLoading(false);
+    setOpen(false);
   };
 
   return (
     <div className="">
-      <div onClick={handleSuspend}>
+      <div onClick={() => setOpen(true)}>
         <Button
           classname="bg-errorHover px-1 tablet:p-[6px] text-error text-nowrap  flex-row-reverse"
           icon={<FaBan />}
@@ -70,8 +77,13 @@ export default function Suspend() {
                   Cancel
                 </Button>
               </div>
-              <div className="">
-                <Button classname="bg-error">Suspend</Button>
+              <div onClick={handleSuspend}>
+                <Button classname="bg-error">
+                  Suspend
+                  {loading && (
+                    <AiOutlineLoading3Quarters className="animate-spin" />
+                  )}
+                </Button>
               </div>
             </div>
           </div>

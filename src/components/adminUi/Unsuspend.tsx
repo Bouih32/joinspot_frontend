@@ -1,12 +1,16 @@
 "use client";
 
+import { banUser } from "@/actions/getActivities";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaBan } from "react-icons/fa";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-type SuspendProps = {};
-export default function UnSuspend() {
+export default function UnSuspend({ userId }: { userId: string }) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (open) {
@@ -25,15 +29,19 @@ export default function UnSuspend() {
     };
   }, [open]);
 
-  const handleSuspend = () => {
-    setOpen(true);
+  const handleSuspend = async () => {
+    setLoading(true);
+    await banUser(userId);
+    router.refresh();
+    setLoading(false);
+    setOpen(false);
   };
 
   return (
     <div className="">
-      <div onClick={handleSuspend}>
+      <div onClick={() => setOpen(true)}>
         <Button classname="bg-successHover px-1 tablet:p-[6px] text-success text-nowrap  flex-row-reverse">
-          Reactivate
+          Unsuspend account
         </Button>
       </div>
 
@@ -66,8 +74,13 @@ export default function UnSuspend() {
                   Cancel
                 </Button>
               </div>
-              <div className="">
-                <Button classname="bg-success">Agree</Button>
+              <div onClick={handleSuspend}>
+                <Button classname="bg-success">
+                  Agree
+                  {loading && (
+                    <AiOutlineLoading3Quarters className="animate-spin" />
+                  )}
+                </Button>
               </div>
             </div>
           </div>

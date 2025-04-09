@@ -13,7 +13,7 @@ type AuthHeaders = {
 };
 
 export default function AuthHeaders({ title, signup, mobile }: AuthHeaders) {
-  const { step, goBack } = getContext(SignupContext);
+  const { step, goBack, banned } = getContext(SignupContext);
   return step !== 6 || !signup ? (
     <div
       className={cn(
@@ -31,14 +31,16 @@ export default function AuthHeaders({ title, signup, mobile }: AuthHeaders) {
           )}
         />
       )}
-      <div className="">
-        <MainTitle>{title}</MainTitle>
-        <SubTitle>
-          {signup
-            ? "Sign up today and be part of something amazing!"
-            : "Login with your account"}
-        </SubTitle>
-      </div>
+      {!banned && (
+        <div className="">
+          <MainTitle>{title}</MainTitle>
+          <SubTitle>
+            {signup
+              ? "Sign up today and be part of something amazing!"
+              : "Login with your account"}
+          </SubTitle>
+        </div>
+      )}
     </div>
   ) : null;
 }
