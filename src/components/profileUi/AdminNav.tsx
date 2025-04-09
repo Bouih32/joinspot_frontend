@@ -21,7 +21,7 @@ export default async function AdminNav() {
     },
     {
       icon: <PiUsersFill />,
-      link: "/asmin/users",
+      link: "/admin/users",
       title: "Joinspots Users",
       value: data.joinedNum,
     },

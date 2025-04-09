@@ -1,4 +1,3 @@
-import { infoT } from "@/components/profileUi/settingsForms/InfoForm";
 import { API_URL } from "@/libs/constantes";
 import { cookies } from "next/headers";
 
