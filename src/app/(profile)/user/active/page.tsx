@@ -13,6 +13,7 @@ export type activeT = {
   title: string;
   totalTickets: any;
   totalRevenue: number;
+  deletedAt: string;
 };
 
 export default async function ActivePage() {
@@ -24,7 +25,7 @@ export default async function ActivePage() {
         <p>Your live activities</p>
       </div>
 
-      {activeActivities.length > 0 ? (
+      {activeActivities.filter((ele) => ele.deletedAt === null).length > 0 ? (
         <>
           <section className="relative hidden w-full tablet:block">
             <div className="mb-6 grid w-full grid-cols-2 tablet:grid-cols-4">

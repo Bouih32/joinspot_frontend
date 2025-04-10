@@ -15,7 +15,7 @@ export default async function MessagesPage() {
         <p>Messages</p>
       </div>
 
-      {messages.length > 0 ? (
+      {messages.filter((ele) => ele.deletedAt === null).length > 0 ? (
         <section className="w-full space-y-3 tablet:space-y-[19px]">
           {messages
             .filter((ele) => ele.deletedAt === null)

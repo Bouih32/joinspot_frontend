@@ -5,6 +5,7 @@ import { PiUsersFill } from "react-icons/pi";
 import { getAllUsers } from "@/actions/userActions";
 import UserCard from "@/components/adminUi/UserCard";
 import { nanoid } from "nanoid";
+import NoActivity from "@/components/profileUi/NoActivity";
 
 export type UserT = {
   userId: string;
@@ -21,28 +22,31 @@ export default async function UsersPage() {
         <PiUsersFill className="text-main" />
         <p>Joinspots Users</p>
       </div>
+      {users.length > 0 ? (
+        <section className="space-y-[18px]">
+          <div className="flexBetween border-b border-neutralLightActive py-2 text-left text-14sm font-semibold text-neutral">
+            <div className="flex items-center gap-[10px]">
+              <BsFillPersonFill />
+              User
+            </div>
 
-      <section className="space-y-[18px]">
-        <div className="flexBetween border-b border-neutralLightActive py-2 text-left text-14sm font-semibold text-neutral">
-          <div className="flex items-center gap-[10px]">
-            <BsFillPersonFill />
-            User
+            <div className="flex items-center gap-[10px]">
+              <BiSolidInfoCircle />
+              Informations
+            </div>
           </div>
 
-          <div className="flex items-center gap-[10px]">
-            <BiSolidInfoCircle />
-            Informations
-          </div>
-        </div>
+          {users.map((ele) => (
+            <UserCard key={nanoid()} data={ele} />
+          ))}
 
-        {users.map((ele) => (
-          <UserCard key={nanoid()} data={ele} />
-        ))}
-
-        {/* {revenue.map((ele) => (
+          {/* {revenue.map((ele) => (
             <RevenueCard data={ele} key={nanoid()} />
           ))} */}
-      </section>
+        </section>
+      ) : (
+        <NoActivity user />
+      )}
     </main>
   );
 }

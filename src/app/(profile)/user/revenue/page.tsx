@@ -1,4 +1,5 @@
 import { getActivityTickets } from "@/actions/userActions";
+import NoActivity from "@/components/profileUi/NoActivity";
 import RevenueCard from "@/components/profileUi/RevenueCard";
 import { nanoid } from "nanoid";
 import { AiFillDollarCircle } from "react-icons/ai";
@@ -17,23 +18,27 @@ export default async function RevenuePage() {
         <p>Your revenue</p>
       </div>
 
-      <section className="space-y-3">
-        <div className="flexBetween border-b border-neutralLightActive px-3 py-2 text-left text-14sm font-semibold text-neutral">
-          <div className="flex items-center gap-[6px]">
-            <BsFillPostcardFill />
-            Activity
+      {revenue.length > 0 ? (
+        <section className="space-y-3">
+          <div className="flexBetween border-b border-neutralLightActive px-3 py-2 text-left text-14sm font-semibold text-neutral">
+            <div className="flex items-center gap-[6px]">
+              <BsFillPostcardFill />
+              Activity
+            </div>
+
+            <div className="flex items-center gap-[6px]">
+              <AiFillDollarCircle />
+              Revenue
+            </div>
           </div>
 
-          <div className="flex items-center gap-[6px]">
-            <AiFillDollarCircle />
-            Revenue
-          </div>
-        </div>
-
-        {revenue.map((ele) => (
-          <RevenueCard data={ele} key={nanoid()} />
-        ))}
-      </section>
+          {revenue.map((ele) => (
+            <RevenueCard data={ele} key={nanoid()} />
+          ))}
+        </section>
+      ) : (
+        <NoActivity />
+      )}
     </main>
   );
 }
