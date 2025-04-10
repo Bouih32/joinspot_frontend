@@ -34,10 +34,7 @@ export default function Overview({ activity, userId }: OverviewProps) {
             {activity.title}
           </h1>
           <div className="flexBetween">
-            <Link
-              href={link}
-              className="flexCenter gap-2"
-            >
+            <Link href={link} className="flexCenter gap-2">
               <Image
                 src={activity.avatar}
                 alt="avatar"
@@ -76,7 +73,7 @@ export default function Overview({ activity, userId }: OverviewProps) {
           </h1>
           <div className="flex items-center justify-start gap-2 pl-1">
             <MdLocationOn className="text-[24px]" />
-            <p>
+            <p className="first-letter:uppercase">
               {activity.city},{activity.location}{" "}
             </p>
           </div>
@@ -104,9 +101,15 @@ export default function Overview({ activity, userId }: OverviewProps) {
                 </Button>
               </div>
             ) : (
-              <Link href={`/activities/${activity.activityId}/payment`}>
-                <Button>Join</Button>
-              </Link>
+              <div className="">
+                {activity.userId === userId ? (
+                  <Button disabled>Join</Button>
+                ) : (
+                  <Link href={`/activities/${activity.activityId}/payment`}>
+                    <Button>Join</Button>
+                  </Link>
+                )}
+              </div>
             )}
           </div>
         </div>

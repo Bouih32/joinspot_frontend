@@ -14,7 +14,7 @@ export default function JoinSection({
         peaceful sunset in Agadir.
       </p>
       <Link
-        href="#"
+        href={`activity/${activity.activityId}/payment`}
         className="rounded bg-white px-3 py-1 text-14xl text-main tablet:text-16xl"
       >
         Reserve A Spot

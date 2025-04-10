@@ -59,7 +59,9 @@ export default async function ActivityDetails({
                 id={activity.activityId}
                 reviews={reviews}
               />
-              <JoinSection activity={activity} />
+              {activity.seat !== activity.joined && (
+                <JoinSection activity={activity} />
+              )}
             </>
           )}
         </Container>

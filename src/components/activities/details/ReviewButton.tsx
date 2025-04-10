@@ -97,7 +97,7 @@ export default function ReviewButton({ token, id }: ReviewButtonProps) {
             className="flex w-[259px] flex-col gap-3 rounded-[8px] bg-white px-4 py-4 text-12lg text-second shadow-8xl tablet:w-[540px] tablet:gap-6 tablet:rounded-xl tablet:px-5 tablet:py-[30px] tablet:text-16lg"
           >
             <h3 className="text-16xxl text-main tablet:text-20xxl">
-              Share your experience with [Activity Name]
+              Share your experience with others
             </h3>
             <div className="flexBetween">
               <p className={cn(errors.stars && "text-error")}>

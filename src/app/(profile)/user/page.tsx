@@ -1,5 +1,6 @@
 import { getToken } from "@/actions/decodeToken";
 import { getUserActivities } from "@/actions/getActivities";
+import { TagsT } from "@/actions/getCategory";
 import { getHeaderData } from "@/actions/getUserData";
 import { getUserTags } from "@/actions/userActions";
 import ActivityCard from "@/components/activities/ActivityCard";
@@ -26,7 +27,7 @@ export default async function UserPage() {
 
   const userData = await getHeaderData();
   const userActivities = await getUserActivities(userId as string);
-  const userTags = (await getUserTags()) as { name: string; id: string }[];
+  const userTags = (await getUserTags()) as TagsT[];
 
   return (
     <main className="flex-1 space-y-4 pt-8 tablet:space-y-[30px] tablet:pl-[6px] tablet:pt-5 laptop:pl-5">
@@ -58,9 +59,9 @@ export default async function UserPage() {
           Select three tags to represent your interests and hobbies.
         </p>
         <div className="mt-2 flex items-center gap-1">
-          <AddTags />
+          <AddTags userTags={userTags} />
           {userTags.map((ele) => (
-            <Chip key={nanoid()}>{ele.name}</Chip>
+            <Chip key={nanoid()}>{ele.tagName}</Chip>
           ))}
         </div>
       </section>

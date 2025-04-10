@@ -15,7 +15,8 @@ import { BiSolidCheckCircle } from "react-icons/bi";
 import { addTagTwo } from "@/actions/activityActions";
 import { RxCross2 } from "react-icons/rx";
 
-export default function AddTags() {
+export default function AddTags({ userTags }: { userTags: TagsT[] }) {
+  const userTagsIds = userTags.map((ele) => ele.tagId);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -23,7 +24,7 @@ export default function AddTags() {
   const [selectedCategory, setSelectedCategory] = useState<string>(
     "67b654e50614d66231800308",
   );
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>(userTagsIds);
   const router = useRouter();
 
   const selectCategory = (id: string) => {
@@ -133,9 +134,7 @@ export default function AddTags() {
                 <div className="">
                   {selectedTags.length > 0 ? (
                     <div onClick={handleAdd}>
-                      <Button icon={<BiSolidCheckCircle />} disabled={loading}>
-                        Save
-                      </Button>
+                      <Button disabled={loading}>Save</Button>
                     </div>
                   ) : (
                     <Button

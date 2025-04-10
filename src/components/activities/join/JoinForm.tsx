@@ -134,25 +134,11 @@ export default function JoinForm() {
 
         <div className="text-12sm tablet:text-14sm">
           <div className="flex items-center gap-[6px]">
-            <label
-              htmlFor="check"
-              className="flexCenter group h-[18px] w-[18px] cursor-pointer items-center rounded border border-mainLightActive text-main"
-            >
-              <input
-                type="checkbox"
-                id="check"
-                className="peer sr-only"
-                readOnly
-              />
-              <FaCheck className="hidden text-[12px] text-white peer-checked:block" />
-            </label>
-            <label htmlFor="check" className="cursor-pointer">
-              Securely save my information for 1-click checkout
-            </label>
+            <p>Your Payment Information is Secure with Us!</p>
           </div>
 
           <p className="text-neutral">
-            pay faster on this site and everywhere is accepted
+            Just a friendly reminder that all purchases are final.
           </p>
         </div>
 
