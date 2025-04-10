@@ -5,7 +5,7 @@ import { MessageT } from "@/libs/types";
 import { nanoid } from "nanoid";
 import { HiOutlineMail } from "react-icons/hi";
 
-export default async function MessagesPage() {
+export default async function SupportPage() {
   const messages = (await getUserMessages()) as MessageT[];
 
   return (

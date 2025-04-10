@@ -1,14 +1,19 @@
 "use client";
 
 import { markAsRead } from "@/actions/getActivities";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { IoSend } from "react-icons/io5";
 
 export default function MessageDetails({ messageId }: { messageId: string }) {
+  const pathName = usePathname();
   const router = useRouter();
+
+  const link = pathName.startsWith("/admin")
+    ? `/admin/support/${messageId}`
+    : `/user/messages/${messageId}`;
   const handleSeen = async () => {
-    router.push(`/user/messages/${messageId}`);
+    router.push(link);
     await markAsRead(messageId);
   };
   return (

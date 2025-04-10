@@ -10,6 +10,7 @@ import { nanoid } from "nanoid";
 import { LuLogOut } from "react-icons/lu";
 import { logout } from "@/actions/logout";
 import { usePathname } from "next/navigation";
+import { BiSupport } from "react-icons/bi";
 
 export default function SideNav({ role }: { role: string }) {
   const pathName = usePathname();
@@ -26,9 +27,9 @@ export default function SideNav({ role }: { role: string }) {
 
   const AdminContent = [
     {
-      icon: <MdOutlineMailOutline />,
-      link: "/user/messages",
-      title: "messages",
+      icon: <BiSupport />,
+      link: "/admin/support",
+      title: "Support",
     },
     {
       icon: <FaRegCheckCircle />,

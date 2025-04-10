@@ -1,7 +1,7 @@
 import Image from "next/image";
 import avatar from "../../../public/images/avatar2.png";
 import { formatTime } from "@/libs/utils";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { markAsRead } from "@/actions/getActivities";
 
 type MessageNotifCardProps = {
@@ -20,9 +20,13 @@ export default function MessageNotifCard({
   handleClose,
 }: MessageNotifCardProps) {
   const router = useRouter();
+  const pathName = usePathname();
+  const link = pathName.startsWith("/admin")
+    ? `/admin/support/${messageId}`
+    : `/user/messages/${messageId}`;
   const handleSeen = async () => {
     handleClose && handleClose();
-    router.push(`/user/messages/${messageId}`);
+    router.push(link);
     await markAsRead(messageId);
   };
   return (
