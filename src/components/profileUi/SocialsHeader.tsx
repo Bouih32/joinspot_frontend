@@ -31,6 +31,7 @@ export default function SocialsHeader({
       >
         {socials.length !== 0 &&
           socials
+            .filter((ele) => ele.link !== "")
             .slice(0, 2)
             .map((ele) => (
               <UserSocials

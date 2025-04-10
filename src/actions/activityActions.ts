@@ -38,6 +38,7 @@ export const getActivities = async (params?: Record<string, string>) => {
 
     return {
       activities: activities.map((ele) => ({
+        deletedAt: ele.deletedAt,
         activityId: ele.activityId,
         coverPic: ele.coverPic,
         title: ele.title,

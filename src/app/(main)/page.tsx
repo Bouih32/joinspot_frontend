@@ -14,11 +14,13 @@ export default async function Home() {
   if (typeof token !== "string" && token !== null) {
     userId = (token as JwtPayload).userId;
   }
+
+  const info = data.activities.filter((ele) => ele.deletedAt === null);
   return (
     <main className="font-openSans">
-      <Hero data={data.activities} userId={userId} />
+      <Hero data={info} userId={userId} />
       <Services />
-      <Offers data={data.activities} userId={userId} />
+      <Offers data={info} userId={userId} />
       <Community />
     </main>
   );

@@ -5,6 +5,7 @@ import UnBanActivity from "./UnbanActivity";
 
 export default function ActivityCard({ ele }: { ele: activeT }) {
   const date = formatDate(ele.endDay).split(".");
+
   return (
     <div className="grid w-full grid-cols-4">
       <div className="bg-[#F8F8F8] py-4 pl-3 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">

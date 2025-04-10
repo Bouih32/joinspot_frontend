@@ -1,6 +1,6 @@
 "use client";
 
-import { banUser } from "@/actions/getActivities";
+import { banActivity, banUser } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ export default function BanActivity({ id }: { id: string }) {
 
   const handleSuspend = async () => {
     setLoading(true);
-    // await banUser(userId);
+    await banActivity(id);
     router.refresh();
     setLoading(false);
     setOpen(false);

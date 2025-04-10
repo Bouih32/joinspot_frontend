@@ -40,7 +40,7 @@ export default async function ActivitiesPage({
   const data =
     params.my === "own" && (!token || role === "VISITOR")
       ? null
-      : activitiesData.activities;
+      : activitiesData.activities.filter((ele) => ele.deletedAt === null);
 
   return (
     <main className="min-h-screen space-y-5 pb-5 tablet:space-y-[32px]">
