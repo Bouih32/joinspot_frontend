@@ -115,10 +115,11 @@ export default function ActivityCard({
               <div
                 onClick={(e) => {
                   e.stopPropagation();
-                  router.push(`/activities/${data.activityId}/payment`);
+                  userId !== data.userId &&
+                    router.push(`/activities/${data.activityId}/payment`);
                 }}
               >
-                <Button>Join</Button>
+                <Button disabled={userId === data.userId}>Join</Button>
               </div>
             )}
           </div>

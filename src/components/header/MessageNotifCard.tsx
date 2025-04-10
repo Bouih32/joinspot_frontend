@@ -32,7 +32,7 @@ export default function MessageNotifCard({
   return (
     <div
       onClick={handleSeen}
-      className="flexBetween cursor-pointer rounded-[2px] border-b border-neutralLightHover p-1 py-[2px] font-openSans hover:bg-errorHover"
+      className="flexBetween cursor-pointer rounded-[2px] border-b border-neutralLightHover p-1 py-[2px] pb-1 font-openSans hover:bg-errorHover"
     >
       <div className="flexCenter gap-2">
         <div className="h-[25px] w-[25px] overflow-hidden rounded-full laptop:h-[31px] laptop:w-[31px]">

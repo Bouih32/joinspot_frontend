@@ -50,7 +50,7 @@ export default function Notifications({
               <h2>Notifications</h2>
               <p className="text-main">Sorted by latest</p>
             </div>
-            <section className="space-y-1">
+            <section className="space-y-2">
               {notifications.length > 0 ? (
                 notifications.map((ele) => (
                   <NotificationCard key={nanoid()} data={ele} />
@@ -58,10 +58,6 @@ export default function Notifications({
               ) : (
                 <EmptyMessage />
               )}
-
-              {/* <NotificationCard />
-              <NotificationCard />
-              <NotificationCard /> */}
             </section>
           </section>
         </>

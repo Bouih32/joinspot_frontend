@@ -307,3 +307,35 @@ export const editValidation = z.object({
     }),
   tags: z.string().trim().min(1, { message: "This field is required" }),
 });
+
+export const supportValidation = z.object({
+  firstName: z
+    .string()
+    .trim()
+    .min(1, { message: "First name is required." })
+    .max(50, { message: "Only 50 characters allowed" }),
+  lastName: z
+    .string()
+    .trim()
+    .min(1, { message: "Last name is required." })
+    .max(50, { message: "Only 50 characters allowed" }),
+  email: z
+    .string()
+    .trim()
+    .email()
+    .min(10, { message: "email is required." })
+    .max(50, {
+      message: "Only 50 characters allowed",
+    }),
+  phoneNumber: z
+    .string()
+    .trim()
+    .min(1, { message: "Phone number is required." })
+    .max(14, { message: "Only 14 characters allowed" }),
+  subject: z.string().trim().min(1, { message: "subject is required." }),
+  message: z
+    .string()
+    .trim()
+    .min(1, { message: "Message is required." })
+    .max(300, { message: "Only 300 characters allowed" }),
+});
