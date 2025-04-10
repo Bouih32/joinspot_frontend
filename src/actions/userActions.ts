@@ -1,7 +1,6 @@
 "use server";
 
 import { API_URL } from "@/libs/constantes";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
 export const getUserTags = async () => {
