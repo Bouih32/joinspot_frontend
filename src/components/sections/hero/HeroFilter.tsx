@@ -1,13 +1,13 @@
-import { FaCalendarDay } from "react-icons/fa6";
+import CityFilter from "./CityFilter";
+import CategoryFilter from "./CategoryFilter";
 
 export default function HeroFilter() {
   return (
-    <div className="flexBetween w-[328px] justify-self-center rounded border border-neutralLight bg-white px-3 py-[6px] text-14sm text-main tablet:w-[432px]">
+    <div className="flexBetween w-[328px] justify-self-center rounded border border-neutralLight bg-white py-[6px] text-14sm text-main tablet:w-[432px]">
       <div className="grid flex-1 grid-cols-2 divide-x-[2px] divide-neutralLight">
-        <span>Cities</span>
-        <span className="pl-2">Date</span>
+        <CityFilter />
+        <CategoryFilter />
       </div>
-      <FaCalendarDay />
     </div>
   );
 }
