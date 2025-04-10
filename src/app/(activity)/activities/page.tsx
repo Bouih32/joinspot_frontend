@@ -33,7 +33,7 @@ export default async function ActivitiesPage({
     role = (token as JwtPayload).role;
   }
 
-  const activitiesData = await getActivities(params);
+  let activitiesData = await getActivities(params);
 
   const data =
     params.my === "own" && (!token || role === "VISITOR")

@@ -2,7 +2,7 @@
 
 import { cn } from "@/libs/utils";
 import { BsFillTicketFill } from "react-icons/bs";
-import { FaUserCircle } from "react-icons/fa";
+import { FaRegCheckCircle, FaUserCircle } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import { MdOutlineMailOutline } from "react-icons/md";
 import NavLink from "./NavLink";
@@ -10,7 +10,6 @@ import { nanoid } from "nanoid";
 import { LuLogOut } from "react-icons/lu";
 import { logout } from "@/actions/logout";
 import { usePathname } from "next/navigation";
-import { BiSolidCheckCircle } from "react-icons/bi";
 
 export default function SideNav({ role }: { role: string }) {
   const pathName = usePathname();
@@ -32,7 +31,7 @@ export default function SideNav({ role }: { role: string }) {
       title: "messages",
     },
     {
-      icon: <BiSolidCheckCircle />,
+      icon: <FaRegCheckCircle />,
       link: "/admin/confirmation",
       title: "Confirmation",
     },
