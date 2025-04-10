@@ -6,10 +6,8 @@ import { ReactNode } from "react";
 export default function ActivityLayout({ children }: { children: ReactNode }) {
   return (
     <main>
-      <SaveContext>
-        <Header />
-        {children}
-      </SaveContext>
+      <Header />
+      {children}
     </main>
   );
 }

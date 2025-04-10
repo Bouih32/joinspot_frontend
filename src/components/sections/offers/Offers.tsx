@@ -15,9 +15,9 @@ import { useMediaQuery } from "react-responsive";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { nanoid } from "nanoid";
 
-type OffersProps = { data: ActivityCardType[] };
+type OffersProps = { data: ActivityCardType[]; userId: string | undefined };
 
-export default function Offers({ data }: OffersProps) {
+export default function Offers({ data, userId }: OffersProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false); // State to track if component has mounted
   const motionValue = useMotionValue(0);
@@ -149,7 +149,7 @@ export default function Offers({ data }: OffersProps) {
               style={{ x: motionValue }}
             >
               {data.slice(0, 4).map((ele, i) => (
-                <ActivityCard key={nanoid()} data={ele} />
+                <ActivityCard key={nanoid()} data={ele} userId={userId} />
               ))}
             </motion.div>
           </motion.div>

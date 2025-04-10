@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Open_Sans } from "next/font/google";
 import "./globals.css";
+import SaveContext from "@/contexts/SaveContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${openSans.variable} antialiased`}>
-        {children}
+        <SaveContext> {children}</SaveContext>
       </body>
     </html>
   );

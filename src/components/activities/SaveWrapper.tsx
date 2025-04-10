@@ -9,8 +9,10 @@ import { SaveContext } from "@/contexts/SaveContext";
 
 export default function SaveWrapper({
   activities,
+  userId,
 }: {
   activities: ActivityCardType[] | null;
+  userId: string | undefined;
 }) {
   const context = useContext(SaveContext);
 
@@ -27,7 +29,7 @@ export default function SaveWrapper({
     <>
       {activitiesSaved && activitiesSaved.length > 0 ? (
         activitiesSaved.map((ele) => (
-          <ActivityCard key={nanoid()} full data={ele} />
+          <ActivityCard key={nanoid()} full data={ele} userId={userId} />
         ))
       ) : (
         <section className="space-y-5 self-center justify-self-center text-center tablet:mt-10">

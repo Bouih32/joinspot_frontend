@@ -27,7 +27,7 @@ export default async function ActivityDetails({
 }) {
   const { id } = await params;
   const token = await getToken();
-  let userId;
+  let userId: string | undefined;
 
   if (typeof token !== "string" && token !== null) {
     userId = (token as JwtPayload).userId;
@@ -49,7 +49,7 @@ export default async function ActivityDetails({
         <Container classname="tablet:border laptop:p-[25px] space-y-3 tablet:space-y-5  tablet:p-4 border-secondLightActive rounded-xl tablet:mt-10 mt-[25px]">
           <Success review />
 
-          <Overview activity={activity} />
+          <Overview activity={activity} userId={userId} />
           <Description description={activity.description} />
           {userId !== activity.userId && (
             <>
@@ -84,7 +84,12 @@ export default async function ActivityDetails({
               </div>
               <section className="mt-10 flex flex-col gap-6">
                 {filtredActivities.map((ele) => (
-                  <ActivityCard key={nanoid()} details data={ele} />
+                  <ActivityCard
+                    key={nanoid()}
+                    details
+                    data={ele}
+                    userId={userId}
+                  />
                 ))}
               </section>
             </section>

@@ -28,9 +28,11 @@ export default async function ActivitiesPage({
   const params = await searchParams;
   const token = await getToken();
   let role: string | undefined;
+  let userId: string | undefined;
 
   if (typeof token !== "string" && token !== null) {
     role = (token as JwtPayload).role;
+    userId = (token as JwtPayload).userId;
   }
 
   let activitiesData = await getActivities(params);
@@ -52,11 +54,13 @@ export default async function ActivitiesPage({
             {params.my === "faq" ? (
               <Questions activities />
             ) : params.my === "save" ? (
-              <SaveWrapper activities={data} />
+              <SaveWrapper activities={data} userId={userId} />
             ) : !data || data.length === 0 ? (
               <NoActivities token={token} params={params} />
             ) : (
-              data.map((ele) => <ActivityCard key={nanoid()} full data={ele} />)
+              data.map((ele) => (
+                <ActivityCard key={nanoid()} full data={ele} userId={userId} />
+              ))
             )}
           </div>
           {data && data.length > 0 && params.my !== "save" && (

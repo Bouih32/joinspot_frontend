@@ -17,7 +17,7 @@ import { CgMathPlus } from "react-icons/cg";
 
 export default async function UserPage() {
   const token = await getToken();
-  let userId;
+  let userId: string | undefined;
   let role;
   if (typeof token !== "string" && token !== null) {
     userId = (token as JwtPayload).userId;
@@ -25,7 +25,7 @@ export default async function UserPage() {
   }
 
   const userData = await getHeaderData();
-  const userActivities = await getUserActivities(userId);
+  const userActivities = await getUserActivities(userId as string);
   const userTags = (await getUserTags()) as { name: string; id: string }[];
 
   return (
@@ -81,7 +81,7 @@ export default async function UserPage() {
           <section className="mt-[30px] flex flex-col gap-6">
             {userActivities.length > 0 ? (
               userActivities.map((ele) => (
-                <ActivityCard key={nanoid()} full data={ele} />
+                <ActivityCard key={nanoid()} full data={ele} userId={userId} />
               ))
             ) : (
               <NoActivity />

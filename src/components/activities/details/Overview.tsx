@@ -5,14 +5,18 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { MdLocationOn, MdPeopleAlt } from "react-icons/md";
 import { FaShareSquare } from "react-icons/fa";
 import Save from "../Save";
-import { ActivityDetailsT, editActT } from "@/libs/types";
+import { editActT } from "@/libs/types";
 import { nanoid } from "nanoid";
 
 type OverviewProps = {
   activity: editActT;
+  userId: string | undefined;
 };
 
-export default function Overview({ activity }: OverviewProps) {
+export default function Overview({ activity, userId }: OverviewProps) {
+  const link =
+    activity.userId === userId ? "user" : `/profile/${activity.userId}`;
+
   return (
     <section className="flex flex-col-reverse gap-4 overflow-hidden rounded-xl bg-secondLight p-3 shadow-8xl tablet:flex-row tablet:gap-0 tablet:p-0">
       <div className="tablet:rounded-0 rounded-[8px] tablet:h-[379px] tablet:w-[400px] laptop:w-[610px]">
@@ -31,7 +35,7 @@ export default function Overview({ activity }: OverviewProps) {
           </h1>
           <div className="flexBetween">
             <Link
-              href={`/profile/${activity.userId}`}
+              href={link}
               className="flexCenter gap-2"
             >
               <Image

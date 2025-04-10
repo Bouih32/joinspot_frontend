@@ -33,7 +33,7 @@ export default async function UserActivities({
         <NoActivities token={token} params={params} />
       ) : (
         userActivities.map((ele) => (
-          <ActivityCard key={nanoid()} full data={ele} />
+          <ActivityCard key={nanoid()} full data={ele} userId={userId} />
         ))
       )}
     </div>

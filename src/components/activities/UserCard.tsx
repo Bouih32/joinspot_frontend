@@ -8,6 +8,7 @@ type UserCardProps = {
   userName: string;
   category: string;
   userId: string;
+  tokenId: string | undefined;
 };
 
 export default function UserCard({
@@ -15,6 +16,7 @@ export default function UserCard({
   userName,
   category,
   userId,
+  tokenId,
 }: UserCardProps) {
   const router = useRouter();
 
@@ -22,7 +24,9 @@ export default function UserCard({
     <div
       onClick={(e) => {
         e.stopPropagation();
-        router.push(`/profile/${userId}`);
+        tokenId !== userId
+          ? router.push(`/profile/${userId}`)
+          : router.push("/user");
       }}
       className="flex items-start justify-between"
     >

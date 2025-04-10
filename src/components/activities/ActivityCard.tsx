@@ -33,6 +33,7 @@ type ActivityCardProps = {
   full?: boolean;
   data: ActivityCardType;
   details?: boolean;
+  userId: string | undefined;
 };
 
 export default function ActivityCard({
@@ -40,6 +41,7 @@ export default function ActivityCard({
   full,
   data,
   details,
+  userId,
 }: ActivityCardProps) {
   if (!data) {
     return null; // or show a loading state
@@ -93,6 +95,7 @@ export default function ActivityCard({
             userName={data.userName}
             category={data.category}
             userId={data.userId}
+            tokenId={userId}
           />
           <ActivityDetails title={data.title} stars={data.score} full={full} />
           <Seats seat={data.seat} joined={data.joined} />

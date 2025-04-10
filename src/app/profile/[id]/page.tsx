@@ -1,5 +1,6 @@
+import { getToken } from "@/actions/decodeToken";
 import { getUserActivities } from "@/actions/getActivities";
-import { getFollowing, getUserProfile } from "@/actions/userActions";
+import { getUserProfile } from "@/actions/userActions";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Chip from "@/components/Chip";
 import Container from "@/components/Container";
@@ -8,6 +9,7 @@ import SocialsHeader from "@/components/profileUi/SocialsHeader";
 import NoData from "@/components/user/NoData";
 import UserCover from "@/components/user/UserCover";
 import { ProfileT } from "@/libs/types";
+import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
 
 export default async function ProfilePage({
@@ -18,6 +20,12 @@ export default async function ProfilePage({
   const { id } = await params;
   const userData = (await getUserProfile(id)) as ProfileT;
   const userActivities = await getUserActivities(id);
+  const token = await getToken();
+  let userId: string | undefined;
+
+  if (typeof token !== "string" && token !== null) {
+    userId = (token as JwtPayload).userId;
+  }
 
   return (
     <>
@@ -59,7 +67,12 @@ export default async function ProfilePage({
             <section className="flex flex-col gap-6 pb-10">
               {userActivities.length !== 0 ? (
                 userActivities.map((ele) => (
-                  <ActivityCard key={nanoid()} details data={ele} />
+                  <ActivityCard
+                    key={nanoid()}
+                    details
+                    data={ele}
+                    userId={userId}
+                  />
                 ))
               ) : (
                 <NoData />

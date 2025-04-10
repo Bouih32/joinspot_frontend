@@ -11,9 +11,9 @@ import ActivityCard, {
   ActivityCardType,
 } from "@/components/activities/ActivityCard";
 
-type HeroProps = { data: ActivityCardType[] };
+type HeroProps = { data: ActivityCardType[]; userId: string | undefined };
 
-export default function Hero({ data }: HeroProps) {
+export default function Hero({ data, userId }: HeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClient, setIsClient] = useState(false); // State to track if component has mounted
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -90,7 +90,7 @@ export default function Hero({ data }: HeroProps) {
               }}
             >
               {data.slice(0, totalSlides).map((ele, i) => (
-                <ActivityCard key={i} data={ele} />
+                <ActivityCard key={i} data={ele} userId={userId} />
               ))}
             </motion.div>
           </motion.div>
