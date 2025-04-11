@@ -56,7 +56,7 @@ export default function Ticket() {
           ref={ticketRef}
           className="rounded-xl border-neutralLightActive tablet:border tablet:p-5"
         >
-          <div className="bg-ticketPattern flex w-full flex-col justify-between gap-10 rounded-xl bg-[#1f1c2c] bg-cover bg-center p-4 text-14lg text-white tablet:flex-row tablet:p-5">
+          <div className="flex w-full flex-col justify-between gap-10 rounded-xl bg-[#1f1c2c] bg-ticketPattern bg-cover bg-center p-4 text-14lg text-white tablet:flex-row tablet:p-5">
             <section className="space-y-8 tablet:space-y-20">
               <div>
                 <h3 className="mb-4 text-20xl text-main">{activity.title}</h3>
@@ -107,7 +107,9 @@ export default function Ticket() {
         </section>
 
         <Link href="/activities" className="self-end">
-          <Button className="bg-second">Done</Button>
+          <Button className="bg-second hover:bg-main hover:text-white">
+            Done
+          </Button>
         </Link>
       </main>
     </Container>
