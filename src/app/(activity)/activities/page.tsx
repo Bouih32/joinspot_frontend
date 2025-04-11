@@ -47,6 +47,7 @@ export default async function ActivitiesPage({
       <UpperHeader />
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
+
         <main className="flex w-full flex-col justify-between">
           <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
             <Success />

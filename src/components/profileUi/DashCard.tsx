@@ -19,7 +19,7 @@ export default function DashCard({ link, icon, title, value }: DashCardProps) {
     <Link
       href={link}
       className={cn(
-        "group flex h-[61px] w-[111px] cursor-pointer flex-col justify-between bg-secondLight px-3 py-[7px] text-second hover:bg-main hover:text-white tablet:h-[88px] tablet:w-[162px] tablet:rounded-xl tablet:px-[6px] tablet:py-[14px] tablet:text-[18px] laptop:h-[101px] laptop:w-[200px] laptop:px-3",
+        "group flex h-[61px] w-[111px] cursor-pointer flex-col justify-between overflow-hidden bg-secondLight px-3 py-[7px] text-second hover:bg-main hover:text-white tablet:h-[88px] tablet:w-[162px] tablet:rounded-xl tablet:px-[6px] tablet:py-[14px] tablet:text-[18px] laptop:h-[101px] laptop:w-[200px] laptop:px-3",
         link === pathName && "bg-main text-white",
       )}
     >
