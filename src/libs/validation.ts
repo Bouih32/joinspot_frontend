@@ -285,6 +285,8 @@ export const phoneValidation = z.object({
     .string()
     .trim()
     .max(20, { message: "Heey! that's too long" })
+    .transform((val) => parseInt(val, 10)) // Transform the string to an integer
+    .refine((val) => !isNaN(val), { message: "Invalid number" })
     .optional(),
 });
 
@@ -331,7 +333,9 @@ export const supportValidation = z.object({
     .string()
     .trim()
     .min(1, { message: "Phone number is required." })
-    .max(14, { message: "Only 14 characters allowed" }),
+    .max(14, { message: "Only 14 characters allowed" })
+    .transform((val) => parseInt(val, 10))
+    .refine((val) => !isNaN(val), { message: "Invalid number" }),
   subject: z.string().trim().min(1, { message: "subject is required." }),
   message: z
     .string()

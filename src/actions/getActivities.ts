@@ -519,10 +519,10 @@ export const sendSupport = async (data: {
   subject: string;
   firstName: string;
   lastName: string;
-  phone: string;
+  phone: number;
 }) => {
   try {
-    const res = await fetch(`${API_URL}/user/supports`, {
+    const res = await fetch(`${API_URL}/user/support`, {
       method: "POST",
       credentials: "include", // Ensures cookies are sent automatically
       headers: {
