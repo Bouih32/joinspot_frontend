@@ -281,13 +281,7 @@ export const socialsValidation = z.object({
 });
 
 export const phoneValidation = z.object({
-  phone: z
-    .string()
-    .trim()
-    .max(20, { message: "Heey! that's too long" })
-    .transform((val) => parseInt(val, 10)) // Transform the string to an integer
-    .refine((val) => !isNaN(val), { message: "Invalid number" })
-    .optional(),
+  phone: z.string().trim().max(20, { message: "Heey! that's too long" }),
 });
 
 export const messageValidation = z.object({
