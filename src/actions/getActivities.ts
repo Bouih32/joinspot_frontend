@@ -512,3 +512,36 @@ export const banActivity = async (id: string) => {
     throw error;
   }
 };
+
+export const sendSupport = async (data: {
+  message: string;
+  email: string;
+  subject: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+}) => {
+  try {
+    const res = await fetch(`${API_URL}/user/supports`, {
+      method: "POST",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); // Log the error message returned from the server
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("request error", error);
+    throw error;
+  }
+};

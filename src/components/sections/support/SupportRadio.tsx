@@ -4,12 +4,12 @@ import { FaCheck } from "react-icons/fa";
 
 type RadioProps = {
   disabled?: boolean;
-  error?: boolean;
+  error?: string;
   id: string;
   children: ReactNode;
 };
 
-export default function SupportRadio({ id, children }: RadioProps) {
+export default function SupportRadio({ id, children, error }: RadioProps) {
   return (
     <div className="flexCenter cursor-pointer justify-start gap-2 font-openSans">
       <label
@@ -22,7 +22,13 @@ export default function SupportRadio({ id, children }: RadioProps) {
 
         <FaCheck className="hidden text-[8px] peer-checked:block" />
       </label>
-      <label htmlFor={id} className="cursor-pointer text-12sm text-darker">
+      <label
+        htmlFor={id}
+        className={cn(
+          "cursor-pointer text-12sm text-darker",
+          error && "text-error",
+        )}
+      >
         {children}
       </label>
     </div>
