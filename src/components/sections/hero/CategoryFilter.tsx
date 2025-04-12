@@ -2,8 +2,9 @@
 
 import { getCategories } from "@/actions/getCategory";
 import { Category } from "@/libs/types";
-import { cn } from "@/libs/utils";
+import { addParam, cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 
@@ -11,6 +12,8 @@ export default function CategoryFilter() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
+  const params = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
@@ -20,8 +23,9 @@ export default function CategoryFilter() {
     getData();
   }, []);
 
-  const handleAdd = (city: string) => {
-    setSelected(selected === city ? null : city);
+  const handleAdd = (category: string) => {
+    setSelected(selected === category ? null : category);
+    addParam("category", category, params, router);
     setOpen(false);
   };
 

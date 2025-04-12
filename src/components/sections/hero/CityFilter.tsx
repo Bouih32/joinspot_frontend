@@ -2,8 +2,9 @@
 
 import { getCities } from "@/actions/getCities";
 import { City } from "@/libs/types";
-import { cn } from "@/libs/utils";
+import { addParam, cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TbTriangleFilled } from "react-icons/tb";
@@ -12,6 +13,8 @@ export default function CityFilter() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [cities, setCities] = useState<City[]>([]);
+  const params = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
@@ -23,6 +26,7 @@ export default function CityFilter() {
 
   const handleAdd = (city: string) => {
     setSelected(selected === city ? null : city);
+    addParam("city", city, params, router);
     setOpen(false);
   };
 

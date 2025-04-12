@@ -6,9 +6,16 @@ import Offers from "@/components/sections/offers/Offers";
 import Services from "@/components/sections/services/Services";
 import { JwtPayload } from "jsonwebtoken";
 
-export default async function Home() {
-  const data = await getLandingActivities();
-  console.log(data.length);
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    city: string;
+    category: string;
+  }>;
+}) {
+  const params = await searchParams;
+  const data = await getLandingActivities(params);
   const token = await getToken();
   let userId: string | undefined;
 
