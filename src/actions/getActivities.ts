@@ -519,7 +519,7 @@ export const sendSupport = async (data: {
   subject: string;
   firstName: string;
   lastName: string;
-  phone: number;
+  phone: string;
 }) => {
   try {
     const res = await fetch(`${API_URL}/user/support`, {
