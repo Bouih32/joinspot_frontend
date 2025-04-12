@@ -62,6 +62,55 @@ export const getActivities = async (params?: Record<string, string>) => {
   }
 };
 
+export const getLandingActivities = async (params?: Record<string, string>) => {
+  try {
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/activity/landing?${queryString}`
+      : `${API_URL}/activity/landing`;
+
+    const res = await fetch(link, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are sent
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    }
+
+    const data = await res.json();
+    const activities: ActivityType[] = data.activities;
+
+    return activities.map((ele) => ({
+      deletedAt: ele.deletedAt,
+      activityId: ele.activityId,
+      coverPic: ele.coverPic,
+      title: ele.title,
+      description: ele.description,
+      seat: ele.seat,
+      price: ele.price,
+      score: ele.score,
+      categoryId: ele.categoryId,
+      avatar: ele.user?.avatar ?? ele.user.avatar,
+      userName: ele.user.userName,
+      city: ele.city.cityName,
+      category: ele.category.categoryName,
+      joined: ele.joined,
+      userId: ele.user.userId,
+    }));
+  } catch (error) {
+    console.error("Error fetching activities:", error);
+    throw error;
+  }
+};
+
 export const addActivity = async (activity: AddActivityT) => {
   try {
     const cookiesStore = await cookies();

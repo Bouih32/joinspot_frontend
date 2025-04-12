@@ -1,4 +1,4 @@
-import { getActivities } from "@/actions/activityActions";
+import { getActivities, getLandingActivities } from "@/actions/activityActions";
 import { getToken } from "@/actions/decodeToken";
 import Community from "@/components/sections/community/Community";
 import Hero from "@/components/sections/hero/Hero";
@@ -7,7 +7,8 @@ import Services from "@/components/sections/services/Services";
 import { JwtPayload } from "jsonwebtoken";
 
 export default async function Home() {
-  const data = await getActivities();
+  const data = await getLandingActivities();
+  console.log(data.length);
   const token = await getToken();
   let userId: string | undefined;
 
@@ -15,7 +16,7 @@ export default async function Home() {
     userId = (token as JwtPayload).userId;
   }
 
-  const info = data.activities.filter((ele) => ele.deletedAt === null);
+  const info = data.filter((ele) => ele.deletedAt === null);
   return (
     <main className="font-openSans">
       <Hero data={info} userId={userId} />
