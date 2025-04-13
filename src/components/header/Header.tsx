@@ -1,12 +1,11 @@
 import Image from "next/image";
-import logo from "../../../public/images/logo.png";
 import Nav from "./Nav";
 import Button from "../Button";
 import Container from "../Container";
 import Link from "next/link";
 import LogedUi from "./LogedUi";
 import NoUserNav from "./NoUserNav";
-import { navLinks } from "@/libs/constantes";
+import { logo, navLinks } from "@/libs/constantes";
 import { getHeaderData } from "@/actions/getUserData";
 import { getToken } from "@/actions/decodeToken";
 import NavigationContext from "@/contexts/NavigationContext";
@@ -24,6 +23,8 @@ export default async function Header() {
               <Image
                 src={logo}
                 alt="logo"
+                height={38}
+                width={227}
                 className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
               />
             </Link>

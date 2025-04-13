@@ -1,8 +1,8 @@
 import Image from "next/image";
-import avatar from "../../../public/images/avatar2.png";
 import { formatTime } from "@/libs/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { markAsRead } from "@/actions/getActivities";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 type MessageNotifCardProps = {
   content: string;
@@ -37,7 +37,7 @@ export default function MessageNotifCard({
       <div className="flexCenter gap-2">
         <div className="h-[25px] w-[25px] overflow-hidden rounded-full laptop:h-[31px] laptop:w-[31px]">
           <Image
-            src={userData.avatar ?? avatar}
+            src={userData.avatar ?? avatarPlaceholder}
             alt="logo"
             width={31}
             height={31}

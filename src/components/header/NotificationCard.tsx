@@ -1,7 +1,7 @@
 import Image from "next/image";
-import avatar from "../../../public/images/avatar2.png";
 import { formatTime } from "@/libs/utils";
 import { NotifT } from "@/libs/types";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 export default function NotificationCard({ data }: { data: NotifT }) {
   return (
@@ -9,7 +9,7 @@ export default function NotificationCard({ data }: { data: NotifT }) {
       <div className="flexCenter gap-2">
         <div className="h-[25px] w-[25px] overflow-hidden rounded-full laptop:h-[31px] laptop:w-[31px]">
           <Image
-            src={data.notification_from.avatar ?? avatar}
+            src={data.notification_from.avatar ?? avatarPlaceholder}
             alt="logo"
             width={31}
             height={31}

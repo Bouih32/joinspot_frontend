@@ -1,5 +1,4 @@
 import Image from "next/image";
-import empty from "../../../public/images/emptyNotification.png";
 
 type EmptyProps = {
   message?: boolean;
@@ -8,7 +7,7 @@ export default function EmptyMessage({ message }: EmptyProps) {
   return (
     <div className="flexCenter flex-col pb-3 pt-[7px] text-center laptop:pb-[21px]">
       <Image
-        src={empty}
+        src="https://i.postimg.cc/13wbXxty/empty-Notification.png"
         alt="logo"
         className="h-[39px] w-[161px] object-contain"
       />

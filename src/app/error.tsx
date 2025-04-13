@@ -37,8 +37,8 @@ export default function GlobalError({
         </Link>
       </div>
       <div className="bottom-0 right-0 hidden w-1/2 md:fixed md:block">
-        <Image
-          src={background}
+        <img
+          src="https://i.postimg.cc/mr6n6TpN/quationsign.png"
           alt="background image"
           className="max-w-[full]"
         />

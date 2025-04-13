@@ -9,11 +9,11 @@ import {
   BsTicketFill,
 } from "react-icons/bs";
 import { PiUsersFill } from "react-icons/pi";
-import placeholder from "../../../../../public/images/avatar_placeholder.jpg";
 import JoinedCard from "@/components/profileUi/JoinedCard";
 import MarkAsUsed from "@/components/profileUi/MarkAsUsed";
 import Link from "next/link";
 import NoActivity from "@/components/profileUi/NoActivity";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 export default async function JoinedPage() {
   const tickets = (await getJoinedUsers()) as joinedT[];
@@ -76,7 +76,7 @@ export default async function JoinedPage() {
                   >
                     <div
                       style={{
-                        backgroundImage: `url(${ele.avatar ? ele.avatar : placeholder})`,
+                        backgroundImage: `url(${ele.avatar ? ele.avatar : avatarPlaceholder})`,
                       }}
                       className="h-[38px] w-[38px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
                     ></div>

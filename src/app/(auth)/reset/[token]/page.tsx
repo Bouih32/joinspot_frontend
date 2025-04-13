@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsArrowLeftShort } from "react-icons/bs";
-import logo from "../../../../../public/images/logo.png";
 import Container from "@/components/Container";
 import NewPswrd from "@/components/authUi/NewPswrd";
+import { logo } from "@/libs/constantes";
 
 export default async function page({
   params,
@@ -22,6 +22,8 @@ export default async function page({
           <Image
             src={logo}
             alt="logo"
+            height={38}
+            width={38}
             className="hidden h-[21.986px] w-[124px] object-contain tablet:block tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
           />
         </div>

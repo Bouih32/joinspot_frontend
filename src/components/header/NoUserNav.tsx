@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../../public/images/logo.png";
 import { RxCross2 } from "react-icons/rx";
 import Nav from "./Nav";
 import Link from "next/link";
 import Button from "../Button";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { navLinks } from "@/libs/constantes";
+import { logo, navLinks } from "@/libs/constantes";
 import { useState } from "react";
 
 export default function NoUserNav() {
@@ -35,6 +34,8 @@ export default function NoUserNav() {
               <Image
                 src={logo}
                 alt="logo"
+                height={26.5}
+                width={156}
                 className="h-[26.491px] w-[156px] object-contain"
               />
               <RxCross2

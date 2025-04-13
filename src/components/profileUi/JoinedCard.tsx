@@ -5,8 +5,8 @@ import { AiFillDollarCircle, AiOutlineQrcode } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { cn } from "@/libs/utils";
 import { joinedT } from "@/libs/types";
-import placeholder from "../../../public/images/avatar_placeholder.jpg";
 import { BsFillPostcardFill, BsTicketFill } from "react-icons/bs";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 export default function JoinedCard({ ele }: { ele: joinedT }) {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ export default function JoinedCard({ ele }: { ele: joinedT }) {
         <div className="flex items-center gap-3 pl-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
           <div
             style={{
-              backgroundImage: `url(${ele.avatar ? ele.avatar : placeholder})`,
+              backgroundImage: `url(${ele.avatar ? ele.avatar : avatarPlaceholder})`,
             }}
             className="h-[28px] w-[28px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
           ></div>

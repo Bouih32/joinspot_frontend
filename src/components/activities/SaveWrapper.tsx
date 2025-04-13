@@ -3,7 +3,6 @@
 import { useContext } from "react";
 import ActivityCard, { ActivityCardType } from "./ActivityCard";
 import { nanoid } from "nanoid";
-import empty from "../../../public/images/empty.png";
 import Image from "next/image";
 import { SaveContext } from "@/contexts/SaveContext";
 
@@ -34,7 +33,7 @@ export default function SaveWrapper({
       ) : (
         <section className="space-y-5 self-center justify-self-center text-center tablet:mt-10">
           <Image
-            src={empty}
+            src="https://i.postimg.cc/R0mynP6K/empty.png"
             alt="empty"
             height={327}
             width={517}

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import avatarPlaceholder from "../../../public/images/avatar.png";
 import { MdMoreHoriz } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 type UserCardProps = {
   avatar: string;

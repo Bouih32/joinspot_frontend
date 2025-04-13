@@ -1,7 +1,6 @@
 import { cn, getContext } from "@/libs/utils";
 import Image from "next/image";
 import { ReactNode } from "react";
-import logo from "../../../public/images/logoWhite.png";
 import AuthHeaders from "./AuthHeaders";
 import Link from "next/link";
 
@@ -37,8 +36,10 @@ export default function AuthWrapper({
 
         <Link href="/">
           <Image
-            src={logo}
+            src="https://i.postimg.cc/qMfPTMJ1/logo-White.png"
             alt="logo"
+            height={72}
+            width={217}
             className={cn(
               "h-[32px] w-[166px] object-cover tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
               reverse && "tablet:self-end",

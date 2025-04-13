@@ -1,6 +1,5 @@
 "use client";
 
-import placeholder from "../../../public/images/avatar.png";
 import Image from "next/image";
 import { RiVipCrown2Fill, RiSettings3Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
@@ -14,6 +13,7 @@ import { LogedUiProps } from "./LogedUi";
 import Link from "next/link";
 import { HiOutlineTicket } from "react-icons/hi";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const handleLogOut = async () => {
@@ -56,7 +56,7 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
         }}
         width={40}
         height={40}
-        src={avatar ? avatar : placeholder}
+        src={avatar ? avatar : avatarPlaceholder}
         alt="avatar"
         className="relative z-[500] h-[25px] w-[25px] cursor-pointer rounded-full object-cover tablet:h-[40px] tablet:w-[40px]"
       />

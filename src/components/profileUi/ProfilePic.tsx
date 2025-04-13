@@ -4,6 +4,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import { AiFillEdit, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import { updateProfilePic } from "@/actions/getActivities";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 type ProfilePicProps = {
   avatar: string | null;
@@ -12,8 +13,6 @@ type ProfilePicProps = {
 export default function ProfilePic({ avatar }: ProfilePicProps) {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const url = "/images/avatar_placeholder.jpg";
 
   const pathName = usePathname();
 
@@ -58,7 +57,7 @@ export default function ProfilePic({ avatar }: ProfilePicProps) {
     <div className="relative">
       <div
         style={{
-          backgroundImage: `url(${imageUrl ? imageUrl : avatar ? avatar : url})`,
+          backgroundImage: `url(${imageUrl ? imageUrl : avatar ? avatar : avatarPlaceholder})`,
         }}
         className="flexCenter h-[70px] w-[70px] overflow-hidden rounded-[16px] border-[2px] border-x-secondLightActive bg-cover bg-center bg-no-repeat tablet:h-[130px] tablet:w-[130px] tablet:rounded-[18px] tablet:border-[4px] laptop:h-[142px] laptop:w-[142px]"
       >

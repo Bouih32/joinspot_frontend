@@ -1,13 +1,11 @@
 import Image from "next/image";
-import placeholder from "../../../public/images/profilPrompt.png";
-import Button from "../Button";
 import UpdateLink from "./UpdateLink";
 
 export default function VisitorCTA() {
   return (
     <section className="flexCenter mt-[90px] flex-col gap-[30px] text-center">
       <Image
-        src={placeholder}
+        src="https://i.postimg.cc/1zzTH8B3/profil-Prompt.png"
         alt="visitor cta"
         height={295}
         width={376}

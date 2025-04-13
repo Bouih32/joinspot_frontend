@@ -1,8 +1,8 @@
 import { FaBan } from "react-icons/fa";
 import Suspend from "./Suspend";
-import placeholder from "../../../public/images/avatar_placeholder.jpg";
 import { UserT } from "@/app/(profile)/admin/users/page";
 import UnSuspend from "./Unsuspend";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 export default function UserCard({ data }: { data: UserT }) {
   return (
@@ -12,7 +12,7 @@ export default function UserCard({ data }: { data: UserT }) {
 
         <div
           style={{
-            backgroundImage: `url(${data.avatar ? data.avatar : placeholder})`,
+            backgroundImage: `url(${data.avatar ? data.avatar : avatarPlaceholder})`,
           }}
           className="h-[28px] w-[28px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
         ></div>

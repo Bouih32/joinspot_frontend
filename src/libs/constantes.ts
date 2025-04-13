@@ -132,3 +132,6 @@ export const questions = [
 ];
 
 export const revalidate = 300;
+
+export const avatarPlaceholder = "https://i.postimg.cc/SQZG6g5C/avatar.png";
+export const logo = "https://i.postimg.cc/J7HfvBLy/logo.png";

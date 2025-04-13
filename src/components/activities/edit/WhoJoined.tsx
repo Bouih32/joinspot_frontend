@@ -1,11 +1,11 @@
 import { getTicketsByActivity } from "@/actions/activityActions";
 import Container from "@/components/Container";
+import { avatarPlaceholder } from "@/libs/constantes";
 import { activityTicket } from "@/libs/types";
 import { nanoid } from "nanoid";
 import Link from "next/link";
 import { AiOutlineQrcode } from "react-icons/ai";
 import { BsFillPersonFill, BsTicketFill } from "react-icons/bs";
-import placeholder from "../../../../public/images/avatar_placeholder.jpg";
 
 export default async function WhoJoined({ id }: { id: string }) {
   const joined = (await getTicketsByActivity(id)) as activityTicket[];
@@ -48,7 +48,7 @@ export default async function WhoJoined({ id }: { id: string }) {
               >
                 <div
                   style={{
-                    backgroundImage: `url(${ele.avatar ? ele.avatar : placeholder})`,
+                    backgroundImage: `url(${ele.avatar ? ele.avatar : avatarPlaceholder})`,
                   }}
                   className="h-[22px] w-[22px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat tablet:h-[38px] tablet:w-[38px]"
                 ></div>

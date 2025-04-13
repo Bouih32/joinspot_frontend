@@ -1,5 +1,4 @@
 import Image from "next/image";
-import placeholder from "../../../public/images/noActivity.png";
 
 export default function NoActivity({
   message,
@@ -11,7 +10,7 @@ export default function NoActivity({
   return (
     <div className="flexCenter flex-col gap-5 pt-[100px]">
       <Image
-        src={placeholder}
+        src="https://i.postimg.cc/6pcgnrdP/no-Activity.png"
         alt="no activity"
         height={231}
         width={284}

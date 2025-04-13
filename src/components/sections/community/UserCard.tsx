@@ -1,5 +1,5 @@
+import { avatarPlaceholder } from "@/libs/constantes";
 import Image from "next/image";
-import avatar from "../../../../public/images/avatar.png";
 
 type UserCardProps = {
   title: string;
@@ -10,7 +10,7 @@ export default function UserCard({ title, category }: UserCardProps) {
   return (
     <div className="flex items-center gap-2">
       <Image
-        src={avatar}
+        src={avatarPlaceholder}
         alt="avatar"
         height={50}
         width={50}

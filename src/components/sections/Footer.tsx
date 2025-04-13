@@ -1,8 +1,7 @@
 import Container from "../Container";
-import logo from "../../../public/images/logo.png";
 import Image from "next/image";
 import Nav from "../header/Nav";
-import { footerLinks, navLinks } from "@/libs/constantes";
+import { footerLinks, logo, navLinks } from "@/libs/constantes";
 import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import Link from "next/link";
 import { nanoid } from "nanoid";
@@ -24,6 +23,8 @@ export default function footer() {
                 <Image
                   src={logo}
                   alt="logo"
+                  height={32}
+                  width={185}
                   className="h-[18px] w-[106px] object-contain tablet:h-[31.685px] tablet:w-[185px]"
                 />
                 <p className="text-10lg text-secondHover tablet:text-20lg">

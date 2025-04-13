@@ -7,7 +7,6 @@ import { nanoid } from "nanoid";
 import Link from "next/link";
 import { FaFacebookF, FaTwitter } from "react-icons/fa6";
 import Image from "next/image";
-import circle from "../../../../public/images/circle.png";
 
 export default function Socials() {
   const socials = [
@@ -56,7 +55,7 @@ export default function Socials() {
         ))}
       </div>
       <Image
-        src={circle}
+        src="https://i.postimg.cc/TYZZT2Tk/circle.png"
         alt="decore"
         className="absolute -bottom-[20px] -right-[20px] w-[100px] object-contain tablet:-bottom-[70px] tablet:-right-[70px] tablet:w-[250px]"
       />

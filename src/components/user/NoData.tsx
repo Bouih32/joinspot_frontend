@@ -1,11 +1,10 @@
 import Image from "next/image";
-import empty from "../../../public/images/empty.png";
 
 export default function NoData() {
   return (
     <section className="space-y-5 self-center justify-self-center text-center tablet:mt-10">
       <Image
-        src={empty}
+        src="https://i.postimg.cc/R0mynP6K/empty.png"
         alt="empty"
         height={327}
         width={517}

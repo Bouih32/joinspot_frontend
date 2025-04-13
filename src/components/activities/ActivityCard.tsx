@@ -3,7 +3,6 @@
 import { MdLocationOn } from "react-icons/md";
 import UserCard from "./UserCard";
 import ActivityDetails from "./ActivityDetails";
-import placeholder from "../../../public/images/activityImg.jpg";
 import Seats from "./Seats";
 import Button from "../Button";
 import { cn } from "@/libs/utils";
@@ -75,7 +74,7 @@ export default function ActivityCard({
           details && "tablet:w-[429px] laptop:w-[688px]",
         )}
         style={{
-          backgroundImage: `url(${data.coverPic ? data.coverPic : placeholder})`,
+          backgroundImage: `url(${data.coverPic})`,
         }}
       >
         <section className="flexBetween">

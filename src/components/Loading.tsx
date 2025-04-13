@@ -1,11 +1,10 @@
 import Image from "next/image";
-import loading from "../../public/images/loading.png";
 
 export default function Loading() {
   return (
     <div className="flexCenter w-full flex-col self-center">
       <Image
-        src={loading}
+        src="https://i.postimg.cc/Gph057Lr/loading.png"
         alt="hello"
         height={120}
         width={120}
