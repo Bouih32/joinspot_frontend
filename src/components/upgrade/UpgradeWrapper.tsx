@@ -11,7 +11,7 @@ export default function UpgradeWrapper() {
   if (!context) return;
   const { step } = context;
   return (
-    <section className="flex h-full flex-col gap-5 pb-10 pt-10">
+    <section className="flex h-full flex-col gap-5 pb-10 pt-10 tablet:items-center tablet:justify-center">
       <div className="text-center tablet:text-start">
         <h1 className="text-16xl text-darker tablet:text-20xl laptop:text-28xl">
           {step === 3

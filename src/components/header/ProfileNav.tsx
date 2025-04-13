@@ -42,7 +42,7 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
     },
   ];
 
-  const navData = role === "ORGANISER" ? dropNav : adminNav;
+  const navData = role !== "ADMIN" ? dropNav : adminNav;
 
   const context = useContext(NavContext);
   if (!context) return;

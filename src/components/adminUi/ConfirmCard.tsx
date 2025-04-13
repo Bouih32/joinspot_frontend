@@ -1,13 +1,10 @@
 "use client";
 
-import { avatarPlaceholder } from "@/libs/constantes";
 import React, { useState } from "react";
 import Button from "../Button";
 import { MdCancel } from "react-icons/md";
 import { BiSolidCheckCircle } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
-import Image from "next/image";
-import placeholder from "../../../public/veri.png";
 import { cn } from "@/libs/utils";
 import { degreeT } from "@/libs/types";
 import JustificationUi from "./JustificationUi";

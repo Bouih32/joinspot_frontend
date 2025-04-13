@@ -12,7 +12,7 @@ export default function JustificationUi({
   return (
     <div className="flex flex-col gap-[25px] tablet:flex-row">
       <div className="flex flex-col space-y-[6px] tablet:min-w-[204px] laptop:min-w-[157px]">
-        <h3 className="text-10lg text-neutralActive">Degree Front</h3>
+        <h3 className="text-10lg text-neutralActive">Justification Image</h3>
 
         <Image
           src={justificationPic}
@@ -23,7 +23,7 @@ export default function JustificationUi({
         />
       </div>
       <div className="space-y-4">
-        <h3 className="text-10lg text-neutralActive">Degree Front</h3>
+        <h3 className="text-10lg text-neutralActive">Description</h3>
         <p className="text-12sm text-darker">{justification}</p>
       </div>
     </div>

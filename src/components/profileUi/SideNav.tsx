@@ -37,8 +37,9 @@ export default function SideNav({ role }: { role: string }) {
       title: "Confirmation",
     },
   ];
+  console.log(role);
 
-  const navData = role === "ORGANISER" ? navContent : AdminContent;
+  const navData = role !== "ADMIN" ? navContent : AdminContent;
 
   const handleLogOut = async () => {
     await logout();

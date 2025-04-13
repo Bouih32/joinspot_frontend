@@ -11,7 +11,6 @@ export const authRoutes = ["/login", "/signup"];
 export const apiAuthPrefix = "/api/auth";
 export const redirectUser = "/";
 export const organizerRoutes = [
-  "/user",
   "/activities/add",
   "user/revenue",
   "user/active",

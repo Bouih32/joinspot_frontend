@@ -7,11 +7,11 @@ import UpgradeWrapper from "@/components/upgrade/UpgradeWrapper";
 export default async function UpgradePage() {
   const status = await getUpdateStatus();
   return (
-    <main className="flex flex-col">
+    <main className="flex h-screen flex-col overflow-y-hidden">
       <Header />
-      <section className="flex flex-col items-center tablet:flex-row">
+      <section className="flex flex-col tablet:flex-row">
         <section className="h-[390px] w-full bg-upgradeMobileBg bg-cover bg-bottom bg-no-repeat tablet:h-[calc(100vh-64px)] tablet:w-[80%] tablet:bg-upgradeBg tablet:bg-right"></section>
-        <Container classname="h-full flex flexCenter">
+        <Container classname="h-full  flexCenter">
           {!status ? <UpgradeWrapper /> : <PendingUi />}
         </Container>
       </section>
