@@ -1,5 +1,4 @@
 import Image from "next/image";
-import src from "../../../../public/images/story.png";
 import SubTitle from "../SubTitle";
 import MobileStory from "./MobileStory";
 import Container from "@/components/Container";
@@ -46,7 +45,7 @@ export default function Story() {
           </section>
         </Container>
         <Image
-          src={src}
+          src="https://i.postimg.cc/65gNTLff/story.png"
           alt="people running"
           width={608}
           height={768}

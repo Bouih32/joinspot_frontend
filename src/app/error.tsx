@@ -1,9 +1,7 @@
 "use client";
 
 import Button from "@/components/Button";
-import Image from "next/image";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
-import background from "../../public/images/quationsign.png";
 import { useEffect } from "react";
 import Link from "next/link";
 
