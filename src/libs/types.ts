@@ -235,6 +235,7 @@ export type editActT = {
 };
 
 export type degreeT = {
+  degreeId: string;
   degreeName: string;
   school: string;
   year: number;

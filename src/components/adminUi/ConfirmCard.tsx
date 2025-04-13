@@ -9,6 +9,8 @@ import { cn } from "@/libs/utils";
 import { degreeT } from "@/libs/types";
 import JustificationUi from "./JustificationUi";
 import DegreeUi from "./DegreeUi";
+import RejectRequest from "./RejectRequest";
+import AcceptRequest from "./AcceptRequest";
 
 export default function ConfirmCard({ data }: { data: degreeT }) {
   const [open, setOpen] = useState(false);
@@ -30,18 +32,9 @@ export default function ConfirmCard({ data }: { data: degreeT }) {
           </p>
         </div>
         <div className="flexCenter gap-2.5 self-end">
-          <Button
-            icon={<MdCancel />}
-            classname="bg-errorHover flex-row-reverse items-center tablet:items-center text-error tablet:px-2 tablet:py-1 px-2 py-1 "
-          >
-            Reject
-          </Button>
-          <Button
-            icon={<BiSolidCheckCircle />}
-            classname="bg-successHover flex-row-reverse items-center tablet:items-center text-success tablet:px-2 tablet:py-1 px-2 py-1 "
-          >
-            Accept
-          </Button>
+          <RejectRequest id={data.degreeId} />
+
+          <AcceptRequest id={data.degreeId} />
           <div onClick={() => setOpen((prev) => !prev)}>
             <Button
               icon={
