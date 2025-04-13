@@ -32,9 +32,9 @@ export default function ConfirmCard({ data }: { data: degreeT }) {
           </p>
         </div>
         <div className="flexCenter gap-2.5 self-end">
-          <RejectRequest id={data.degreeId} />
+          <RejectRequest id={data.user.userId} />
 
-          <AcceptRequest id={data.degreeId} />
+          <AcceptRequest id={data.user.userId} />
           <div onClick={() => setOpen((prev) => !prev)}>
             <Button
               icon={
