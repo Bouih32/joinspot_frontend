@@ -233,3 +233,22 @@ export type editActT = {
   startDay: string;
   joined: number;
 };
+
+export type degreeT = {
+  degreeName: string;
+  school: string;
+  year: number;
+  frontPic: string;
+  backPic: string;
+  justification: string;
+  justificationPic: string;
+  user: {
+    userId: string;
+    email: string;
+    userName: string;
+    avatar: string;
+    idBackPic: string;
+    idFrontPic: string;
+    category: { categoryName: string };
+  };
+};

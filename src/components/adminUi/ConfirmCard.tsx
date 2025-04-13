@@ -1,22 +1,81 @@
-import { avatarPlaceholder } from "@/libs/constantes";
-import React from "react";
+"use client";
 
-export default function ConfirmCard() {
+import { avatarPlaceholder } from "@/libs/constantes";
+import React, { useState } from "react";
+import Button from "../Button";
+import { MdCancel } from "react-icons/md";
+import { BiSolidCheckCircle } from "react-icons/bi";
+import { IoIosArrowDown } from "react-icons/io";
+import Image from "next/image";
+import placeholder from "../../../public/veri.png";
+import { cn } from "@/libs/utils";
+import { degreeT } from "@/libs/types";
+import JustificationUi from "./JustificationUi";
+import DegreeUi from "./DegreeUi";
+
+export default function ConfirmCard({ data }: { data: degreeT }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-[8px] bg-[#F8F8F8] px-3 py-3 tablet:py-2">
-      <div className="flex flex-1 items-center gap-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
-        <div
-          style={{
-            backgroundImage: `url(${avatarPlaceholder})`,
-          }}
-          className="h-[28px] w-[28px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
-        ></div>
-        <p className="line-clamp-1 w-[100px] overflow-hidden text-nowrap text-14lg text-neutralDarkHover tablet:w-[400px] laptop:text-16lg">
-          User’s Name requests to be an organizer in{" "}
-          <span className="font-semibold text-main">Sport</span>
-        </p>
+    <section className="rounded-[8px] bg-[#F8F8F8] px-3 py-3 tablet:py-2">
+      <div className="flexBetween flex-col gap-7 tablet:flex-row">
+        <div className="flex flex-1 items-center gap-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
+          <div
+            style={{
+              backgroundImage: `url(${data.user.avatar})`,
+            }}
+            className="h-[24px] w-[24px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
+          ></div>
+          <p className="overflow-hidden text-nowrap text-12lg text-neutralDarkHover laptop:text-16lg">
+            {data.user.userName} requests to be an organizer in{" "}
+            <span className="font-semibold text-main first-letter:uppercase">
+              {data.user.category.categoryName}
+            </span>
+          </p>
+        </div>
+        <div className="flexCenter gap-2.5 self-end">
+          <Button
+            icon={<MdCancel />}
+            classname="bg-errorHover flex-row-reverse items-center tablet:items-center text-error tablet:px-2 tablet:py-1 px-2 py-1 "
+          >
+            Reject
+          </Button>
+          <Button
+            icon={<BiSolidCheckCircle />}
+            classname="bg-successHover flex-row-reverse items-center tablet:items-center text-success tablet:px-2 tablet:py-1 px-2 py-1 "
+          >
+            Accept
+          </Button>
+          <div onClick={() => setOpen((prev) => !prev)}>
+            <Button
+              icon={
+                <IoIosArrowDown
+                  className={cn(
+                    open && "rotate-180 transition-all duration-75",
+                  )}
+                />
+              }
+              classname={cn(
+                "bg-white flex-row-reverse items-center tablet:items-center text-neutralDarkHover tablet:px-2 tablet:py-1 px-2 py-1 ",
+                open && "bg-main text-white",
+              )}
+            >
+              Infos
+            </Button>
+          </div>
+        </div>
       </div>
-      <div className=""></div>
-    </div>
+      {open && (
+        <section className="space-y-6 rounded-[6px] bg-white px-3 py-[18px] tablet:rounded-[8px] tablet:p-4">
+          {data.justification ? (
+            <JustificationUi
+              justification={data.justification}
+              justificationPic={data.justificationPic}
+            />
+          ) : (
+            <DegreeUi data={data} />
+          )}
+        </section>
+      )}
+    </section>
   );
 }
