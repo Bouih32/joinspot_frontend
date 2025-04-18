@@ -1,12 +1,17 @@
-import { banActivity, banUser, handleOrganizer } from "@/actions/getActivities";
+import { handleOrganizer } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { FaBan } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 
-export default function RejectRequest({ id }: { id: string }) {
+export default function RejectRequest({
+  id,
+  degreeId,
+}: {
+  id: string;
+  degreeId: string;
+}) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -30,7 +35,7 @@ export default function RejectRequest({ id }: { id: string }) {
 
   const handleSuspend = async () => {
     setLoading(true);
-    await handleOrganizer({ status: "REJECTED", userId: id });
+    await handleOrganizer({ status: "REJECTED", userId: id, degreeId });
     router.refresh();
     setLoading(false);
     setOpen(false);

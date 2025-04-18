@@ -14,8 +14,9 @@ import AcceptRequest from "./AcceptRequest";
 
 export default function ConfirmCard({ data }: { data: degreeT }) {
   const [open, setOpen] = useState(false);
+
   return (
-    <section className="rounded-[8px] bg-[#F8F8F8] px-3 py-3 tablet:py-2">
+    <section className="space-y-3 rounded-[8px] bg-[#F8F8F8] px-3 py-3 tablet:py-2">
       <div className="flexBetween flex-col gap-7 tablet:flex-row">
         <div className="flex flex-1 items-center gap-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
           <div
@@ -32,9 +33,9 @@ export default function ConfirmCard({ data }: { data: degreeT }) {
           </p>
         </div>
         <div className="flexCenter gap-2.5 self-end">
-          <RejectRequest id={data.user.userId} />
+          <RejectRequest id={data.user.userId} degreeId={data.degreeId} />
 
-          <AcceptRequest id={data.user.userId} />
+          <AcceptRequest id={data.user.userId} degreeId={data.degreeId} />
           <div onClick={() => setOpen((prev) => !prev)}>
             <Button
               icon={

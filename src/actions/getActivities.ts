@@ -549,6 +549,7 @@ export const sendSupport = async (data: {
 export const handleOrganizer = async (data: {
   status: string;
   userId: string;
+  degreeId: string;
 }) => {
   try {
     const res = await fetch(`${API_URL}/user/ChangeRole`, {

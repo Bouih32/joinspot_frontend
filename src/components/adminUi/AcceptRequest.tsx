@@ -7,7 +7,13 @@ import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { BiSolidCheckCircle } from "react-icons/bi";
 
-export default function AcceptRequest({ id }: { id: string }) {
+export default function AcceptRequest({
+  id,
+  degreeId,
+}: {
+  id: string;
+  degreeId: string;
+}) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +38,7 @@ export default function AcceptRequest({ id }: { id: string }) {
 
   const handleSuspend = async () => {
     setLoading(true);
-    await handleOrganizer({ status: "VERIFIED", userId: id });
+    await handleOrganizer({ status: "VERIFIED", userId: id, degreeId });
     router.refresh();
     setLoading(false);
     setOpen(false);

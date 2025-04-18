@@ -121,7 +121,7 @@ export default function FirstForm() {
                 placeholder="Year"
                 register={register}
                 name="year"
-                type="text"
+                type="number"
                 error={errors.year?.message as string}
               />
             </div>
