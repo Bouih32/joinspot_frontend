@@ -8,12 +8,10 @@ import { joinValidation } from "@/libs/validation";
 import AddInput from "../add/AddInput";
 import Button from "@/components/Button";
 import { MdOutlinePayment } from "react-icons/md";
-import { FaCheck } from "react-icons/fa";
 import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { cn } from "@/lib/utils";
 import { JoinContextP } from "@/contexts/JoinContext";
-import { getContext } from "@/libs/utils";
+import { cn, getContext } from "@/libs/utils";
 import { joinActivity } from "@/actions/activityActions";
 
 export type JoinT = z.infer<typeof joinValidation>;

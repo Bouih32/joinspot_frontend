@@ -9,8 +9,7 @@ import SecondStep from "@/components/authUi/steps/SecondStep";
 import ThirdStep from "@/components/authUi/steps/ThirdStep";
 import Container from "@/components/Container";
 import { SignupContext } from "@/contexts/SignupContext";
-import { cn } from "@/lib/utils";
-import { getContext } from "@/libs/utils";
+import { cn, getContext } from "@/libs/utils";
 
 export default function Signup() {
   const { step } = getContext(SignupContext);

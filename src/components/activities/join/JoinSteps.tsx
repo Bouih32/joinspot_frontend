@@ -2,8 +2,7 @@
 
 import Container from "@/components/Container";
 import { JoinContextP } from "@/contexts/JoinContext";
-import { cn } from "@/lib/utils";
-import { getContext } from "@/libs/utils";
+import { cn, getContext } from "@/libs/utils";
 import { useRouter } from "next/navigation";
 
 export default function JoinSteps() {
