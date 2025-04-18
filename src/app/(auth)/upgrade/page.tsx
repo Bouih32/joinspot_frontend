@@ -6,6 +6,7 @@ import UpgradeWrapper from "@/components/upgrade/UpgradeWrapper";
 
 export default async function UpgradePage() {
   const status = await getUpdateStatus();
+
   return (
     <main className="flex h-screen flex-col overflow-y-hidden">
       <Header />

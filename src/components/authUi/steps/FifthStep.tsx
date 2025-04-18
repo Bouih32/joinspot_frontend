@@ -42,7 +42,7 @@ export default function FifthStep() {
     if (!data) return;
     setLoading(true);
     const res = await signup({ ...data, ...formData });
-    if (res?.status === 400) {
+    if (res?.status === 409) {
       setEmailError(res.data.message);
       return;
     }
