@@ -1,4 +1,4 @@
-import { banActivity, banUser } from "@/actions/getActivities";
+import { banActivity, banUser, handleOrganizer } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ export default function RejectRequest({ id }: { id: string }) {
 
   const handleSuspend = async () => {
     setLoading(true);
-    await banActivity(id);
+    await handleOrganizer({ status: "REJECTED", userId: id });
     router.refresh();
     setLoading(false);
     setOpen(false);

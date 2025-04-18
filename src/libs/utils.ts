@@ -24,6 +24,7 @@ export function addParam(
   router: AppRouterInstance,
 ) {
   const newParam = new URLSearchParams(searchParams.toString());
+  newParam.get(param) !== "page" && newParam.delete("page");
   if (newParam.get(param) === value) {
     newParam.delete(param);
   } else {
