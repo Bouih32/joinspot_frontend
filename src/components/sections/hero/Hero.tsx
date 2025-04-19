@@ -10,6 +10,7 @@ import { useMediaQuery } from "react-responsive";
 import ActivityCard, {
   ActivityCardType,
 } from "@/components/activities/ActivityCard";
+import HeroSkeleton from "@/components/skeletons/HeroSkeleton";
 
 type HeroProps = { data: ActivityCardType[]; userId: string | undefined };
 
@@ -64,7 +65,7 @@ export default function Hero({ data, userId }: HeroProps) {
   };
 
   if (!isClient) {
-    return null; // Return null or a loading state during SSR
+    return <HeroSkeleton />; // Return null or a loading state during SSR
   }
 
   return (

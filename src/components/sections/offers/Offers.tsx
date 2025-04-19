@@ -3,10 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import Container from "@/components/Container";
-import SubTitle from "../SubTitle";
-import Title from "../Title";
-import Link from "next/link";
-import Button from "@/components/Button";
 import ActivityCard, {
   ActivityCardType,
 } from "@/components/activities/ActivityCard";
@@ -14,6 +10,7 @@ import { FaCircle } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { nanoid } from "nanoid";
+import OfferText from "./OfferText";
 
 type OffersProps = { data: ActivityCardType[]; userId: string | undefined };
 
@@ -92,22 +89,7 @@ export default function Offers({ data, userId }: OffersProps) {
   return (
     <section className="py-[48px] tablet:py-[70px]">
       <Container>
-        <section className="flex flex-col items-center justify-between gap-3 text-center tablet:items-start tablet:text-start laptop:flex-row">
-          <div className="space-y-3">
-            <Title>Top offers</Title>
-            <SubTitle classname="tablet:w-full">
-              Discover the most exciting activities happening around you!
-              Whether you're into adventure, wellness, or social meetups,
-              there's something for everyone!
-            </SubTitle>
-          </div>
-          <Link
-            href="/activities"
-            className="tablet:self-end laptop:self-center"
-          >
-            <Button secondary>Show all offers</Button>
-          </Link>
-        </section>
+        <OfferText />
         {/* Progress Bar */}
         <section className="laptop:flexBetween mt-5 hidden gap-10">
           <div className="grid h-[2px] w-[676px] grid-cols-4 bg-secondLightHover laptop:w-[1086.316px]">
