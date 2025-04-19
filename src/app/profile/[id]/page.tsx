@@ -1,16 +1,19 @@
 import { getToken } from "@/actions/decodeToken";
 import { getUserActivities } from "@/actions/getActivities";
 import { getUserProfile } from "@/actions/userActions";
+import ActivitiesSkeleton from "@/components/activities/ActivitiesSkeleton";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Chip from "@/components/Chip";
 import Container from "@/components/Container";
 import Header from "@/components/header/Header";
 import SocialsHeader from "@/components/profileUi/SocialsHeader";
+import UserActivitiesWrapper from "@/components/profileUi/UserActivitiesWrapper";
 import NoData from "@/components/user/NoData";
 import UserCover from "@/components/user/UserCover";
 import { ProfileT } from "@/libs/types";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
+import { Suspense } from "react";
 
 export default async function ProfilePage({
   params,
@@ -19,13 +22,6 @@ export default async function ProfilePage({
 }) {
   const { id } = await params;
   const userData = (await getUserProfile(id)) as ProfileT;
-  const userActivities = await getUserActivities(id);
-  const token = await getToken();
-  let userId: string | undefined;
-
-  if (typeof token !== "string" && token !== null) {
-    userId = (token as JwtPayload).userId;
-  }
 
   return (
     <>
@@ -64,20 +60,9 @@ export default async function ProfilePage({
             <h3 className="text-14xxl text-main tablet:text-16xxl laptop:text-20xxl">
               {userData.user.userName} activities
             </h3>
-            <section className="flex flex-col gap-6 pb-10">
-              {userActivities.length !== 0 ? (
-                userActivities.map((ele) => (
-                  <ActivityCard
-                    key={nanoid()}
-                    details
-                    data={ele}
-                    userId={userId}
-                  />
-                ))
-              ) : (
-                <NoData />
-              )}
-            </section>
+            <Suspense fallback={<ActivitiesSkeleton />}>
+              <UserActivitiesWrapper id={id} />
+            </Suspense>
           </section>
         </Container>
       </main>
