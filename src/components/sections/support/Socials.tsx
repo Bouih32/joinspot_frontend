@@ -56,6 +56,8 @@ export default function Socials() {
       </div>
       <Image
         src="https://i.postimg.cc/TYZZT2Tk/circle.png"
+        height={250}
+        width={250}
         alt="decore"
         className="absolute -bottom-[20px] -right-[20px] w-[100px] object-contain tablet:-bottom-[70px] tablet:-right-[70px] tablet:w-[250px]"
       />

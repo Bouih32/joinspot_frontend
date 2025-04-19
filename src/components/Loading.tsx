@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Loading() {
   return (
-    <div className="flexCenter w-full flex-col self-center">
+    <div className="flexCenter h-screen w-full flex-col">
       <Image
         src="https://i.postimg.cc/Gph057Lr/loading.png"
         alt="hello"

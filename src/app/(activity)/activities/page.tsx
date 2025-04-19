@@ -1,5 +1,7 @@
 import { getActivities } from "@/actions/activityActions";
 import { getToken } from "@/actions/decodeToken";
+import ActivitiesSkeleton from "@/components/activities/ActivitiesSkeleton";
+import ActivitiesWrapper from "@/components/activities/ActivitiesWrapper";
 import ActivityCard from "@/components/activities/ActivityCard";
 import Success from "@/components/activities/add/Success";
 import ClearAll from "@/components/activities/mainFilters/ClearAll";
@@ -12,6 +14,7 @@ import Pagination from "@/components/Pagination";
 import Questions from "@/components/sections/support/Questions";
 import { JwtPayload } from "jsonwebtoken";
 import { nanoid } from "nanoid";
+import { Suspense } from "react";
 
 export default async function ActivitiesPage({
   searchParams,
@@ -26,21 +29,21 @@ export default async function ActivitiesPage({
   }>;
 }) {
   const params = await searchParams;
-  const token = await getToken();
-  let role: string | undefined;
-  let userId: string | undefined;
+  // const token = await getToken();
+  // let role: string | undefined;
+  // let userId: string | undefined;
 
-  if (typeof token !== "string" && token !== null) {
-    role = (token as JwtPayload).role;
-    userId = (token as JwtPayload).userId;
-  }
+  // if (typeof token !== "string" && token !== null) {
+  //   role = (token as JwtPayload).role;
+  //   userId = (token as JwtPayload).userId;
+  // }
 
-  let activitiesData = await getActivities(params);
+  // let activitiesData = await getActivities(params);
 
-  const data =
-    params.my === "own" && (!token || role === "VISITOR")
-      ? null
-      : activitiesData.activities.filter((ele) => ele.deletedAt === null);
+  // const data =
+  //   params.my === "own" && (!token || role === "VISITOR")
+  //     ? null
+  //     : activitiesData.activities.filter((ele) => ele.deletedAt === null);
 
   return (
     <main className="min-h-screen space-y-5 pb-5 tablet:space-y-[32px]">
@@ -48,29 +51,9 @@ export default async function ActivitiesPage({
       <Container classname="flex gap-4 laptop:gap-[38px]">
         <SideFilter />
 
-        <main className="flex w-full flex-col justify-between">
-          <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
-            <Success />
-            <ClearAll />
-            {params.my === "faq" ? (
-              <Questions activities />
-            ) : params.my === "save" ? (
-              <SaveWrapper activities={data} userId={userId} />
-            ) : !data || data.length === 0 ? (
-              <NoActivities token={token} params={params} />
-            ) : (
-              data.map((ele) => (
-                <ActivityCard key={nanoid()} full data={ele} userId={userId} />
-              ))
-            )}
-          </div>
-          {data && data.length > 0 && params.my !== "save" && (
-            <Pagination
-              pages={activitiesData.pages}
-              page={params.page ? parseInt(params.page) : undefined}
-            />
-          )}
-        </main>
+        <Suspense fallback={<ActivitiesSkeleton />}>
+          <ActivitiesWrapper params={params} />
+        </Suspense>
       </Container>
     </main>
   );
