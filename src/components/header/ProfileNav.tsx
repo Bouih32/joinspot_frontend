@@ -14,6 +14,7 @@ import Link from "next/link";
 import { HiOutlineTicket } from "react-icons/hi";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { avatarPlaceholder } from "@/libs/constantes";
+import { MdSpaceDashboard } from "react-icons/md";
 
 export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const handleLogOut = async () => {
@@ -34,7 +35,7 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   ];
 
   const adminNav = [
-    { icon: <CgProfile />, title: "Profile", href: "/admin" },
+    { icon: <MdSpaceDashboard />, title: "Dashboard", href: "/admin" },
     {
       icon: <FaRegCheckCircle />,
       title: "Confirmation",

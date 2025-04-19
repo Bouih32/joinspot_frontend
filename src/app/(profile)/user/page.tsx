@@ -25,9 +25,11 @@ export default async function UserPage() {
     role = (token as JwtPayload).role;
   }
 
-  const userData = await getHeaderData();
-  const userActivities = await getUserActivities(userId as string);
-  const userTags = (await getUserTags()) as TagsT[];
+  const [userData, userActivities, userTags] = await Promise.all([
+    getHeaderData(),
+    getUserActivities(userId as string),
+    getUserTags(),
+  ]);
 
   return (
     <main className="flex-1 space-y-4 pt-8 tablet:space-y-[30px] tablet:pl-[6px] tablet:pt-5 laptop:pl-5">
@@ -60,7 +62,7 @@ export default async function UserPage() {
         </p>
         <div className="mt-2 flex items-center gap-1">
           <AddTags userTags={userTags} />
-          {userTags.map((ele) => (
+          {userTags.map((ele: TagsT) => (
             <Chip key={nanoid()}>{ele.tagName}</Chip>
           ))}
         </div>
