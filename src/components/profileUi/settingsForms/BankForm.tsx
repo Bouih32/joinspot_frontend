@@ -12,7 +12,11 @@ import { z } from "zod";
 
 export type bankT = z.infer<typeof bankValidation>;
 
-export default function BankForm() {
+export default function BankForm({
+  userBank,
+}: {
+  userBank: { fullName: string; rib: string; bankName: string };
+}) {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -21,9 +25,11 @@ export default function BankForm() {
     getValues,
   } = useForm<bankT>({
     resolver: zodResolver(bankValidation),
-    // defaultValues: {
-
-    // },
+    defaultValues: {
+      bankName: userBank.bankName && userBank.bankName,
+      fullName: userBank.fullName && userBank.fullName,
+      rib: userBank.rib && userBank.rib,
+    },
   });
 
   const handleChange = async () => {

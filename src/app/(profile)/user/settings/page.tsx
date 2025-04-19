@@ -1,5 +1,6 @@
 import { getToken } from "@/actions/decodeToken";
 import { getHeaderData } from "@/actions/getUserData";
+import { getUserBank } from "@/actions/userActions";
 import BankForm from "@/components/profileUi/settingsForms/BankForm";
 import InfoForm from "@/components/profileUi/settingsForms/InfoForm";
 import PhoneForm from "@/components/profileUi/settingsForms/PhoneForm";
@@ -9,8 +10,12 @@ import { JwtPayload } from "jsonwebtoken";
 import { IoSettings } from "react-icons/io5";
 
 export default async function SettingsPage() {
-  const userData = await getHeaderData();
-  const token = await getToken();
+  const [userData, userBank, token] = await Promise.all([
+    getHeaderData(),
+    getUserBank(),
+    getToken(),
+  ]);
+
   let role: string | undefined;
   let userId: string | undefined;
 
@@ -31,7 +36,7 @@ export default async function SettingsPage() {
       />
 
       <UpdateForm />
-      {role === "ORGANISER" && <BankForm />}
+      {role === "ORGANISER" && <BankForm userBank={userBank} />}
 
       <SocialsForm socials={userData.userSocials} />
       <PhoneForm phone={userData.phone} />
