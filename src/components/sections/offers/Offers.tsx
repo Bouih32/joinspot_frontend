@@ -11,6 +11,7 @@ import { useMediaQuery } from "react-responsive";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { nanoid } from "nanoid";
 import OfferText from "./OfferText";
+import OfferSkeleton from "./OfferSkeleton";
 
 type OffersProps = { data: ActivityCardType[]; userId: string | undefined };
 
@@ -83,7 +84,7 @@ export default function Offers({ data, userId }: OffersProps) {
   };
 
   if (!isClient) {
-    return null; // Return null or a loading state during SSR
+    return <OfferSkeleton />; // Return null or a loading state during SSR
   }
 
   return (
