@@ -8,10 +8,30 @@ import { MdOutlineIosShare } from "react-icons/md";
 
 export default function ShareActivity({ activityId }: { activityId: string }) {
   const [open, setOpen] = useState(false);
+  const [copy, setCopy] = useState(false);
   const link = `https://www.joinspots.com/activities/${activityId}`;
-  const handleCopy = () => {
-    navigator.clipboard.writeText(link);
+  const encodedUrl = encodeURIComponent(link);
+  const encodedText = encodeURIComponent(
+    "🚀 Don’t miss out on this awesome experience! Tap the link and join the fun – it’s gonna be unforgettable! 🎉🔥",
+  );
+
+  const handleFacebookShare = () => {
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+    window.open(shareUrl, "_blank");
   };
+
+  const handleWhatsAppShare = () => {
+    const shareUrl = `https://wa.me/?text=${encodedText}%20${encodedUrl}`;
+    window.open(shareUrl, "_blank");
+  };
+  const handleCopy = () => {
+    setCopy(true);
+    navigator.clipboard.writeText(link);
+    setTimeout(() => {
+      setCopy(false);
+    }, 2000);
+  };
+
   useEffect(() => {
     if (open) {
       const scrollbarWidth =
@@ -44,6 +64,13 @@ export default function ShareActivity({ activityId }: { activityId: string }) {
             onClick={(e) => e.stopPropagation()}
             className="flex w-[259px] cursor-default flex-col gap-4 rounded-[8px] bg-white px-4 py-4 text-14lg text-second shadow-8xl tablet:w-[320px] tablet:rounded-xl tablet:px-5 tablet:py-[30px] tablet:text-16lg"
           >
+            {copy && (
+              <div className="w-full rounded border border-success bg-successHover px-5 py-1 text-center text-12xxl text-success tablet:text-12xxl">
+                <p className="text-center">
+                  Link Copied! Share it anywhere and invite others to JoinSpot!
+                </p>
+              </div>
+            )}
             <h3 className="text-16xxl text-main tablet:text-20xxl">
               Share this post with others!
             </h3>
@@ -64,15 +91,18 @@ export default function ShareActivity({ activityId }: { activityId: string }) {
               />
             </div>
 
-            <section className="grid grid-cols-3 gap-2">
-              <div className="flexCenter rounded bg-[#2463EB] px-3 py-[6px] text-14xl text-white">
+            <section className="grid grid-cols-2 gap-2">
+              <div
+                onClick={handleFacebookShare}
+                className="flexCenter cursor-pointer rounded bg-[#2463EB] px-3 py-[6px] text-14xl text-white"
+              >
                 <p> Facebook</p>
               </div>
-              <div className="flexCenter rounded bg-[#22C55D] px-3 py-[6px] text-14xl text-white">
+              <div
+                onClick={handleWhatsAppShare}
+                className="flexCenter cursor-pointer rounded bg-[#22C55D] px-3 py-[6px] text-14xl text-white"
+              >
                 <p> Whatsapp</p>
-              </div>
-              <div className="flexCenter rounded bg-[#FCAF45] px-3 py-[6px] text-14xl text-white">
-                <p> Instagram</p>
               </div>
             </section>
 

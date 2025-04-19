@@ -1,19 +1,8 @@
-import { getActivities } from "@/actions/activityActions";
-import { getToken } from "@/actions/decodeToken";
 import ActivitiesSkeleton from "@/components/activities/ActivitiesSkeleton";
 import ActivitiesWrapper from "@/components/activities/ActivitiesWrapper";
-import ActivityCard from "@/components/activities/ActivityCard";
-import Success from "@/components/activities/add/Success";
-import ClearAll from "@/components/activities/mainFilters/ClearAll";
-import NoActivities from "@/components/activities/NoActivities";
-import SaveWrapper from "@/components/activities/SaveWrapper";
 import SideFilter from "@/components/activities/SideFilter";
 import UpperHeader from "@/components/activities/UpperHeader";
 import Container from "@/components/Container";
-import Pagination from "@/components/Pagination";
-import Questions from "@/components/sections/support/Questions";
-import { JwtPayload } from "jsonwebtoken";
-import { nanoid } from "nanoid";
 import { Suspense } from "react";
 
 export default async function ActivitiesPage({
