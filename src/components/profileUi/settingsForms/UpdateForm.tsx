@@ -92,7 +92,7 @@ export default function UpdateForm() {
         >
           Forgot password
         </Link>
-        <Button>
+        <Button disabled={loading}>
           Change
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
         </Button>

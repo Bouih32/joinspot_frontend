@@ -185,7 +185,7 @@ export default function EditForm({
           Cancel
         </Link>
 
-        <Button>
+        <Button disabled={loading}>
           Edit
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
         </Button>

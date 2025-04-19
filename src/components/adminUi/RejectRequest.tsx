@@ -82,7 +82,7 @@ export default function RejectRequest({
                 </Button>
               </div>
               <div onClick={handleSuspend}>
-                <Button classname="bg-error">
+                <Button classname="bg-error" disabled={loading}>
                   Reject
                   {loading && (
                     <AiOutlineLoading3Quarters className="animate-spin" />

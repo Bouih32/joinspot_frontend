@@ -67,7 +67,12 @@ export default function ResetForm() {
             type="email"
             error={errors.email?.message as string}
           />
-          <Button secondary icon={!loading} classname="self-center">
+          <Button
+            secondary
+            icon={!loading}
+            classname="self-center"
+            disabled={loading}
+          >
             Send
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
           </Button>

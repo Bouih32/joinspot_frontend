@@ -81,7 +81,7 @@ export default function UnSuspend({
                 </Button>
               </div>
               <div onClick={handleSuspend}>
-                <Button classname="bg-success">
+                <Button classname="bg-success" disabled={loading}>
                   Agree
                   {loading && (
                     <AiOutlineLoading3Quarters className="animate-spin" />

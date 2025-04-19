@@ -86,7 +86,12 @@ export default function NewPswrd({ token }: { token: string }) {
               error={errors.passwordValidate?.message as string}
             />
           </div>
-          <Button secondary icon={!loading} classname="self-center">
+          <Button
+            secondary
+            icon={!loading}
+            classname="self-center"
+            disabled={loading}
+          >
             Send
             {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
           </Button>
@@ -98,7 +103,7 @@ export default function NewPswrd({ token }: { token: string }) {
           ) : (
             <BiCheckCircle className="text-[40px] tablet:text-[70px] laptop:text-[90px]" />
           )}
-          <h3 className="tablet:text-28xxl text-22xxl">
+          <h3 className="text-22xxl tablet:text-28xxl">
             {resetError
               ? "This token is invalid or has expired"
               : "Your password has been reset successfully!"}

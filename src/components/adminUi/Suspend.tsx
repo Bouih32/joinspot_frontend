@@ -84,7 +84,7 @@ export default function Suspend({
                 </Button>
               </div>
               <div onClick={handleSuspend}>
-                <Button classname="bg-error">
+                <Button classname="bg-error" disabled={loading}>
                   Suspend
                   {loading && (
                     <AiOutlineLoading3Quarters className="animate-spin" />

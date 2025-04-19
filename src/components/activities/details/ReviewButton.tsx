@@ -119,7 +119,7 @@ export default function ReviewButton({ token, id }: ReviewButtonProps) {
             />
 
             <div className="flexCenter gap-2 self-end">
-              <Button secondary>
+              <Button secondary disabled={loading}>
                 Submit
                 {loading && (
                   <AiOutlineLoading3Quarters className="animate-spin" />

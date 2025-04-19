@@ -78,7 +78,7 @@ export default function BanActivity({ id }: { id: string }) {
                 </Button>
               </div>
               <div onClick={handleSuspend}>
-                <Button classname="bg-error">
+                <Button classname="bg-error" disabled={loading}>
                   Suspend
                   {loading && (
                     <AiOutlineLoading3Quarters className="animate-spin" />

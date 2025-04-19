@@ -177,7 +177,7 @@ export default function AddForm({ userCategory }: { userCategory: string }) {
           Cancel
         </Link>
 
-        <Button>
+        <Button disabled={loading}>
           Post
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
         </Button>

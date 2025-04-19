@@ -96,7 +96,7 @@ export default function LoginForm() {
           </Link>
         </div>
       </div>
-      <Button secondary>
+      <Button secondary disabled={loading}>
         Submit
         {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
       </Button>

@@ -89,7 +89,7 @@ export default function InfoForm({ userName, email, bio }: InfoFormProps) {
         </div>
       </section>
       <div className="tablet:self-end">
-        <Button>
+        <Button disabled={loading}>
           Change
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
         </Button>

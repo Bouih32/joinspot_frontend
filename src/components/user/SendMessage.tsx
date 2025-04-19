@@ -106,7 +106,7 @@ export default function SendMessage() {
                 >
                   <Button secondary>Cancel</Button>
                 </div>
-                <Button>
+                <Button disabled={loading}>
                   Send
                   {loading && (
                     <AiOutlineLoading3Quarters className="animate-spin" />

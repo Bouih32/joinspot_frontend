@@ -105,7 +105,10 @@ export default function ContactForm() {
         placeholder="Message"
         type="text"
       />
-      <Button classname="text-12lg py-2.5  tablet:mt-0 px-6 tablet:py-2.5 tablet:px-6 self-center tablet:self-end ">
+      <Button
+        disabled={loading}
+        classname="text-12lg py-2.5  tablet:mt-0 px-6 tablet:py-2.5 tablet:px-6 self-center tablet:self-end "
+      >
         Send Message
         {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
       </Button>

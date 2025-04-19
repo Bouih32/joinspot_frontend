@@ -90,7 +90,7 @@ export default function SecondForm() {
         </div>
       </div>
 
-      <Button secondary icon>
+      <Button secondary icon disabled={loading}>
         Next
         {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
       </Button>

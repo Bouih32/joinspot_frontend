@@ -140,7 +140,10 @@ export default function JoinForm() {
           </p>
         </div>
 
-        <Button classname={cn("w-full", loading && "pointer-events-none")}>
+        <Button
+          disabled={loading}
+          classname={cn("w-full", loading && "pointer-events-none")}
+        >
           Pay
           {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
         </Button>
