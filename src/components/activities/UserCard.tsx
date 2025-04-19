@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { MdMoreHoriz } from "react-icons/md";
+
 import { useRouter } from "next/navigation";
 import { avatarPlaceholder } from "@/libs/constantes";
+import ShareActivity from "./ShareActivity";
+import Link from "next/link";
 
 type UserCardProps = {
   avatar: string;
@@ -9,6 +11,7 @@ type UserCardProps = {
   category: string;
   userId: string;
   tokenId: string | undefined;
+  activityId: string;
 };
 
 export default function UserCard({
@@ -17,20 +20,19 @@ export default function UserCard({
   category,
   userId,
   tokenId,
+  activityId,
 }: UserCardProps) {
   const router = useRouter();
 
   return (
     <div
-      onClick={(e) => {
-        e.stopPropagation();
-        tokenId !== userId
-          ? router.push(`/profile/${userId}`)
-          : router.push("/user");
-      }}
       className="flex items-start justify-between"
+      onClick={(e) => e.stopPropagation()}
     >
-      <div className="flexCenter gap-2">
+      <Link
+        href={tokenId !== userId ? `/profile/${userId}` : "/user"}
+        className="flexCenter gap-2"
+      >
         <Image
           src={avatar ? avatar : avatarPlaceholder}
           alt="avatar"
@@ -42,8 +44,8 @@ export default function UserCard({
           <h1 className="text-14xl text-darker">{userName}</h1>
           <span className="text-10xl text-neutralDark">{category}</span>
         </div>
-      </div>
-      <MdMoreHoriz className="cursor-pointer text-neutralDark" />
+      </Link>
+      <ShareActivity activityId={activityId} />
     </div>
   );
 }

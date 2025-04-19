@@ -95,6 +95,7 @@ export default function ActivityCard({
             category={data.category}
             userId={data.userId}
             tokenId={userId}
+            activityId={data.activityId}
           />
           <ActivityDetails title={data.title} stars={data.score} full={full} />
           <Seats seat={data.seat} joined={data.joined} />
