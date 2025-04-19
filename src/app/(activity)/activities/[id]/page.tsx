@@ -33,9 +33,11 @@ export default async function ActivityDetails({
     userId = (token as JwtPayload).userId;
   }
 
-  const reviews = await getActivityReviews(id);
-  const activity = await getActivityById(id);
-  const userActivities = await getUserActivities(activity.userId);
+  const [reviews, activity, userActivities] = await Promise.all([
+    getActivityReviews(id),
+    getActivityById(id),
+    getActivityById(id).then((res) => getUserActivities(res.userId)),
+  ]);
 
   const filtredActivities = userActivities.filter(
     (ele) => ele.activityId !== id,
