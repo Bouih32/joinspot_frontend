@@ -7,6 +7,7 @@ import { FaShareSquare } from "react-icons/fa";
 import Save from "../Save";
 import { editActT } from "@/libs/types";
 import { nanoid } from "nanoid";
+import ShareActivity from "../ShareActivity";
 
 type OverviewProps = {
   activity: editActT;
@@ -51,9 +52,7 @@ export default function Overview({ activity, userId }: OverviewProps) {
             </Link>
             <div className="flexCenter gap-2">
               <Save id={activity.activityId} />
-              <div className="z-40 w-fit cursor-pointer rounded-md bg-white p-[5px] text-main">
-                <FaShareSquare />
-              </div>
+              <ShareActivity activityId={activity.activityId} details />
             </div>
           </div>
           <div className="flex gap-2">

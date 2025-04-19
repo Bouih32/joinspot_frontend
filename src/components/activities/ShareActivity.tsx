@@ -2,11 +2,17 @@
 
 import Button from "@/components/Button";
 import { useEffect, useState } from "react";
-import { FaRegCopy } from "react-icons/fa";
+import { FaRegCopy, FaRegShareSquare } from "react-icons/fa";
 
 import { MdOutlineIosShare } from "react-icons/md";
 
-export default function ShareActivity({ activityId }: { activityId: string }) {
+export default function ShareActivity({
+  activityId,
+  details,
+}: {
+  activityId: string;
+  details?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const [copy, setCopy] = useState(false);
   const link = `https://www.joinspots.com/activities/${activityId}`;
@@ -51,10 +57,20 @@ export default function ShareActivity({ activityId }: { activityId: string }) {
 
   return (
     <div className="">
-      <MdOutlineIosShare
-        className="cursor-pointer text-[24px] text-neutralLightActive hover:text-main"
-        onClick={() => setOpen(true)}
-      />
+      {details ? (
+        <div
+          onClick={() => setOpen(true)}
+          className="z-40 w-fit cursor-pointer rounded-md bg-white p-[5px] text-main"
+        >
+          <FaRegShareSquare />
+        </div>
+      ) : (
+        <MdOutlineIosShare
+          className="cursor-pointer text-[24px] text-neutralLightActive hover:text-main"
+          onClick={() => setOpen(true)}
+        />
+      )}
+
       {open && (
         <div
           className="fixed inset-0 z-[800] grid cursor-pointer place-content-center bg-white/50"

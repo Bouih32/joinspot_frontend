@@ -224,6 +224,36 @@ export const updateSocials = async (
   }
 };
 
+export const updateBank = async (info: {
+  bankName: string;
+  fullName: string;
+  rib: string;
+}) => {
+  try {
+    const res = await fetch(`${API_URL}/user/edit-profil/bank`, {
+      method: "PATCH",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("request error", error);
+    throw error;
+  }
+};
+
 export const updatePhone = async (info: phoneT) => {
   try {
     const res = await fetch(`${API_URL}/user/edit-profil`, {

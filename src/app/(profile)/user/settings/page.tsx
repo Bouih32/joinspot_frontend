@@ -1,13 +1,23 @@
+import { getToken } from "@/actions/decodeToken";
 import { getHeaderData } from "@/actions/getUserData";
-import Container from "@/components/Container";
+import BankForm from "@/components/profileUi/settingsForms/BankForm";
 import InfoForm from "@/components/profileUi/settingsForms/InfoForm";
 import PhoneForm from "@/components/profileUi/settingsForms/PhoneForm";
 import SocialsForm from "@/components/profileUi/settingsForms/SocialsForm";
 import UpdateForm from "@/components/profileUi/settingsForms/UpdateForm";
+import { JwtPayload } from "jsonwebtoken";
 import { IoSettings } from "react-icons/io5";
 
 export default async function SettingsPage() {
   const userData = await getHeaderData();
+  const token = await getToken();
+  let role: string | undefined;
+  let userId: string | undefined;
+
+  if (typeof token !== "string" && token !== null) {
+    role = (token as JwtPayload).role;
+    userId = (token as JwtPayload).userId;
+  }
   return (
     <main className="w-full space-y-6 pt-5 tablet:space-y-[56px] tablet:pl-5 laptop:pl-8 laptop:pt-8">
       <div className="flex items-center gap-2 text-14xxl text-neutralDark tablet:text-16xxl laptop:text-20xxl">
@@ -21,6 +31,8 @@ export default async function SettingsPage() {
       />
 
       <UpdateForm />
+      {role === "ORGANISER" && <BankForm />}
+
       <SocialsForm socials={userData.userSocials} />
       <PhoneForm phone={userData.phone} />
     </main>

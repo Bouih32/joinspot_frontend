@@ -280,6 +280,25 @@ export const socialsValidation = z.object({
     .optional(),
 });
 
+export const bankValidation = z.object({
+  fullName: z
+    .string()
+    .trim()
+    .min(2, { message: "Please enter your name" })
+    .max(50, { message: "Heey! that's too long" }),
+
+  rib: z
+    .string()
+    .trim()
+    .min(2, { message: "Please enter your RIB" })
+    .max(24, { message: "Heey! that's too long" }),
+  bankName: z
+    .string()
+    .trim()
+    .min(2, { message: "Please enter your bank name" })
+    .max(30, { message: "Heey! that's too long" }),
+});
+
 export const phoneValidation = z.object({
   phone: z.string().trim().max(20, { message: "Heey! that's too long" }),
 });

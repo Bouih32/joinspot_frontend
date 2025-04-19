@@ -11,7 +11,7 @@ export default function NotificationNumber({
   return (
     <span
       className={cn(
-        "flexCenter absolute -top-[25%] right-[25%] h-[11px] w-[11px] translate-x-full translate-y-[50%] rounded-full bg-main text-[7px] font-bold text-white tablet:-top-[50%] tablet:right-[50%] tablet:h-[15px] tablet:w-[15px] tablet:text-[8px]",
+        "flexCenter absolute -top-[25%] right-[40%] h-[11px] w-[11px] translate-x-full translate-y-[50%] rounded-full bg-main text-[7px] font-bold text-white tablet:-top-[50%] tablet:right-[50%] tablet:h-[15px] tablet:w-[15px] tablet:text-[8px]",
         notification && "right-[40%]",
       )}
     >
