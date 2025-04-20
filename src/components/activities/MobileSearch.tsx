@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import Button from "../Button";
 import { addParam, cn } from "@/libs/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";

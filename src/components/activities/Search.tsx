@@ -47,7 +47,7 @@ export default function Search() {
             e.preventDefault();
             handleSearch();
           }}
-          className="flex w-[241px] items-center gap-1 rounded border border-main px-2 py-1 transition-all duration-200 tablet:w-[280px] tablet:px-3"
+          className="flex w-[241px] items-center gap-1 rounded border border-main px-2 py-1 transition-all duration-200 tablet:w-[280px]"
         >
           {
             <IoIosClose
