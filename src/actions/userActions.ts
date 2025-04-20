@@ -152,11 +152,20 @@ export const getActivityTickets = async () => {
     throw error;
   }
 };
-export const getAdminRevenue = async () => {
+export const getAdminRevenue = async (params?: Record<string, string>) => {
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/user/admin/revenue`, {
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/admin/revenue?${queryString}`
+      : `${API_URL}/user/admin/revenue`;
+
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -175,7 +184,7 @@ export const getAdminRevenue = async () => {
 
     const data = await res.json();
 
-    return data.activityRevenue;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;

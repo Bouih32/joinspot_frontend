@@ -49,12 +49,14 @@ export default function Search() {
           }}
           className="flex w-[241px] items-center gap-1 rounded border border-main px-2 py-1 transition-all duration-200 tablet:w-[280px]"
         >
-          {
-            <IoIosClose
-              className="cursor-pointer text-[24px]"
-              onClick={() => setShow(false)}
-            />
-          }
+          <IoIosClose
+            className="cursor-pointer text-[24px]"
+            onClick={() => {
+              setValue("search", "");
+              router.replace(window.location.pathname, { scroll: false });
+              setShow(false);
+            }}
+          />
 
           <input
             {...register("search")}

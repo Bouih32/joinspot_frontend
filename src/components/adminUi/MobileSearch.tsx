@@ -39,20 +39,27 @@ export default function MobileSearch() {
           e.preventDefault();
           handleSearch();
         }}
-        className="flex w-full items-center gap-1 rounded border border-main px-2 py-1 transition-all duration-200"
+        className="flexBetween w-full items-center rounded border border-main px-2 py-1 transition-all duration-200"
       >
-        {
+        <div className="flex flex-1 gap-2">
           <IoSearch
             className="cursor-pointer text-[20px]"
             onClick={() => handleSearch()}
           />
-        }
+          <input
+            {...register("search")}
+            type="text"
+            className="bg-transparent outline-none placeholder:text-main"
+            placeholder="Search"
+          />
+        </div>
 
-        <input
-          {...register("search")}
-          type="text"
-          className="bg-transparent outline-none placeholder:text-main"
-          placeholder="Search"
+        <IoIosClose
+          className="cursor-pointer text-[24px]"
+          onClick={() => {
+            setValue("search", "");
+            router.replace(window.location.pathname, { scroll: false });
+          }}
         />
       </form>
     </div>

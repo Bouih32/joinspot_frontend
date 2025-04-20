@@ -23,7 +23,7 @@ export default async function ProfileLayout({
       <Header />
       <ProfileHeader />
       <Container>
-        <section className="flex h-screen flex-col tablet:flex-row">
+        <section className="flex flex-col tablet:flex-row">
           <SideNav role={role} />
           {children}
         </section>
