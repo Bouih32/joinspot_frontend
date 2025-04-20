@@ -338,11 +338,19 @@ export const getUpdateStatus = async () => {
   }
 };
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (params?: Record<string, string>) => {
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/user/users`, {
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/users?${queryString}`
+      : `${API_URL}/user/users`;
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -361,7 +369,7 @@ export const getAllUsers = async () => {
 
     const data = await res.json();
 
-    return data.users;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;
