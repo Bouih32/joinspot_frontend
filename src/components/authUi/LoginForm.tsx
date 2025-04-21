@@ -71,7 +71,7 @@ export default function LoginForm() {
     >
       <div className="w-full space-y-3 tablet:space-y-[18px]">
         <Input<LoginType>
-          placeholder="User email"
+          placeholder="Your email"
           register={register}
           name="email"
           error={errors.email?.message as string}

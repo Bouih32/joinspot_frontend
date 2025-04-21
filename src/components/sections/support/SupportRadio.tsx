@@ -11,7 +11,7 @@ type RadioProps = {
 
 export default function SupportRadio({ id, children, error }: RadioProps) {
   return (
-    <div className="flexCenter cursor-pointer justify-start gap-2 text-nowrap font-openSans">
+    <div className="flexCenter cursor-pointer justify-start gap-2 font-openSans">
       <label
         htmlFor={id}
         className={cn(

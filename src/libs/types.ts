@@ -240,7 +240,6 @@ export type degreeT = {
   school: string;
   year: number;
   frontPic: string;
-  backPic: string;
   justification: string;
   justificationPic: string;
   user: {
