@@ -345,8 +345,8 @@ export const supportValidation = z.object({
   phone: z
     .string()
     .trim()
-    .min(12, { message: "Phone number is required." })
-    .max(14, { message: "Only 14 characters allowed" }),
+    .min(10, { message: "Phone number must be 10 numbers." })
+    .max(10, { message: "Only 12 characters allowed" }),
   subject: z.string().trim().min(1, { message: "subject is required." }),
   message: z
     .string()

@@ -84,7 +84,7 @@ export default function ContactForm() {
       </div>
       <div className="space-y-2.5 tablet:space-y-[14px]">
         <h3 className="text-14xxl text-main">Select Subject?</h3>
-        <div className="grid grid-cols-2 items-start justify-between gap-y-[14px] tablet:grid-cols-4">
+        <div className="grid w-full grid-cols-2 items-start justify-between gap-y-[14px] tablet:grid-cols-3 laptop:grid-cols-4">
           {subjectName.map((ele, index) => (
             <div key={nanoid()} onClick={() => setValue("subject", ele)}>
               <SupportRadio
