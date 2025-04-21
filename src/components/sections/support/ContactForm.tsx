@@ -39,7 +39,7 @@ export default function ContactForm() {
     "General Inquiry",
     "Account Issues",
     "Technical Support",
-    "Billing and Payments",
+    "Payments",
   ];
 
   return (
