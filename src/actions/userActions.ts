@@ -123,11 +123,19 @@ export const getMessageDetails = async (id: string) => {
   }
 };
 
-export const getActivityTickets = async () => {
+export const getActivityTickets = async (params?: Record<string, string>) => {
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/user/profile/revenue`, {
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/profile/revenue?${queryString}`
+      : `${API_URL}/user/profile/revenue`;
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -146,7 +154,7 @@ export const getActivityTickets = async () => {
 
     const data = await res.json();
 
-    return data.activityRevenue;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;
