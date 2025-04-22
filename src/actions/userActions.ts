@@ -199,11 +199,19 @@ export const getAdminRevenue = async (params?: Record<string, string>) => {
   }
 };
 
-export const getActive = async () => {
+export const getActive = async (params?: Record<string, string>) => {
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/user/profile/active`, {
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/profile/active?${queryString}`
+      : `${API_URL}/user/profile/active`;
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -222,7 +230,7 @@ export const getActive = async () => {
 
     const data = await res.json();
 
-    return data.activeActivities;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;
