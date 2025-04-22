@@ -16,7 +16,8 @@ export default function Messages({ messages }: { messages: MessageT[] }) {
   if (!context) return;
   const { handleClose, handleOpen, open } = context;
 
-  const data = messages.filter((ele) => ele.read === false);
+  const data = messages.filter((ele: MessageT) => ele.read === false);
+
   return (
     <div className="relative">
       <div className="relative z-[600]">

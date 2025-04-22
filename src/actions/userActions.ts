@@ -33,11 +33,19 @@ export const getUserTags = async () => {
   }
 };
 
-export const getUserMessages = async () => {
+export const getUserMessages = async (params?: Record<string, string>) => {
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/user/messages`, {
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/messages?${queryString}`
+      : `${API_URL}/user/messages`;
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -56,7 +64,7 @@ export const getUserMessages = async () => {
 
     const data = await res.json();
 
-    return data.messages;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;

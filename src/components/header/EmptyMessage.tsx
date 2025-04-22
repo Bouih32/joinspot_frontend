@@ -9,6 +9,8 @@ export default function EmptyMessage({ message }: EmptyProps) {
       <Image
         src="https://i.postimg.cc/13wbXxty/empty-Notification.png"
         alt="logo"
+        width={161}
+        height={39}
         className="h-[39px] w-[161px] object-contain"
       />
       <h2 className="pb-1 pt-[2px] text-12xl text-main tablet:pt-2 laptop:text-20xl">
