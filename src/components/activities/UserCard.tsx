@@ -1,6 +1,4 @@
 import Image from "next/image";
-
-import { useRouter } from "next/navigation";
 import { avatarPlaceholder } from "@/libs/constantes";
 import ShareActivity from "./ShareActivity";
 import Link from "next/link";
@@ -22,8 +20,6 @@ export default function UserCard({
   tokenId,
   activityId,
 }: UserCardProps) {
-  const router = useRouter();
-
   return (
     <div
       className="flex items-start justify-between"
