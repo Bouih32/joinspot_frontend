@@ -168,6 +168,7 @@ export type MessageT = {
 
 export type NotifT = {
   content: string;
+  seen: boolean;
   createdAt: string;
   deletedAt: string;
   notification_from: {

@@ -9,15 +9,26 @@ import EmptyMessage from "./EmptyMessage";
 import { NotifT } from "@/libs/types";
 import NotificationCard from "./NotificationCard";
 import { nanoid } from "nanoid";
+import { handleNotificationSeen } from "@/actions/getActivities";
+import { useRouter } from "next/navigation";
 
 export default function Notifications({
   notifications,
 }: {
   notifications: NotifT[];
 }) {
+  const router = useRouter();
   const context = useContext(NavContext);
   if (!context) return;
   const { handleClose, handleOpen, open } = context;
+
+  const count = notifications.filter((ele) => ele.seen === false);
+  const handleClick = async () => {
+    router.refresh();
+    handleOpen && handleOpen("notifications");
+    await handleNotificationSeen();
+  };
+
   return (
     <div className="relative">
       <div className="relative z-[600]">
@@ -26,12 +37,10 @@ export default function Notifications({
             "cursor-pointer hover:text-main",
             open === "notifications" && "text-main",
           )}
-          onClick={() => {
-            handleOpen && handleOpen("notifications");
-          }}
+          onClick={handleClick}
         />
-        {notifications.length > 0 ? (
-          <NotificationNumber>{notifications.length}</NotificationNumber>
+        {count.length > 0 && !open ? (
+          <NotificationNumber>{count.length}</NotificationNumber>
         ) : null}
       </div>
 
@@ -50,7 +59,7 @@ export default function Notifications({
               <h2>Notifications</h2>
               <p className="text-main">Sorted by latest</p>
             </div>
-            <section className="space-y-2">
+            <section className="space-y-1">
               {notifications.length > 0 ? (
                 notifications.map((ele) => (
                   <NotificationCard key={nanoid()} data={ele} />
