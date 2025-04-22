@@ -229,11 +229,20 @@ export const getActive = async () => {
   }
 };
 
-export const getJoinedUsers = async () => {
+export const getJoinedUsers = async (params?: Record<string, string>) => {
   try {
     const cookiesStore = await cookies();
     const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/user/profile/joined`, {
+
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/profile/joined?${queryString}`
+      : `${API_URL}/user/profile/joined`;
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -252,7 +261,7 @@ export const getJoinedUsers = async () => {
 
     const data = await res.json();
 
-    return data.strucuredData;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;
