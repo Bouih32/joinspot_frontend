@@ -3,18 +3,30 @@ import TicketCards from "./TicketCards";
 import MobileTickets from "./MobileTickets";
 import NoActivity from "./NoActivity";
 import { TicketT } from "@/libs/types";
+import Pagination from "../Pagination";
 
-export default async function TicketsWrapper() {
+export default async function TicketsWrapper({
+  params,
+}: {
+  params: {
+    search: string;
+    page: string;
+  };
+}) {
   const [tickets, user] = await Promise.all([
-    getUserTickets(),
+    getUserTickets(params),
     getHeaderData(),
   ]);
-  return tickets.length === 0 ? (
+  return tickets.strucuredData.length === 0 ? (
     <NoActivity />
   ) : (
-    <>
-      <TicketCards tickets={tickets as TicketT[]} user={user} />
-      <MobileTickets tickets={tickets as TicketT[]} user={user} />
-    </>
+    <section className="flex h-full flex-col justify-between gap-5 pb-5">
+      <TicketCards tickets={tickets.strucuredData as TicketT[]} user={user} />
+      <MobileTickets tickets={tickets.strucuredData as TicketT[]} user={user} />
+      <Pagination
+        pages={tickets.pages}
+        page={params.page ? parseInt(params.page) : 1}
+      />
+    </section>
   );
 }

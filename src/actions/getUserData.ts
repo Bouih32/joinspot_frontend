@@ -112,12 +112,21 @@ export const getAdminStats = async () => {
   }
 };
 
-export const getUserTickets = async () => {
+export const getUserTickets = async (params?: Record<string, string>) => {
   const cookiesStore = await cookies();
   const token = cookiesStore.get("token");
   if (!token) return null;
+  const queryString =
+    params && Object.keys(params).length > 0
+      ? new URLSearchParams(params).toString()
+      : "";
+
+  const link = queryString
+    ? `${API_URL}/user/profile/ticket?${queryString}`
+    : `${API_URL}/user/profile/ticket`;
+
   try {
-    const res = await fetch(`${API_URL}/user/profile/ticket`, {
+    const res = await fetch(link, {
       method: "GET",
       credentials: "include", // Ensures cookies are sent
       headers: {
@@ -134,7 +143,7 @@ export const getUserTickets = async () => {
       );
     }
     const data = await res.json();
-    const tickets = data.strucuredData;
+    const tickets = data;
 
     return tickets;
   } catch (error) {
