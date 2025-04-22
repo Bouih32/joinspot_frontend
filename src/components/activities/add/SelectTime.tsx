@@ -23,19 +23,19 @@ export default function SelectTime({
 
   const handleHour = (type: string) => {
     if (type === "add") {
-      hour < 24 ? setHour((prev) => prev + 1) : null;
+      hour < 23 ? setHour((prev) => prev + 1) : setHour(0);
     }
     if (type === "minus") {
-      hour > 0 ? setHour((prev) => prev - 1) : null;
+      hour > 0 ? setHour((prev) => prev - 1) : setHour(23);
     }
   };
 
   const handleMinutes = (type: string) => {
     if (type === "add") {
-      minutes < 60 ? setMinutes((prev) => prev + 1) : null;
+      minutes < 59 ? setMinutes((prev) => prev + 1) : setMinutes(0);
     }
     if (type === "minus") {
-      minutes > 0 ? setMinutes((prev) => prev - 1) : null;
+      minutes > 0 ? setMinutes((prev) => prev - 1) : setMinutes(59);
     }
   };
 

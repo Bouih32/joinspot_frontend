@@ -31,7 +31,6 @@ export default function EditForm({
   const router = useRouter();
   const context = useContext(SaveContext);
   if (!context) return;
-  const { handleSuccess } = context;
 
   const {
     register,
@@ -57,11 +56,9 @@ export default function EditForm({
   };
 
   const handleSubmit = async () => {
-    console.log(errors);
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
     setLoading(true);
     await updateActivity(formData, activity.activityId);
     setLoading(false);
