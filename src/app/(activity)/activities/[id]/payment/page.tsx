@@ -12,8 +12,11 @@ export default async function PaymentPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const activity = await getActivityById(id);
-  const user = await getHeaderData();
+  const [activity, user] = await Promise.all([
+    getActivityById(id),
+    getHeaderData(),
+  ]);
+
   return (
     <main>
       <JoinContext activity={activity} user={user}>
