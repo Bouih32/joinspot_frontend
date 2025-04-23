@@ -131,7 +131,7 @@ export const questions = [
   },
 ];
 
-export const revalidate = 300;
+export const revalidate = false;
 
 export const avatarPlaceholder = "https://i.postimg.cc/sfqjn5pL/Profile.png";
 export const logo = "https://i.postimg.cc/J7HfvBLy/logo.png";
