@@ -42,7 +42,6 @@ export default function JoinForm() {
 
   const handleSubmit = async () => {
     const resault = await trigger();
-    console.log(errors);
     if (!resault) return;
     const formData = getValues();
     setLoading(true);
