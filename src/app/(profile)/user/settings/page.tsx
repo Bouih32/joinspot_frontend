@@ -17,11 +17,9 @@ export default async function SettingsPage() {
   ]);
 
   let role: string | undefined;
-  let userId: string | undefined;
 
   if (typeof token !== "string" && token !== null) {
     role = (token as JwtPayload).role;
-    userId = (token as JwtPayload).userId;
   }
   return (
     <main className="w-full space-y-6 pt-5 tablet:space-y-[56px] tablet:pl-5 laptop:pl-8 laptop:pt-8">

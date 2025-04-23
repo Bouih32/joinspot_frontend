@@ -237,6 +237,7 @@ export const infoValidation = z.object({
     .string()
     .trim()
     .max(500, { message: "Heey! that's too long" })
+    .nullable()
     .optional(),
   avatar: z.string().trim().optional(),
 });
