@@ -23,7 +23,7 @@ export default async function ActivitiesWrapper({
     page: string;
   };
 }) {
-  let activitiesData = await getActivities(params);
+  const activitiesData = await getActivities(params);
 
   const token = await getToken();
   let role: string | undefined;

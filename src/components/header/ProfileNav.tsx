@@ -15,6 +15,7 @@ import { HiOutlineTicket } from "react-icons/hi";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { avatarPlaceholder } from "@/libs/constantes";
 import { MdSpaceDashboard } from "react-icons/md";
+import { AiOutlineDollar } from "react-icons/ai";
 
 export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
   const handleLogOut = async () => {
@@ -40,6 +41,11 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
       icon: <FaRegCheckCircle />,
       title: "Confirmation",
       href: "/admin/confirmation",
+    },
+    {
+      icon: <AiOutlineDollar />,
+      href: "/admin/payments",
+      title: "Payments",
     },
   ];
 
