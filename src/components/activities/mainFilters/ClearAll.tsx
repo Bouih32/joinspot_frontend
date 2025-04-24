@@ -7,8 +7,8 @@ import { RxCross2 } from "react-icons/rx";
 export default function ClearAll() {
   const router = useRouter();
   const params = useSearchParams();
-  const hasParams =
-    Array.from(params.entries().filter((ele) => ele[0] !== "page")).length > 0;
+  const paramEntries = Array.from(params.entries());
+  const hasParams = paramEntries.some(([key]) => key !== "page");
 
   return (
     <>
