@@ -9,6 +9,7 @@ import { FaCopy } from "react-icons/fa";
 import { Payments } from "@/libs/types";
 import PayButton from "./PayButton";
 import CopyIcon from "./CopyIcon";
+import AlertBtn from "./AlertBtn";
 
 export default function PaymentMobile({ data }: { data: Payments }) {
   const [open, setOpen] = useState(false);
@@ -66,7 +67,11 @@ export default function PaymentMobile({ data }: { data: Payments }) {
           </div>
 
           <div className="flex items-end">
-            <PayButton amout={data.revenueAmount} userId={data.userId} />
+            {data.rib ? (
+              <PayButton amout={data.revenueAmount} userId={data.userId} />
+            ) : (
+              <AlertBtn userId={data.userId} />
+            )}
           </div>
         </div>
       )}
