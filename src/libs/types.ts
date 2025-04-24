@@ -253,3 +253,12 @@ export type degreeT = {
     category: { categoryName: string };
   };
 };
+
+export type Payments = {
+  bankName: string;
+  rib: string;
+  userName: string;
+  avatar: string | null;
+  revenueAmount: number;
+  userId: string;
+};

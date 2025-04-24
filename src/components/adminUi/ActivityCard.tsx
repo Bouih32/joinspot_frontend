@@ -9,7 +9,7 @@ export default function ActivityCard({ ele }: { ele: activeT }) {
   return (
     <div className="grid w-full grid-cols-4">
       <div className="bg-[#F8F8F8] py-4 pl-3 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">
-        <p className="line-clamp-1 w-[200px] overflow-hidden tablet:w-[130px]">
+        <p className="line-clamp-1 w-[200px] overflow-hidden text-ellipsis tablet:w-[130px]">
           {ele.title}
         </p>
       </div>

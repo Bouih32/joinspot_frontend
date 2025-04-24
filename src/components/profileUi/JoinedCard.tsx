@@ -24,7 +24,7 @@ export default function JoinedCard({ ele }: { ele: joinedT }) {
             }}
             className="h-[28px] w-[28px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
           ></div>
-          <h3 className="line-clamp-1 w-[120px] overflow-hidden text-14lg text-neutralDarkHover laptop:text-16lg">
+          <h3 className="line-clamp-1 w-[120px] overflow-hidden text-ellipsis text-14lg text-neutralDarkHover laptop:text-16lg">
             {ele.userName}
           </h3>
         </div>

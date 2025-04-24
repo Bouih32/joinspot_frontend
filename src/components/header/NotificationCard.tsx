@@ -26,7 +26,7 @@ export default function NotificationCard({ data }: { data: NotifT }) {
           <h2 className="text-10xl text-mainHover laptop:text-12xl">
             {data.notification_from.userName}
           </h2>
-          <p className="line-clamp-1 overflow-hidden text-10sm text-neutralHover laptop:text-12sm">
+          <p className="line-clamp-1 overflow-hidden text-ellipsis text-10sm text-neutralHover laptop:text-12sm">
             {data.content}
           </p>
         </div>

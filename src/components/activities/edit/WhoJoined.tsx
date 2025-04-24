@@ -52,7 +52,7 @@ export default async function WhoJoined({ id }: { id: string }) {
                   }}
                   className="h-[22px] w-[22px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat tablet:h-[38px] tablet:w-[38px]"
                 ></div>
-                <h3 className="line-clamp-1 w-[61px] overflow-hidden text-14lg text-neutralDarkHover tablet:w-[140px] laptop:text-16lg">
+                <h3 className="line-clamp-1 w-[61px] overflow-hidden text-ellipsis text-14lg text-neutralDarkHover tablet:w-[140px] laptop:text-16lg">
                   {ele.userName}
                 </h3>
               </Link>

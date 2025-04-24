@@ -102,7 +102,7 @@ export default function ShareActivity({
               </div>
 
               <div className="flexBetween gap-3 rounded border border-second px-3 py-[6px]">
-                <p className="line-clamp-1 w-full overflow-hidden text-14lg text-main">
+                <p className="line-clamp-1 w-full overflow-hidden text-ellipsis text-14lg text-main">
                   {link}
                 </p>
                 <FaRegCopy

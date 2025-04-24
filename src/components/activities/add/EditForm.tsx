@@ -95,7 +95,7 @@ export default function EditForm({
           <div className="w-full space-y-[10px] tablet:w-[291px] tablet:space-y-[18px] laptop:w-[288px]">
             <div className="space-y-[6px]">
               <div className="flexBetween h-[30px] w-full gap-2 rounded border border-secondLightActive px-2 py-[3px] font-openSans text-[12px] leading-[24px] text-secondDark">
-                <p className="line-clamp-1 h-full w-full overflow-hidden bg-transparent text-14sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm">
+                <p className="line-clamp-1 h-full w-full overflow-hidden text-ellipsis bg-transparent text-14sm caret-main outline-none placeholder:text-neutralHover disabled:pointer-events-none tablet:text-14sm">
                   {activity.title}
                 </p>
               </div>
@@ -146,7 +146,7 @@ export default function EditForm({
                   </span>
                 </div>
 
-                <p className="line-clamp-1 w-[70%] overflow-hidden text-[14px] font-normal leading-[24px] text-secondDark outline-none">
+                <p className="line-clamp-1 w-[70%] overflow-hidden text-ellipsis text-[14px] font-normal leading-[24px] text-secondDark outline-none">
                   {activity.location}
                 </p>
               </div>

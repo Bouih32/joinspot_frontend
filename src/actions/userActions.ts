@@ -515,3 +515,41 @@ export const getUserBank = async () => {
     throw error;
   }
 };
+
+export const getUserPayments = async (params?: Record<string, string>) => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const queryString =
+      params && Object.keys(params).length > 0
+        ? new URLSearchParams(params).toString()
+        : "";
+
+    const link = queryString
+      ? `${API_URL}/user/admin/payments?${queryString}`
+      : `${API_URL}/user/admin/payments`;
+    const res = await fetch(link, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      }, // Ensures cookies are sent automatically
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    const data = await res.json();
+
+    return data.data;
+  } catch (error) {
+    console.error("get error", error);
+    throw error;
+  }
+};

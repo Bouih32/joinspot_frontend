@@ -49,7 +49,7 @@ export default function MessageNotifCard({
           <h2 className="text-10xl text-mainHover laptop:text-12xl">
             {userData.userName}
           </h2>
-          <p className="line-clamp-1 overflow-hidden text-10sm text-neutralHover laptop:text-12sm">
+          <p className="line-clamp-1 overflow-hidden text-ellipsis text-10sm text-neutralHover laptop:text-12sm">
             {content}
           </p>
         </div>
