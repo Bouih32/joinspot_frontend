@@ -253,3 +253,61 @@ export const getTicketsByActivity = async (id: string) => {
     throw error;
   }
 };
+
+export const payUser = async (amout: number, userId: string) => {
+  const cookiesStore = await cookies();
+  const token = cookiesStore.get("token");
+  try {
+    const res = await fetch(`${API_URL}/user/admin/payments`, {
+      method: "POST",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+      body: JSON.stringify({ amout, userId }),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("join error", error);
+    throw error;
+  }
+};
+
+export const bankAlert = async (userId: string) => {
+  const cookiesStore = await cookies();
+  const token = cookiesStore.get("token");
+  try {
+    const res = await fetch(`${API_URL}/user/admin/bank-alert`, {
+      method: "POST",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+      body: JSON.stringify({ userId }),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("join error", error);
+    throw error;
+  }
+};

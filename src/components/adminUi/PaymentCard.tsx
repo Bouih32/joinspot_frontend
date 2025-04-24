@@ -4,6 +4,9 @@ import { FaCopy } from "react-icons/fa";
 import { Payments } from "@/libs/types";
 import { cn } from "@/libs/utils";
 import { IoMdAlert } from "react-icons/io";
+import PayButton from "./PayButton";
+import CopyIcon from "./CopyIcon";
+import AlertBtn from "./AlertBtn";
 
 export default function PaymentCard({ data }: { data: Payments }) {
   return (
@@ -28,7 +31,11 @@ export default function PaymentCard({ data }: { data: Payments }) {
         >
           {data.rib ? data.rib : "no bank data"}
         </p>
-        {data.rib ? <FaCopy /> : <IoMdAlert className="text-error" />}
+        {data.rib ? (
+          <CopyIcon rib={data.rib} />
+        ) : (
+          <IoMdAlert className="text-error" />
+        )}
       </div>
       <div className="flex items-center bg-[#F8F8F8] py-4 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">
         <p
@@ -42,7 +49,11 @@ export default function PaymentCard({ data }: { data: Payments }) {
       </div>
       <div className="flex items-center justify-between bg-[#F8F8F8] py-4 pr-3 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">
         <p> {data.revenueAmount}$</p>
-        <Button classname="bg-success">Pay</Button>
+        {data.rib ? (
+          <PayButton amout={data.revenueAmount} userId={data.userId} />
+        ) : (
+          <AlertBtn userId={data.userId} />
+        )}
       </div>
     </div>
   );

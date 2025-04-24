@@ -547,7 +547,7 @@ export const getUserPayments = async (params?: Record<string, string>) => {
 
     const data = await res.json();
 
-    return data.data;
+    return data;
   } catch (error) {
     console.error("get error", error);
     throw error;

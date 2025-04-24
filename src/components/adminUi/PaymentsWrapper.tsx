@@ -16,9 +16,9 @@ export default async function PaymentsWrapper({
     page: string;
   };
 }) {
-  const data = await getUserPayments(params);
+  const info = await getUserPayments(params);
 
-  return data.length > 0 ? (
+  return info.data.length > 0 ? (
     <section className="flex h-full flex-col justify-between gap-5 pb-5">
       <section className="space-y-[18px]">
         <div className="flexBetween border-b border-neutralLightActive py-2 text-left text-14sm font-semibold text-neutral">
@@ -33,15 +33,18 @@ export default async function PaymentsWrapper({
           </div>
         </div>
 
-        {data.map((ele: Payments) => (
+        {info.data.map((ele: Payments) => (
           <PaymentCard key={nanoid()} data={ele} />
         ))}
 
-        {data.map((ele: Payments) => (
+        {info.data.map((ele: Payments) => (
           <PaymentMobile key={nanoid()} data={ele} />
         ))}
       </section>
-      <Pagination pages={3} page={params.page ? parseInt(params.page) : 1} />
+      <Pagination
+        pages={info.pages}
+        page={params.page ? parseInt(params.page) : 1}
+      />
     </section>
   ) : (
     <NoActivity user />

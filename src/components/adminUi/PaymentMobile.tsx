@@ -4,11 +4,11 @@ import { useState } from "react";
 
 import { IoIosArrowDown, IoMdAlert } from "react-icons/io";
 import { cn } from "@/libs/utils";
-
 import { avatarPlaceholder } from "@/libs/constantes";
-import Button from "../Button";
 import { FaCopy } from "react-icons/fa";
 import { Payments } from "@/libs/types";
+import PayButton from "./PayButton";
+import CopyIcon from "./CopyIcon";
 
 export default function PaymentMobile({ data }: { data: Payments }) {
   const [open, setOpen] = useState(false);
@@ -44,7 +44,11 @@ export default function PaymentMobile({ data }: { data: Payments }) {
             >
               {data.rib ? data.rib : "no bank data"}
             </p>
-            {data.rib ? <FaCopy /> : <IoMdAlert className="text-error" />}
+            {data.rib ? (
+              <CopyIcon rib={data.rib} />
+            ) : (
+              <IoMdAlert className="text-error" />
+            )}
           </div>
 
           <div className="border-b border-neutralLightActive text-left text-14sm font-semibold text-neutral">
@@ -62,7 +66,7 @@ export default function PaymentMobile({ data }: { data: Payments }) {
           </div>
 
           <div className="flex items-end">
-            <Button classname="bg-success">Pay</Button>
+            <PayButton amout={data.revenueAmount} userId={data.userId} />
           </div>
         </div>
       )}
