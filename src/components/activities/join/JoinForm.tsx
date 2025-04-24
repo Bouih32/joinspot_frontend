@@ -18,6 +18,7 @@ export type JoinT = z.infer<typeof joinValidation>;
 
 export default function JoinForm() {
   const { user, activity, handleCode } = getContext(JoinContextP);
+  const [cardComplete, setCardComplete] = useState(false);
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -45,7 +46,7 @@ export default function JoinForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = await trigger();
-    if (!result || !stripe || !elements) return;
+    if (!result || !stripe || !elements || !cardComplete) return;
 
     const formData = getValues();
     setLoading(true);
@@ -108,6 +109,9 @@ export default function JoinForm() {
           <p className="text-14lg text-neutral">Card information</p>
           <div className="rounded border p-2">
             <CardElement
+              onChange={(event) => {
+                setCardComplete(event.complete);
+              }}
               options={{
                 style: {
                   base: {
@@ -162,10 +166,10 @@ export default function JoinForm() {
 
         {/* Submit Button */}
         <Button
-          disabled={loading || !stripe}
+          disabled={loading || !stripe || !cardComplete}
           classname={cn(
             "w-full",
-            (loading || !stripe) && "pointer-events-none",
+            (loading || !stripe || !cardComplete) && "pointer-events-none",
           )}
         >
           Pay
