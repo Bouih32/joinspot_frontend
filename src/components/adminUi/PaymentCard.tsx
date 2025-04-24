@@ -1,9 +1,10 @@
 import { avatarPlaceholder } from "@/libs/constantes";
 import Button from "../Button";
+import { FaCopy } from "react-icons/fa";
 
 export default function PaymentCard() {
   return (
-    <div className="grid w-full grid-cols-4">
+    <div className="hidden w-full grid-cols-4 tablet:grid">
       <div className="w flex items-center gap-3 bg-[#F8F8F8] pl-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
         <div
           style={{
@@ -15,8 +16,9 @@ export default function PaymentCard() {
           Othmane
         </p>
       </div>
-      <div className="bg-[#F8F8F8] py-4 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">
-        <p> 10034500065...</p>
+      <div className="flex items-center gap-2 bg-[#F8F8F8] py-4 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">
+        <p className="line-clamp-1 w-[100px] overflow-hidden">10034500065...</p>
+        <FaCopy />
       </div>
       <div className="bg-[#F8F8F8] py-4 text-12lg text-neutralDarkHover tablet:text-14lg laptop:text-16lg">
         <p>CIH Bank</p>

@@ -3,6 +3,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import Pagination from "../Pagination";
 import NoActivity from "../profileUi/NoActivity";
 import PaymentCard from "./PaymentCard";
+import PaymentMobile from "./PaymentMobile";
 
 export default function PaymentsWrapper({
   params,
@@ -28,6 +29,7 @@ export default function PaymentsWrapper({
         </div>
         <PaymentCard />
         <PaymentCard />
+        <PaymentMobile />
       </section>
       <Pagination pages={3} page={params.page ? parseInt(params.page) : 1} />
     </section>
