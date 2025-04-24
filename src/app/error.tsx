@@ -23,9 +23,8 @@ export default function GlobalError({
           wrong turn
         </h1>
         <p className="max-w-[252px] text-[14px] font-normal text-neutralDark md:text-[16px] lg:text-[20px]">
-          {/* Looks like you've wandered off the beaten path. Our team is working to
-          get you back on track and find what you're looking for. */}
-          {error.message}
+          Looks like something went wrong. Our team is working to get you back
+          on track and find what you're looking for.
         </p>
 
         <Link href="/">

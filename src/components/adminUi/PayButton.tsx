@@ -5,6 +5,7 @@ import Button from "../Button";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { cn } from "@/libs/utils";
 import { payUser } from "@/actions/activityActions";
+import { useRouter } from "next/navigation";
 
 export default function PayButton({
   amout,
@@ -13,12 +14,14 @@ export default function PayButton({
   amout: number;
   userId: string;
 }) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handlePay = async () => {
     setLoading(true);
     await payUser(amout, userId);
     setLoading(false);
+    router.refresh();
   };
   return (
     <div className={cn(loading && "pointer-events-none")} onClick={handlePay}>
