@@ -39,7 +39,7 @@ export default function Hero({ data, userId }: HeroProps) {
   }, []);
 
   useEffect(() => {
-    return progress.onChange((latest) => {
+    return progress.on("change", (latest) => {
       setCurrentIndex(Math.round(latest));
     });
   }, [progress]);

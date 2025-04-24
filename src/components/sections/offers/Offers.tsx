@@ -38,7 +38,7 @@ export default function Offers({ data, userId }: OffersProps) {
   }, []);
 
   useEffect(() => {
-    return progress.onChange((latest) => {
+    return progress.on("change", (latest) => {
       setCurrentIndex(Math.round(latest));
     });
   }, [progress]);

@@ -41,7 +41,7 @@ export default function AuthWrapper({
             height={72}
             width={217}
             className={cn(
-              "h-[32px] w-[166px] object-cover tablet:w-[195px] laptop:h-[72px] laptop:w-[217px]",
+              "h-[32px] w-[166px] object-cover tablet:h-[72px] tablet:w-[195px] laptop:w-[217px]",
               reverse && "tablet:self-end",
             )}
           />
