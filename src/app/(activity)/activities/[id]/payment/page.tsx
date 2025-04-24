@@ -1,6 +1,5 @@
 import { getActivityById } from "@/actions/getActivities";
 import { getHeaderData } from "@/actions/getUserData";
-import JoinForm from "@/components/activities/join/JoinForm";
 import JoinSteps from "@/components/activities/join/JoinSteps";
 import JoinWrapper from "@/components/activities/join/JoinWrapper";
 import Container from "@/components/Container";

@@ -11,6 +11,7 @@ import { LuLogOut } from "react-icons/lu";
 import { logout } from "@/actions/logout";
 import { usePathname } from "next/navigation";
 import { BiSupport } from "react-icons/bi";
+import { AiOutlineDollar } from "react-icons/ai";
 
 export default function SideNav({ role }: { role: string }) {
   const pathName = usePathname();
@@ -35,6 +36,11 @@ export default function SideNav({ role }: { role: string }) {
       icon: <FaRegCheckCircle />,
       link: "/admin/confirmation",
       title: "Confirmation",
+    },
+    {
+      icon: <AiOutlineDollar />,
+      link: "/admin/payments",
+      title: "Payments",
     },
   ];
 
