@@ -1,6 +1,6 @@
 "use client";
 
-import { banActivity, banUser } from "@/actions/getActivities";
+import { banActivity } from "@/actions/getActivities";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
