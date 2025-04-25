@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import Button from "../Button";
-import { MdCancel } from "react-icons/md";
-import { BiSolidCheckCircle } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import { cn } from "@/libs/utils";
 import { degreeT } from "@/libs/types";
@@ -11,6 +9,7 @@ import JustificationUi from "./JustificationUi";
 import DegreeUi from "./DegreeUi";
 import RejectRequest from "./RejectRequest";
 import AcceptRequest from "./AcceptRequest";
+import { avatarPlaceholder } from "@/libs/constantes";
 
 export default function ConfirmCard({ data }: { data: degreeT }) {
   const [open, setOpen] = useState(false);
@@ -21,7 +20,7 @@ export default function ConfirmCard({ data }: { data: degreeT }) {
         <div className="flex flex-1 items-center gap-3 text-12lg text-neutral tablet:text-14lg laptop:text-16lg">
           <div
             style={{
-              backgroundImage: `url(${data.user.avatar})`,
+              backgroundImage: `url(${data.user.avatar ?? avatarPlaceholder})`,
             }}
             className="h-[24px] w-[24px] rounded-full bg-red-300 bg-cover bg-center bg-no-repeat"
           ></div>

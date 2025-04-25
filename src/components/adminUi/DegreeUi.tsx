@@ -1,5 +1,5 @@
 import { degreeT } from "@/libs/types";
-import Image from "next/image";
+import DegreeImage from "./DegreeImage";
 
 export default function DegreeUi({ data }: { data: degreeT }) {
   return (
@@ -19,37 +19,9 @@ export default function DegreeUi({ data }: { data: degreeT }) {
         </div>
       </div>
       <div className="flexCenter w-full flex-col gap-[22px] tablet:flex-row tablet:gap-6 laptop:gap-[25px]">
-        <div className="flex w-full flex-col items-center space-y-[6px] text-center tablet:w-fit">
-          <Image
-            src={data.frontPic}
-            alt="verification image"
-            height={92}
-            width={204}
-            className="h-[92px] w-full rounded-[6px] object-cover tablet:w-[204px] laptop:w-[157px]"
-          />
-          <p className="text-10sm text-neutralActive">Degree Front</p>
-        </div>
-
-        <div className="flex w-full flex-col items-center space-y-[6px] text-center tablet:w-fit">
-          <Image
-            src={data.user.idFrontPic}
-            alt="verification image"
-            height={92}
-            width={204}
-            className="h-[92px] w-full rounded-[6px] object-cover tablet:w-[204px] laptop:w-[157px]"
-          />
-          <p className="text-10sm text-neutralActive">id card front</p>
-        </div>
-        <div className="flex w-full flex-col items-center space-y-[6px] text-center tablet:w-fit">
-          <Image
-            src={data.user.idFrontPic}
-            alt="verification image"
-            height={92}
-            width={204}
-            className="h-[92px] w-full rounded-[6px] object-cover tablet:w-[204px] laptop:w-[157px]"
-          />
-          <p className="text-10sm text-neutralActive">id card back</p>
-        </div>
+        <DegreeImage linkPath={data.frontPic} title="Degree Front" />
+        <DegreeImage linkPath={data.user.idFrontPic} title="id card front" />
+        <DegreeImage linkPath={data.user.idFrontPic} title="id card back" />
       </div>
     </>
   );

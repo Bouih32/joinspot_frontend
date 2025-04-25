@@ -43,7 +43,7 @@ export default function ProfileNav({ avatar, isLogged }: LogedUiProps) {
       href: "/admin/confirmation",
     },
     {
-      icon: <AiOutlineDollar />,
+      icon: <AiOutlineDollar className="text-[27px]" />,
       href: "/admin/payments",
       title: "Payments",
     },
