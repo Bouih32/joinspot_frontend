@@ -13,13 +13,15 @@ export default function ResetPage() {
           <Link href="/login">
             <BsArrowLeftShort className="text-[30px] text-secondHover tablet:text-[40px]" />
           </Link>
-          <Image
-            src={logo}
-            alt="logo"
-            height={38}
-            width={38}
-            className="hidden h-[21.986px] w-[124px] object-contain tablet:block tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
-          />
+          <Link href="/">
+            <Image
+              src={logo}
+              alt="logo"
+              height={38}
+              width={227}
+              className="hidden h-[21.986px] w-[124px] object-contain tablet:block tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
+            />
+          </Link>
         </div>
 
         <Container classname="flexCenter">
