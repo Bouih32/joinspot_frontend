@@ -166,7 +166,7 @@ export const addValidation = z.object({
 });
 
 export const postValidation = z.object({
-  coverPic: z.string().trim().min(1),
+  bannerPic: z.string().trim().min(1),
   title: z.string().trim().min(1).max(50, {
     message: "Title is too long. Only  50 characters allowed",
   }),
@@ -178,7 +178,7 @@ export const postValidation = z.object({
       message: "Title is too long. Only 500 characters allowed",
     }),
   tags: z.string().trim().min(1, { message: "This field is required" }),
-  category: z.string().trim().min(1, { message: "This field is required" }),
+  categoryId: z.string().trim().min(1, { message: "This field is required" }),
 });
 
 export const reviewValidation = z.object({

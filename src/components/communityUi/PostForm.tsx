@@ -1,7 +1,7 @@
 "use client";
 
 import TextArea from "@/components/TextArea";
-import { addValidation, postValidation } from "@/libs/validation";
+import { postValidation } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -42,11 +42,11 @@ export default function PostForm() {
   };
 
   const addCategory = (id: string) => {
-    setValue("category", id);
+    setValue("categoryId", id);
   };
 
   const addCover = (cover: string) => {
-    setValue("coverPic", cover);
+    setValue("bannerPic", cover);
   };
 
   const handleSubmit = async () => {
@@ -83,7 +83,7 @@ export default function PostForm() {
       <div className="flex w-full flex-col items-center justify-between gap-5 tablet:flex-row tablet:items-start tablet:gap-10">
         <AddImage
           addCover={addCover}
-          error={errors.coverPic?.message as string}
+          error={errors.bannerPic?.message as string}
         />
 
         <div className="w-full space-y-[7px] tablet:space-y-[8px]">
@@ -101,7 +101,7 @@ export default function PostForm() {
             error={errors.description?.message as string}
           />
           <AddWrapper
-            categoryError={errors.category?.message as string}
+            categoryError={errors.categoryId?.message as string}
             TagsError={errors.tags?.message as string}
             addCategory={addCategory}
             addTag={addTag}
