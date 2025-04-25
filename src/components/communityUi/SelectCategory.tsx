@@ -1,11 +1,10 @@
 "use client";
 
-import { getCategories, getTagsById } from "@/actions/getCategory";
+import { getCategories } from "@/actions/getCategory";
 import { Category } from "@/libs/types";
 import { cn } from "@/libs/utils";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import { CgAdd } from "react-icons/cg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 type SelectTagProps = {
@@ -13,8 +12,6 @@ type SelectTagProps = {
   addCategory: (category: Category) => void;
   selected: Category | null;
 };
-
-type CategoryT = { categoryName: string; categoryId: string };
 
 export default function SelectCategory({
   error,

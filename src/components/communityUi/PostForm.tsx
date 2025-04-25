@@ -7,24 +7,19 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import Button from "@/components/Button";
-
-import { MdChair } from "react-icons/md";
-import { AiFillDollarCircle, AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import Link from "next/link";
-import { addActivity } from "@/actions/activityActions";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { SaveContext } from "@/contexts/SaveContext";
 import AddImage from "../activities/add/AddImage";
 import AddInput from "../activities/add/AddInput";
-import SelectTag from "../activities/add/SelectTag";
-import SelectCategory from "./SelectCategory";
-import { Category } from "@/libs/types";
 import AddWrapper from "./AddWrapper";
+import { addPost } from "@/actions/postActions";
 
-type addType = z.infer<typeof postValidation>;
-export default function PostForm({ userCategory }: { userCategory: string }) {
+export type addPostT = z.infer<typeof postValidation>;
+export default function PostForm() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -38,7 +33,7 @@ export default function PostForm({ userCategory }: { userCategory: string }) {
     formState: { errors },
     getValues,
     setValue,
-  } = useForm<addType>({
+  } = useForm<addPostT>({
     resolver: zodResolver(postValidation),
   });
 
@@ -60,10 +55,10 @@ export default function PostForm({ userCategory }: { userCategory: string }) {
     const formData = getValues();
     console.log(formData);
     setLoading(true);
-    // await addActivity(formData);
+    await addPost(formData);
     setLoading(false);
     handleSuccess();
-    // router.push("/activities");
+    router.push("/community");
   };
 
   return (
@@ -92,14 +87,14 @@ export default function PostForm({ userCategory }: { userCategory: string }) {
         />
 
         <div className="w-full space-y-[7px] tablet:space-y-[8px]">
-          <AddInput<addType>
+          <AddInput<addPostT>
             placeholder="Activity title"
             register={register}
             name="title"
             type="text"
             error={errors.title?.message as string}
           />
-          <TextArea<addType>
+          <TextArea<addPostT>
             placeholder="Description"
             register={register}
             name="description"

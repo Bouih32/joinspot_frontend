@@ -4,7 +4,6 @@ import { ReviewT } from "@/components/activities/details/ReviewButton";
 import { JoinT } from "@/components/activities/join/JoinForm";
 import { API_URL } from "@/libs/constantes";
 import { ActivityType, AddActivityT } from "@/libs/types";
-import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export const getActivities = async (params?: Record<string, string>) => {

@@ -1,5 +1,4 @@
 import { getHeaderData } from "@/actions/getUserData";
-import AddForm from "@/components/activities/add/AddForm";
 import PostForm from "@/components/communityUi/PostForm";
 import Container from "@/components/Container";
 

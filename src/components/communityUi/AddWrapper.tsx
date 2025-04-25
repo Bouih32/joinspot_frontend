@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SelectCategory from "./SelectCategory";
 import SelectTag from "../activities/add/SelectTag";
 import { Category } from "@/libs/types";
+import { cn } from "@/libs/utils";
 
 type AddWrapperProps = {
   categoryError: string;
@@ -30,11 +31,13 @@ export default function AddWrapper({
         addCategory={handleCategory}
         selected={selected}
       />
-      <SelectTag
-        addTag={addTag}
-        error={TagsError as string}
-        userCategory={selected?.categoryId || "67b654b90614d66231800307"}
-      />
+      <div className={cn(!selected && "pointer-events-none")}>
+        <SelectTag
+          addTag={addTag}
+          error={TagsError as string}
+          userCategory={selected?.categoryId || "67b654b90614d66231800307"}
+        />
+      </div>
     </>
   );
 }
