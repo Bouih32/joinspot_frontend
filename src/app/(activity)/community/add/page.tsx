@@ -3,8 +3,6 @@ import PostForm from "@/components/communityUi/PostForm";
 import Container from "@/components/Container";
 
 export default async function AddPostPage() {
-  const userCategory = await getHeaderData();
-
   return (
     <section className="h-full w-full tablet:bg-secondLight xl:h-screen">
       <Container classname="py-10 tablet:bg-secondLight">
@@ -22,7 +20,7 @@ export default async function AddPostPage() {
               the conversation!
             </p>
           </div>
-          <PostForm userCategory={userCategory.categoryId} />
+          <PostForm />
         </section>
       </Container>
     </section>
