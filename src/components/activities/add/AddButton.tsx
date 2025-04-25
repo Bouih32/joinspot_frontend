@@ -10,8 +10,9 @@ import { GoPlus } from "react-icons/go";
 type AddButtonProps = {
   mobile?: boolean;
   role: string | null;
+  post?: boolean;
 };
-export default function AddButton({ mobile, role }: AddButtonProps) {
+export default function AddButton({ mobile, role, post }: AddButtonProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function AddButton({ mobile, role }: AddButtonProps) {
   const handleAdd = () => {
     if (!role || role === "VISITOR") {
       setOpen(true);
-    } else router.push("/activities/add");
+    } else router.push(post ? "/community/add" : "/activities/add");
   };
 
   return (

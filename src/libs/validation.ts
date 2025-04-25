@@ -165,6 +165,22 @@ export const addValidation = z.object({
   cityId: z.string().trim().min(3, { message: "This field is required" }),
 });
 
+export const postValidation = z.object({
+  coverPic: z.string().trim().min(1),
+  title: z.string().trim().min(1).max(50, {
+    message: "Title is too long. Only  50 characters allowed",
+  }),
+  description: z
+    .string()
+    .trim()
+    .min(10, { message: "The description is required." })
+    .max(500, {
+      message: "Title is too long. Only 500 characters allowed",
+    }),
+  tags: z.string().trim().min(1, { message: "This field is required" }),
+  category: z.string().trim().min(1, { message: "This field is required" }),
+});
+
 export const reviewValidation = z.object({
   comment: z
     .string()
