@@ -52,7 +52,7 @@ export default function Notifications({
           ></div>
 
           <section
-            className="absolute right-0 top-[150%] z-[600] w-[242px] space-y-[6px] rounded bg-secondLight p-2 shadow-23xl laptop:w-[385px] laptop:space-y-[14px] laptop:p-[18px]"
+            className="absolute right-0 top-[150%] z-[600] max-h-[450px] w-[242px] space-y-[6px] overflow-y-auto rounded bg-secondLight p-2 shadow-23xl laptop:w-[385px] laptop:space-y-[14px] laptop:p-[18px]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flexBetween border-b border-neutral pb-2 text-10lg text-neutral laptop:text-12lg">
