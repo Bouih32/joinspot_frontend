@@ -17,13 +17,14 @@ import AddImage from "../activities/add/AddImage";
 import AddInput from "../activities/add/AddInput";
 import AddWrapper from "./AddWrapper";
 import { addPost } from "@/actions/postActions";
+import { PostContext } from "@/contexts/PostsContext";
 
 export type addPostT = z.infer<typeof postValidation>;
 export default function PostForm() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  const context = useContext(SaveContext);
+  const context = useContext(PostContext);
   if (!context) return;
   const { handleSuccess } = context;
 

@@ -16,7 +16,7 @@ export default async function UpperHeader() {
     typeof token !== "string" && token?.role ? token.role : undefined;
 
   return (
-    <section className="sticky top-[38px] z-[500] bg-white pb-1 tablet:top-[65px]">
+    <section className="sticky top-[38px] z-[500] bg-white pb-1 tablet:top-[63px]">
       <div className="border-b border-secondLightActive py-[6px] text-main tablet:bg-secondLight tablet:py-1 laptop:py-2.5">
         <Container classname="flex items-center justify-between tablet:justify-end tablet:gap-[14px]">
           <MobileUpperHeader categories={categories} />

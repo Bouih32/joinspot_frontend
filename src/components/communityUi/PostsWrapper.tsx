@@ -2,6 +2,8 @@ import { getToken } from "@/actions/decodeToken";
 import { JwtPayload } from "jsonwebtoken";
 import PostCard from "./PostCard";
 import { getPosts } from "@/actions/postServer";
+import Success from "../activities/add/Success";
+import PostFeedBack from "./PostFeedback";
 
 export default async function PostsWrapper({
   params,
@@ -27,6 +29,7 @@ export default async function PostsWrapper({
   return (
     <section className="flex w-full flex-col justify-between overflow-hidden">
       <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
+        <PostFeedBack />
         <PostCard />
       </div>
       {/* {data && data.length > 0 && params.my !== "save" && (
