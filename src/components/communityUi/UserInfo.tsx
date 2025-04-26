@@ -1,30 +1,36 @@
+"use client";
+
 import { avatarPlaceholder } from "@/libs/constantes";
 import { cn } from "@/libs/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 type UserInfoProps = {
-  avatar: string;
-  userName: string;
-  category: string;
-  userId: string;
-  tokenId: string | undefined;
+  token: string | undefined;
+  user: {
+    userName: string;
+    avatar: string;
+    userId: string;
+  };
   comment?: boolean;
-  //   {
-  //     avatar,
-  //     userName,
-  //     category,
-  //     userId,
-  //     tokenId,
-  //   }: UserInfoProps
+  category?: string;
+  postTime?: string;
 };
-export default function UserInfo({ comment }: { comment?: boolean }) {
+
+export default function UserInfo({
+  comment,
+  user,
+  token,
+  category,
+  postTime,
+}: UserInfoProps) {
   return (
-    <div
-      //   href={tokenId !== userId ? `/profile/${userId}` : "/user"}
+    <Link
+      href={token !== user.userId ? `/profile/${user.userId}` : "/user"}
       className="flex items-center gap-2"
     >
       <Image
-        src={avatarPlaceholder}
+        src={user.avatar ?? avatarPlaceholder}
         alt="avatar"
         height={38}
         width={38}
@@ -35,14 +41,14 @@ export default function UserInfo({ comment }: { comment?: boolean }) {
       />
       <div className="flex flex-col">
         <h1 className={cn("text-14xl text-darker", comment && "text-12xl")}>
-          Othmane Bouih
+          {user.userName}
         </h1>
         <span
           className={cn("text-10xl text-neutralDark", comment && "text-10sm")}
         >
-          aglay
+          {comment ? postTime : category}
         </span>
       </div>
-    </div>
+    </Link>
   );
 }

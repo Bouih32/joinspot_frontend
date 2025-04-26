@@ -3,7 +3,7 @@
 import { cn } from "@/libs/utils";
 import { useEffect, useRef, useState } from "react";
 
-export default function Description() {
+export default function Description({ content }: { content: string }) {
   const [more, setMore] = useState(false);
   const [showSeeMore, setShowSeeMore] = useState(false);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
@@ -30,10 +30,7 @@ export default function Description() {
           !more && "line-clamp-3 overflow-hidden text-ellipsis",
         )}
       >
-        Lorem ipsum dolor sit amet consectetur. Dui id elementum pellentesque
-        dolor ut tempor sit. Nec urna donec sodales imperdiet sagittis.
-        Scelerisque id at sagittis nulla. Odio ante lacus purus mattis ultrices
-        in turpis. Lectus dictumst orci imperdiet aliquet at senectus volutpat
+        {content}
       </p>
 
       {showSeeMore && (

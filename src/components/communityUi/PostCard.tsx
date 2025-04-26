@@ -5,52 +5,63 @@ import ShareActivity from "../activities/ShareActivity";
 import CommentCard from "./CommentCard";
 import Discription from "./Discription";
 import PostActions from "./PostActions";
-import UserInfo from "./UserInfo";
 import CommentForm from "./CommentForm";
+import { PostT } from "@/libs/types";
+import { nanoid } from "nanoid";
+import UserInfo from "./UserInfo";
 
-export default function PostCard() {
-  const [show, setShow] = useState(true);
+export default function PostCard({
+  data,
+  token,
+}: {
+  data: PostT;
+  token: string | undefined;
+}) {
+  const [show, setShow] = useState(false);
 
   const handleComment = () => {
     setShow((prev) => !prev);
   };
+
   return (
     <section className="w-full space-y-4 rounded-xl border border-neutralLightActive p-3 laptop:p-4">
       <div className="flex items-start justify-between">
-        <UserInfo />
+        <UserInfo
+          user={data.user}
+          token={token}
+          category={data.category.categoryName}
+        />
         <ShareActivity activityId="hello" />
       </div>
-      <div className="h-[248px] rounded-[8px] bg-[url('https://i.postimg.cc/YqQ49mxg/71ee06134e79efbc82c55abb06344213f857ddb3.jpg')] bg-cover bg-center bg-no-repeat p-3 laptop:h-[353px]">
+      <div
+        className="h-[248px] rounded-[8px] bg-cover bg-center bg-no-repeat p-3"
+        style={{ backgroundImage: `url(${data.bannerPic})` }}
+      >
         <div className="flex items-center gap-1 tablet:gap-[6px] laptop:gap-3">
-          <div className="flexCenter h-[22px] w-fit rounded-[20px] bg-second px-2.5 tablet:h-[30px] tablet:px-3">
-            <p className="text-center text-14sm text-white first-letter:uppercase">
-              Sport
-            </p>
-          </div>
-          <div className="flexCenter h-[22px] w-fit rounded-[20px] bg-second px-2.5 tablet:h-[30px] tablet:px-3">
-            <p className="text-center text-14sm text-white first-letter:uppercase">
-              Sport
-            </p>
-          </div>
-          <div className="flexCenter h-[22px] w-fit rounded-[20px] bg-second px-2.5 tablet:h-[30px] tablet:px-3">
-            <p className="text-center text-14sm text-white first-letter:uppercase">
-              Sport
-            </p>
-          </div>
+          {data.postTags.map((ele) => (
+            <div
+              key={nanoid()}
+              className="flexCenter h-[22px] w-fit rounded-[20px] bg-second px-2.5 tablet:h-[30px] tablet:px-3"
+            >
+              <p className="text-center text-14sm text-white first-letter:uppercase">
+                {ele.tag.tagName}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
-      <PostActions show={show} handleComment={handleComment} />
+      <PostActions show={show} handleComment={handleComment} data={data} />
       {show && (
         <section className="space-y-[14px]">
-          <CommentForm />
+          <CommentForm postId={data.postId} />
           <div className="divide-y divide-neutralLightHover">
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
+            {data.comment.map((ele) => (
+              <CommentCard key={nanoid()} comment={ele} token={token} />
+            ))}
           </div>
         </section>
       )}
-      <Discription />
+      <Discription content={data.description} />
     </section>
   );
 }

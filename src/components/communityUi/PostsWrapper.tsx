@@ -2,8 +2,9 @@ import { getToken } from "@/actions/decodeToken";
 import { JwtPayload } from "jsonwebtoken";
 import PostCard from "./PostCard";
 import { getPosts } from "@/actions/postServer";
-import Success from "../activities/add/Success";
 import PostFeedBack from "./PostFeedback";
+import { PostT } from "@/libs/types";
+import { nanoid } from "nanoid";
 
 export default async function PostsWrapper({
   params,
@@ -24,13 +25,15 @@ export default async function PostsWrapper({
     userId = (token as JwtPayload).userId;
   }
 
-  const data = await getPosts(params);
-  console.log(data);
+  const data = (await getPosts(params)) as PostT[];
+
   return (
     <section className="flex w-full flex-col justify-between overflow-hidden">
       <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
         <PostFeedBack />
-        <PostCard />
+        {data.map((ele) => (
+          <PostCard key={nanoid()} data={ele} token={userId} />
+        ))}
       </div>
       {/* {data && data.length > 0 && params.my !== "save" && (
      <Pagination

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-export default function Likes() {
+export default function Likes({ likes }: { likes: number }) {
   const [like, setLike] = useState(false);
 
   const handleLike = () => {
@@ -13,7 +13,7 @@ export default function Likes() {
         {like ? <FaHeart className="text-main" /> : <FaRegHeart />}
       </div>
 
-      <p>1K Likes</p>
+      <p>{likes} Likes</p>
     </div>
   );
 }

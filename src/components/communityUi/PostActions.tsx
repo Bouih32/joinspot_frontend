@@ -4,18 +4,28 @@ import { useState } from "react";
 import Comments from "./Comments";
 import Likes from "./Likes";
 import Save from "./Save";
+import { PostT } from "@/libs/types";
+
+type PostActionsProps = {
+  handleComment: () => void;
+  show: boolean;
+  data: PostT;
+};
 
 export default function PostActions({
   handleComment,
   show,
-}: {
-  handleComment: () => void;
-  show: boolean;
-}) {
+  data,
+}: PostActionsProps) {
   return (
     <div className="flexBetween text-12xxl text-neutral laptop:text-14xxl">
       <div className="flex items-center gap-[14px]">
-        <Likes /> <Comments show={show} handleComment={handleComment} />
+        <Likes likes={data.likesCount} />
+        <Comments
+          show={show}
+          handleComment={handleComment}
+          commentsCount={data._count.comment}
+        />
       </div>
       <Save />
     </div>

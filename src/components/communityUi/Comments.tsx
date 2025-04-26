@@ -3,9 +3,11 @@ import { MdModeComment, MdOutlineModeComment } from "react-icons/md";
 export default function Comments({
   handleComment,
   show,
+  commentsCount,
 }: {
   handleComment: () => void;
   show: boolean;
+  commentsCount: number;
 }) {
   return (
     <div className="flex items-center gap-[6px]">
@@ -17,7 +19,7 @@ export default function Comments({
         )}
       </div>
 
-      <p>1K Likes</p>
+      <p>{commentsCount} Comments</p>
     </div>
   );
 }

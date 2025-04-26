@@ -263,7 +263,7 @@ export type Payments = {
   userId: string;
 };
 
-export type RawPost = {
+export type PostT = {
   postId: string;
   bannerPic: string;
   description: string;
@@ -277,6 +277,7 @@ export type RawPost = {
   user: {
     userName: string;
     avatar: string;
+    userId: string;
   };
   _count: { comment: number };
   comment: {
@@ -285,7 +286,8 @@ export type RawPost = {
     user: {
       userName: string;
       avatar: string;
+      userId: string;
     };
-  };
+  }[];
   postTags: { tag: { tagName: string } }[];
 };

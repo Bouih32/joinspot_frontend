@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { Context, useContext } from "react";
 import { twMerge } from "tailwind-merge";
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 import { unstable_cache } from "next/cache";
 import { getCategoriesServer } from "@/actions/getCategory";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -125,3 +125,11 @@ export function formatTime(isoDateString: string) {
     return "Invalid date format";
   }
 }
+
+export const getTimeAgo = (time: string) => {
+  const timeAgo = formatDistanceToNow(new Date(time), {
+    addSuffix: true,
+  });
+
+  return timeAgo;
+};
