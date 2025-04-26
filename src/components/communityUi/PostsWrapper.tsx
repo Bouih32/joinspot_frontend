@@ -12,7 +12,7 @@ export default async function PostsWrapper() {
     userId = (token as JwtPayload).userId;
   }
   return (
-    <section className="flex w-full flex-col justify-between">
+    <section className="flex w-full flex-col justify-between overflow-hidden">
       <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
         <PostCard />
       </div>

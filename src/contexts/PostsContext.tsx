@@ -7,7 +7,6 @@ type SaveContextT = {
   data: string[];
   handleSuccess: () => void;
   success: boolean;
-  handleComments: () => void;
 };
 
 export const PostContext = createContext<SaveContextT | null>(null);
@@ -15,17 +14,12 @@ export const PostContext = createContext<SaveContextT | null>(null);
 export default function PostProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<string[]>([]);
   const [success, setSuccess] = useState(false);
-  const [comments, setComments] = useState(false);
 
   const handleSuccess = () => {
     setSuccess(true);
     const timout = setTimeout(() => {
       setSuccess(false);
     }, 5000);
-  };
-
-  const handleComments = () => {
-    setComments((prev) => !prev);
   };
 
   useEffect(() => {
@@ -59,9 +53,7 @@ export default function PostProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <PostContext.Provider
-      value={{ data, handleSave, handleSuccess, success, handleComments }}
-    >
+    <PostContext.Provider value={{ data, handleSave, handleSuccess, success }}>
       {children}
     </PostContext.Provider>
   );

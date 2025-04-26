@@ -1,4 +1,5 @@
 import { avatarPlaceholder } from "@/libs/constantes";
+import { cn } from "@/libs/utils";
 import Image from "next/image";
 
 type UserInfoProps = {
@@ -7,6 +8,7 @@ type UserInfoProps = {
   category: string;
   userId: string;
   tokenId: string | undefined;
+  comment?: boolean;
   //   {
   //     avatar,
   //     userName,
@@ -15,7 +17,7 @@ type UserInfoProps = {
   //     tokenId,
   //   }: UserInfoProps
 };
-export default function UserInfo() {
+export default function UserInfo({ comment }: { comment?: boolean }) {
   return (
     <div
       //   href={tokenId !== userId ? `/profile/${userId}` : "/user"}
@@ -26,11 +28,20 @@ export default function UserInfo() {
         alt="avatar"
         height={38}
         width={38}
-        className="h-[38px] w-[38px] rounded-full object-cover object-center"
+        className={cn(
+          "h-[38px] w-[38px] rounded-full object-cover object-center",
+          comment && "h-[32px] w-[32px]",
+        )}
       />
       <div className="flex flex-col">
-        <h1 className="text-14xl text-darker">Othmane Bouih</h1>
-        <span className="text-10xl text-neutralDark">aglay</span>
+        <h1 className={cn("text-14xl text-darker", comment && "text-12xl")}>
+          Othmane Bouih
+        </h1>
+        <span
+          className={cn("text-10xl text-neutralDark", comment && "text-10sm")}
+        >
+          aglay
+        </span>
       </div>
     </div>
   );

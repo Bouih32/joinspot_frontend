@@ -1,9 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import ShareActivity from "../activities/ShareActivity";
+import CommentCard from "./CommentCard";
 import Discription from "./Discription";
 import PostActions from "./PostActions";
 import UserInfo from "./UserInfo";
+import CommentForm from "./CommentForm";
 
 export default function PostCard() {
+  const [show, setShow] = useState(true);
+
+  const handleComment = () => {
+    setShow((prev) => !prev);
+  };
   return (
     <section className="w-full space-y-4 rounded-xl border border-neutralLightActive p-3 laptop:p-4">
       <div className="flex items-start justify-between">
@@ -29,7 +39,15 @@ export default function PostCard() {
           </div>
         </div>
       </div>
-      <PostActions />
+      <PostActions show={show} handleComment={handleComment} />
+      {show && (
+        <section className="divide-y divide-neutralLightHover">
+          <CommentForm />
+          <CommentCard />
+          <CommentCard />
+          <CommentCard />
+        </section>
+      )}
       <Discription />
     </section>
   );
