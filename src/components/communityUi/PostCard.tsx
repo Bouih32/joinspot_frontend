@@ -41,11 +41,13 @@ export default function PostCard() {
       </div>
       <PostActions show={show} handleComment={handleComment} />
       {show && (
-        <section className="divide-y divide-neutralLightHover">
+        <section className="space-y-[14px]">
           <CommentForm />
-          <CommentCard />
-          <CommentCard />
-          <CommentCard />
+          <div className="divide-y divide-neutralLightHover">
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
+          </div>
         </section>
       )}
       <Discription />

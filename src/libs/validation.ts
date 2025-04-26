@@ -345,3 +345,11 @@ export const supportValidation = z.object({
     .min(1, { message: "Message is required." })
     .max(300, { message: "Only 300 characters allowed" }),
 });
+
+export const commentValidation = z.object({
+  content: z
+    .string()
+    .trim()
+    .min(1, { message: "comment is required." })
+    .max(300, { message: "Only 300 characters allowed" }),
+});
