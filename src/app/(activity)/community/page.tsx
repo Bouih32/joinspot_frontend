@@ -5,7 +5,17 @@ import UpperHeader from "@/components/communityUi/UpperHeader";
 import Container from "@/components/Container";
 import { Suspense } from "react";
 
-export default function CommunityPage() {
+export default async function CommunityPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    category: string;
+    my: string;
+    search: string;
+    page: string;
+  }>;
+}) {
+  const params = await searchParams;
   return (
     <main className="min-h-screen space-y-5 pb-5 tablet:space-y-[32px]">
       <UpperHeader />
@@ -13,7 +23,7 @@ export default function CommunityPage() {
         <SideFilter />
 
         <Suspense fallback={<ActivitiesSkeleton />}>
-          <PostsWrapper />
+          <PostsWrapper params={params} />
         </Suspense>
       </Container>
     </main>
