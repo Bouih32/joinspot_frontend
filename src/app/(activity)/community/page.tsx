@@ -1,7 +1,9 @@
 import ActivitiesSkeleton from "@/components/activities/ActivitiesSkeleton";
 import SideFilter from "@/components/activities/SideFilter";
+import PostsWrapper from "@/components/communityUi/PostsWrapper";
 import UpperHeader from "@/components/communityUi/UpperHeader";
 import Container from "@/components/Container";
+import { PostContext } from "@/contexts/PostsContext";
 import { Suspense } from "react";
 
 export default function CommunityPage() {
@@ -12,7 +14,7 @@ export default function CommunityPage() {
         <SideFilter />
 
         <Suspense fallback={<ActivitiesSkeleton />}>
-          commuuunity paaage babyyy
+          <PostsWrapper />
         </Suspense>
       </Container>
     </main>
