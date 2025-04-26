@@ -3,7 +3,6 @@ import SideFilter from "@/components/activities/SideFilter";
 import PostsWrapper from "@/components/communityUi/PostsWrapper";
 import UpperHeader from "@/components/communityUi/UpperHeader";
 import Container from "@/components/Container";
-import { PostContext } from "@/contexts/PostsContext";
 import { Suspense } from "react";
 
 export default function CommunityPage() {

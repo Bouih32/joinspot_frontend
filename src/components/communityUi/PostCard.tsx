@@ -1,4 +1,5 @@
 import ShareActivity from "../activities/ShareActivity";
+import Discription from "./Discription";
 import PostActions from "./PostActions";
 import UserInfo from "./UserInfo";
 
@@ -29,6 +30,7 @@ export default function PostCard() {
         </div>
       </div>
       <PostActions />
+      <Discription />
     </section>
   );
 }
