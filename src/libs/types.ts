@@ -262,3 +262,30 @@ export type Payments = {
   revenueAmount: number;
   userId: string;
 };
+
+export type RawPost = {
+  postId: string;
+  bannerPic: string;
+  description: string;
+  likesCount: number;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+  userId: string;
+  categoryId: string;
+  category: { categoryName: string };
+  user: {
+    userName: string;
+    avatar: string;
+  };
+  _count: { comment: number };
+  comment: {
+    content: string;
+    createdAt: string;
+    user: {
+      userName: string;
+      avatar: string;
+    };
+  };
+  postTags: { tag: { tagName: string } }[];
+};
