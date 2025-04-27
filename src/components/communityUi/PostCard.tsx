@@ -50,7 +50,12 @@ export default function PostCard({
           ))}
         </div>
       </div>
-      <PostActions show={show} handleComment={handleComment} data={data} />
+      <PostActions
+        show={show}
+        handleComment={handleComment}
+        data={data}
+        postId={data.postId}
+      />
       {show && (
         <section className="space-y-[14px]">
           <CommentForm postId={data.postId} />

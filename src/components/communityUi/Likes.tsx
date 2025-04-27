@@ -1,11 +1,21 @@
+import { likePost } from "@/actions/postActions";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-export default function Likes({ likes }: { likes: number }) {
-  const [like, setLike] = useState(false);
+type LikesProps = {
+  likes: number;
+  postId: string;
+};
 
-  const handleLike = () => {
+export default function Likes({ likes, postId }: LikesProps) {
+  const [like, setLike] = useState(false);
+  const router = useRouter();
+
+  const handleLike = async () => {
+    await likePost(postId);
     setLike((prev) => !prev);
+    router.refresh();
   };
   return (
     <div className="flex items-center gap-[6px]">

@@ -10,17 +10,19 @@ type PostActionsProps = {
   handleComment: () => void;
   show: boolean;
   data: PostT;
+  postId: string;
 };
 
 export default function PostActions({
   handleComment,
   show,
   data,
+  postId,
 }: PostActionsProps) {
   return (
     <div className="flexBetween text-12xxl text-neutral laptop:text-14xxl">
       <div className="flex items-center gap-[14px]">
-        <Likes likes={data.likesCount} />
+        <Likes likes={data.likesCount} postId={postId} />
         <Comments
           show={show}
           handleComment={handleComment}
