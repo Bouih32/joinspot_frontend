@@ -168,6 +168,64 @@ export const reviewActivity = async (review: ReviewT, id: string) => {
   }
 };
 
+export const createTicket = async (data: JoinT, id: string) => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const res = await fetch(`${API_URL}/activity/${id}/createTicketTest`, {
+      method: "POST",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("join error", error);
+    throw error;
+  }
+};
+
+export const testPayment = async (data: JoinT, id: string) => {
+  try {
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    const res = await fetch(`${API_URL}/activity/${id}/validatePayment`, {
+      method: "POST",
+      credentials: "include", // Ensures cookies are sent automatically
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Server responded with ${res.status}:`, errorText);
+      throw new Error(
+        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
+      );
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("join error", error);
+    throw error;
+  }
+};
+
 export const joinActivity = async (data: JoinT, id: string) => {
   try {
     const cookiesStore = await cookies();
