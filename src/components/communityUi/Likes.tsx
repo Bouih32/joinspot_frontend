@@ -1,4 +1,5 @@
 import { likePost } from "@/actions/postActions";
+import { cn } from "@/libs/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
@@ -7,9 +8,10 @@ type LikesProps = {
   likes: number;
   postId: string;
   likesIds: string[];
+  token: string | undefined;
 };
 
-export default function Likes({ likes, postId, likesIds }: LikesProps) {
+export default function Likes({ likes, postId, likesIds, token }: LikesProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -21,7 +23,12 @@ export default function Likes({ likes, postId, likesIds }: LikesProps) {
     router.refresh();
   };
   return (
-    <div className="flex items-center gap-[6px]">
+    <div
+      className={cn(
+        "flex items-center gap-[6px]",
+        !token && "pointer-events-none",
+      )}
+    >
       <div onClick={handleLike} className="cursor-pointer">
         <button disabled={loading}>
           {likesIds.includes(postId) ? (

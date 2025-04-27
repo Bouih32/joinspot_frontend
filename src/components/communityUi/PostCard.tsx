@@ -58,10 +58,11 @@ export default function PostCard({
         data={data}
         postId={data.postId}
         likes={likes}
+        token={token}
       />
       {show && (
         <section className="space-y-[14px]">
-          <CommentForm postId={data.postId} />
+          <CommentForm postId={data.postId} token={token} />
           <div className="divide-y divide-neutralLightHover">
             {data.comment.map((ele) => (
               <CommentCard key={nanoid()} comment={ele} token={token} />

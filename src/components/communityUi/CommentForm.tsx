@@ -10,7 +10,13 @@ import { MdSend } from "react-icons/md";
 import { z } from "zod";
 
 type commentT = z.infer<typeof commentValidation>;
-export default function CommentForm({ postId }: { postId: string }) {
+export default function CommentForm({
+  postId,
+  token,
+}: {
+  postId: string;
+  token: string | undefined;
+}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -47,6 +53,7 @@ export default function CommentForm({ postId }: { postId: string }) {
     >
       <input
         {...register("content")}
+        disabled={!token}
         type="text"
         placeholder={error ?? "Join the conversation..."}
         className={cn(

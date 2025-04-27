@@ -15,21 +15,6 @@ type MobileNavProps = {
 };
 
 export default function MobileNav({ user }: MobileNavProps) {
-  const navLinksCom = user
-    ? [
-        { name: "Home", href: "/" },
-        { name: "About us", href: "/about" },
-        { name: "Activities", href: "/activities" },
-        { name: "Community", href: "/community" },
-        { name: "Support", href: "/support" },
-      ]
-    : [
-        { name: "Home", href: "/" },
-        { name: "About us", href: "/about" },
-        { name: "Activities", href: "/activities" },
-
-        { name: "Support", href: "/support" },
-      ];
   const context = useContext(NavContext);
   if (!context) return;
   const { handleClose, handleOpen, open } = context;
@@ -75,7 +60,7 @@ export default function MobileNav({ user }: MobileNavProps) {
                 </Link>
               </div>
             )}
-            <Nav classname="mt-6 text-darker" navInfo={navLinksCom} />
+            <Nav classname="mt-6 text-darker" navInfo={navLinks} />
           </section>
         </>
       )}

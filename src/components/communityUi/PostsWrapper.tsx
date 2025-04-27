@@ -31,9 +31,9 @@ export default async function PostsWrapper({
     userId = (token as JwtPayload).userId;
   }
   // as PostT[]
-  const info = await getPosts(params);
-
-  const likes = await getLikedPosts();
+  console.log(token);
+  const info = params.my === "own" && !token ? [] : await getPosts(params);
+  const likes = token ? await getLikedPosts() : [];
 
   return (
     <section className="flex w-full flex-col justify-between overflow-hidden">

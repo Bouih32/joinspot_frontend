@@ -11,6 +11,7 @@ type PostActionsProps = {
   data: PostT;
   postId: string;
   likes: string[];
+  token: string | undefined;
 };
 
 export default function PostActions({
@@ -19,11 +20,17 @@ export default function PostActions({
   data,
   postId,
   likes,
+  token,
 }: PostActionsProps) {
   return (
     <div className="flexBetween text-12xxl text-neutral laptop:text-14xxl">
       <div className="flex items-center gap-[14px]">
-        <Likes likes={data.likesCount} postId={postId} likesIds={likes} />
+        <Likes
+          likes={data.likesCount}
+          postId={postId}
+          likesIds={likes}
+          token={token}
+        />
         <Comments
           show={show}
           handleComment={handleComment}
