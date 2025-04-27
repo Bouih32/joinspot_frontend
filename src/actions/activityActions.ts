@@ -197,40 +197,6 @@ export const joinActivity = async (data: JoinT, id: string) => {
   }
 };
 
-export const createTicket = async (data: {
-  activityId: string;
-  email: string;
-  fullName: string;
-  quantity: string;
-}) => {
-  try {
-    const cookiesStore = await cookies();
-    const token = cookiesStore.get("token");
-    const res = await fetch(`${API_URL}/activity/${data.activityId}/join`, {
-      method: "POST",
-      credentials: "include", // Ensures cookies are sent automatically
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token?.value}`,
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error(`Server responded with ${res.status}:`, errorText);
-      throw new Error(
-        `HTTP error! Status: ${res.status}, Response: ${errorText}`,
-      );
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.error("join error", error);
-    throw error;
-  }
-};
-
 export const addTagTwo = async (tags: string[]) => {
   const cookiesStore = await cookies();
   const token = cookiesStore.get("token");

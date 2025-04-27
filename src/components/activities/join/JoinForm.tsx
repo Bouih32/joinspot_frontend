@@ -11,7 +11,7 @@ import { useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { JoinContextP } from "@/contexts/JoinContext";
 import { cn, getContext } from "@/libs/utils";
-import { createTicket, joinActivity } from "@/actions/activityActions";
+import { joinActivity } from "@/actions/activityActions";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 export type JoinT = z.infer<typeof joinValidation>;
@@ -43,45 +43,6 @@ export default function JoinForm() {
     setValue("quantity", count.toString());
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const result = await trigger();
-  //   if (!result || !stripe || !elements || !cardComplete) return;
-
-  //   const formData = getValues();
-  //   setLoading(true);
-
-  //   try {
-  //     // 1. Create payment intent and ticket via your API
-  //     const { code, clientSecret } = await joinActivity(
-  //       formData,
-  //       activity.activityId,
-  //     );
-
-  //     // 2. Confirm card payment with Stripe
-  //     const { error, paymentIntent } = await stripe.confirmCardPayment(
-  //       clientSecret,
-  //       {
-  //         payment_method: {
-  //           card: elements.getElement(CardElement)!,
-  //           billing_details: {
-  //             name: formData.fullName,
-  //             email: formData.email,
-  //           },
-  //         },
-  //       },
-  //     );
-
-  //     if (error) throw error;
-  //     if (paymentIntent.status === "succeeded") {
-  //       handleCode(code);
-  //     }
-  //   } catch (error) {
-  //     console.error("Payment error:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = await trigger();
@@ -91,13 +52,13 @@ export default function JoinForm() {
     setLoading(true);
 
     try {
-      // 1. Create PaymentIntent only
-      const { clientSecret } = await joinActivity(
+      // 1. Create payment intent and ticket via your API
+      const { code, clientSecret } = await joinActivity(
         formData,
         activity.activityId,
       );
 
-      // 2. Confirm card payment
+      // 2. Confirm card payment with Stripe
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
         {
@@ -113,16 +74,6 @@ export default function JoinForm() {
 
       if (error) throw error;
       if (paymentIntent.status === "succeeded") {
-        // 3. Payment successful — now create the ticket
-        const data = {
-          activityId: activity.activityId,
-          email: formData.email,
-          fullName: formData.fullName,
-          quantity: formData.quantity,
-        };
-        const { code } = await createTicket(data);
-
-        // 4. Save the code and show success
         handleCode(code);
       }
     } catch (error) {
