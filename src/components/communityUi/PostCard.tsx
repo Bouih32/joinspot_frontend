@@ -13,9 +13,11 @@ import UserInfo from "./UserInfo";
 export default function PostCard({
   data,
   token,
+  likes,
 }: {
   data: PostT;
   token: string | undefined;
+  likes: string[];
 }) {
   const [show, setShow] = useState(false);
 
@@ -55,6 +57,7 @@ export default function PostCard({
         handleComment={handleComment}
         data={data}
         postId={data.postId}
+        likes={likes}
       />
       {show && (
         <section className="space-y-[14px]">

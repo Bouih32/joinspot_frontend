@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Comments from "./Comments";
 import Likes from "./Likes";
 import Save from "./Save";
@@ -11,6 +10,7 @@ type PostActionsProps = {
   show: boolean;
   data: PostT;
   postId: string;
+  likes: string[];
 };
 
 export default function PostActions({
@@ -18,11 +18,12 @@ export default function PostActions({
   show,
   data,
   postId,
+  likes,
 }: PostActionsProps) {
   return (
     <div className="flexBetween text-12xxl text-neutral laptop:text-14xxl">
       <div className="flex items-center gap-[14px]">
-        <Likes likes={data.likesCount} postId={postId} />
+        <Likes likes={data.likesCount} postId={postId} likesIds={likes} />
         <Comments
           show={show}
           handleComment={handleComment}

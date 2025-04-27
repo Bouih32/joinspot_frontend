@@ -1,7 +1,7 @@
 import { getToken } from "@/actions/decodeToken";
 import { JwtPayload } from "jsonwebtoken";
 import PostCard from "./PostCard";
-import { getPosts } from "@/actions/postServer";
+import { getLikedPosts, getPosts } from "@/actions/postServer";
 import PostFeedBack from "./PostFeedback";
 import { PostT } from "@/libs/types";
 import { nanoid } from "nanoid";
@@ -27,12 +27,14 @@ export default async function PostsWrapper({
 
   const data = (await getPosts(params)) as PostT[];
 
+  const likes = await getLikedPosts();
+
   return (
     <section className="flex w-full flex-col justify-between overflow-hidden">
       <div className="flex w-full flex-col items-start space-y-4 pb-5 tablet:space-y-5">
         <PostFeedBack />
         {data.map((ele) => (
-          <PostCard key={nanoid()} data={ele} token={userId} />
+          <PostCard key={nanoid()} data={ele} token={userId} likes={likes} />
         ))}
       </div>
       {/* {data && data.length > 0 && params.my !== "save" && (

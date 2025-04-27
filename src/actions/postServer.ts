@@ -58,7 +58,7 @@ export const getLikedPosts = async () => {
 
     const data = await res.json();
 
-    return data.data;
+    return data.likeIds;
   } catch (error) {
     console.error("Error fetching activities:", error);
     throw error;
