@@ -81,9 +81,9 @@ export default function JoinForm() {
       if (
         error?.message?.includes("Please use one of Stripe's test card numbers")
       ) {
-        setError(error.message); // Set your frontend error state with the specific message
+        setError(error.message);
       } else {
-        setError(true); // Or a more generic error message
+        setError(true);
       }
     } finally {
       setLoading(false);
