@@ -33,7 +33,7 @@ export default function PostCard({
           token={token}
           category={data.category.categoryName}
         />
-        <ShareActivity activityId="hello" />
+        <ShareActivity activityId={data.postId} post />
       </div>
       <div
         className="h-[248px] rounded-[8px] bg-cover bg-center bg-no-repeat p-3"

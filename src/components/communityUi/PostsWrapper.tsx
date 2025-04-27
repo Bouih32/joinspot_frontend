@@ -19,6 +19,7 @@ export default async function PostsWrapper({
     my: string;
     search: string;
     page: string;
+    id: string;
   };
 }) {
   const token = await getToken();
@@ -29,8 +30,8 @@ export default async function PostsWrapper({
     role = (token as JwtPayload).role;
     userId = (token as JwtPayload).userId;
   }
-
-  const data = (await getPosts(params)) as PostT[];
+  // as PostT[]
+  const info = await getPosts(params);
 
   const likes = await getLikedPosts();
 
@@ -42,18 +43,18 @@ export default async function PostsWrapper({
         {params.my === "faq" ? (
           <Questions activities />
         ) : params.my === "save" ? (
-          <SavePosts activities={data} userId={userId} likes={likes} />
-        ) : !data || data.length === 0 ? (
+          <SavePosts activities={info.data} userId={userId} likes={likes} />
+        ) : !info.data || info.data.length === 0 ? (
           <Noposts />
         ) : (
-          data.map((ele) => (
+          info.data.map((ele: PostT) => (
             <PostCard key={nanoid()} data={ele} token={userId} likes={likes} />
           ))
         )}
       </div>
-      {data && data.length > 0 && params.my !== "save" && (
+      {info.data && info.data.length > 0 && params.my !== "save" && (
         <Pagination
-          pages={2}
+          pages={info.pages}
           page={params.page ? parseInt(params.page) : undefined}
         />
       )}

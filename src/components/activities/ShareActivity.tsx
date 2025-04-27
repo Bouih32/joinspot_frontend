@@ -10,13 +10,17 @@ import Portal from "./Portal";
 export default function ShareActivity({
   activityId,
   details,
+  post,
 }: {
   activityId: string;
   details?: boolean;
+  post?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [copy, setCopy] = useState(false);
-  const link = `https://www.joinspots.com/activities/${activityId}`;
+  const link = post
+    ? `https://www.joinspots.com/community?id=${activityId}`
+    : `https://www.joinspots.com/activities/${activityId}`;
   const encodedUrl = encodeURIComponent(link);
   const encodedText = encodeURIComponent(
     "🚀 Don’t miss out on this awesome experience! Tap the link and join the fun – it’s gonna be unforgettable! 🎉🔥",

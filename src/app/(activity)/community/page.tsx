@@ -13,6 +13,7 @@ export default async function CommunityPage({
     my: string;
     search: string;
     page: string;
+    id: string;
   }>;
 }) {
   const params = await searchParams;
