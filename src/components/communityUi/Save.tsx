@@ -1,15 +1,33 @@
-import { useState } from "react";
-import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+"use client";
 
-export default function Save() {
-  const [save, setSave] = useState(false);
+import { PostContext } from "@/contexts/PostsContext";
+import { useContext, useEffect, useState } from "react";
+import { MdBookmark, MdOutlineTurnedInNot } from "react-icons/md";
 
-  const handleSave = () => {
-    setSave((prev) => !prev);
+export default function Save({ id }: { id: string }) {
+  const context = useContext(PostContext);
+  if (!context) return null; // Return `null` instead of `undefined` to avoid hydration errors
+
+  const { handleSave, data } = context;
+  const [open, setOpen] = useState(data.includes(id));
+
+  useEffect(() => {
+    setOpen(data.includes(id));
+  }, [data, id]); // Ensure `open` updates when `data` changes
+
+  const handleClick = () => {
+    setOpen((prev) => !prev);
+    handleSave(id);
   };
+
   return (
-    <div onClick={handleSave} className="cursor-pointer text-main">
-      {save ? <FaBookmark /> : <FaRegBookmark />}
+    <div
+      className="cursor-pointer text-[24px] text-main"
+      onClick={(e) => {
+        handleClick();
+      }}
+    >
+      {open ? <MdBookmark /> : <MdOutlineTurnedInNot />}
     </div>
   );
 }

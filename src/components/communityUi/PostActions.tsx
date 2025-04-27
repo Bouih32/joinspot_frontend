@@ -30,7 +30,7 @@ export default function PostActions({
           commentsCount={data._count.comment}
         />
       </div>
-      <Save />
+      <Save id={postId} />
     </div>
   );
 }
