@@ -14,6 +14,22 @@ export default async function Header() {
   const isLogged = await getToken();
   const userImg = await getHeaderData();
 
+  const navLinksCom = isLogged
+    ? [
+        { name: "Home", href: "/" },
+        { name: "About us", href: "/about" },
+        { name: "Activities", href: "/activities" },
+        { name: "Community", href: "/community" },
+        { name: "Support", href: "/support" },
+      ]
+    : [
+        { name: "Home", href: "/" },
+        { name: "About us", href: "/about" },
+        { name: "Activities", href: "/activities" },
+
+        { name: "Support", href: "/support" },
+      ];
+
   return (
     <section className="sticky top-0 z-[600] bg-white">
       <NavigationContext>
@@ -28,7 +44,7 @@ export default async function Header() {
                 className="h-[21.986px] w-[124px] object-contain tablet:h-[32.979px] tablet:w-[217px] laptop:h-[38.5px] laptop:w-[227px]"
               />
             </Link>
-            <Nav classname="hidden tablet:block" navInfo={navLinks} />
+            <Nav classname="hidden tablet:block" navInfo={navLinksCom} />
             {isLogged ? (
               <LogedUi avatar={userImg.avatar} isLogged={isLogged} />
             ) : (

@@ -261,7 +261,7 @@ export default {
         lines: "url(https://i.postimg.cc/mgSfVfG8/lines.png)",
         linesLight: "url(https://i.postimg.cc/HLZGDwnM/lines-Light.png)",
         ticketPattern: "url(https://i.postimg.cc/nzHyNdnp/ticket-Pattern.png)",
-        mobileNavBg: "url(https://i.postimg.cc/zXn9XZ38/mobileBg.png)",
+        mobileNavBg: "url(https://i.postimg.cc/KjwwKQDt/Group-74.png)",
         resetGrad: "linear-gradient(60deg, #98F9FF, #FE5722)",
         activityGrad:
           "linear-gradient(90deg, rgba(255, 238, 233, 0.00) 0%, #F8F6F4 100%)",

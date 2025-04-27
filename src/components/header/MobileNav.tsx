@@ -15,6 +15,21 @@ type MobileNavProps = {
 };
 
 export default function MobileNav({ user }: MobileNavProps) {
+  const navLinksCom = user
+    ? [
+        { name: "Home", href: "/" },
+        { name: "About us", href: "/about" },
+        { name: "Activities", href: "/activities" },
+        { name: "Community", href: "/community" },
+        { name: "Support", href: "/support" },
+      ]
+    : [
+        { name: "Home", href: "/" },
+        { name: "About us", href: "/about" },
+        { name: "Activities", href: "/activities" },
+
+        { name: "Support", href: "/support" },
+      ];
   const context = useContext(NavContext);
   if (!context) return;
   const { handleClose, handleOpen, open } = context;
@@ -35,7 +50,7 @@ export default function MobileNav({ user }: MobileNavProps) {
           ></div>
           <section
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-mobileNavBg bg-[length:100%_60%] bg-bottom bg-no-repeat px-4 pt-[48px] tablet:hidden"
+            className="absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-mobileNavBg bg-[length:65%_100%] bg-right bg-no-repeat px-4 pt-[48px] tablet:hidden"
           >
             <div className="flexBetween">
               <Image
@@ -60,7 +75,7 @@ export default function MobileNav({ user }: MobileNavProps) {
                 </Link>
               </div>
             )}
-            <Nav classname="mt-6 text-darker" navInfo={navLinks} />
+            <Nav classname="mt-6 text-darker" navInfo={navLinksCom} />
           </section>
         </>
       )}

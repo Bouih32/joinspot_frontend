@@ -3,7 +3,6 @@ export const publicRoutes = [
   "/reset",
   "/activities",
   "/about",
-  "/community",
   "/support",
   "/profile",
 ];

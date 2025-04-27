@@ -28,7 +28,7 @@ export default function NoUserNav() {
           ></div>
           <section
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-mobileNavBg bg-[length:100%_60%] bg-bottom bg-no-repeat px-4 pt-[48px] tablet:hidden"
+            className="absolute right-0 top-0 z-50 block h-screen w-[274px] bg-secondLightHover bg-mobileNavBg bg-[length:65%_100%] bg-right bg-no-repeat px-4 pt-[48px] tablet:hidden"
           >
             <div className="flexBetween">
               <Image
