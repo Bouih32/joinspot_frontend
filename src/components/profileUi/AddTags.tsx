@@ -28,7 +28,6 @@ export default function AddTags({ userTags }: { userTags: TagsT[] }) {
   const router = useRouter();
 
   const selectCategory = (id: string) => {
-    console.log(selectedCategory);
     setSelectedCategory(id);
   };
 
@@ -43,7 +42,6 @@ export default function AddTags({ userTags }: { userTags: TagsT[] }) {
   };
 
   const handleAdd = async () => {
-    console.log(selectedTags);
     setLoading(true);
     await addTagTwo(selectedTags);
     setLoading(false);

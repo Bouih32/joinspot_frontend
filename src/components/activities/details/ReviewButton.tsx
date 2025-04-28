@@ -68,7 +68,6 @@ export default function ReviewButton({ token, id }: ReviewButtonProps) {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
     setLoading(true);
     await reviewActivity(formData, id);
     setLoading(false);

@@ -18,7 +18,6 @@ export default function SaveWrapper({
   if (!context) return null;
 
   const { data } = context;
-  console.log(data);
 
   // Filter activities based on saved data
   const activitiesSaved = activities?.filter((ele) =>

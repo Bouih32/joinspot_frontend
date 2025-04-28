@@ -54,7 +54,6 @@ export default function PostForm() {
     const resault = await trigger();
     if (!resault) return;
     const formData = getValues();
-    console.log(formData);
     setLoading(true);
     await addPost(formData);
     setLoading(false);

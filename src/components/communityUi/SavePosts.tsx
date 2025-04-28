@@ -16,14 +16,13 @@ export default function SavePosts({
 }: {
   activities: PostT[] | null;
   userId: string | undefined;
-  likes:string[]
+  likes: string[];
 }) {
   const context = useContext(PostContext);
 
   if (!context) return null;
 
   const { data } = context;
-  console.log(data);
 
   // Filter activities based on saved data
   const activitiesSaved = activities?.filter((ele) =>
@@ -34,7 +33,7 @@ export default function SavePosts({
     <>
       {activitiesSaved && activitiesSaved.length > 0 ? (
         activitiesSaved.map((ele) => (
-           <PostCard key={nanoid()} data={ele} token={userId} likes={likes} />
+          <PostCard key={nanoid()} data={ele} token={userId} likes={likes} />
         ))
       ) : (
         <section className="space-y-5 self-center justify-self-center text-center tablet:mt-10">
