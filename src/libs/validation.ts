@@ -160,7 +160,13 @@ export const addValidation = z.object({
     .refine((val) => val > 2 && val < 50, {
       message: "The number must be greater than 2 and less than 50",
     }),
-  price: z.string().trim().min(1, { message: "This field is required" }),
+  price: z
+    .string()
+    .trim()
+    .min(1, { message: "This field is required" })
+    .transform((val) => parseInt(val, 10)) // Transform to number
+    .refine((val) => !isNaN(val), { message: "Invalid number" })
+    .refine((val) => val <= 5000, { message: "Price must be 5000 or less" }),
   location: z.string().trim().min(3, { message: "This field is required" }),
   cityId: z.string().trim().min(3, { message: "This field is required" }),
 });
