@@ -31,8 +31,6 @@ export default async function PostsWrapper({
     userId = (token as JwtPayload).userId;
   }
 
-  if (!token) throw new Error();
-
   const info = params.my === "own" && !token ? [] : await getPosts(params);
   const likes = token ? await getLikedPosts() : [];
 
