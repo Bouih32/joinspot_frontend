@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JOINSPOTS - PFE
 
-## Getting Started
+JoinSpots is your go-to platform for discovering and creating unforgettable activities across Morocco. Whether you're a tourist seeking authentic local experiences or a local looking to meet new people and explore hidden gems, JoinSpots connects you to vibrant events, adventures, and communities. Create your own activities, join exciting gatherings, and experience Morocco like never before — all in one place.
 
-First, run the development server:
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contact](#contact)
+
+## Installation
+
+Follow these steps to set up the project locally:
+
+### Prerequisites
+
+Ensure you have the following installed on your local machine:
+
+- Node
+- Git
+
+### Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Bouih32/joinspot_frontend.git
+cd joinspot_frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install all the necessary dependencies in `package.json` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+```
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+Run the Next.js application locally:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Add the .env.EXAMPLE variables to your .env file:
+2. Run the application:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+3. Open your web browser and navigate to `http://localhost:3000` to see the Next.js app in action.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is Starware. If you like it, please give it a star on GitHub. It helps to promote the project and shows appreciation to the developer.
+
+## Contact
+
+If you have any questions or feedback, feel free to reach out:
+
+- Email: bouih.othmane@gmail.com
