@@ -9,15 +9,20 @@ import CommentForm from "./CommentForm";
 import { PostT } from "@/libs/types";
 import { nanoid } from "nanoid";
 import UserInfo from "./UserInfo";
+import DeletePost from "./DeletePost";
 
 export default function PostCard({
   data,
   token,
   likes,
+  role,
+  userId,
 }: {
   data: PostT;
   token: string | undefined;
   likes: string[];
+  role: string | undefined;
+  userId: string | undefined;
 }) {
   const [show, setShow] = useState(false);
 
@@ -33,7 +38,13 @@ export default function PostCard({
           token={token}
           category={data.category.categoryName}
         />
-        <ShareActivity activityId={data.postId} post />
+        <div className="flex items-center gap-2">
+          {role === "ADMIN" || userId === data.userId ? (
+            <DeletePost id={data.postId} />
+          ) : null}
+
+          <ShareActivity activityId={data.postId} post />
+        </div>
       </div>
       <div
         className="h-[248px] rounded-[8px] bg-cover bg-center bg-no-repeat p-3"

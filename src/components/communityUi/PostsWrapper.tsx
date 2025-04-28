@@ -47,7 +47,14 @@ export default async function PostsWrapper({
           <Noposts />
         ) : (
           info.data.map((ele: PostT) => (
-            <PostCard key={nanoid()} data={ele} token={userId} likes={likes} />
+            <PostCard
+              key={nanoid()}
+              data={ele}
+              token={userId}
+              likes={likes}
+              role={role}
+              userId={userId}
+            />
           ))
         )}
       </div>
