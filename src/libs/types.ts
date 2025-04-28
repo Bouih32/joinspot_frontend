@@ -76,7 +76,7 @@ export type AddActivityT = {
   endDay: string;
   seat: number;
   cityId: string;
-  price: string;
+  price: number;
   tags: string;
 };
 

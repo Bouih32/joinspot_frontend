@@ -104,7 +104,7 @@ export default function PostForm() {
       </div>
       <div className="flex gap-2 self-end">
         <Link
-          href="/activities"
+          href="/community"
           className="flexCenter w-fit cursor-pointer gap-2 rounded border border-main bg-transparent px-3 py-[3px] font-openSans text-14xl text-main outline-none tablet:px-4 tablet:py-[6px]"
         >
           Cancel
