@@ -44,7 +44,12 @@ export default async function PostsWrapper({
         {params.my === "faq" ? (
           <Questions activities />
         ) : params.my === "save" ? (
-          <SavePosts activities={info.data} userId={userId} likes={likes} />
+          <SavePosts
+            activities={info.data}
+            userId={userId}
+            likes={likes}
+            role={role}
+          />
         ) : !info.data || info.data.length === 0 ? (
           <Noposts />
         ) : (
@@ -55,7 +60,6 @@ export default async function PostsWrapper({
               token={userId}
               likes={likes}
               role={role}
-              userId={userId}
             />
           ))
         )}

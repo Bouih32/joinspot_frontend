@@ -16,13 +16,11 @@ export default function PostCard({
   token,
   likes,
   role,
-  userId,
 }: {
   data: PostT;
   token: string | undefined;
   likes: string[];
   role: string | undefined;
-  userId: string | undefined;
 }) {
   const [show, setShow] = useState(false);
 
@@ -39,7 +37,7 @@ export default function PostCard({
           category={data.category.categoryName}
         />
         <div className="flex items-center gap-2">
-          {role === "ADMIN" || userId === data.userId ? (
+          {role === "ADMIN" || token === data.userId ? (
             <DeletePost id={data.postId} />
           ) : null}
 

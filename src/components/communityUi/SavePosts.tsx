@@ -13,10 +13,12 @@ export default function SavePosts({
   activities,
   userId,
   likes,
+  role,
 }: {
   activities: PostT[] | null;
   userId: string | undefined;
   likes: string[];
+  role: string | undefined;
 }) {
   const context = useContext(PostContext);
 
@@ -33,7 +35,13 @@ export default function SavePosts({
     <>
       {activitiesSaved && activitiesSaved.length > 0 ? (
         activitiesSaved.map((ele) => (
-          <PostCard key={nanoid()} data={ele} token={userId} likes={likes} />
+          <PostCard
+            key={nanoid()}
+            data={ele}
+            token={userId}
+            likes={likes}
+            role={role}
+          />
         ))
       ) : (
         <section className="space-y-5 self-center justify-self-center text-center tablet:mt-10">
