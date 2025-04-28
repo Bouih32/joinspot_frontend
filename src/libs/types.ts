@@ -163,6 +163,7 @@ export type MessageT = {
   message_from: {
     avatar: string;
     userName: string;
+    userId: string;
   };
 };
 

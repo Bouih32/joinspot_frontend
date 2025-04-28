@@ -1,10 +1,14 @@
 import { formatDate } from "@/libs/utils";
 import { MessageT } from "@/libs/types";
 import { avatarPlaceholder } from "@/libs/constantes";
+import Link from "next/link";
 
 export default function SenderUi({ data }: { data: MessageT }) {
   return (
-    <div className="flex items-center gap-[6px] tablet:gap-[15px]">
+    <Link
+      href={`/profile/${data.message_from.userId}`}
+      className="flex items-center gap-[6px] tablet:gap-[15px]"
+    >
       <div
         style={{
           backgroundImage: `url(${data.message_from.avatar ? data.message_from.avatar : avatarPlaceholder})`,
@@ -17,6 +21,6 @@ export default function SenderUi({ data }: { data: MessageT }) {
           {formatDate(data.createdAt)}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
