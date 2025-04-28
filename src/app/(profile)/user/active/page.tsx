@@ -10,6 +10,7 @@ export type activeT = {
   totalTickets: any;
   totalRevenue: number;
   deletedAt: string;
+  activityId: string;
 };
 
 export default async function ActivePage({
