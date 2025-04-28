@@ -10,8 +10,11 @@ export default function Comments({
   commentsCount: number;
 }) {
   return (
-    <div className="flex items-center gap-[6px]">
-      <div onClick={handleComment} className="cursor-pointer">
+    <div
+      className="flex cursor-pointer items-center gap-[6px]"
+      onClick={handleComment}
+    >
+      <div className="cursor-pointer">
         {show ? (
           <MdModeComment className="text-main" />
         ) : (

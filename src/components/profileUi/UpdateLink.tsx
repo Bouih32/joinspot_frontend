@@ -14,8 +14,7 @@ export default async function UpdateLink() {
     </Link>
   ) : (
     <div className="flexCenter w-fit gap-2 rounded bg-main px-3 py-[3px] font-openSans text-14xl text-white outline-none disabled:pointer-events-none disabled:bg-secondLightActive tablet:px-4 tablet:py-[6px]">
-      <RiVipCrown2Fill className="tablet:text-[20px]" />
-      <p>Request pending</p>
+      <p>Pending ...</p>
     </div>
   );
 }
