@@ -39,14 +39,15 @@ npm install
 
 Run the Next.js application locally:
 
-1. Add the .env.EXAMPLE variables to your .env file:
-2. Run the application:
+1. Add the .env.EXAMPLE variables to your .env file.
+2. Make sure you are also running the backend :
+3. Run the application:
 
    ```bash
    npm run dev
    ```
 
-3. Open your web browser and navigate to `http://localhost:3000` to see the Next.js app in action.
+4. Open your web browser and navigate to `http://localhost:3000` to see the Next.js app in action.
 
 ## License
 
