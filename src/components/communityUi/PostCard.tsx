@@ -44,6 +44,8 @@ export default function PostCard({
           <ShareActivity activityId={data.postId} post />
         </div>
       </div>
+      <p>{role}</p>
+      <p>{token}</p>
       <div
         className="h-[248px] rounded-[8px] bg-cover bg-center bg-no-repeat p-3"
         style={{ backgroundImage: `url(${data.bannerPic})` }}
