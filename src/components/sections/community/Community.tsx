@@ -77,6 +77,7 @@ export default function Community() {
                     name={ele.name}
                     text={ele.text}
                     stars={ele.stars}
+                    avatar={ele.avatar}
                   />
                 </motion.div>
               ))}

@@ -4,13 +4,14 @@ import Image from "next/image";
 type UserCardProps = {
   title: string;
   category: string;
+  avatar: string;
 };
 
-export default function UserCard({ title, category }: UserCardProps) {
+export default function UserCard({ title, category, avatar }: UserCardProps) {
   return (
     <div className="flex items-center gap-2">
       <Image
-        src={avatarPlaceholder}
+        src={avatar ?? avatarPlaceholder}
         alt="avatar"
         height={50}
         width={50}

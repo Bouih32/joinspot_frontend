@@ -28,21 +28,27 @@ export const API_URL = isProduction
 
 export const reviewsData = [
   {
-    name: "Cheyenne Calzoni",
+    avatar:
+      "https://i.postimg.cc/hPBkhsbK/Whats-App-Image-2025-04-28-at-20-01-37-00e26d91.jpg",
+    name: "Hassan Bouih",
     category: "Sport",
-    text: "Lorem ipsum dolor sit amet consectetur. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est.. In risus lacus aliquet suscipit dignissim ",
+    text: "I absolutely love this platform! It’s so easy to find fun activities and meet new people. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est. In risus lacus aliquet suscipit dignissim. The community feels super friendly and supportive.",
     stars: 4,
   },
   {
-    name: "Justin Ekstrom Bothman",
+    avatar:
+      "https://i.postimg.cc/FzjwDkmt/Whats-App-Image-2025-04-28-at-18-13-10-a42c9b9f.jpg",
+    name: "Abdollah Biga",
     category: "learning",
-    text: "Lorem ipsum dolor sit amet consectetur. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est.. In risus lacus aliquet suscipit dignissim ",
+    text: "Really love the idea! Finding local activities has never been easier. Sometimes events fill up fast, but that's just proof it’s popular. Met great people and had lots of fun already. Excited to see how the platform grows with even more features!",
     stars: 5,
   },
   {
-    name: "Lydia Botosh",
+    avatar:
+      "https://i.postimg.cc/NfkWXXpm/Whats-App-Image-2025-04-28-at-18-04-40-dec5f616.jpg",
+    name: "Hamza oizzahra",
     category: "cuisine",
-    text: "Lorem ipsum dolor sit amet consectetur. Cras tortor sit nam odio. Mi bibendum gravida malesuada lectus turpis gravida praesent est.. In risus lacus aliquet suscipit dignissim ",
+    text: "Nice platform with tons of potential! Some activities got canceled last minute, but overall, the idea is brilliant. Great way to discover new hobbies and socialize. Looking forward to some improvements and more consistent event updates soon.",
     stars: 4,
   },
 ];

@@ -8,6 +8,7 @@ type ReviewCardProps = {
   category: string;
   text: string;
   stars: number;
+  avatar: string;
 };
 
 export default function ReviewCard({
@@ -15,6 +16,7 @@ export default function ReviewCard({
   category,
   text,
   stars,
+  avatar,
 }: ReviewCardProps) {
   return (
     <section
@@ -31,7 +33,7 @@ export default function ReviewCard({
         ))}
       </div>
       <div className="space-y-[28px]">
-        <UserCard category={category} title={name} />
+        <UserCard category={category} title={name} avatar={avatar} />
         <p className="text-14sm text-darker">{text}</p>
       </div>
     </section>
