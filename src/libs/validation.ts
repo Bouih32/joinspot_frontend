@@ -173,9 +173,6 @@ export const addValidation = z.object({
 
 export const postValidation = z.object({
   bannerPic: z.string().trim().min(1),
-  title: z.string().trim().min(1).max(50, {
-    message: "Title is too long. Only  50 characters allowed",
-  }),
   description: z
     .string()
     .trim()

@@ -86,18 +86,12 @@ export default function PostForm() {
           error={errors.bannerPic?.message as string}
         />
 
-        <div className="w-full space-y-[7px] tablet:space-y-[8px]">
-          <AddInput<addPostT>
-            placeholder="Activity title"
-            register={register}
-            name="title"
-            type="text"
-            error={errors.title?.message as string}
-          />
+        <div className="w-full space-y-[7px] tablet:space-y-[18px]">
           <TextArea<addPostT>
             placeholder="Description"
             register={register}
             name="description"
+            classname="tablet:h-[126px] laptop:h-[130px]"
             error={errors.description?.message as string}
           />
           <AddWrapper
