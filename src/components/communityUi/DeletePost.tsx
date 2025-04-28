@@ -1,6 +1,7 @@
 "use client";
 
 import { banActivity } from "@/actions/getActivities";
+import { deletePost } from "@/actions/postActions";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -32,8 +33,8 @@ export default function DeletePost({ id }: { id: string }) {
 
   const handleSuspend = async () => {
     setLoading(true);
-    // await banActivity(id);
-    // router.refresh();
+    await deletePost(id);
+    router.refresh();
     setLoading(false);
     setOpen(false);
   };
